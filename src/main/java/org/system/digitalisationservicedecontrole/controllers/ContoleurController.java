@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ContoleurController {
 
-    @GetMapping("/Equipements")
+    @GetMapping("/controleur/listeEquipements")
     public String afficherECOEquipements() {
-        return "ECO_Equipements"; // Assurez-vous que "ECO_Equipements.html" est présent dans le dossier templates
+        return "C_listeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
 
-    @GetMapping("/Profile")
+    @GetMapping("/controleur/monProfile")
     public String afficherProfile() {
-        return "ECO_Profile"; // Assurez-vous que "ECO_Equipements.html" est présent dans le dossier templates
+        return "C_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
-    @GetMapping("/Formulaire")
+    @GetMapping("/controleur/formulaire1")
     public String afficherFormulaire() {
-        return "ECO_formulaire1"; // Assurez-vous que "ECO_Equipements.html" est présent dans le dossier templates
+        return "C_formulaire1"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
 
