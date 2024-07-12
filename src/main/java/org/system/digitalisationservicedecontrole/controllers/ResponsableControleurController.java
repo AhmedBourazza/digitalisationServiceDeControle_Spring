@@ -25,4 +25,9 @@ public class ResponsableControleurController {
     public String MonProfile() {
         return "RC_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
+
+    @GetMapping("/responsableControleur/GestionEquipements")
+    public String GestionEquipements() {
+        return "RC_GestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
 }
