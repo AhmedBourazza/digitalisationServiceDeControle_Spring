@@ -361,10 +361,31 @@
         <div class="container">
             <div class="page-inner">
 
+                <ul class="breadcrumbs mb-3">
+                    <h3 class="fw-bold mb-3">Gestion des entités</h3>
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="fas fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="fas fa-angle-right"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Espace responsable générale</a>
+                    </li>
+                    <li class="separator">
+                        <i class="fas fa-angle-right"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Liste des entités</a>
+                    </li>
 
+                </ul>
 
                 <!-- Customized Card -->
-                <h3 class="fw-bold mb-3">Gestion des profiles</h3>
+
+
                 <div class="row">
 
                     <!----------------------------------------------------------------------------->
@@ -372,7 +393,7 @@
 
                         <div class="ms-md-auto py-2 py-md-0">
 
-                            <a href="#" class="btn btn-primary btn-round">Ajouter une entité</a>
+                            <a th:href="@{/responsableGeneral/gestionEntites/ajout}" class="btn btn-primary btn-round">Ajouter une entité</a>
                         </div>
                     </div>
 
@@ -380,7 +401,7 @@
                    <!-------------------------------------------------------------------------------->
 
                     <div class="col-sm-6 col-md-3">
-                        <a href="">
+
                         <div class="card card-stats card-round">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -391,20 +412,36 @@
                                         </div>
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
+
+                                     <a href="">
                                         <div class="numbers">
                                             <p class="card-category">Entité 1</p>
                                             <h4 class="card-title">12 Unités</h4>
+
                                         </div>
+                                     </a>
+                                    </div>
+                                    <div class="col col-stats ms-3 ms-sm-0">
+
+                                  <a th:href="@{/responsableGeneral/gestionEntites/modification}">
+                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
+                                            </i> </a>
+
+
+                                        <div style="width: 20px;"></div>
+                                        <a href="">
+                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
+                                            </i> </a>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
+
                     </div>
 
-
                     <div class="col-sm-6 col-md-3">
-                        <a href="">
+
                         <div class="card card-stats card-round">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -415,22 +452,36 @@
                                         </div>
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Entité 2 </p>
-                                            <h4 class="card-title">12 Unités</h4>
-                                        </div>
+
+                                        <a href="">
+                                            <div class="numbers">
+                                                <p class="card-category">Entité 1</p>
+                                                <h4 class="card-title">12 Unités</h4>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col col-stats ms-3 ms-sm-0">
+
+                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
+                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
+                                            </i> </a>
+
+
+                                        <div style="width: 20px;"></div>
+                                        <a href="">
+                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
+                                            </i> </a>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
+
                     </div>
 
-
-
-
                     <div class="col-sm-6 col-md-3">
-                        <a href="">
+
                         <div class="card card-stats card-round">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -441,20 +492,36 @@
                                         </div>
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Entité 3</p>
-                                            <h4 class="card-title">9 Unités</h4>
-                                        </div>
+
+                                        <a href="">
+                                            <div class="numbers">
+                                                <p class="card-category">Entité 1</p>
+                                                <h4 class="card-title">12 Unités</h4>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col col-stats ms-3 ms-sm-0">
+
+                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
+                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
+                                            </i> </a>
+
+
+                                        <div style="width: 20px;"></div>
+                                        <a href="">
+                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
+                                            </i> </a>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
+
                     </div>
 
-
                     <div class="col-sm-6 col-md-3">
-                        <a href="">
+
                         <div class="card card-stats card-round">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -465,22 +532,36 @@
                                         </div>
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Entité 4</p>
-                                            <h4 class="card-title">21 Unités</h4>
-                                        </div>
+
+                                        <a href="">
+                                            <div class="numbers">
+                                                <p class="card-category">Entité 1</p>
+                                                <h4 class="card-title">12 Unités</h4>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col col-stats ms-3 ms-sm-0">
+
+                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
+                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
+                                            </i> </a>
+
+
+                                        <div style="width: 20px;"></div>
+                                        <a href="">
+                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
+                                            </i> </a>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
+
                     </div>
-
-
 
                     <div class="col-sm-6 col-md-3">
 
-                        <a href="">
                         <div class="card card-stats card-round">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -491,16 +572,34 @@
                                         </div>
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Entité 5</p>
-                                            <h4 class="card-title">8 Unités</h4>
-                                        </div>
+
+                                        <a href="">
+                                            <div class="numbers">
+                                                <p class="card-category">Entité 1</p>
+                                                <h4 class="card-title">12 Unités</h4>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col col-stats ms-3 ms-sm-0">
+
+                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
+                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
+                                            </i> </a>
+
+
+                                        <div style="width: 20px;"></div>
+                                        <a href="">
+                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
+                                            </i> </a>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
+
                     </div>
+
 
 
                     <!-------------------------------------------------------------------------------->
