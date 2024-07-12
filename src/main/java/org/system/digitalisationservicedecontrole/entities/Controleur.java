@@ -26,6 +26,7 @@ public class Controleur {
     private Date dateEmbauche ;
 
     @ManyToOne()
+    @JoinColumn(name = "IdResponsableControleur_")
     private ResponsableControleur responsableControleur ;
 
     @OneToMany(mappedBy = "controleur")

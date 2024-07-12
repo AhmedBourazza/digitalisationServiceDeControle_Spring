@@ -29,5 +29,6 @@ public class ResponsableControleur {
     private Collection<Controleur>  controleurs ;
 
    @ManyToOne()
-    private ResponsableGeneral responsableGeneral ;
+   @JoinColumn(name = "IdResponsableGeneral_")
+   private ResponsableGeneral responsableGeneral ;
 }

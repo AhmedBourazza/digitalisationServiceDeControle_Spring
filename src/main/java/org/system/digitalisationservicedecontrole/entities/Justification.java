@@ -17,6 +17,7 @@ public class Justification {
     private Long idJustification;
     private String enonce ;
     @ManyToOne()
+    @JoinColumn(name = "IdQuestion_")
     private Question question;
 
 }

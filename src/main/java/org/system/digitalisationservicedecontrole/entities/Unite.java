@@ -26,6 +26,7 @@ public class Unite {
     private Collection<Formulaire> formulaires ;
 
     @ManyToOne()
+    @JoinColumn(name = "IdEntite_")
     private Entite entite ;
 
 }

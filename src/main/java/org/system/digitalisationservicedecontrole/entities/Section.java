@@ -20,6 +20,7 @@ public class Section {
     private Long idSection ;
     private String nom ;
     @ManyToOne()
+    @JoinColumn(name = "IdFormulaire_")
     private Formulaire formulaire ;
 
 

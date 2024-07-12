@@ -22,10 +22,13 @@ public class Formulaire {
     private Date dateControle ;
     private String Proprietaire ;
     @ManyToOne()
+    @JoinColumn(name = "IdControleur_")
     private Controleur controleur ;
     @ManyToOne()
+    @JoinColumn(name = "IdEquipement_")
     private Equipement equipement ;
     @ManyToOne()
+    @JoinColumn(name = "IdUnite_")
     private Unite unite ;
 
     @OneToMany(mappedBy = "formulaire")
