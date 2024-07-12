@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>OCP SA - Espace Chef</title>
+    <title>OCP SA - Espace responsable générale</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
@@ -59,7 +59,7 @@
                             class="navbar-brand"
                             height="20"
                     />
-                    <strong style="color: white; margin-left: 4px;"> Espace Chef</strong>
+                    <strong style="color: white; margin-left: 4px;"> Espace RG </strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -80,7 +80,7 @@
                 <ul class="nav nav-secondary">
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/dashboard}">
+                        <a th:href="@{/responsableGeneral/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
@@ -88,7 +88,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/monProfile}">
+                        <a th:href="@{/responsableGeneral/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
@@ -108,11 +108,11 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/listeControleurs}">
+                        <a th:href="@{/responsableGeneral/listeControleurs}">
                             <i class="fa-regular fa-square-check" ></i>
 
                             <p>Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
+                            <span class="badge badge-success">16</span>
                         </a>
                     </li>
 
@@ -128,9 +128,10 @@
 
 
                     <li class="nav-item active">
-                        <a th:href="@{/responsableControleur/GestionEquipements}">
+                        <a th:href="@{/responsableGeneral/GestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
+                            <span class="badge badge-success">16</span>
 
                         </a>
                     </li>
@@ -357,7 +358,7 @@
                             <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Espace responsable controleurs</a>
+                            <a href="#">Espace responsable générale</a>
                         </li>
                         <li class="separator">
                             <i class="icon-arrow-right"></i>
@@ -386,9 +387,11 @@
                                         <div class="card-title">Liste des equipements</div>
                                         <div class="card-tools">
                                             <div class="dropdown">
-                                                <button class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+                                                <a th:href="@{/responsableGeneral/gestionEquipement/modification}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
                                                     <i class="fa-solid fa-plus"></i>
-                                                </button>
+                                                </a>
 
                                             </div>
                                         </div>
@@ -421,7 +424,7 @@
                                                 <td class="text-end">15</td>
                                                 <td class="text-end">OIJ-HSE-F-18-16</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -436,7 +439,7 @@
                                                 <td class="text-end">21</td>
                                                 <td class="text-end">OIJ-HSE-F-18-11</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -451,7 +454,7 @@
                                                 <td class="text-end">18</td>
                                                 <td class="text-end">OIJ-HSE-F-18-12</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -466,7 +469,7 @@
                                                 <td class="text-end">19</td>
                                                 <td class="text-end">OIJ-HSE-F-18-13</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -482,7 +485,7 @@
                                                 <td class="text-end">15</td>
                                                 <td class="text-end">OIJ-HSE-F-18-14</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -497,7 +500,7 @@
                                                 <td class="text-end">25</td>
                                                 <td class="text-end">OIJ-HSE-F-18-15</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -512,7 +515,7 @@
                                                 <td class="text-end">26</td>
                                                 <td class="text-end">OIJ-HSE-F-18-17</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
@@ -531,7 +534,7 @@
                                                 <td class="text-end">21</td>
                                                 <td class="text-end">OIJ-HSE-F-18-18</td>
                                                 <td class="text-end">
-                                                    <a href="" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
