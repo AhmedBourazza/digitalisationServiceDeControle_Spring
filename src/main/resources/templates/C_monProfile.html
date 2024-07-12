@@ -80,7 +80,7 @@
                 <ul class="nav nav-secondary">
 
                     <li class="nav-item active ">
-                        <a th:href="@{/Profile}">
+                        <a th:href="@{/controleur/monProfile}">
                             <i class="fas fa-home"></i>
                             <p>Profile</p>
 
@@ -104,7 +104,7 @@
 
 
                     <li class="nav-item ">
-                        <a th:href="@{/Equipements}">
+                        <a th:href="@{/controleur/listeEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Les équipements</p>
                             <span class="badge badge-success">8</span>
@@ -291,7 +291,7 @@
                                                 <h4>Hizrian</h4>
                                                 <p class="text-muted">hello@example.com</p>
                                                 <a
-                                                        href="profile.html"
+                                                        href="@{/controleur/monProfile}"
                                                         class="btn btn-xs btn-secondary btn-sm"
                                                 >View Profile</a
                                                 >
