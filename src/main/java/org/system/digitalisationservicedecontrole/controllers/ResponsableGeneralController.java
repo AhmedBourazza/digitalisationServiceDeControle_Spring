@@ -46,7 +46,8 @@ public class ResponsableGeneralController {
 
     @GetMapping("/responsableGeneral/gestionEntites")
     public String GestionEntites() {
-        return "RG_gestionEntites";
+
+        return "RG_gestionEntites";}
 
     @GetMapping("/responsableGeneral/gestionEntites/modification")
     public String modificationEntite() {

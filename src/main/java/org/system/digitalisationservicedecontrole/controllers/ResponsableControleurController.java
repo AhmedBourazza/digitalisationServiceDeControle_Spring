@@ -38,4 +38,7 @@ public class ResponsableControleurController {
     public String GestionEquipements() {
         return "RC_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
+    @GetMapping("/responsableControleur/gestionEntites")
+    public String gestionEntites() {
+        return "RC_gestionEntites";}
 }
