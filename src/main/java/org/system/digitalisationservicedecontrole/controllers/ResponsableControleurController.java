@@ -41,4 +41,17 @@ public class ResponsableControleurController {
     @GetMapping("/responsableControleur/gestionEntites")
     public String gestionEntites() {
         return "RC_gestionEntites";}
+
+    @GetMapping("/responsableControleur/gestionEntites/modification")
+    public String modificationEntite() {
+        return "RC_gestionEntites_modification";
+
+    }
+
+    @GetMapping("/responsableControleur/gestionEntites/ajout")
+    public String AjoutEntite() {
+        return "RC_gestionEntites_ajout";
+
+
+    }
 }
