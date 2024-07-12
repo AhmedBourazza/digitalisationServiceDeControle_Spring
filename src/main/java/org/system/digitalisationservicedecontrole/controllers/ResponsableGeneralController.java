@@ -31,13 +31,13 @@ public class ResponsableGeneralController {
     public String GestionEquipements() {
         return "RG_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
-    @GetMapping("/responsableGeneral/gestionEquipement/modification")
+    @GetMapping("/responsableGeneral/gestionEquipements/modification")
     public String modificationEquipement() {
         return "RG_gestionEquipements_modification";
 
     }
 
-    @GetMapping("/responsableGeneral/gestionEquipement/ajout")
+    @GetMapping("/responsableGeneral/gestionEquipements/ajout")
     public String AjoutEquipement() {
         return "RG_gestionEquipements_ajout";
 
