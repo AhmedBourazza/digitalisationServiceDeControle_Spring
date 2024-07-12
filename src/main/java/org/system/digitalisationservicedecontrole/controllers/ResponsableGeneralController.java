@@ -31,21 +31,32 @@ public class ResponsableGeneralController {
     public String GestionEquipements() {
         return "RG_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
-    @GetMapping("/responsableGeneral/gestionEquipement/modification")
+    @GetMapping("/responsableGeneral/gestionEquipements/modification")
     public String modificationEquipement() {
         return "RG_gestionEquipements_modification";
 
     }
 
-    @GetMapping("/responsableGeneral/gestionEquipement/ajout")
+    @GetMapping("/responsableGeneral/gestionEquipements/ajout")
     public String AjoutEquipement() {
         return "RG_gestionEquipements_ajout";
 
     }
 
-    @GetMapping("/responsableGeneral/gestionEntite")
-    public String GestionEntite() {
+
+    @GetMapping("/responsableGeneral/gestionEntites")
+    public String GestionEntites() {
         return "RG_gestionEntites";
+
+    @GetMapping("/responsableGeneral/gestionEntites/modification")
+    public String modificationEntite() {
+        return "RG_gestionEntites_modification";
+
+    }
+    @GetMapping("/responsableGeneral/gestionEntites/ajout")
+    public String AjoutEntite() {
+        return "RG_gestionEntites_ajout";
+
 
     }
 }
