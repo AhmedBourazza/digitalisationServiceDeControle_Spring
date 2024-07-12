@@ -8,7 +8,7 @@ public class ResponsableGeneralController {
 
     @GetMapping("/responsableGeneral/listeControleurs")
     public String Controleurs() {
-        return "RG_ListeControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RG_listeControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
     @GetMapping("/responsableGeneral/dashboard")
@@ -29,7 +29,7 @@ public class ResponsableGeneralController {
 
     @GetMapping("/responsableGeneral/GestionEquipements")
     public String GestionEquipements() {
-        return "RG_GestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RG_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/responsableGeneral/gestionEquipement/modification")
     public String modificationEquipement() {
