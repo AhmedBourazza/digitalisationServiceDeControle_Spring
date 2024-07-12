@@ -29,6 +29,10 @@ public class ResponsableControleurController {
     public String modificationEquipement() {
         return "RC_gestionEquipements_modification";
     }
+    @GetMapping("/responsableControleur/gestionEquipement/ajout")
+    public String ajoutEquipement() {
+        return "RC_gestionEquipements_ajout";
+    }
 
     @GetMapping("/responsableControleur/GestionEquipements")
     public String GestionEquipements() {

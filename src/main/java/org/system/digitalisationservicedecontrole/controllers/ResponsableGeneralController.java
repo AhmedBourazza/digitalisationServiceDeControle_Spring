@@ -36,4 +36,10 @@ public class ResponsableGeneralController {
         return "RG_gestionEquipements_modification";
 
     }
+
+    @GetMapping("/responsableGeneral/gestionEquipement/ajout")
+    public String AjoutEquipement() {
+        return "RG_gestionEquipements_ajout";
+
+    }
 }
