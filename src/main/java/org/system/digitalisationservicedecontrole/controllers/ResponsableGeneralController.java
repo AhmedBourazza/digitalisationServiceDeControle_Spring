@@ -42,4 +42,14 @@ public class ResponsableGeneralController {
         return "RG_gestionEquipements_ajout";
 
     }
+    @GetMapping("/responsableGeneral/gestionEntites/modification")
+    public String modificationEntite() {
+        return "RG_gestionEntites_modification";
+
+    }
+    @GetMapping("/responsableGeneral/gestionEntites/ajout")
+    public String AjoutEntite() {
+        return "RG_gestionEntites_ajout";
+
+    }
 }
