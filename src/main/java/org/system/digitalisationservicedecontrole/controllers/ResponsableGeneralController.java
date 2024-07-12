@@ -27,7 +27,7 @@ public class ResponsableGeneralController {
 
  
 
-    @GetMapping("/responsableGeneral/GestionEquipements")
+    @GetMapping("/responsableGeneral/gestionEquipements")
     public String GestionEquipements() {
         return "RG_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
