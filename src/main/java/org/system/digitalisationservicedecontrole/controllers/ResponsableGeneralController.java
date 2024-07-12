@@ -42,4 +42,10 @@ public class ResponsableGeneralController {
         return "RG_gestionEquipements_ajout";
 
     }
+
+    @GetMapping("/responsableGeneral/gestionEntite")
+    public String GestionEntite() {
+        return "RG_gestionEntites";
+
+    }
 }
