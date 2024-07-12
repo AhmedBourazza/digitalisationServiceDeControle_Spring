@@ -9,20 +9,24 @@ public class ResponsableControleurController {
 
     @GetMapping("/responsableControleur/listeControleurs")
     public String Controleurs() {
-        return "RC_ListeControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RC_ListeControleurs";
     }
     @GetMapping("/responsableControleur/dashboard")
     public String Dashboard() {
-        return "RC_dashboard"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RC_dashboard";
     }
 
     @GetMapping("/responsableControleur/editProfile")
     public String EditProfile() {
-        return "RC_editProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RC_editProfile";
     }
 
     @GetMapping("/responsableControleur/monProfile")
     public String MonProfile() {
-        return "RC_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RC_monProfile";
+    }
+    @GetMapping("/responsableControleur/gestionEquipement/modification")
+    public String modificationEquipement() {
+        return "RC_gestionEquipements_modification";
     }
 }
