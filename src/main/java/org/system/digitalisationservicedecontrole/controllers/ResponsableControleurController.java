@@ -1,18 +1,29 @@
 package org.system.digitalisationservicedecontrole.controllers;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.system.digitalisationservicedecontrole.entities.Controleur;
+import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
+
+import java.util.List;
 
 @Controller
 public class ResponsableControleurController {
+    @Autowired
+    private ControleurRepo controleurRepo;
     @GetMapping("/responsableControleur/login")
     public String login() {
         return "RC_login";
     }
 
     @GetMapping("/responsableControleur/listeControleurs")
-    public String Controleurs() {
+    public String Controleurs(Model m) {
+        List<Controleur> listeControleurs = controleurRepo.findAll();
+
+        m.addAttribute("listeControleurs", listeControleurs);
         return "RC_ListeControleurs";
     }
     @GetMapping("/responsableControleur/dashboard")
