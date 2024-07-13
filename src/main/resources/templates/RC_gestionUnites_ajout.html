@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>OCP SA - Responsable Général</title>
+    <title>OCP SA - Responsable Controleurs</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
@@ -61,7 +61,7 @@
                             class="navbar-brand"
                             height="20"
                     />
-                    <strong style="color: white; margin-left: 4px;">Responsable Général </strong>
+                    <strong style="color: white; margin-left: 4px;">Responsable Controleurs </strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -82,14 +82,14 @@
                 <ul class="nav nav-secondary">
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/dashboard}">
+                        <a th:href="@{/responsableControleur/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a th:href="@{/responsableGeneral/monProfile}">
+                        <a th:href="@{/responsableControleur/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
@@ -109,7 +109,7 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/listeControleurs}">
+                        <a th:href="@{/responsableControleur/listeControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>contrôleurs</p>
@@ -129,7 +129,7 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEquipements}">
+                        <a th:href="@{/responsableControleur/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
                             <span class="badge badge-success">16</span>
@@ -137,8 +137,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item active">
-                        <a th:href="@{/responsableGeneral/gestionEntites}">
+                    <li class="nav-item">
+                        <a th:href="@{/responsableControleur/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
                             <span class="badge badge-success">17</span>
@@ -146,8 +146,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionUnites}">
+                    <li class="nav-item active">
+                        <a th:href="@{/responsableControleur/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
                             <span class="badge badge-success">6</span>
@@ -369,273 +369,86 @@
 
         <div class="container">
             <div class="page-inner">
-
-                <ul class="breadcrumbs mb-3">
-                    <h3 class="fw-bold mb-3">Gestion des entités</h3>
-                    <li class="nav-home">
-                        <a href="#">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Espace responsable générale</a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Liste des entités</a>
-                    </li>
-
-                </ul>
-
-                <!-- Customized Card -->
-
-
-                <div class="row">
-
-                    <!----------------------------------------------------------------------------->
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-
-                        <div class="ms-md-auto py-2 py-md-0">
-
-                            <a th:href="@{/responsableGeneral/gestionEntites/ajout}" class="btn btn-primary btn-round">Ajouter une entité</a>
-                        </div>
-                    </div>
-
-
-                   <!-------------------------------------------------------------------------------->
-
-                    <div class="col-sm-6 col-md-3">
-
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                            <i class="fa fa-suitcase fa-3x"></i>
-
-                                        </div>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                     <a href="">
-                                        <div class="numbers">
-                                            <p class="card-category">Entité 1</p>
-                                            <h4 class="card-title">12 Unités</h4>
-
-                                        </div>
-                                     </a>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                  <a th:href="@{/responsableGeneral/gestionEntites/modification}">
-                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
-                                            </i> </a>
-
-
-                                        <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                            <i class="fa fa-suitcase fa-3x"></i>
-
-                                        </div>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a href="">
-                                            <div class="numbers">
-                                                <p class="card-category">Entité 1</p>
-                                                <h4 class="card-title">12 Unités</h4>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
-                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
-                                            </i> </a>
-
-
-                                        <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                            <i class="fa fa-suitcase fa-3x"></i>
-
-                                        </div>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a href="">
-                                            <div class="numbers">
-                                                <p class="card-category">Entité 1</p>
-                                                <h4 class="card-title">12 Unités</h4>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
-                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
-                                            </i> </a>
-
-
-                                        <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                            <i class="fa fa-suitcase fa-3x"></i>
-
-                                        </div>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a href="">
-                                            <div class="numbers">
-                                                <p class="card-category">Entité 1</p>
-                                                <h4 class="card-title">12 Unités</h4>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
-                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
-                                            </i> </a>
-
-
-                                        <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                            <i class="fa fa-suitcase fa-3x"></i>
-
-                                        </div>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a href="">
-                                            <div class="numbers">
-                                                <p class="card-category">Entité 1</p>
-                                                <h4 class="card-title">12 Unités</h4>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col col-stats ms-3 ms-sm-0">
-
-                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
-                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
-                                            </i> </a>
-
-
-                                        <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <!-------------------------------------------------------------------------------->
-
-
-
-
-
-
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Ajout d'une unité</h3>
+                    <ul class="breadcrumbs mb-3">
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Espace responsable Controleurs</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Liste des unités</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Ajout d'une unité</a>
+                        </li>
+                    </ul>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title"><i class="fas fa-edit"></i> Ajout d'une unité</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="unitName"><i class="fas fa-tag"></i> Nom de l'unité</label>
+                                            <input type="text" class="form-control" id="unitName" placeholder="Entrez le nom de l'unité">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="unitLocation"><i class="fas fa-map-marker-alt"></i> Emplacement</label>
+                                            <input type="text" class="form-control" id="unitLocation" placeholder="Entrez l'emplacement de l'unité">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="entitySelect"><i class="fas fa-building"></i> Entité</label>
+                                            <select class="form-select form-control" id="entitySelect">
+                                                <option>Entité 1</option>
+                                                <option>Entité 2</option>
+                                                <option>Entité 3</option>
+                                                <option>Entité 4</option>
+                                                <option>Entité 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="unitDescription"><i class="fas fa-file-alt"></i> Description</label>
+                                            <textarea class="form-control" id="unitDescription" rows="5" placeholder="Entrez la description de l'unité"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-success"><i class="fas fa-check"></i> Valider</button>
+                                <button class="btn btn-danger"><i class="fas fa-times"></i> Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
