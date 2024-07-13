@@ -217,7 +217,7 @@ button {
 }
 
 .layout_padding {
-    padding-top: 90px;
+    padding-top: 50px;
     padding-bottom: 0px;
 }
 
@@ -340,7 +340,7 @@ button {
 
 .header_main {
     width: 100%;
-    background-image: url(../libraryImages/header-bg.png);
+    background-image: url(../libraryImages/main.jpg);
     background-size: 100%;
     padding: 10px 0px 0px 0px;
 }
@@ -431,7 +431,7 @@ button {
 .services_section_2 {
     width: 100%;
     float: left;
-    margin-top: 90px;
+    margin-top: 30px;
 }
 
 .services_img {
