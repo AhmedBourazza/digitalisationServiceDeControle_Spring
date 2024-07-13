@@ -5,7 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
+import org.system.digitalisationservicedecontrole.entities.Entite;
+import org.system.digitalisationservicedecontrole.entities.Unite;
 import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
+import org.system.digitalisationservicedecontrole.repositories.EntiteRepo;
+import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -17,6 +21,10 @@ public class ResponsableGeneralController {
 
     @Autowired
     private ControleurRepo controleurRepo;
+    @Autowired
+    private EntiteRepo entiteRepo;
+    @Autowired
+    private UniteRepo uniteRepo;
 
     @GetMapping("/responsableGeneral/login")
     public String login() {
@@ -66,8 +74,9 @@ public class ResponsableGeneralController {
 
 
     @GetMapping("/responsableGeneral/gestionEntites")
-    public String GestionEntites() {
-
+    public String GestionEntites(Model m) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+        m.addAttribute("listeEntites", listeEntites);
         return "RG_gestionEntites";}
 
     @GetMapping("/responsableGeneral/gestionEntites/modification")
@@ -83,7 +92,9 @@ public class ResponsableGeneralController {
     }
 
     @GetMapping("/responsableGeneral/gestionUnites")
-    public String gestionUnite() {
+    public String gestionUnite(Model m) {
+        List<Unite> listeUnites = uniteRepo.findAll();
+        m.addAttribute("listeUnites", listeUnites);
         return "RG_gestionUnites";
 
 
