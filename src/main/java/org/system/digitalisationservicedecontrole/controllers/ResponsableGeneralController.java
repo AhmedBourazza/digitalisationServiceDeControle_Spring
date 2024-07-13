@@ -60,4 +60,16 @@ public class ResponsableGeneralController {
 
 
     }
+    @GetMapping("/responsableGeneral/gestionUnites/ajout")
+    public String AjoutUnite() {
+        return "RG_gestionUnites_ajout";
+
+
+    }
+    @GetMapping("/responsableGeneral/gestionUnites/modification")
+    public String modificationUnite() {
+        return "RG_gestionUnites_modification";
+
+
+    }
 }
