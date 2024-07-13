@@ -54,4 +54,23 @@ public class ResponsableControleurController {
 
 
     }
+    @GetMapping("/responsableControleur/gestionUnites")
+    public String gestionUnite() {
+        return "RC_gestionUnites";
+
+
+    }
+
+    @GetMapping("/responsableControleur/gestionUnites/ajout")
+    public String AjoutUnite() {
+        return "RC_gestionUnites_ajout";
+
+
+    }
+    @GetMapping("/responsableControleur/gestionUnites/modification")
+    public String modificationUnite() {
+        return "RC_gestionUnites_modification";
+
+
+    }
 }
