@@ -21,6 +21,7 @@ public class Question {
     private String enonce ;
     private String reponse ;
     @ManyToOne()
+    @JoinColumn(name = "IdSection_")
     private Section section;
 
     @OneToMany(mappedBy = "question")

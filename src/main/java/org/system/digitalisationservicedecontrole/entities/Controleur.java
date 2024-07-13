@@ -24,6 +24,10 @@ public class Controleur {
     private String matricule ;
     private Date dateIntegration ;
     private Date dateEmbauche ;
+    private String numTele;
+    private String username;
+    private String email ;
+    private String password;
 
     @ManyToOne()
     @JoinColumn(name = "IdResponsableControleur_")
@@ -32,7 +36,9 @@ public class Controleur {
     @OneToMany(mappedBy = "controleur")
     private Collection<Formulaire> formulaires ;
 
-
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 
 
 

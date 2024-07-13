@@ -19,6 +19,7 @@ public class Formulaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFormulaire ;
     private String matriculeExemplaireEquipement ;
+    private String secteur ;
     private Date dateControle ;
     private String Proprietaire ;
     @ManyToOne()
@@ -30,9 +31,10 @@ public class Formulaire {
     @ManyToOne()
     @JoinColumn(name = "IdUnite_")
     private Unite unite ;
-
     @OneToMany(mappedBy = "formulaire")
     private Collection<Section> sections;
 
-
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 }
