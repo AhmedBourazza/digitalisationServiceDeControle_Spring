@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ResponsableControleurController {
+    @GetMapping("/responsableControleur/login")
+    public String login() {
+        return "RC_login";
+    }
 
     @GetMapping("/responsableControleur/listeControleurs")
     public String Controleurs() {
