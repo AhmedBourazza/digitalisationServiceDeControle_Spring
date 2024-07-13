@@ -52,7 +52,7 @@
                      <a class="nav-link" href="about.html">About</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="services.html">Services</a>
+                     <a class="nav-link" href="services.html">Connexion</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link " href="blog.html">Blog</a>
@@ -70,10 +70,9 @@
          <div class="menu_main">
             <ul>
                <li class="active"><a href="index">Accueil</a></li>
-               <li><a href="#aboutSection" onclick="scrollToSection('#aboutSection')">About</a></li>
-               <li><a href="#servicesSection" onclick="scrollToSection('#servicesSection')">Services</a></li>
-               <li><a href="">Borrow a book</a></li>
-               <li><a href="sign">Connexion</a></li>
+               <li><a href="#aboutSection" onclick="scrollToSection('#aboutSection')">À propos</a></li>
+               <li><a href="#connexionSection" onclick="scrollToSection('#connexionSection')">Connexion</a></li>
+           
             </ul>
          </div>
       </div>
@@ -87,7 +86,7 @@
                <div class="container">
                   <h1 class="banner_taital">Bienvenue</h1>
                   <p class="banner_text">Step into our digital realm of literary wonders, where each page holds a new adventure waiting just for you. Welcome to the magical world of our online library!</p>
-                  <div class="read_bt"><a href="#">Connexion</a></div>
+                  <div class="read_bt" ><a href="#" onclick="scrollToSection('#connexionSection')">Connexion</a></div>
                </div>
             </div>
             <div class="carousel-item">
@@ -111,25 +110,25 @@
 </div>
 <!-- header section end -->
 <!-- services section start -->
-<div id="servicesSection" class="services_section layout_padding">
+<div id="connexionSection" class="services_section layout_padding">
    <div class="container">
-      <h1 class="services_taital">Services </h1>
+      <h1 class="services_taital">Connexion </h1>
       <p class="services_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
       <div class="services_section_2">
          <div class="row">
             <div class="col-md-4">
-               <div><img th:src="@{/libraryImages/control.jpg}" class="services_img">
+               <div><img th:src="@{/libraryImages/espaceControleur22.jpg}" class="services_img">
                </div>
-               <div class="btn_main"><a href="#">Searching</a></div>
+               <div class="btn_main"><a href="#">Contrôleur</a></div>
             </div>
             <div class="col-md-4">
-               <div><img th:src="@{/libraryImages/generated-7577945_1280.png}" class="services_img">
+               <div><img th:src="@{/libraryImages/espaceResponsableControleur.jpg}" class="services_img">
                </div>
-               <div class="btn_main active"><a href="#">Borrowing</a></div>
+               <div class="btn_main active"><a href="#">Responsable des Contrôleurs</a></div>
             </div>
             <div class="col-md-4">
-               <div><img th:src="@{/libraryImages/library-8629279_1280.png}" class="services_img"></div>
-               <div class="btn_main"><a href="#">Contact Us</a></div>
+               <div><img th:src="@{/libraryImages/espaceResponsableGenerale.jpg}" class="services_img"></div>
+               <div class="btn_main"><a href="#">Responsable général</a></div>
             </div>
          </div>
       </div>
