@@ -25,11 +25,11 @@ public class Equipement {
     private String codification ;
     private Long quantite ;
     private String titreFormulaire ;
+    @Lob
+    @Column(name = "image_data", columnDefinition = "LONGBLOB")
+    private byte[] ImageData;
 
     @OneToMany(mappedBy = "equipement")
     private Collection<Formulaire> formulaires ;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id")
-    private Image image;
 }

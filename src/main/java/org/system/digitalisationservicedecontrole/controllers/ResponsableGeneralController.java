@@ -1,13 +1,26 @@
 package org.system.digitalisationservicedecontrole.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.system.digitalisationservicedecontrole.entities.Controleur;
+import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
+
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ResponsableGeneralController {
-
+    @Autowired
+    private ControleurRepo controleurRepo;
     @GetMapping("/responsableGeneral/listeControleurs")
-    public String Controleurs() {
+    public String Controleurs(Model m) {
+        List<Controleur> listeControleurs = controleurRepo.findAll();
+
+        m.addAttribute("listeControleurs", listeControleurs);
         return "RG_listeControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 

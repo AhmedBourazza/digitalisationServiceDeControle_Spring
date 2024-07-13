@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 @Entity
@@ -28,6 +29,9 @@ public class Controleur {
     private String username;
     private String email ;
     private String password;
+    @Lob
+    @Column(name = "image_data", columnDefinition = "LONGBLOB")
+    private byte[] ImageData;
 
     @ManyToOne()
     @JoinColumn(name = "IdResponsableControleur_")
@@ -36,9 +40,10 @@ public class Controleur {
     @OneToMany(mappedBy = "controleur")
     private Collection<Formulaire> formulaires ;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id")
-    private Image image;
+
+    public String getImageDataAsBase64() {
+        return Base64.getEncoder().encodeToString(getImageData());
+    }
 
 
 
