@@ -19,15 +19,17 @@ public class Equipement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquipement ;
     private String nom ;
-    private Date description ;
+    private String description ;
     private String frequence ;
 
-    private Long codification ;
+    private String codification ;
     private Long quantite ;
-    private Long titreFormulaire ;
+    private String titreFormulaire ;
 
     @OneToMany(mappedBy = "equipement")
     private Collection<Formulaire> formulaires ;
 
-
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 }

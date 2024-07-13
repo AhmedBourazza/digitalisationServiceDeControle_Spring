@@ -24,6 +24,10 @@ public class ResponsableControleur {
     private Date dateEmbauche ;
     private Date dateIntegration ;
     private String grade ;
+    private String numTele;
+    private String username;
+    private String email ;
+    private String password;
 
     @OneToMany(mappedBy="responsableControleur")
     private Collection<Controleur>  controleurs ;
@@ -31,4 +35,8 @@ public class ResponsableControleur {
    @ManyToOne()
    @JoinColumn(name = "IdResponsableGeneral_")
    private ResponsableGeneral responsableGeneral ;
+
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 }
