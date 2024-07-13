@@ -6,7 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
+import org.system.digitalisationservicedecontrole.entities.Entite;
+import org.system.digitalisationservicedecontrole.entities.Unite;
 import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
+import org.system.digitalisationservicedecontrole.repositories.EntiteRepo;
+import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
 
 import java.util.List;
 
@@ -14,6 +18,8 @@ import java.util.List;
 public class ResponsableControleurController {
     @Autowired
     private ControleurRepo controleurRepo;
+    private EntiteRepo entiteRepo;
+    private UniteRepo uniteRepo;
     @GetMapping("/responsableControleur/login")
     public String login() {
         return "RC_login";
@@ -54,7 +60,10 @@ public class ResponsableControleurController {
         return "RC_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/responsableControleur/gestionEntites")
-    public String gestionEntites() {
+    public String gestionEntites(Model m ) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+
+        m.addAttribute("listeEntites", listeEntites);
         return "RC_gestionEntites";}
 
     @GetMapping("/responsableControleur/gestionEntites/modification")
@@ -70,7 +79,10 @@ public class ResponsableControleurController {
 
     }
     @GetMapping("/responsableControleur/gestionUnites")
-    public String gestionUnite() {
+    public String gestionUnite(Model m) {
+        List<Unite> listeUnites = uniteRepo.findAll();
+
+        m.addAttribute("listeUnites", listeUnites);
         return "RC_gestionUnites";
 
 
