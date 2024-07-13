@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ResponsableGeneralController {
 
+    @GetMapping("/responsableGeneral/login")
+    public String login() {
+        return "RG_login"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
+
     @GetMapping("/responsableGeneral/listeControleurs")
     public String Controleurs() {
         return "RG_listeControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
