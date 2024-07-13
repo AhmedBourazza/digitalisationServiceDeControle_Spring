@@ -28,7 +28,9 @@ public class ResponsableControleur {
     private String username;
     private String email ;
     private String password;
-
+    @Lob
+    @Column(name = "image_data", columnDefinition = "LONGBLOB")
+    private byte[] ImageData;
     @OneToMany(mappedBy="responsableControleur")
     private Collection<Controleur>  controleurs ;
 
@@ -36,7 +38,5 @@ public class ResponsableControleur {
    @JoinColumn(name = "IdResponsableGeneral_")
    private ResponsableGeneral responsableGeneral ;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id")
-    private Image image;
+
 }

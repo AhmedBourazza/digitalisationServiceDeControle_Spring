@@ -411,13 +411,15 @@
                                 <div class="card-list py-4">
 
 
-                                    <div class="item-list">
+                                    <div class="item-list" th:each="c:${listeControleurs}">
                                         <div class="avatar">
-                                            <img th:src="@{/img/jm_denis.jpg}" alt="..." class="avatar-img rounded-circle">
+                                            <!-- Assuming c.imageData is your byte array -->
+                                            <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}"  class="avatar-img rounded-circle" alt="Image">
+
                                         </div>
                                         <div class="info-user ms-3">
-                                            <div class="username">Jimmy Denis</div>
-                                            <div class="status">Graphic Designer</div>
+                                            <div class="username" th:text="${c.getNom()}"></div>
+                                            <div class="status" th:text="${c.getMatricule()}"></div>
                                         </div>
                                         <button class="btn btn-icon btn-link op-8 me-1">
                                             <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
@@ -428,75 +430,7 @@
                                     </div>
 
 
-                                    <!---------------------------------------------------------------------------------->
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <img th:src="@{/img/jm_denis.jpg}" alt="..." class="avatar-img rounded-circle">
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Jimmy Denis</div>
-                                            <div class="status">Graphic Designer</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                        </button>
-                                        <a th:href="@{/responsableGeneral/editProfile}" class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
-                                        </a>
 
-                                        </button>
-                                    </div>
-
-
-                                    <!----------------------------------------------------------------------------------><div class="item-list">
-                                    <div class="avatar">
-                                        <img th:src="@{/img/jm_denis.jpg}" alt="..." class="avatar-img rounded-circle">
-                                    </div>
-                                    <div class="info-user ms-3">
-                                        <div class="username">Jimmy Denis</div>
-                                        <div class="status">Graphic Designer</div>
-                                    </div>
-                                    <button class="btn btn-icon btn-link op-8 me-1">
-                                        <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                    </button>
-                                    <button class="btn btn-icon btn-link btn-danger op-8">
-                                        <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
-                                    </button>
-                                </div>
-
-
-                                    <!----------------------------------------------------------------------------------><div class="item-list">
-                                    <div class="avatar">
-                                        <img th:src="@{/img/jm_denis.jpg}" alt="..." class="avatar-img rounded-circle">
-                                    </div>
-                                    <div class="info-user ms-3">
-                                        <div class="username">Jimmy Denis</div>
-                                        <div class="status">Graphic Designer</div>
-                                    </div>
-                                    <button class="btn btn-icon btn-link op-8 me-1">
-                                        <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                    </button>
-                                    <button class="btn btn-icon btn-link btn-danger op-8">
-                                        <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
-                                    </button>
-                                </div>
-
-
-                                    <!----------------------------------------------------------------------------------><div class="item-list">
-                                    <div class="avatar">
-                                        <img th:src="@{/img/jm_denis.jpg}" alt="..." class="avatar-img rounded-circle">
-                                    </div>
-                                    <div class="info-user ms-3">
-                                        <div class="username">Jimmy Denis</div>
-                                        <div class="status">Graphic Designer</div>
-                                    </div>
-                                    <button class="btn btn-icon btn-link op-8 me-1">
-                                        <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                    </button>
-                                    <button class="btn btn-icon btn-link btn-danger op-8">
-                                        <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
-                                    </button>
-                                </div>
 
 
                                     <!---------------------------------------------------------------------------------->

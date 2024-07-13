@@ -22,6 +22,9 @@ public class Formulaire {
     private String secteur ;
     private Date dateControle ;
     private String Proprietaire ;
+    @Lob
+    @Column(name = "image_data", columnDefinition = "LONGBLOB")
+    private byte[] ImageData;
     @ManyToOne()
     @JoinColumn(name = "IdControleur_")
     private Controleur controleur ;
@@ -34,7 +37,5 @@ public class Formulaire {
     @OneToMany(mappedBy = "formulaire")
     private Collection<Section> sections;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id")
-    private Image image;
+
 }
