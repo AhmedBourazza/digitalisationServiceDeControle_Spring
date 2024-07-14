@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>OCP SA - Responsable controleurs</title>
+    <title>OCP SA - Espace Responsable Général</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
@@ -58,7 +58,7 @@
                             class="navbar-brand"
                             height="20"
                     />
-                    <strong style="color: white; margin-left: 4px;">Responsable controleurs</strong>
+                    <strong style="color: white; margin-left: 4px;">Responsable Général</strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -79,7 +79,7 @@
                 <ul class="nav nav-secondary">
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/dashboard}">
+                        <a th:href="@{/responsableGeneral/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
@@ -87,7 +87,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/monProfile}">
+                        <a th:href="@{/responsableGeneral/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
@@ -107,7 +107,7 @@
 
 
                     <li class="nav-item active ">
-                        <a th:href="@{/responsableControleur/listeControleurs}">
+                        <a th:href="@{/responsableGeneral/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>Contrôleurs</p>
@@ -126,15 +126,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionEquipements}">
+                        <a th:href="@{/responsableGeneral/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
+                            <span class="badge badge-success">16</span>
 
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionEntites}">
+                        <a th:href="@{/responsableGeneral/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
                             <span class="badge badge-success">17</span>
@@ -143,7 +144,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionUnites}">
+                        <a th:href="@{/responsableGeneral/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
                             <span class="badge badge-success">6</span>
@@ -163,7 +164,7 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
                     <a href="index.html" class="logo">
-                        OCP SA -  Responsable controleurs
+                        OCP SA - Espace controlleurs
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -362,9 +363,7 @@
 
                 <div class="page-header">
                 <!-- Customized Card -->
-                    <h3 class="fw-bold mb-3">là vous pouvez gérer les contrôleurs </h3>
-
-
+                <h3 class="fw-bold mb-3">là vous pouvez gérer les contrôleurs </h3>
 
                 <ul class="breadcrumbs mb-3">
 
@@ -377,22 +376,20 @@
                         <i class="fas fa-angle-right"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Espace responsable Controleurs</a>
+                        <a href="#">Espace responsable générale</a>
                     </li>
                     <li class="separator">
                         <i class="fas fa-angle-right"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Liste des controleurs</a>
+                        <a href="#">Liste des controleus</a>
                     </li>
 
 
 
+
                 </ul>
-
-
-                    </div>
-
+                </div>
                 <div class="row">
 
                     <!----------------------------------------------------------------------------->
@@ -414,7 +411,7 @@
                                 <div class="card-list py-4">
 
 
-                                    <div class="item-list"  th:each="c:${listeControleurs}">
+                                    <div class="item-list" th:each="c:${listeControleurs}">
                                         <div class="avatar">
                                             <!-- Assuming c.imageData is your byte array -->
                                             <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}"  class="avatar-img rounded-circle" alt="Image">

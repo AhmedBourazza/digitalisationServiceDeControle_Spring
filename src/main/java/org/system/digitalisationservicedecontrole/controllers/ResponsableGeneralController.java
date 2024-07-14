@@ -13,10 +13,7 @@ import org.system.digitalisationservicedecontrole.repositories.EntiteRepo;
 import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
 import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
 
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class ResponsableGeneralController {
@@ -36,12 +33,12 @@ public class ResponsableGeneralController {
     }
 
 
-    @GetMapping("/responsableGeneral/listeControleurs")
+    @GetMapping("/responsableGeneral/gestionControleurs")
     public String Controleurs(Model m) {
         List<Controleur> listeControleurs = controleurRepo.findAll();
 
         m.addAttribute("listeControleurs", listeControleurs);
-        return "RG_listeControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
     @GetMapping("/responsableGeneral/dashboard")

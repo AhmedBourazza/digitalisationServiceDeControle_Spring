@@ -33,12 +33,12 @@ public class ResponsableControleurController {
         return "RC_login";
     }
 
-    @GetMapping("/responsableControleur/listeControleurs")
+    @GetMapping("/responsableControleur/gestionControleurs")
     public String Controleurs(Model m) {
         List<Controleur> listeControleurs = controleurRepo.findAll();
 
         m.addAttribute("listeControleurs", listeControleurs);
-        return "RC_ListeControleurs";
+        return "RC_gestionControleurs";
     }
     @GetMapping("/responsableControleur/dashboard")
     public String Dashboard() {
