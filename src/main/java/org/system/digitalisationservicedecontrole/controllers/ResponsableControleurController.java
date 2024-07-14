@@ -18,7 +18,9 @@ import java.util.List;
 public class ResponsableControleurController {
     @Autowired
     private ControleurRepo controleurRepo;
+    @Autowired
     private EntiteRepo entiteRepo;
+    @Autowired
     private UniteRepo uniteRepo;
     @GetMapping("/responsableControleur/login")
     public String login() {
