@@ -399,6 +399,7 @@
 
 
         <div class="row">
+          <form th:action="@{/responsableGeneral/gestionEquipement/modification}" th:object="${equipement}" method="post">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
@@ -408,14 +409,15 @@
                 <div class="row">
                   <div class="col-12 col-md-6">
                     <div class="form-group">
+                      <input type="hidden" th:field="*{idEquipement}">
                       <label for="equipmentName"><i class="fas fa-tag"></i> Nom de l'Équipement</label>
-                      <input type="text" class="form-control" id="equipmentName" placeholder="Entrez le nom de l'équipement">
+                      <input type="text" th:field="*{nom}" class="form-control" id="equipmentName" placeholder="Entrez le nom de l'équipement">
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="formTitle"><i class="fas fa-file-alt"></i> Titre du Formulaire relatif</label>
-                      <input type="text" class="form-control" id="formTitle" placeholder="Entrez le titre du formulaire">
+                      <input type="text" th:field="*{titreFormulaire}" class="form-control" id="formTitle" placeholder="Entrez le titre du formulaire">
                     </div>
                   </div>
                 </div>
@@ -424,13 +426,13 @@
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="codification"><i class="fas fa-barcode"></i> Codification</label>
-                      <input type="text" class="form-control" id="codification" placeholder="Entrez la codification">
+                      <input type="text" th:field="*{codification}"  class="form-control" id="codification" placeholder="Entrez la codification">
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
-                      <label for="frequency"><i class="fas fa-calendar-check"></i> Fréquence de Contrôle (par jour)</label>
-                      <input type="number" class="form-control" id="frequency" placeholder="Entrez la fréquence de contrôle">
+                      <label for="frequency"><i class="fas fa-calendar-check"></i> Fréquence</label>
+                      <input type="text" th:field="*{frequence}" class="form-control" id="frequency" placeholder="Entrez la fréquence de contrôle">
                     </div>
                   </div>
                 </div>
@@ -439,27 +441,27 @@
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="quantity"><i class="fas fa-sort-numeric-up"></i> Quantité</label>
-                      <input type="number" class="form-control" id="quantity" placeholder="Entrez la quantité">
+                      <input type="number" th:field="*{quantite}" class="form-control" id="quantity" placeholder="Entrez la quantité">
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="representativeImage"><i class="fas fa-image"></i> Image Représentative</label>
                       <br>
-                      <input type="file" class="form-control-file" id="representativeImage">
+                      <input type="file"  th:field="*{imageData}" class="form-control-file" id="representativeImage">
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="comment">Description</label>
-                      <textarea class="form-control" id="comment" rows="5">                          </textarea>
+                      <textarea th:field="*{description}" class="form-control" id="comment" rows="5">                          </textarea>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="card-action">
                 <button class="btn btn-success">Valider</button>
-                <button class="btn btn-danger">Annuler</button>
+                <a th:href="@{/responsableGeneral/gestionEquipements}" class="btn btn-danger">Annuler</a>
               </div>
             </div>
 
@@ -478,7 +480,7 @@
 
 
           </div>
-
+          </form>
 
 
         </div>

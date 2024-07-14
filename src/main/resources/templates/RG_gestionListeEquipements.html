@@ -365,7 +365,7 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Liste des équipements</h3>
+                    <h3 class="fw-bold mb-3">Gestion des équipements</h3>
 
 
 
@@ -418,7 +418,7 @@
                                             <div class="dropdown">
 
 
-                                                <a th:href="@{/responsableGeneral/gestionEquipements/ajout}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
+                                                <a th:href="@{/responsableGeneral/gestionEquipement/ajout}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
                                                     <i class="fa-solid fa-plus"></i>
                                                 </a>
 
@@ -453,8 +453,19 @@
                                                 <td class="text-end" th:text="${e.getQuantite()}"></td>
                                                 <td class="text-end" th:text="${e.getCodification()}"></td>
                                                 <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
+
+                                                    <a th:href="@{/responsableGeneral/gestionEquipement/modification/{id}(id=${e.idEquipement})}">
+                                                        <button class="btn btn-icon btn-clean me-0" type="button">
+                                                            <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
+                                                        </button>
+                                                    </a>
+
+
+                                                   <form th:action="@{/responsableGeneral/gestionEquipement/suppression/{id}(id=${e.idEquipement})}" method="post">
+                                                        <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?');">
+                                                            <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
 

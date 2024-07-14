@@ -364,7 +364,7 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Liste des équipement</h3>
+                    <h3 class="fw-bold mb-3">Gestion des équipements</h3>
 
 
                     <ul class="breadcrumbs mb-3">
@@ -436,6 +436,9 @@
                                                 <th scope="row">
                                                     <div class="avatar avatar-xl">
                                                         <img th:src="'data:image/jpeg;base64,' + ${e.getImageDataAsBase64()}" alt="..." class="avatar-img rounded-circle">
+
+
+
                                                     </div>
                                                     <span th:text="${e.getNom()}"></span>
                                                 </th>
@@ -443,11 +446,12 @@
                                                 <td class="text-end" th:text="${e.getQuantite()}"></td>
                                                 <td class="text-end" th:text="${e.getCodification()}"></td>
                                                 <td class="text-end">
-                                                    <form th:action="@{/responsableControleur/gestionEquipement/suppression/{id}(id=${e.idEquipement})}" method="post">
-                                                        <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?');">
+                                                    <a th:href="@{/responsableControleur/gestionEquipement/modification/{id}(id=${e.idEquipement})}">
+                                                        <button class="btn btn-icon btn-clean me-0" type="button">
                                                             <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
                                                         </button>
-                                                    </form>
+                                                    </a>
+
 
                                                     <!-- Formulaire pour la suppression -->
                                                     <form th:action="@{/responsableControleur/gestionEquipement/suppression/{id}(id=${e.idEquipement})}" method="post">
