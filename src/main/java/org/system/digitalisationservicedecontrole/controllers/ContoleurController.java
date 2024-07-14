@@ -1,11 +1,18 @@
 package org.system.digitalisationservicedecontrole.controllers;
-
+import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.system.digitalisationservicedecontrole.entities.Equipement;
+import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
+
+import java.util.List;
 
 
 @Controller
 public class ContoleurController {
+    @Autowired
+    EquipementRepo equipementRepo ;
 
     @GetMapping("/controleur/login")
     public String login() {
@@ -13,7 +20,9 @@ public class ContoleurController {
     }
 
     @GetMapping("/controleur/listeEquipements")
-    public String afficherECOEquipements() {
+    public String afficherECOEquipements(Model m) {
+        List<Equipement> listeEquipements = equipementRepo.findAll();
+        m.addAttribute("listeEquipements", listeEquipements );
         return "C_listeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
