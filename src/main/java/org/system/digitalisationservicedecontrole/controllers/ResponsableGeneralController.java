@@ -17,6 +17,7 @@ import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
 import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ResponsableGeneralController {
@@ -72,11 +73,49 @@ public class ResponsableGeneralController {
 
     }
 
-    @GetMapping("/responsableGeneral/gestionEquipements/ajout")
-    public String AjoutEquipement() {
+    //----------------------------------------
+    @GetMapping("/responsableGeneral/gestionEquipement/ajout")
+    public String ajoutEquipementForm(Model model) {
+        model.addAttribute("equipement", new Equipement());
         return "RG_gestionEquipements_ajout";
+    }
+
+    @PostMapping("/responsableGeneral/gestionEquipement/ajout")
+    public String ajoutEquipement(@ModelAttribute Equipement equipement) {
+        equipementRepo.save(equipement);
+        return "redirect:/responsableGeneral/gestionEquipements";
+    }
+
+    @PostMapping("/responsableGeneral/gestionEquipement/suppression/{id}")
+    public String supprimerEquipement(@PathVariable("id") Long id) {
+        equipementRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionEquipements";
+    }
+
+
+    @GetMapping("/responsableGeneral/gestionEquipement/modification/{id}")
+    public String modificationEquipement(@PathVariable("id") Long id, Model model) {
+        Optional<Equipement> equipementOptional = equipementRepo.findById(id);
+        if (equipementOptional.isPresent()) {
+            model.addAttribute("equipement", equipementOptional.get());
+            return "RG_gestionEquipements_modification";
+        } else {
+
+            return "redirect:/responsableGeneral/gestionEquipements";
+        }
 
     }
+
+    @PostMapping("/responsableGeneral/gestionEquipement/modification")
+    public String enregistrerModificationsEquipement(@ModelAttribute("equipement") Equipement equipement) {
+
+        equipementRepo.save(equipement);
+
+        return "redirect:/responsableGeneral/gestionEquipements";
+    }
+
+
+    //--------------------------------------
 
 
     @GetMapping("/responsableGeneral/gestionEntites")

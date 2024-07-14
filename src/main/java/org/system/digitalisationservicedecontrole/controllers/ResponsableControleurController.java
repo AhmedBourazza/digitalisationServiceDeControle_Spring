@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
 import org.system.digitalisationservicedecontrole.entities.Entite;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
@@ -14,7 +15,10 @@ import org.system.digitalisationservicedecontrole.repositories.EntiteRepo;
 import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
 import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ResponsableControleurController {
@@ -54,10 +58,6 @@ public class ResponsableControleurController {
     public String MonProfile() {
         return "RC_monProfile";
     }
-    @GetMapping("/responsableControleur/gestionEquipement/modification")
-    public String modificationEquipement() {
-        return "RC_gestionEquipements_modification";
-    }
 
 //-----------------------
     @GetMapping("/responsableControleur/gestionEquipement/ajout")
@@ -77,6 +77,29 @@ public class ResponsableControleurController {
         equipementRepo.deleteById(id);
         return "redirect:/responsableControleur/gestionEquipements";
     }
+
+    @GetMapping("/responsableControleur/gestionEquipement/modification/{id}")
+    public String modificationEquipement(@PathVariable("id") Long id, Model model) {
+        Optional<Equipement> equipementOptional = equipementRepo.findById(id);
+        if (equipementOptional.isPresent()) {
+            model.addAttribute("equipement", equipementOptional.get());
+            return "RC_gestionEquipements_modification";
+        } else {
+
+            return "redirect:/responsableControleur/gestionEquipements";
+        }
+
+    }
+
+    @PostMapping("/responsableControleur/gestionEquipement/modification")
+    public String enregistrerModificationsEquipement(@ModelAttribute("equipement") Equipement equipement) {
+
+        equipementRepo.save(equipement);
+
+        return "redirect:/responsableControleur/gestionEquipements";
+    }
+
+
     //------------------------
 
 
