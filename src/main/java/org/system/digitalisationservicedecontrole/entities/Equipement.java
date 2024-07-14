@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 @Data
@@ -31,5 +32,9 @@ public class Equipement {
 
     @OneToMany(mappedBy = "equipement")
     private Collection<Formulaire> formulaires ;
+
+    public String getImageDataAsBase64() {
+        return Base64.getEncoder().encodeToString(getImageData());
+    }
 
 }

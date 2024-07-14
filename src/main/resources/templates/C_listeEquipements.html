@@ -339,270 +339,37 @@
                 </div>
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div th:each="e:${listeEquipements}" class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card card-post card-round">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="avatar avatar-xxl">
-                                        <img th:src="@{/img/Pompe.PNG}" alt="..." class="avatar-img rounded">
+                                        <img th:src="'data:image/jpeg;base64,' + ${e.getImageDataAsBase64()}" alt="..." class="avatar-img rounded">
                                     </div>
                                     <div class="info-post ms-2">
-                                        <p class="username">Pompes incendie</p>
-                                        <p class="date text-muted">bla bla bla</p>
+                                        <p class="username" th:text="${e.getNom()}"></p>
+                                        <p class="date text-muted" th:text="${e.getDescription()}"></p>
                                     </div>
                                 </div>
                                 <div class="separator-solid"></div>
                                 <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 1 semaine</a>
+                                    <a href="#" th:text="'Fréquence : ' + ${e.getFrequence()}"></a>
                                 </p>
                                 <h3 class="card-title">
-                                    <a href="#">Formulaire Essai des pompes incendie</a>
+                                    <a href="#" th:text="${e.getTitreFormulaire()}">Formulaire Essai des pompes incendie</a>
                                 </h3>
-                                <p class="card-text">
-                                    Codification :  OIJ-HSE-F-18-16<br>
-                                    Nombre : 20
+                                <p class="card-text" th:text=" 'Codification : ' + ${e.getCodification()}">
+                                    <br>
+
                                 </p>
+                                <p class="card-text" th:text=" 'Quantité : ' + ${e.getQuantite()}"></p>
                                 <a th:href="@{/Formulaire}" class="btn btn-primary btn-rounded btn-sm">Remplir le formulaire</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card card-post card-round">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-                                        <img th:src="@{/img/hydrant.PNG}" alt="..." class="avatar-img rounded">
-                                    </div>
-                                    <div class="info-post ms-2">
-                                        <p class="username">Les hydrants</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 6 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire Vérification et essai des hydrants</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification : OIJ-HSE-F-18-11<br>
-                                    Nombre : 18
-                                </p>
-                                <a href="#" class="btn btn-primary btn-rounded btn-sm">Remplir le formulaire</a>
-                            </div>
-                        </div>
-                    </div>
 
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card card-post card-round">
-
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-
-                                        <img th:src="@{/img/colonnes humides.PNG}" alt="..." class="avatar-img rounded">
-                                     </div>
-                                    <div class="info-post ms-2">
-                                        <p class="username">Postes de colonnes humides, PIA et RIA</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 6 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire Vérification & essai des postes de colonnes humides, PIA et RIA</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification :  OIJ-HSE-F-18-12 <br>
-                                    Nombre : 20
-                                </p>
-                                <a href="formualire1.html" class="btn btn-primary btn-rounded btn-sm"
-                                >Remplire le formulaire</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card card-post card-round">
-
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-
-                                        <img th:src="@{/img/Lance Monitors.PNG}" alt="..." class="avatar-img rounded">
-
-
-                                    </div>
-
-                                    <div class="info-post ms-2">
-                                        <p class="username">Lances monitors</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 6 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire Vérification et essai du fonctionnement des lances monitors</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification :  OIJ-HSE-F-18-13 <br>
-                                    Nombre : 20
-                                </p>
-                                <a href="#" class="btn btn-primary btn-rounded btn-sm"
-                                >Remplire le formulaire</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card card-post card-round">
-
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-
-                                        <img th:src="@{/img/system deluge.PNG}" alt="..." class="avatar-img rounded">
-
-                                    </div>
-                                    <div class="info-post ms-2">
-                                        <p class="username">Système Déluge</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 12 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire vérification et essai des installations des système Déluge</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification :  OIJ-HSE-F-18-14<br>
-                                    Nombre : 20
-                                </p>
-                                <a href="#" class="btn btn-primary btn-rounded btn-sm"
-                                >Remplire le formulaire</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card card-post card-round">
-
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-                                        <img th:src="@{/img/sprinklers.PNG}" alt="..." class="avatar-img rounded">
-
-
-                                    </div>
-                                    <div class="info-post ms-2">
-                                        <p class="username">Système sprinklers</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 12 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire vérification et essai des installations des système sprinklers</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification :  OIJ-HSE-F-18-15<br>
-                                    Nombre : 20
-                                </p>
-                                <a href="#" class="btn btn-primary btn-rounded btn-sm"
-                                >Remplire le formulaire</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card card-post card-round">
-
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-
-                                        <img th:src="@{/img/pompeID.PNG}" alt="..." class="avatar-img rounded">
-
-                                    </div>
-                                    <div class="info-post ms-2">
-                                        <p class="username">Pompe incendie en Diesel</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 12 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire Test de performance d’une pompe incendie en Diesel</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification : OIJ-HSE-F-18-17<br>
-                                    Nombre : 20
-                                </p>
-                                <a href="#" class="btn btn-primary btn-rounded btn-sm"
-                                >Remplire le formulaire</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 col-lg-4 ">
-                        <div class="card card-post card-round">
-
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="avatar avatar-xxl">
-
-                                        <img th:src="@{/img/pompeElec.PNG}" alt="..." class="avatar-img rounded">
-
-                                    </div>
-                                    <div class="info-post ms-2">
-                                        <p class="username">Pompe incendie électrique</p>
-                                        <p class="date text-muted">bla bla bla</p>
-                                    </div>
-                                </div>
-                                <div class="separator-solid"></div>
-                                <p class="card-category text-info mb-1">
-                                    <a href="#">Fréquence : 12 mois</a>
-                                </p>
-                                <h3 class="card-title">
-                                    <a href="#">Formulaire Test de performance d’une pompe incendie électrique</a>
-                                </h3>
-                                <p class="card-text">
-                                    Codification : OIJ-HSE-F-18-18<br>
-                                    Nombre : 20
-                                </p>
-                                <a href="#" class="btn btn-primary btn-rounded btn-sm"
-                                >Remplire le formulaire</a
-                                >
-                            </div>
-                        </div>
-                    </div>
 
 
 

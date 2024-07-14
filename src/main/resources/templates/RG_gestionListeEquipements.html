@@ -440,134 +440,23 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row">
+                                            <tr th:each="e:${listeEquipements}">
+                                                <th scope="row" >
 
                                                     <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/Pompe.PNG}" alt="..." class="avatar-img rounded-circle">
+                                                        <img th:src="'data:image/jpeg;base64,' + ${e.getImageDataAsBase64()}"  alt="..." class="avatar-img rounded-circle">
                                                     </div>
 
-                                                    Pompes incendie
+                                                    <span th:text="${e.getNom()}"></span>
                                                 </th>
-                                                <td class="text-end">1 semaine</td>
-                                                <td class="text-end">15</td>
-                                                <td class="text-end">OIJ-HSE-F-18-16</td>
+                                                <td class="text-end" th:text="${e.getFrequence()}"></td>
+                                                <td class="text-end" th:text="${e.getQuantite()}"></td>
+                                                <td class="text-end" th:text="${e.getCodification()}"></td>
                                                 <td class="text-end">
                                                     <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
                                                     <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/hydrant.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-                                                    Les hydrants
-                                                </th>
-                                                <td class="text-end">6 mois</td>
-                                                <td class="text-end">21</td>
-                                                <td class="text-end">OIJ-HSE-F-18-11</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/colonnes humides.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-                                                    Postes de colonnes humides, PIA et RIA
-                                                </th>
-                                                <td class="text-end">6 mois</td>
-                                                <td class="text-end">18</td>
-                                                <td class="text-end">OIJ-HSE-F-18-12</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/Lance Monitors.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-                                                    Lances monitors
-                                                </th>
-                                                <td class="text-end">6 mois</td>
-                                                <td class="text-end">19</td>
-                                                <td class="text-end">OIJ-HSE-F-18-13</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/system deluge.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-
-                                                    Système Déluge
-                                                </th>
-                                                <td class="text-end">12 mois</td>
-                                                <td class="text-end">15</td>
-                                                <td class="text-end">OIJ-HSE-F-18-14</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/sprinklers.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-                                                    Système sprinklers
-                                                </th>
-                                                <td class="text-end">12 mois</td>
-                                                <td class="text-end">25</td>
-                                                <td class="text-end">OIJ-HSE-F-18-15</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/pompeID.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-                                                    Pompe incendie en Diesel
-                                                </th>
-                                                <td class="text-end">12 mois</td>
-                                                <td class="text-end">26</td>
-                                                <td class="text-end">OIJ-HSE-F-18-17</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-
-
-                                            <tr>
-                                                <th scope="row">
-
-                                                    <div class="avatar avatar-xl">
-                                                        <img th:src="@{/img/pompeElec.PNG}" alt="..." class="avatar-img rounded-circle">
-                                                    </div>
-
-                                                    Pompe incendie électrique
-                                                </th>
-                                                <td class="text-end">12 mois</td>
-                                                <td class="text-end">21</td>
-                                                <td class="text-end">OIJ-HSE-F-18-18</td>
-                                                <td class="text-end">
-                                                    <a th:href="@{/responsableGeneral/gestionEquipements/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
-                                                </td>
-                                            </tr>
-
 
                                             </tbody>
                                         </table>
