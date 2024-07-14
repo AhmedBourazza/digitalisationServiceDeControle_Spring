@@ -4,7 +4,7 @@ package org.system.digitalisationservicedecontrole.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
 import org.system.digitalisationservicedecontrole.entities.Entite;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
@@ -58,10 +58,27 @@ public class ResponsableControleurController {
     public String modificationEquipement() {
         return "RC_gestionEquipements_modification";
     }
+
+//-----------------------
     @GetMapping("/responsableControleur/gestionEquipement/ajout")
-    public String ajoutEquipement() {
+    public String ajoutEquipementForm(Model model) {
+        model.addAttribute("equipement", new Equipement());
         return "RC_gestionEquipements_ajout";
     }
+
+    @PostMapping("/responsableControleur/gestionEquipement/ajout")
+    public String ajoutEquipement(@ModelAttribute Equipement equipement) {
+        equipementRepo.save(equipement);
+        return "redirect:/responsableControleur/gestionEquipements";
+    }
+
+    @PostMapping("/responsableControleur/gestionEquipement/suppression/{id}")
+    public String supprimerEquipement(@PathVariable("id") Long id) {
+        equipementRepo.deleteById(id);
+        return "redirect:/responsableControleur/gestionEquipements";
+    }
+    //------------------------
+
 
 
     @GetMapping("/responsableControleur/gestionEquipements")
