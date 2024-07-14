@@ -8,6 +8,8 @@ public class DigitalisationServiceDeControleApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DigitalisationServiceDeControleApplication.class, args);
+
     }
+
 
 }
