@@ -449,9 +449,10 @@
 
 
                                         <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
+                                        <a th:href="@{/responsableGeneral/gestionEntites/suppression/{id}(id=${e.getIdEntite()})}"
+                                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette entité?');">
+                                            <i class="fa fa-trash fa-xl" style="color: #ff0000;"></i>
+                                        </a>
 
                                     </div>
                                 </div>

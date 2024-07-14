@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
 import org.system.digitalisationservicedecontrole.entities.Entite;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
@@ -88,10 +91,23 @@ public class ResponsableGeneralController {
 
     }
     @GetMapping("/responsableGeneral/gestionEntites/ajout")
-    public String AjoutEntite() {
+    public String afficherFormEntite() {
         return "RG_gestionEntites_ajout";
 
 
+    }
+
+    @PostMapping("/responsableGeneral/gestionEntites/ajout")
+    public String AjoutEntite(@ModelAttribute("entite") Entite entite) {
+        entiteRepo.save(entite);
+        return "redirect:/responsableGeneral/gestionEntites";
+
+
+    }
+    @GetMapping("/responsableGeneral/gestionEntites/suppression/{id}")
+    public String supprimerEntiteGet(@PathVariable("id") Long id) {
+        entiteRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionEntites";
     }
 
     @GetMapping("/responsableGeneral/gestionUnites")
@@ -106,9 +122,10 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/gestionUnites/ajout")
     public String AjoutUnite() {
         return "RG_gestionUnites_ajout";
-
-
     }
+
+
+
     @GetMapping("/responsableGeneral/gestionUnites/modification")
     public String modificationUnite() {
         return "RG_gestionUnites_modification";
