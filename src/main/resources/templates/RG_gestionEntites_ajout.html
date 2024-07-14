@@ -395,36 +395,42 @@
                 <div class="card-title"><i class="fas fa-edit"></i> Ajout de l'entité</div>
               </div>
               <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="entityName"><i class="fas fa-tag"></i> Nom de l'entité</label>
-                      <input type="text" class="form-control" id="entityName" placeholder="Entrez le nom de l'entité">
+                <form th:action="@{/responsableGeneral/gestionEntites/ajout}" method="post">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="entityName"><i class="fas fa-tag"></i> Nom de l'entité</label>
+                        <input type="text" class="form-control" id="entityName" name="nom"
+                               placeholder="Entrez le nom de l'entité" required>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="entityLocation"><i class="fas fa-map-marker-alt"></i> Emplacement</label>
+                        <input type="text" class="form-control" id="entityLocation" name="emplacement"
+                               placeholder="Entrez l'emplacement de l'entité">
+                      </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="entityLocation"><i class="fas fa-map-marker-alt"></i> Emplacement</label>
-                      <input type="text" class="form-control" id="entityLocation" placeholder="Entrez l'emplacement de l'entité">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="entityDescription"><i class="fas fa-file-alt"></i> Description</label>
+                        <textarea class="form-control" id="entityDescription" name="description"
+                                  rows="5"></textarea>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <label for="entityDescription"><i class="fas fa-file-alt"></i> Description</label>
-                      <textarea class="form-control" id="entityDescription" rows="5"></textarea>
-                    </div>
+                  <div class="card-action">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Valider</button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Annuler</button>
                   </div>
-                </div>
-              </div>
-              <div class="card-action">
-                <button class="btn btn-success"><i class="fas fa-check"></i> Valider</button>
-                <button class="btn btn-danger"><i class="fas fa-times"></i> Annuler</button>
+                </form>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
