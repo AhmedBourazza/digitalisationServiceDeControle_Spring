@@ -432,23 +432,32 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="e:${listeEquipements}">
+                                            <tr th:each="e : ${listeEquipements}">
                                                 <th scope="row">
-
                                                     <div class="avatar avatar-xl">
                                                         <img th:src="'data:image/jpeg;base64,' + ${e.getImageDataAsBase64()}" alt="..." class="avatar-img rounded-circle">
                                                     </div>
-
                                                     <span th:text="${e.getNom()}"></span>
                                                 </th>
                                                 <td class="text-end" th:text="${e.getFrequence()}"></td>
                                                 <td class="text-end" th:text="${e.getQuantite()}"></td>
                                                 <td class="text-end" th:text="${e.getCodification()}"></td>
                                                 <td class="text-end">
-                                                    <a th:href="@{/responsableControleur/gestionEquipement/modification}" ><i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i></a>
-                                                    <a href=""><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
+                                                    <form th:action="@{/responsableControleur/gestionEquipement/suppression/{id}(id=${e.idEquipement})}" method="post">
+                                                        <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?');">
+                                                            <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <!-- Formulaire pour la suppression -->
+                                                    <form th:action="@{/responsableControleur/gestionEquipement/suppression/{id}(id=${e.idEquipement})}" method="post">
+                                                        <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?');">
+                                                            <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
+
 
 
                                             </tbody>
