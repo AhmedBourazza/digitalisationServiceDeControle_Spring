@@ -171,4 +171,12 @@ public class ResponsableGeneralController {
 
 
     }
+
+
+
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs")
+    public String responsableControleurs() {
+
+        return "RG_gestionResponsableControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
 }
