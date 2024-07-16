@@ -62,14 +62,22 @@ public class ResponsableControleurController {
     }
 
 //-----------------------
-    @GetMapping("/responsableControleur/gestionEquipement/ajout")
-    public String ajoutEquipementForm(Model model) {
-        model.addAttribute("equipement", new Equipement());
-        return "RC_gestionEquipements_ajout";
-    }
+@GetMapping("/responsableControleur/gestionEquipement/ajout")
+public String afficherEquipementForm(Model model) {
+    model.addAttribute("equipement", new Equipement());
+    return "RC_gestionEquipements_ajout";
+}
 
     @PostMapping("/responsableControleur/gestionEquipement/ajout")
-    public String ajoutEquipement(@ModelAttribute Equipement equipement) {
+    public String ajoutEquipement(@ModelAttribute Equipement equipement,
+                                  @RequestParam("imageFile") MultipartFile imageFile) {
+        try {
+            if (!imageFile.isEmpty()) {
+                equipement.setImageData(imageFile.getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         equipementRepo.save(equipement);
         return "redirect:/responsableControleur/gestionEquipements";
     }
