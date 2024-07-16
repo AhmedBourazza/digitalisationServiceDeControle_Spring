@@ -129,11 +129,10 @@ public class ResponsableGeneralController {
         m.addAttribute("listeEntites", listeEntites);
         return "RG_gestionEntites";}
 
-  /*  @GetMapping("/responsableGeneral/gestionEntites/modification")
-    public String modificationEntite() {
-        return "RG_gestionEntites_modification";
 
-    }*/
+
+    }
+
 
     @GetMapping("/responsableGeneral/gestionEntites/ajout")
     public String afficherFormEntite() {
@@ -186,12 +185,30 @@ public class ResponsableGeneralController {
 
     }
 
+    //---------- AJOUTER UNITE---------------------------------------
+
     @GetMapping("/responsableGeneral/gestionUnites/ajout")
-    public String AjoutUnite() {
+    public String AjoutUniteForm(Model model) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+        model.addAttribute("listeEntites", listeEntites);
+        model.addAttribute("unite", new Unite());
         return "RG_gestionUnites_ajout";
+
+    }
+
+    @PostMapping("/responsableGeneral/gestionUnites/ajout")
+    public String ajoutUnite(@ModelAttribute Unite unite) {
+        uniteRepo.save(unite);
+        return "redirect:/responsableGeneral/gestionUnites";
     }
 
 
+    //------------ Supprimer l'unité ---------------------------------------------
+    @PostMapping("/responsableGeneral/gestionUnites/suppression/{id}")
+    public String supprimerUnite(@PathVariable("id") Long id) {
+        uniteRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionUnites";
+    }
 
     @GetMapping("/responsableGeneral/gestionUnites/modification")
     public String modificationUnite() {
