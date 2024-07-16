@@ -212,13 +212,22 @@ public String afficherEquipementForm(Model model) {
 
     //------ Ajout D'un CONTROLEURS -----------------------------------------
     @GetMapping("/responsableControleur/gestionControleurs/ajout")
-    public String ajoutControleurForm(Model m) {
-        m.addAttribute("controleur", new Controleur());
+    public String ajoutControleurForm(Model model) {
+        model.addAttribute("controleur", new Controleur());
         return "RC_gestionControleurs_ajout";
     }
 
     @PostMapping("/responsableControleur/gestionControleurs/ajout")
-    public String ajoutControleur(@ModelAttribute Controleur controleur) {
+    public String ajoutControleur(@ModelAttribute Controleur controleur,
+                                  @RequestParam("imageFile") MultipartFile imageFile) {
+        try {
+            if (!imageFile.isEmpty()) {
+                controleur.setImageData(imageFile.getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            //ho
+        }
         controleurRepo.save(controleur);
         return "redirect:/responsableControleur/gestionControleurs";
     }
