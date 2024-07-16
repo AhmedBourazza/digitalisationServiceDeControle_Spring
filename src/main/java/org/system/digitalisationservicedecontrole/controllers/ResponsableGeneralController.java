@@ -218,14 +218,23 @@ public class ResponsableGeneralController {
         return "RG_gestionResponsableControleurs_modification";
     }
     //------ Ajout D'un CONTROLEURS -----------------------------------------
+
     @GetMapping("/responsableGeneral/gestionControleurs/ajout")
-    public String ajoutControleurForm(Model m) {
-        m.addAttribute("controleur", new Controleur());
+    public String ajoutControleurForm(Model model) {
+        model.addAttribute("controleur", new Controleur());
         return "RG_gestionControleurs_ajout";
     }
 
     @PostMapping("/responsableGeneral/gestionControleurs/ajout")
-    public String ajoutControleur(@ModelAttribute Controleur controleur) {
+    public String ajoutControleur(@ModelAttribute Controleur controleur,
+                                  @RequestParam("imageFile") MultipartFile imageFile) {
+        try {
+            if (!imageFile.isEmpty()) {
+                controleur.setImageData(imageFile.getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         controleurRepo.save(controleur);
         return "redirect:/responsableGeneral/gestionControleurs";
     }
