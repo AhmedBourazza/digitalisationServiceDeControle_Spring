@@ -35,7 +35,6 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/gestionControleurs")
     public String Controleurs(Model m) {
         List<Controleur> listeControleurs = controleurRepo.findAll();
-
         m.addAttribute("listeControleurs", listeControleurs);
         return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }

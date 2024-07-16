@@ -182,10 +182,12 @@ public String afficherEquipementForm(Model model) {
 
     }
 
-
+//---------- AJOUTER UNITE---------------------------------------
 
     @GetMapping("/responsableControleur/gestionUnites/ajout")
     public String AjoutUniteForm(Model model) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+        model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
         return "RC_gestionUnites_ajout";
 
@@ -196,12 +198,19 @@ public String afficherEquipementForm(Model model) {
         uniteRepo.save(unite);
         return "redirect:/responsableControleur/gestionUnites";
     }
+    //------------------------------------------------
 
     @GetMapping("/responsableControleur/gestionUnites/modification")
     public String modificationUnite() {
         return "RC_gestionUnites_modification";
 
 
+    }
+  //------------ Supprimer l'unité ---------------------------------------------
+    @PostMapping("/responsableControleur/gestionUnites/suppression/{id}")
+    public String supprimerUnite(@PathVariable("id") Long id) {
+        uniteRepo.deleteById(id);
+        return "redirect:/responsableControleur/gestionUnites";
     }
 
 
