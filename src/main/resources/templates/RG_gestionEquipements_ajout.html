@@ -416,64 +416,62 @@
               <div class="card-header">
                 <div class="card-title"><i class="fas fa-edit"></i> Ajout de l'Équipement</div>
               </div>
-              <form th:action="@{/responsableGeneral/gestionEquipement/ajout}" th:object="${equipement}" method="post">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="equipmentName"><i class="fas fa-tag"></i> Nom de l'Équipement</label>
-                      <input type="text" th:field="*{nom}" class="form-control" id="equipmentName" placeholder="Entrez le nom de l'équipement">
+              <form th:action="@{/responsableGeneral/gestionEquipement/ajout}" th:object="${equipement}" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="equipmentName"><i class="fas fa-tag"></i> Nom de l'Équipement</label>
+                        <input type="text" th:field="*{nom}" class="form-control" id="equipmentName" placeholder="Entrez le nom de l'équipement">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="formTitle"><i class="fas fa-file-alt"></i> Titre du Formulaire relatif</label>
+                        <input type="text" th:field="*{titreFormulaire}" class="form-control" id="formTitle" placeholder="Entrez le titre du formulaire">
+                      </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="formTitle"><i class="fas fa-file-alt"></i> Titre du Formulaire relatif</label>
-                      <input type="text" th:field="*{titreFormulaire}" class="form-control" id="formTitle" placeholder="Entrez le titre du formulaire">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="codification"><i class="fas fa-barcode"></i> Codification</label>
+                        <input type="text" th:field="*{codification}" class="form-control" id="codification" placeholder="Entrez la codification">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="frequency"><i class="fas fa-calendar-check"></i> Fréquence de Contrôle</label>
+                        <input type="text" th:field="*{frequence}" class="form-control" id="frequency" placeholder="Entrez la fréquence de contrôle">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="quantity"><i class="fas fa-sort-numeric-up"></i> Quantité</label>
+                        <input type="number" th:field="*{quantite}" class="form-control" id="quantity" placeholder="Entrez la quantité">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="representativeImage"><i class="fas fa-image"></i> Image Représentative</label>
+                        <br>
+                        <input type="file" name="imageFile" class="form-control-file" id="representativeImage">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="comment">Description</label>
+                        <textarea th:field="*{description}" class="form-control" id="comment" rows="5"></textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="codification"><i class="fas fa-barcode"></i> Codification</label>
-                      <input type="text" th:field="*{codification}" class="form-control" id="codification" placeholder="Entrez la codification">
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="frequency"><i class="fas fa-calendar-check"></i> Fréquence de Contrôle</label>
-                      <input type="text" th:field="*{frequence}" class="form-control" id="frequency" placeholder="Entrez la fréquence de contrôle">
-                    </div>
-                  </div>
+                <div class="card-action">
+                  <button class="btn btn-success">Valider</button>
+                  <a th:href="@{/responsableGeneral/gestionEquipements}" class="btn btn-danger">Annuler</a>
                 </div>
-
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="quantity"><i class="fas fa-sort-numeric-up"></i> Quantité</label>
-                      <input type="number" th:field="*{quantite}" class="form-control" id="quantity" placeholder="Entrez la quantité">
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="representativeImage"><i class="fas fa-image"></i> Image Représentative</label>
-                      <br>
-                      <input type="file" th:field="*{imageData}" class="form-control-file" id="representativeImage">
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-group">
-                      <label for="comment">Description</label>
-                      <textarea th:field="*{description}" class="form-control" id="comment" rows="5">                          </textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-action">
-                <button class="btn btn-success">Valider</button>
-                <a th:href="@{/responsableGeneral/gestionEquipements}" class="btn btn-danger">Annuler</a>
-              </div>
               </form>
 
             </div>
