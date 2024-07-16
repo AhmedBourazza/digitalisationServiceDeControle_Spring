@@ -189,12 +189,28 @@ public class ResponsableGeneralController {
 
         return "RG_gestionResponsableControleurs_modification";
     }
-
+    //------ Ajout D'un CONTROLEURS -----------------------------------------
     @GetMapping("/responsableGeneral/gestionControleurs/ajout")
-    public String ajoutControleurs(Model m) {
-
+    public String ajoutControleurForm(Model m) {
+        m.addAttribute("controleur", new Controleur());
         return "RG_gestionControleurs_ajout";
     }
+
+    @PostMapping("/responsableGeneral/gestionControleurs/ajout")
+    public String ajoutControleur(@ModelAttribute Controleur controleur) {
+        controleurRepo.save(controleur);
+        return "redirect:/responsableGeneral/gestionControleurs";
+    }
+
+    //*******Suppression d'un CONTROLEURS*************************************
+    @PostMapping("/responsableGeneral/gestionControleurs/suppression/{id}")
+    public String supprimerControleur(@PathVariable("id") Long id) {
+        controleurRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionControleurs";
+    }
+
+    //--------------------------
+
     @GetMapping("/responsableGeneral/gestionControleurs/modification")
     public String ModifierControleurs(Model m) {
         return "RG_gestionControleurs_modification";

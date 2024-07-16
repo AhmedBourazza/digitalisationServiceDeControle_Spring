@@ -404,7 +404,7 @@
                                     <div class="card-title"><i class="fa-solid fa-user" style="color: #000000;"></i> Liste des contrôleurs  </div>
                                     <div class="card-tools">
                                         <div class="dropdown">
-                                            <a th:href="@{/responsableGeneral/editProfile}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
+                                            <a th:href="@{/responsableControleur/gestionControleurs/ajout}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
                                                 <i class="fa-solid fa-plus" style="color: #000000;"></i>
                                             </a>
 
@@ -424,9 +424,14 @@
                                             <div class="username" th:text="${c.getNom()}"></div>
                                             <div class="status" th:text="${c.getMatricule()}"></div>
                                         </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                        </button>
+                                        <div class="info-user ms-3">
+                                            <div class="username" th:text="${c.getPrenom()}"></div>
+                                        </div>
+                                        <form th:action="@{/responsableControleur/gestionControleurs/suppression/{id}(id=${c.idControleur})}" method="post">
+                                            <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce controleur?');">
+                                                <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
+                                            </button>
+                                        </form>
                                         <a th:href="@{/responsableGeneral/editProfile}" class="btn btn-icon btn-link btn-danger op-8">
                                             <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
                                         </a>
