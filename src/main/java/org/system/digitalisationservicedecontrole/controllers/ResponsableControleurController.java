@@ -119,18 +119,49 @@ public class ResponsableControleurController {
         m.addAttribute("listeEntites", listeEntites);
         return "RC_gestionEntites";}
 
-    @GetMapping("/responsableControleur/gestionEntites/modification")
-    public String modificationEntite() {
-        return "RC_gestionEntites_modification";
-
-    }
-
     @GetMapping("/responsableControleur/gestionEntites/ajout")
-    public String AjoutEntite() {
+    public String afficherFormEntite() {
         return "RC_gestionEntites_ajout";
 
 
     }
+
+    @PostMapping("/responsableControleur/gestionEntites/ajout")
+    public String AjoutEntite(@ModelAttribute("entite") Entite entite) {
+        entiteRepo.save(entite);
+        return "redirect:/responsableControleur/gestionEntites";
+
+
+    }
+    @GetMapping("/responsableControleur/gestionEntites/suppression/{id}")
+    public String supprimerEntiteGet(@PathVariable("id") Long id) {
+        entiteRepo.deleteById(id);
+        return "redirect:/responsableControleur/gestionEntites";
+    }
+    @GetMapping("/responsableControleur/gestionEntites/modification/{id}")
+    public String modificationEntite(@PathVariable("id") Long id, Model model) {
+        Optional<Entite> entiteOptional = entiteRepo.findById(id);
+        if (entiteOptional.isPresent()) {
+            model.addAttribute("entite", entiteOptional.get());
+            return "RC_gestionEntites_modification"; // Ensure this matches your template name
+        } else {
+            // Handle entity not found
+            return "redirect:/responsableControleur/gestionEntites";
+        }
+    }
+
+
+
+    @PostMapping("/responsableControleur/gestionEntites/modification/{id}")
+    public String enregistrerModificationsEntite(@PathVariable("id") Long id, @ModelAttribute("entite") Entite entite) {
+        entite.setIdEntite(id); // Ensure the ID is set for update
+        entiteRepo.save(entite);
+        return "redirect:/responsableControleur/gestionEntites";
+    }
+
+
+
+
     @GetMapping("/responsableControleur/gestionUnites")
     public String gestionUnite(Model m) {
         List<Unite> listeUnites = uniteRepo.findAll();

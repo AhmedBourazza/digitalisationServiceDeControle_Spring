@@ -124,11 +124,11 @@ public class ResponsableGeneralController {
         m.addAttribute("listeEntites", listeEntites);
         return "RG_gestionEntites";}
 
-    @GetMapping("/responsableGeneral/gestionEntites/modification")
+  /*  @GetMapping("/responsableGeneral/gestionEntites/modification")
     public String modificationEntite() {
         return "RG_gestionEntites_modification";
 
-    }
+    }*/
     @GetMapping("/responsableGeneral/gestionEntites/ajout")
     public String afficherFormEntite() {
         return "RG_gestionEntites_ajout";
@@ -146,6 +146,26 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/gestionEntites/suppression/{id}")
     public String supprimerEntiteGet(@PathVariable("id") Long id) {
         entiteRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionEntites";
+    }
+    @GetMapping("/responsableGeneral/gestionEntites/modification/{id}")
+    public String modificationEntite(@PathVariable("id") Long id, Model model) {
+        Optional<Entite> entiteOptional = entiteRepo.findById(id);
+        if (entiteOptional.isPresent()) {
+            model.addAttribute("entite", entiteOptional.get());
+            return "RG_gestionEntites_modification"; // Ensure this matches your template name
+        } else {
+            // Handle entity not found
+            return "redirect:/responsableGeneral/gestionEntites";
+        }
+    }
+
+
+
+    @PostMapping("/responsableGeneral/gestionEntites/modification/{id}")
+    public String enregistrerModificationsEntite(@PathVariable("id") Long id, @ModelAttribute("entite") Entite entite) {
+        entite.setIdEntite(id); // Ensure the ID is set for update
+        entiteRepo.save(entite);
         return "redirect:/responsableGeneral/gestionEntites";
     }
 
