@@ -3,13 +3,12 @@ package org.system.digitalisationservicedecontrole.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,19 +69,28 @@ public class ResponsableGeneralController {
     }
 
     //----------------------------------------
+
     @GetMapping("/responsableGeneral/gestionEquipement/ajout")
-    public String ajoutEquipementForm(Model model) {
+    public String afficherEquipementForm(Model model) {
         model.addAttribute("equipement", new Equipement());
         return "RG_gestionEquipements_ajout";
     }
 
     @PostMapping("/responsableGeneral/gestionEquipement/ajout")
-    public String ajoutEquipement(@ModelAttribute Equipement equipement) {
+    public String ajoutEquipement(@ModelAttribute Equipement equipement,
+                                  @RequestParam("imageFile") MultipartFile imageFile) {
+        try {
+            if (!imageFile.isEmpty()) {
+                equipement.setImageData(imageFile.getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         equipementRepo.save(equipement);
         return "redirect:/responsableGeneral/gestionEquipements";
     }
 
-    @PostMapping("/responsableGeneral/gestionEquipement/suppression/{id}")
+        @PostMapping("/responsableGeneral/gestionEquipement/suppression/{id}")
     public String supprimerEquipement(@PathVariable("id") Long id) {
         equipementRepo.deleteById(id);
         return "redirect:/responsableGeneral/gestionEquipements";

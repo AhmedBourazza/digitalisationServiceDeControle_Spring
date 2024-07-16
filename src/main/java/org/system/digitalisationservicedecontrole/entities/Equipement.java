@@ -37,10 +37,10 @@ public class Equipement {
         return Base64.getEncoder().encodeToString(getImageData());
     }
 
+
     public void setImageDataFromBase64(String base64String) {
         this.ImageData = Base64.getDecoder().decode(base64String);
     }
-
 
 
 
