@@ -248,6 +248,7 @@ public class ResponsableGeneralController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            //ho
         }
         controleurRepo.save(controleur);
         return "redirect:/responsableGeneral/gestionControleurs";
