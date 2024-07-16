@@ -175,6 +175,29 @@ public class ResponsableGeneralController {
         List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
         m.addAttribute("listeResponsableControleurs", listeResponsableControleurs );
 
-        return "RG_gestionResponsableControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RG_gestionResponsableControleurs";
     }
+
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
+    public String ajoutResponsableControleurs(Model m) {
+
+        return "RG_gestionResponsableControleurs_ajout";
+    }
+
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification")
+    public String modifierResponsableControleurs(Model m) {
+
+        return "RG_gestionResponsableControleurs_modification";
+    }
+
+    @GetMapping("/responsableGeneral/gestionControleurs/ajout")
+    public String ajoutControleurs(Model m) {
+
+        return "RG_gestionControleurs_ajout";
+    }
+    @GetMapping("/responsableGeneral/gestionControleurs/modification")
+    public String ModifierControleurs(Model m) {
+        return "RG_gestionControleurs_modification";
+    }
+
 }

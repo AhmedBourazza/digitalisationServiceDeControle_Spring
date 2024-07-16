@@ -164,4 +164,14 @@ public class ResponsableControleurController {
 
 
     }
+
+    @GetMapping("/responsableControleur/gestionControleurs/ajout")
+    public String ajoutControleurs(Model m) {
+
+        return "RC_gestionControleurs_ajout";
+    }
+    @GetMapping("/responsableControleur/gestionControleurs/modification")
+    public String ModifierControleurs(Model m) {
+        return "RC_gestionControleurs_modification";
+    }
 }
