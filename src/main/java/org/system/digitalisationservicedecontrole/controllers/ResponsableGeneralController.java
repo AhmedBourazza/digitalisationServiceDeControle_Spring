@@ -169,7 +169,7 @@ public class ResponsableGeneralController {
     }
 
 
-
+//******************** GESTION DES RESPONSABLE DES CONTROLEURS**********************
     @GetMapping("/responsableGeneral/gestionResponsableControleurs")
     public String responsableControleurs(Model m) {
         List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
@@ -178,17 +178,31 @@ public class ResponsableGeneralController {
         return "RG_gestionResponsableControleurs";
     }
 
+    //------Ajout de responsable controleur----------------------
     @GetMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
-    public String ajoutResponsableControleurs(Model m) {
-
+    public String ajoutResponsableControleursForm(Model m) {
+        m.addAttribute("responsableControleur", new ResponsableControleur());
         return "RG_gestionResponsableControleurs_ajout";
     }
+    @PostMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
+    public String ajoutResponsableControleurs(@ModelAttribute ResponsableControleur responsableControleur) {
+        responsableControleurRepo.save(responsableControleur);
+        return "redirect:/responsableGeneral/gestionResponsableControleurs";
+    }
+    //--------Suppression reponsable controleur-------------------
+    @PostMapping("/responsableGeneral/gestionResponsableControleurs/suppression/{id}")
+    public String supprimerResponsableControleur(@PathVariable("id") Long id) {
+        responsableControleurRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionResponsableControleurs";
+    }
+    //--------Modification de responsable de controleur---------------------
 
     @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification")
     public String modifierResponsableControleurs(Model m) {
 
         return "RG_gestionResponsableControleurs_modification";
     }
+    //*******************************************************************************************
     //------ Ajout D'un CONTROLEURS -----------------------------------------
     @GetMapping("/responsableGeneral/gestionControleurs/ajout")
     public String ajoutControleurForm(Model m) {

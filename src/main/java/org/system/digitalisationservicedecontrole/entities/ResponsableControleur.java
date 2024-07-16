@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Base64;
 import java.util.Collection;
@@ -22,7 +23,9 @@ public class ResponsableControleur {
     private String nom ;
     private String prenom ;
     private String matricule ;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEmbauche ;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateIntegration ;
     private String grade ;
     private String numTele;
