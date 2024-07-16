@@ -204,13 +204,29 @@ public String afficherEquipementForm(Model model) {
 
     }
 
-    @GetMapping("/responsableControleur/gestionControleurs/ajout")
-    public String ajoutControleurs(Model m) {
 
-        return "RC_gestionControleurs_ajout";
-    }
     @GetMapping("/responsableControleur/gestionControleurs/modification")
     public String ModifierControleurs(Model m) {
         return "RC_gestionControleurs_modification";
+    }
+
+    //------ Ajout D'un CONTROLEURS -----------------------------------------
+    @GetMapping("/responsableControleur/gestionControleurs/ajout")
+    public String ajoutControleurForm(Model m) {
+        m.addAttribute("controleur", new Controleur());
+        return "RC_gestionControleurs_ajout";
+    }
+
+    @PostMapping("/responsableControleur/gestionControleurs/ajout")
+    public String ajoutControleur(@ModelAttribute Controleur controleur) {
+        controleurRepo.save(controleur);
+        return "redirect:/responsableControleur/gestionControleurs";
+    }
+
+    //*******Suppression d'un CONTROLEURS*************************************
+    @PostMapping("/responsableControleur/gestionControleurs/suppression/{id}")
+    public String supprimerControleur(@PathVariable("id") Long id) {
+        controleurRepo.deleteById(id);
+        return "redirect:/responsableControleur/gestionControleurs";
     }
 }
