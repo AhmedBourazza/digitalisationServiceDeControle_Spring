@@ -295,6 +295,11 @@ public class ResponsableGeneralController {
         try {
             if (!imageFile.isEmpty()) {
                 controleur.setImageData(imageFile.getBytes());
+            } else {
+                // Si aucun fichier n'est téléchargé, récupérez l'image existante
+                Controleur existingControleur = controleurRepo.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
+                controleur.setImageData(existingControleur.getImageData());
             }
         } catch (IOException e) {
             e.printStackTrace();
