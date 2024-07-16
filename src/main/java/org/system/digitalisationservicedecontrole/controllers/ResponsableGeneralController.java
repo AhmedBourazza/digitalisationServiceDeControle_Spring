@@ -7,14 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.system.digitalisationservicedecontrole.entities.Controleur;
-import org.system.digitalisationservicedecontrole.entities.Entite;
-import org.system.digitalisationservicedecontrole.entities.Equipement;
-import org.system.digitalisationservicedecontrole.entities.Unite;
-import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
-import org.system.digitalisationservicedecontrole.repositories.EntiteRepo;
-import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
-import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
+import org.system.digitalisationservicedecontrole.entities.*;
+import org.system.digitalisationservicedecontrole.repositories.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +24,8 @@ public class ResponsableGeneralController {
     private UniteRepo uniteRepo;
     @Autowired
     private EquipementRepo equipementRepo ;
+    @Autowired
+    private ResponsableControleurRepo responsableControleurRepo;
 
     @GetMapping("/responsableGeneral/login")
     public String login() {
@@ -175,8 +171,33 @@ public class ResponsableGeneralController {
 
 
     @GetMapping("/responsableGeneral/gestionResponsableControleurs")
-    public String responsableControleurs() {
+    public String responsableControleurs(Model m) {
+        List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
+        m.addAttribute("listeResponsableControleurs", listeResponsableControleurs );
 
-        return "RG_gestionResponsableControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RG_gestionResponsableControleurs";
     }
+
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
+    public String ajoutResponsableControleurs(Model m) {
+
+        return "RG_gestionResponsableControleurs_ajout";
+    }
+
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification")
+    public String modifierResponsableControleurs(Model m) {
+
+        return "RG_gestionResponsableControleurs_modification";
+    }
+
+    @GetMapping("/responsableGeneral/gestionControleurs/ajout")
+    public String ajoutControleurs(Model m) {
+
+        return "RG_gestionControleurs_ajout";
+    }
+    @GetMapping("/responsableGeneral/gestionControleurs/modification")
+    public String ModifierControleurs(Model m) {
+        return "RG_gestionControleurs_modification";
+    }
+
 }

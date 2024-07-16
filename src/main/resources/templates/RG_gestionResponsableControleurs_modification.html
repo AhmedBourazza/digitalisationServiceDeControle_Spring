@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>OCP SA - Espace Responsable Général</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OCP SA - Responsable Général</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
@@ -58,7 +61,7 @@
                             class="navbar-brand"
                             height="20"
                     />
-                    <strong style="color: white; margin-left: 4px;">Responsable Général</strong>
+                    <strong style="color: white; margin-left: 4px;">Responsable Général </strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -85,14 +88,17 @@
 
                         </a>
                     </li>
-
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a th:href="@{/responsableGeneral/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
                         </a>
                     </li>
+
+
+
+
 
                     <li class="nav-section">
                 <span class="sidebar-mini-icon">
@@ -102,20 +108,15 @@
                     </li>
 
 
-
-
-
-
-                    <li class="nav-item active ">
+                    <li class="nav-item">
                         <a th:href="@{/responsableGeneral/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
-                            <p>Contrôleurs</p>
+                            <p>contrôleurs</p>
                             <span class="badge badge-success">8</span>
                         </a>
                     </li>
-
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
                             <i class="fa-solid fa-person"></i>
 
@@ -127,15 +128,16 @@
 
 
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="">
                             <i class="fa-solid fa-file" style="color: #ffffff;"></i>
                             <p>Formulaires</p>
 
                         </a>
                     </li>
 
+
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEquipements}">
+                        <a th:href="@{/responsableGeneral/GestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
                             <span class="badge badge-success">16</span>
@@ -151,7 +153,6 @@
 
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a th:href="@{/responsableGeneral/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
@@ -160,6 +161,13 @@
 
                         </a>
                     </li>
+
+
+
+                    </li>
+
+
+
 
                 </ul>
             </div>
@@ -316,7 +324,7 @@
                             >
                                 <div class="avatar-sm">
                                     <img
-                                            th:src="@{/img/profile.jpg}"
+                                            th:src="@{/img/profile2.jpg}"
                                             alt="..."
                                             class="avatar-img rounded-circle"
                                     />
@@ -332,7 +340,7 @@
                                         <div class="user-box">
                                             <div class="avatar-lg">
                                                 <img
-                                                        th:src="@{/img/profile.jpg}"
+                                                        th:src="@{/img/profile2.jpg}"
                                                         alt="image profile"
                                                         class="avatar-img rounded"
                                                 />
@@ -368,91 +376,96 @@
 
         <div class="container">
             <div class="page-inner">
-
-
                 <div class="page-header">
-                <!-- Customized Card -->
-                <h3 class="fw-bold mb-3">là vous pouvez gérer les contrôleurs </h3>
-
-                <ul class="breadcrumbs mb-3">
-
-                    <li class="nav-home">
-                        <a href="#">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Espace responsable générale</a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Liste des controleus</a>
-                    </li>
+                    <h3 class="fw-bold mb-3">Gestion des profiles</h3>
 
 
 
+                    <ul class="breadcrumbs mb-3">
 
-                </ul>
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Espace responsable générale</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Liste des responsable controleurs</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Modifier un profile</a>
+                        </li>
+
+
+
+                    </ul>
                 </div>
                 <div class="row">
 
                     <!----------------------------------------------------------------------------->
 
-                    <div class="col-md-12">
-                        <div class="card card-round">
-                            <div class="card-body">
-                                <div class="card-head-row card-tools-still-right">
-                                    <div class="card-title"><i class="fa-solid fa-user" style="color: #000000;"></i> Liste des contrôleurs  </div>
-                                    <div class="card-tools">
-                                        <div class="dropdown">
-                                            <a th:href="@{/responsableGeneral/gestionControleurs/ajout}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
-                                                <i class="fa-solid fa-plus" style="color: #000000;"></i>
-                                            </a>
+                    <div class="col-12">
+                        <div class="card card-profile">
+                            <div class="card-header" th:style="'background-image: url(' + @{/img/backProfile.jpg} + ')'">
 
-                                        </div>
+
+                                <div class="profile-picture">
+
+
+                                    <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
+                                        <img th:src="@{/img/profile2.jpg}" alt="..." class="avatar-img rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                                        <input type="file" accept="image/*" id="avatar-input" style="display: none;">
+                                        <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
+                                            <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+                                <div class="user-profile text-center">
+                                    <input type="text" class="form-control name" placeholder="Nom prénom" value="">
+                                    <input type="text" class="form-control job" placeholder="Grade" value="">
+                                    <input type="text" class="form-control desc" placeholder="Date d'intégration service" value="Date d'intégration service">
+                                    <div class="view-profile">
+                                        <input type="text" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
                                     </div>
                                 </div>
-                                <div class="card-list py-4">
+                            </div>
+                            <div class="card-footer">
+                                <div class="row user-stats text-center">
+                                    <div class="col">
+                                        <input type="text" class="form-control title" placeholder="Date d'embauche" value="">
 
-
-                                    <div class="item-list" th:each="c:${listeControleurs}">
-                                        <div class="avatar">
-                                            <!-- Assuming c.imageData is your byte array -->
-                                            <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}"  class="avatar-img rounded-circle" alt="Image">
-
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username" th:text="${c.getNom()}"></div>
-                                            <div class="status" th:text="${c.getMatricule()}"></div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                        </button>
-                                        <a th:href="@{/responsableGeneral/gestionControleurs/modification}" class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
-                                        </a>
                                     </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control title" placeholder="Nombre de vérification" value="Nombre de vérification">
 
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control title" placeholder="Classement" value="Classement">
 
-
-
-
-                                    <!---------------------------------------------------------------------------------->
-
-
-
-
-
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
 
 
@@ -466,7 +479,20 @@
 
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
 
 
             </div>
@@ -700,64 +726,15 @@
 <script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
 <script th:src="@{/js/core/popper.min.js}"></script>
 <script th:src="@{/js/core/bootstrap.min.js}"></script>
+<!-- jQuery Scrollbar -->
 <script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+<!-- jQuery Sparkline -->
 <script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+<!-- Kaiadmin JS -->
 <script th:src="@{/js/kaiadmin.min.js}"></script>
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
 <script th:src="@{/js/setting-demo.js}"></script>
-<script>
-    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#177dff",
-        fillColor: "rgba(23, 125, 255, 0.14)",
-    });
 
-    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#f3545d",
-        fillColor: "rgba(243, 84, 93, .14)",
-    });
 
-    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#ffa534",
-        fillColor: "rgba(255, 165, 52, .14)",
-    });
-
-    $("#lineChart4").sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "rgba(255, 255, 255, .5)",
-        fillColor: "rgba(255, 255, 255, .15)",
-    });
-
-    $("#lineChart5").sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "rgba(255, 255, 255, .5)",
-        fillColor: "rgba(255, 255, 255, .15)",
-    });
-
-    $("#lineChart6").sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "rgba(255, 255, 255, .5)",
-        fillColor: "rgba(255, 255, 255, .15)",
-    });
-</script>
 </body>
 </html>
