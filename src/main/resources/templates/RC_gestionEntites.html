@@ -443,15 +443,15 @@
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
 
-                                        <a th:href="@{/responsableGeneral/gestionEntites/modification}">
-                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;">
-                                            </i> </a>
-
+                                        <a th:href="@{/responsableControleur/gestionEntites/modification/{id}(id=${e.getIdEntite()})}">
+                                            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #00ff00;"></i>
+                                        </a>
 
                                         <div style="width: 20px;"></div>
-                                        <a href="">
-                                            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;">
-                                            </i> </a>
+                                        <a th:href="@{/responsableControleur/gestionEntites/suppression/{id}(id=${e.getIdEntite()})}"
+                                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette entité?');">
+                                            <i class="fa fa-trash fa-xl" style="color: #ff0000;"></i>
+                                        </a>
 
                                     </div>
                                 </div>
