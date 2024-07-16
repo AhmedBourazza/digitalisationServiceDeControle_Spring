@@ -410,7 +410,7 @@
                                     <div class="card-title"><i class="fa-solid fa-user" style="color: #000000;"></i> Liste des responsable des contrôleurs  </div>
                                     <div class="card-tools">
                                         <div class="dropdown">
-                                            <a href="" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
+                                            <a th:href="@{/responsableGeneral/gestionResponsableControleurs/ajout}" class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" >
                                                 <i class="fa-solid fa-plus" style="color: #000000;"></i>
                                             </a>
 
@@ -431,9 +431,11 @@
                                             <div class="username" th:text="${rc.getNom()}"></div>
                                             <div class="status" th:text="${rc.getGrade()}"></div>
                                         </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                                        </button>
+                                        <form th:action="@{/responsableGeneral/gestionResponsableControleurs/suppression/{id}(id=${rc.idResponsableControleur})}" method="post">
+                                            <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce responsable');">
+                                                <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
+                                            </button>
+                                        </form>
                                         <a href="" class="btn btn-icon btn-link btn-danger op-8">
                                             <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
                                         </a>
