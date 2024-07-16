@@ -514,9 +514,9 @@
 
                                                     <!---------- HA FIN GHATBDA LA BOUCLE ---------------->
 
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">Airi Satou</td>
-                                                        <td>Accountant</td>
+                                                    <tr role="row" class="odd" th:each="u:${listeUnites}">
+                                                        <td class="sorting_1" th:text="${u.getNom()}"></td>
+                                                        <td>15</td>
 
 
                                                     </tr>

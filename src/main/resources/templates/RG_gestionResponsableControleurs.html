@@ -403,7 +403,7 @@
 
                     <!----------------------------------------------------------------------------->
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" >
                         <div class="card card-round">
                             <div class="card-body">
                                 <div class="card-head-row card-tools-still-right">
@@ -417,18 +417,19 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card-list py-4">
 
 
-                                    <div class="item-list" >
+                                    <div class="item-list" th:each="rc:${listeResponsableControleurs}" >
                                         <div class="avatar">
                                             <!-- Assuming c.imageData is your byte array -->
-                                            <img src=""  class="avatar-img rounded-circle" alt="Image">
+                                            <img th:src="'data:image/jpeg;base64,' + ${rc.getImageDataAsBase64()}"  class="avatar-img rounded-circle" alt="Image">
 
                                         </div>
                                         <div class="info-user ms-3">
-                                            <div class="username" ></div>
-                                            <div class="status" ></div>
+                                            <div class="username" th:text="${rc.getNom()}"></div>
+                                            <div class="status" th:text="${rc.getGrade()}"></div>
                                         </div>
                                         <button class="btn btn-icon btn-link op-8 me-1">
                                             <i class="fa-solid fa-trash" style="color: #ff0000;"></i>

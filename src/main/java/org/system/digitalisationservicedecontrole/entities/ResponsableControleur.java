@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 @Data
@@ -37,6 +38,10 @@ public class ResponsableControleur {
    @ManyToOne()
    @JoinColumn(name = "IdResponsableGeneral_")
    private ResponsableGeneral responsableGeneral ;
+
+    public String getImageDataAsBase64() {
+        return Base64.getEncoder().encodeToString(getImageData());
+    }
 
 
 }

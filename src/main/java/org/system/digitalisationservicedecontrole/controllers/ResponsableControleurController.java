@@ -30,6 +30,8 @@ public class ResponsableControleurController {
     private UniteRepo uniteRepo;
     @Autowired
     private EquipementRepo equipementRepo;
+    @Autowired
+    private UniteRepo uniteRepp ;
 
 
     @GetMapping("/responsableControleur/login")
@@ -141,12 +143,21 @@ public class ResponsableControleurController {
 
     }
 
+
+
     @GetMapping("/responsableControleur/gestionUnites/ajout")
-    public String AjoutUnite() {
+    public String AjoutUniteForm(Model model) {
+        model.addAttribute("unite", new Unite());
         return "RC_gestionUnites_ajout";
 
-
     }
+
+    @PostMapping("/responsableControleur/gestionUnites/ajout")
+    public String ajoutUnite(@ModelAttribute Unite unite) {
+        uniteRepo.save(unite);
+        return "redirect:/responsableControleur/gestionUnites";
+    }
+
     @GetMapping("/responsableControleur/gestionUnites/modification")
     public String modificationUnite() {
         return "RC_gestionUnites_modification";
