@@ -26,6 +26,8 @@ public class ResponsableGeneralController {
     private EquipementRepo equipementRepo ;
     @Autowired
     private ResponsableControleurRepo responsableControleurRepo;
+    @Autowired
+    private ResponsableGeneralRepo responsableGeneralRepo;
 
     @GetMapping("/responsableGeneral/login")
     public String login() {
@@ -264,7 +266,16 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
         return "RG_gestionResponsableControleurs_ajout";
     }
     @PostMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
-    public String ajoutResponsableControleurs(@ModelAttribute ResponsableControleur responsableControleur) {
+    public String ajoutResponsableControleurs(@ModelAttribute ResponsableControleur responsableControleur,
+                                              @RequestParam("imageFile") MultipartFile imageFile) {
+        try {
+            if (!imageFile.isEmpty()) {
+                responsableControleur.setImageData(imageFile.getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            //ho
+        }
         responsableControleurRepo.save(responsableControleur);
         return "redirect:/responsableGeneral/gestionResponsableControleurs";
     }
@@ -277,21 +288,39 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
     //--------Modification de responsable de controleur---------------------
     @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification/{id}")
     public String modificationResponsableControleur(@PathVariable("id") Long id, Model model) {
-        Optional<ResponsableControleur> responsableControleurOptional = responsableControleurRepo.findById(id);
-        if (responsableControleurOptional.isPresent()) {
-            model.addAttribute("responsableControleur", responsableControleurOptional.get());
-            return "RG_gestionResponsableControleurs_modification";
+        Optional<ResponsableControleur> responsablecontroleurOptional = responsableControleurRepo.findById(id);
+        if (responsablecontroleurOptional.isPresent()) {
+            model.addAttribute("responsableControleur", responsablecontroleurOptional.get());
+            return "RG_gestionResponsableControleurs_modification"; // Nom de la vue Thymeleaf
         } else {
-
+            // Gestion du cas où le contrôleur n'est pas trouvé
             return "redirect:/responsableGeneral/gestionResponsableControleurs";
         }
     }
 
     // Enregistrer les modifications
     @PostMapping("/responsableGeneral/gestionResponsableControleurs/modification/{id}")
-    public String enregistrerModificationsResponsableControleur(@PathVariable("id") Long id, @ModelAttribute("responsableControleur") ResponsableControleur responsableControleur ) {
-        responsableControleur.setIdResponsableControleur(id); // Assurez-vous que l'ID est défini pour la mise à jour
-        responsableControleurRepo.save(responsableControleur);
+    public String enregistrerModificationsResponsableControleur(@PathVariable("id") Long id,
+                                                                @ModelAttribute ResponsableControleur responsableControleur,
+                                                                @RequestParam("imageFile") MultipartFile imageFile,
+                                                                RedirectAttributes redirectAttributes) {
+        try {
+            if (!imageFile.isEmpty()) {
+                responsableControleur.setImageData(imageFile.getBytes());
+            } else {
+                // Si aucun fichier n'est téléchargé, récupérez l'image existante
+                ResponsableControleur existingControleur = responsableControleurRepo.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Responsable controleur non trouvé avec l'id: " + id));
+                responsableControleur.setImageData(existingControleur.getImageData());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("message", "Erreur lors du téléchargement de l'image");
+            return "redirect:/responsableGeneral/gestionResponsableControleurs/modification/" + id;
+        }
+
+        responsableControleurRepo.save(responsableControleur); // Sauvegarder les modifications
+        redirectAttributes.addFlashAttribute("message", "Modifications enregistrées avec succès");
         return "redirect:/responsableGeneral/gestionResponsableControleurs";
     }
 
