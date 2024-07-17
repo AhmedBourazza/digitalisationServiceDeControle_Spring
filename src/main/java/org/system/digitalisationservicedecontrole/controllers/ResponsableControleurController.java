@@ -96,17 +96,31 @@ public String afficherEquipementForm(Model model) {
             model.addAttribute("equipement", equipementOptional.get());
             return "RC_gestionEquipements_modification";
         } else {
-
             return "redirect:/responsableControleur/gestionEquipements";
         }
-
     }
 
-    @PostMapping("/responsableControleur/gestionEquipement/modification")
-    public String enregistrerModificationsEquipement(@ModelAttribute("equipement") Equipement equipement) {
+    @PostMapping("/responsableControleur/gestionEquipement/modification/{id}")
+    public String enregistrerModificationsEquipement(@ModelAttribute("equipement") Equipement equipement,
+                                                     @RequestParam("imageFile") MultipartFile imageFile,
+                                                     RedirectAttributes redirectAttributes) {
+        try {
+            if (!imageFile.isEmpty()) {
+                equipement.setImageData(imageFile.getBytes());
+            } else {
+
+                Equipement existingEquipement =equipementRepo.findById(equipement.getIdEquipement()).orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + equipement.getIdEquipement()));
+                equipement.setImageData(existingEquipement.getImageData());
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur
+        }
 
         equipementRepo.save(equipement);
 
+        redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès.");
         return "redirect:/responsableControleur/gestionEquipements";
     }
 
