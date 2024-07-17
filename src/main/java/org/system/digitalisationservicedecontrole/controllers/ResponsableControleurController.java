@@ -200,9 +200,6 @@ public String afficherEquipementForm(Model model) {
         return "redirect:/responsableControleur/gestionUnites";
     }
     //------------------------------------------------
-
-
-    //------ Modifier une unité---------------------------------------
 // Afficher le formulaire de modification
     @GetMapping("/responsableControleur/gestionUnites/modification/{id}")
     public String modificationUnite(@PathVariable("id") Long id, Model model) {
