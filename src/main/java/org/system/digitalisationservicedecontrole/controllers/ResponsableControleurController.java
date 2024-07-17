@@ -201,13 +201,32 @@ public String afficherEquipementForm(Model model) {
     }
     //------------------------------------------------
 
-    @GetMapping("/responsableControleur/gestionUnites/modification")
-    public String modificationUnite() {
-        return "RC_gestionUnites_modification";
 
-
+    //------ Modifier une unité---------------------------------------
+// Afficher le formulaire de modification
+    @GetMapping("/responsableControleur/gestionUnites/modification/{id}")
+    public String modificationUnite(@PathVariable("id") Long id, Model model) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+        model.addAttribute("listeEntites", listeEntites);
+        Optional<Unite> uniteOptional = uniteRepo.findById(id);
+        if (uniteOptional.isPresent()) {
+            model.addAttribute("unite", uniteOptional.get());
+            return "RC_gestionUnites_modification"; // Assurez-vous que ce nom correspond à votre template
+        } else {
+            // Gérer le cas où l'unité n'est pas trouvée
+            return "redirect:/responsableControleur/gestionUnites";
+        }
     }
-  //------------ Supprimer l'unité ---------------------------------------------
+
+    // Enregistrer les modifications
+    @PostMapping("/responsableControleur/gestionUnites/modification/{id}")
+    public String enregistrerModificationsUnite(@PathVariable("id") Long id, @ModelAttribute("unite") Unite unite) {
+        unite.setIdUnite(id); // Assurez-vous que l'ID est défini pour la mise à jour
+        uniteRepo.save(unite);
+        return "redirect:/responsableControleur/gestionUnites";
+    }
+
+    //------------ Supprimer l'unité ---------------------------------------------
     @PostMapping("/responsableControleur/gestionUnites/suppression/{id}")
     public String supprimerUnite(@PathVariable("id") Long id) {
         uniteRepo.deleteById(id);
