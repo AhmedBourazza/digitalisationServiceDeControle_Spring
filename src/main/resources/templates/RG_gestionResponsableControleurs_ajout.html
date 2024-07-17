@@ -418,7 +418,7 @@
                     <div class="col-12">
                         <div class="card card-profile">
 
-                            <form th:action="@{/responsableGeneral/gestionResponsableControleurs/ajout}" th:object="${responsableControleur}" enctype="multipart/form-data" method="post">
+                            <form th:action="@{/responsableGeneral/gestionResponsableControleurs/ajout}" th:object="${responsableControleur}"  method="post">
                                 <div class="card-header" th:style="'background-image: url(' + @{/img/backProfile.jpg} + ')'">
 
 
@@ -446,6 +446,7 @@
                                         <input type="hidden" class="form-control name" th:field="*{idResponsableControleur}" >
                                         <input type="text" class="form-control name" th:field="*{nom}" placeholder="Nom" value="">
                                         <input type="text" class="form-control job" th:field="*{prenom}" placeholder="Prénom" value="">
+                                        <input type="text" class="form-control job" th:field="*{grade}" placeholder="Grade">
                                         <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service" value="Date d'intégration service">
                                         <div class="view-profile">
                                             <input type="text" th:text="*{matricule}" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">

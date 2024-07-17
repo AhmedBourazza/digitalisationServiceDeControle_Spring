@@ -417,52 +417,55 @@
 
                     <div class="col-12">
                         <div class="card card-profile">
-                            <div class="card-header" th:style="'background-image: url(' + @{/img/backProfile.jpg} + ')'">
+                            <form th:action="@{/responsableGeneral/gestionResponsableControleurs/modification/{id}(id=${responsableControleur.idResponsableControleur })}" th:object="${responsableControleur}" method="post" enctype="multipart/form-data">
+                                <div class="card-header" th:style="'background-image: url(' + @{/img/backProfile.jpg} + ')'">
+                                    <div class="profile-picture">
+                                        <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
+                                            <!-- Affichage de l'image actuelle -->
+                                            <img th:src="'data:image/jpeg;base64,' + ${responsableControleur.getImageDataAsBase64()}" id="profile-image" class="avatar-img rounded-circle" alt="Image">
 
+                                            <!-- Champ d'entrée pour sélectionner une nouvelle image -->
+                                            <input type="file" name="imageFile" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
 
-                                <div class="profile-picture">
-
-
-                                    <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
-                                        <img th:src="@{/img/profile2.jpg}" alt="..." class="avatar-img rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
-                                        <input type="file" accept="image/*" id="avatar-input" style="display: none;">
-                                        <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
-                                            <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
-                                        </label>
-                                    </div>
-
-
-                                </div>
-
-
-
-                            </div>
-                            <div class="card-body">
-                                <div class="user-profile text-center">
-                                    <input type="text" class="form-control name" placeholder="Nom prénom" value="">
-                                    <input type="text" class="form-control job" placeholder="Grade" value="">
-                                    <input type="text" class="form-control desc" placeholder="Date d'intégration service" value="Date d'intégration service">
-                                    <div class="view-profile">
-                                        <input type="text" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
+                                            <!-- Bouton pour ouvrir le sélecteur de fichier -->
+                                            <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
+                                                <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row user-stats text-center">
-                                    <div class="col">
-                                        <input type="text" class="form-control title" placeholder="Date d'embauche" value="">
-
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control title" placeholder="Nombre de vérification" value="Nombre de vérification">
-
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control title" placeholder="Classement" value="Classement">
-
+                                <div class="card-body">
+                                    <div class="user-profile text-center">
+                                        <!-- Champs pour les autres informations du contrôleur -->
+                                        <input type="hidden" class="form-control name" th:field="*{idResponsableControleur}">
+                                        <input type="text" class="form-control name" th:field="*{nom}" placeholder="Nom">
+                                        <input type="text" class="form-control name" th:field="*{prenom}" placeholder="Prénom">
+                                        <input type="text" class="form-control job" th:field="*{grade}" placeholder="Grade">
+                                        <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
+                                        <div class="view-profile">
+                                            <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card-footer">
+                                    <div class="row user-stats text-center">
+                                        <div class="col">
+                                            <input type="date" class="form-control title" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <input type="submit" class="btn btn-success" value="Valider">
+                                    <a th:href="@{/responsableGeneral/gestionResponsableControleurs}" class="btn btn-danger">Annuler</a>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
 

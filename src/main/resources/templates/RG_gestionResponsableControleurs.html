@@ -429,16 +429,18 @@
                                         </div>
                                         <div class="info-user ms-3">
                                             <div class="username" th:text="${rc.getNom()}"></div>
-                                            <div class="status" th:text="${rc.getGrade()}"></div>
+                                            <div class="username" th:text="${rc.getGrade()}"></div>
+
                                         </div>
+                                        <a th:href="@{/responsableGeneral/gestionResponsableControleurs/modification/{id}(id=${rc.idResponsableControleur})}" class="btn btn-icon btn-link btn-danger op-8">
+                                            <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
+                                        </a>
                                         <form th:action="@{/responsableGeneral/gestionResponsableControleurs/suppression/{id}(id=${rc.idResponsableControleur})}" method="post">
                                             <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce responsable');">
                                                 <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
                                             </button>
                                         </form>
-                                        <a href="" class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
-                                        </a>
+
                                     </div>
 
 
