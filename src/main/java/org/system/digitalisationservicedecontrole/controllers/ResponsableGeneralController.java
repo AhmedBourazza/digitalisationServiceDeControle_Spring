@@ -104,20 +104,31 @@ public class ResponsableGeneralController {
             model.addAttribute("equipement", equipementOptional.get());
             return "RG_gestionEquipements_modification";
         } else {
-
             return "redirect:/responsableGeneral/gestionEquipements";
         }
-
     }
 
-    @PostMapping("/responsableGeneral/gestionEquipement/modification")
-    public String enregistrerModificationsEquipement(@ModelAttribute("equipement") Equipement equipement) {
+    @PostMapping("/responsableGeneral/gestionEquipement/modification/{id}")
+    public String enregistrerModificationsEquipement(@ModelAttribute("equipement") Equipement equipement,
+                                                     @RequestParam("imageFile") MultipartFile imageFile,
+                                                     RedirectAttributes redirectAttributes) {
+        try {
+            if (!imageFile.isEmpty()) {
+                equipement.setImageData(imageFile.getBytes());
+            } else {
+                // Si aucune nouvelle image n'est téléchargée, ne rien faire pour l'image
+                // Vous pouvez aussi récupérer l'image existante de la base de données ici si nécessaire
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur
+        }
 
         equipementRepo.save(equipement);
 
+        redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès.");
         return "redirect:/responsableGeneral/gestionEquipements";
     }
-
 
     //--------------------------------------
     //*********************************Gestion Entités*************************************

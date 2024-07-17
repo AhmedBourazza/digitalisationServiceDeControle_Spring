@@ -398,7 +398,7 @@
 
 
         <div class="row">
-          <form th:action="@{/responsableControleur/gestionEquipement/modification}" th:object="${equipement}" method="post">
+          <form th:action="@{/responsableControleur/gestionEquipement/modification}" enctype="multipart/form-data" th:object="${equipement}" method="post">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
@@ -447,7 +447,7 @@
                     <div class="form-group">
                       <label for="representativeImage"><i class="fas fa-image"></i> Image Représentative</label>
                       <br>
-                      <input type="file" th:field="*{imageData}" class="form-control-file" id="representativeImage">
+                      <input type="file" name="imageFile"  class="form-control-file" id="representativeImage">
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
