@@ -223,16 +223,32 @@ public class ResponsableGeneralController {
         uniteRepo.deleteById(id);
         return "redirect:/responsableGeneral/gestionUnites";
     }
+//------ Modifier une unité---------------------------------------
+// Afficher le formulaire de modification
+@GetMapping("/responsableGeneral/gestionUnites/modification/{id}")
+public String modificationUnite(@PathVariable("id") Long id, Model model) {
+    List<Entite> listeEntites = entiteRepo.findAll();
+    model.addAttribute("listeEntites", listeEntites);
+    Optional<Unite> uniteOptional = uniteRepo.findById(id);
+    if (uniteOptional.isPresent()) {
+        model.addAttribute("unite", uniteOptional.get());
+        return "RG_gestionUnites_modification"; // Assurez-vous que ce nom correspond à votre template
+    } else {
+        // Gérer le cas où l'unité n'est pas trouvée
+        return "redirect:/responsableGeneral/gestionUnites";
+    }
+}
 
-    @GetMapping("/responsableGeneral/gestionUnites/modification")
-    public String modificationUnite() {
-        return "RG_gestionUnites_modification";
-
-
+    // Enregistrer les modifications
+    @PostMapping("/responsableGeneral/gestionUnites/modification/{id}")
+    public String enregistrerModificationsUnite(@PathVariable("id") Long id, @ModelAttribute("unite") Unite unite) {
+        unite.setIdUnite(id); // Assurez-vous que l'ID est défini pour la mise à jour
+        uniteRepo.save(unite);
+        return "redirect:/responsableGeneral/gestionUnites";
     }
 
 
-//******************** GESTION DES RESPONSABLE DES CONTROLEURS**********************
+    //******************** GESTION DES RESPONSABLE DES CONTROLEURS**********************
     @GetMapping("/responsableGeneral/gestionResponsableControleurs")
     public String responsableControleurs(Model m) {
         List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
