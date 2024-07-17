@@ -528,7 +528,7 @@
                                             <td class="sorting_1" th:text="${u.getNom()}"></td>
                                             <td>15</td>
                                             <td>
-                                                <a href="">
+                                                <a th:href="@{/responsableGeneral/gestionUnites/modification/{id}(id=${u.idUnite})}">
                                                     <button class="btn btn-icon btn-clean me-0" type="button">
                                                         <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
                                                     </button>
