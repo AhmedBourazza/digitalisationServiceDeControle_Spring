@@ -116,8 +116,10 @@ public class ResponsableGeneralController {
             if (!imageFile.isEmpty()) {
                 equipement.setImageData(imageFile.getBytes());
             } else {
-                // Si aucune nouvelle image n'est téléchargée, ne rien faire pour l'image
-                // Vous pouvez aussi récupérer l'image existante de la base de données ici si nécessaire
+
+            Equipement existingEquipement =equipementRepo.findById(equipement.getIdEquipement()).orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + equipement.getIdEquipement()));
+                equipement.setImageData(existingEquipement.getImageData());
+
             }
         } catch (IOException e) {
             e.printStackTrace();
