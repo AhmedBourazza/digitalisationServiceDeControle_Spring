@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
 import org.system.digitalisationservicedecontrole.entities.Entite;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
@@ -182,10 +183,12 @@ public String afficherEquipementForm(Model model) {
 
     }
 
-
+//---------- AJOUTER UNITE---------------------------------------
 
     @GetMapping("/responsableControleur/gestionUnites/ajout")
     public String AjoutUniteForm(Model model) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+        model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
         return "RC_gestionUnites_ajout";
 
@@ -196,6 +199,7 @@ public String afficherEquipementForm(Model model) {
         uniteRepo.save(unite);
         return "redirect:/responsableControleur/gestionUnites";
     }
+    //------------------------------------------------
 
     @GetMapping("/responsableControleur/gestionUnites/modification")
     public String modificationUnite() {
@@ -203,11 +207,52 @@ public String afficherEquipementForm(Model model) {
 
 
     }
+  //------------ Supprimer l'unité ---------------------------------------------
+    @PostMapping("/responsableControleur/gestionUnites/suppression/{id}")
+    public String supprimerUnite(@PathVariable("id") Long id) {
+        uniteRepo.deleteById(id);
+        return "redirect:/responsableControleur/gestionUnites";
+    }
 
 
-    @GetMapping("/responsableControleur/gestionControleurs/modification")
-    public String ModifierControleurs(Model m) {
-        return "RC_gestionControleurs_modification";
+    @GetMapping("/responsableControleur/gestionControleurs/modification/{id}")
+    public String modificationControleur(@PathVariable("id") Long id, Model model) {
+        Optional<Controleur> controleurOptional = controleurRepo.findById(id);
+        if (controleurOptional.isPresent()) {
+            model.addAttribute("controleur", controleurOptional.get());
+            return "RC_gestionControleurs_modification"; // Nom de la vue Thymeleaf
+        } else {
+            // Gestion du cas où le contrôleur n'est pas trouvé
+            return "redirect:/responsableControleur/gestionControleurs";
+        }
+    }
+
+
+
+
+    @PostMapping("/responsableControleur/gestionControleurs/modification/{id}")
+    public String processModificationForm(@PathVariable("id") Long id,
+                                          @ModelAttribute Controleur controleur,
+                                          @RequestParam("imageFile") MultipartFile imageFile,
+                                          RedirectAttributes redirectAttributes) {
+        try {
+            if (!imageFile.isEmpty()) {
+                controleur.setImageData(imageFile.getBytes());
+            } else {
+                // Si aucun fichier n'est téléchargé, récupérez l'image existante
+                Controleur existingControleur = controleurRepo.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
+                controleur.setImageData(existingControleur.getImageData());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur
+        }
+
+        controleurRepo.save(controleur); // Sauvegarder les modifications
+
+        redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès.");
+        return "redirect:/responsableControleur/gestionControleurs"; // Rediriger vers la liste des contrôleurs après modification
     }
 
     //------ Ajout D'un CONTROLEURS -----------------------------------------

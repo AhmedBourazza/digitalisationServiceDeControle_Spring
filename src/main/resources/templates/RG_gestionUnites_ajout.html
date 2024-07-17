@@ -412,48 +412,50 @@
                             <div class="card-header">
                                 <div class="card-title"><i class="fas fa-edit"></i> Ajout d'une unité</div>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="unitName"><i class="fas fa-tag"></i> Nom de l'unité</label>
-                                            <input type="text" class="form-control" id="unitName" placeholder="Entrez le nom de l'unité">
+                            <form th:action="@{/responsableGeneral/gestionUnites/ajout}" th:object="${unite}" method="post">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <input type="hidden" th:field="*{idUnite}" class="form-control" id="unitID">
+
+                                                <label for="unitName"><i class="fas fa-tag"></i> Nom de l'unité</label>
+                                                <input type="text" th:field="*{nom}" class="form-control" id="unitName" placeholder="Entrez le nom de l'unité">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="unitLocation"><i class="fas fa-map-marker-alt"></i> Emplacement</label>
+                                                <input type="text" th:field="*{emplacement}" class="form-control" id="unitLocation" placeholder="Entrez l'emplacement de l'unité">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="unitLocation"><i class="fas fa-map-marker-alt"></i> Emplacement</label>
-                                            <input type="text" class="form-control" id="unitLocation" placeholder="Entrez l'emplacement de l'unité">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="entitySelect"><i class="fas fa-building"></i> Entité</label>
+                                                <select class="form-select form-control" id="entitySelect" th:field="*{entite}">
+                                                    <option value="">Choisissez une entité</option>
+                                                    <option th:each="entite : ${listeEntites}" th:value="${entite.idEntite}" th:text="${entite.nom}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="unitDescription"><i class="fas fa-file-alt"></i> Description</label>
+                                                <textarea th:field="*{description}" class="form-control" id="unitDescription" rows="5" placeholder="Entrez la description de l'unité"></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="entitySelect"><i class="fas fa-building"></i> Entité</label>
-                                            <select class="form-select form-control" id="entitySelect">
-                                                <option>Entité 1</option>
-                                                <option>Entité 2</option>
-                                                <option>Entité 3</option>
-                                                <option>Entité 4</option>
-                                                <option>Entité 5</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="card-action">
+                                    <button class="btn btn-success"><i class="fas fa-check"></i> Valider</button>
+                                    <a th:href="@{/responsableGeneral/gestionUnites}" class="btn btn-danger">Annuler</a>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="unitDescription"><i class="fas fa-file-alt"></i> Description</label>
-                                            <textarea class="form-control" id="unitDescription" rows="5" placeholder="Entrez la description de l'unité"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-success"><i class="fas fa-check"></i> Valider</button>
-                                <button class="btn btn-danger"><i class="fas fa-times"></i> Annuler</button>
-                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

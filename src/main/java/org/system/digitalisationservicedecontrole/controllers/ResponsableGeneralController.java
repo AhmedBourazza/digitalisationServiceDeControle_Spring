@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
 
@@ -35,7 +36,6 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/gestionControleurs")
     public String Controleurs(Model m) {
         List<Controleur> listeControleurs = controleurRepo.findAll();
-
         m.addAttribute("listeControleurs", listeControleurs);
         return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
@@ -68,7 +68,7 @@ public class ResponsableGeneralController {
 
     }
 
-    //----------------------------------------
+    //*********************************Gestion Equipement*************************************
 
     @GetMapping("/responsableGeneral/gestionEquipement/ajout")
     public String afficherEquipementForm(Model model) {
@@ -120,6 +120,7 @@ public class ResponsableGeneralController {
 
 
     //--------------------------------------
+    //*********************************Gestion Entités*************************************
 
 
     @GetMapping("/responsableGeneral/gestionEntites")
@@ -128,17 +129,18 @@ public class ResponsableGeneralController {
         m.addAttribute("listeEntites", listeEntites);
         return "RG_gestionEntites";}
 
-  /*  @GetMapping("/responsableGeneral/gestionEntites/modification")
-    public String modificationEntite() {
-        return "RG_gestionEntites_modification";
 
-    }*/
+
+
     @GetMapping("/responsableGeneral/gestionEntites/ajout")
     public String afficherFormEntite() {
         return "RG_gestionEntites_ajout";
 
 
     }
+
+
+
 
     @PostMapping("/responsableGeneral/gestionEntites/ajout")
     public String AjoutEntite(@ModelAttribute("entite") Entite entite) {
@@ -147,6 +149,7 @@ public class ResponsableGeneralController {
 
 
     }
+
     @GetMapping("/responsableGeneral/gestionEntites/suppression/{id}")
     public String supprimerEntiteGet(@PathVariable("id") Long id) {
         entiteRepo.deleteById(id);
@@ -172,6 +175,7 @@ public class ResponsableGeneralController {
         entiteRepo.save(entite);
         return "redirect:/responsableGeneral/gestionEntites";
     }
+    //*********************************Gestion unités*************************************
 
     @GetMapping("/responsableGeneral/gestionUnites")
     public String gestionUnite(Model m) {
@@ -182,12 +186,30 @@ public class ResponsableGeneralController {
 
     }
 
+    //---------- AJOUTER UNITE---------------------------------------
+
     @GetMapping("/responsableGeneral/gestionUnites/ajout")
-    public String AjoutUnite() {
+    public String AjoutUniteForm(Model model) {
+        List<Entite> listeEntites = entiteRepo.findAll();
+        model.addAttribute("listeEntites", listeEntites);
+        model.addAttribute("unite", new Unite());
         return "RG_gestionUnites_ajout";
+
+    }
+
+    @PostMapping("/responsableGeneral/gestionUnites/ajout")
+    public String ajoutUnite(@ModelAttribute Unite unite) {
+        uniteRepo.save(unite);
+        return "redirect:/responsableGeneral/gestionUnites";
     }
 
 
+    //------------ Supprimer l'unité ---------------------------------------------
+    @PostMapping("/responsableGeneral/gestionUnites/suppression/{id}")
+    public String supprimerUnite(@PathVariable("id") Long id) {
+        uniteRepo.deleteById(id);
+        return "redirect:/responsableGeneral/gestionUnites";
+    }
 
     @GetMapping("/responsableGeneral/gestionUnites/modification")
     public String modificationUnite() {
@@ -230,7 +252,7 @@ public class ResponsableGeneralController {
 
         return "RG_gestionResponsableControleurs_modification";
     }
-    //*******************************************************************************************
+    //*********************************Gestion Controleurs*************************************
     //------ Ajout D'un CONTROLEURS -----------------------------------------
 
     @GetMapping("/responsableGeneral/gestionControleurs/ajout")
@@ -263,9 +285,47 @@ public class ResponsableGeneralController {
 
     //--------------------------
 
-    @GetMapping("/responsableGeneral/gestionControleurs/modification")
-    public String ModifierControleurs(Model m) {
-        return "RG_gestionControleurs_modification";
+
+
+
+
+    @GetMapping("/responsableGeneral/gestionControleurs/modification/{id}")
+    public String modificationControleur(@PathVariable("id") Long id, Model model) {
+        Optional<Controleur> controleurOptional = controleurRepo.findById(id);
+        if (controleurOptional.isPresent()) {
+            model.addAttribute("controleur", controleurOptional.get());
+            return "RG_gestionControleurs_modification"; // Nom de la vue Thymeleaf
+        } else {
+            // Gestion du cas où le contrôleur n'est pas trouvé
+            return "redirect:/responsableGeneral/gestionControleurs";
+        }
     }
 
+
+
+
+    @PostMapping("/responsableGeneral/gestionControleurs/modification/{id}")
+    public String processModificationForm(@PathVariable("id") Long id,
+                                          @ModelAttribute Controleur controleur,
+                                          @RequestParam("imageFile") MultipartFile imageFile,
+                                          RedirectAttributes redirectAttributes) {
+        try {
+            if (!imageFile.isEmpty()) {
+                controleur.setImageData(imageFile.getBytes());
+            } else {
+                // Si aucun fichier n'est téléchargé, récupérez l'image existante
+                Controleur existingControleur = controleurRepo.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
+                controleur.setImageData(existingControleur.getImageData());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur
+        }
+
+        controleurRepo.save(controleur); // Sauvegarder les modifications
+
+        redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès.");
+        return "redirect:/responsableGeneral/gestionControleurs"; // Rediriger vers la liste des contrôleurs après modification
+    }
 }

@@ -447,6 +447,9 @@
                                         <thead>
                                         <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 168.962px;">Nom d'unité</th>
                                             <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Nombre d'équipements</th>
+                                            <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Modifier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Supprimer</th>
+
 
                                         </tr>
                                         </thead>
@@ -524,6 +527,21 @@
 
                                             <td class="sorting_1" th:text="${u.getNom()}"></td>
                                             <td>15</td>
+                                            <td>
+                                                <a href="">
+                                                    <button class="btn btn-icon btn-clean me-0" type="button">
+                                                        <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <form th:action="@{/responsableGeneral/gestionUnites/suppression/{id}(id=${u.idUnite})}" method="post">
+                                                    <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette unité ?');">
+                                                        <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
 
 
                                         </tr>
