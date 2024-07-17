@@ -275,12 +275,26 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
         return "redirect:/responsableGeneral/gestionResponsableControleurs";
     }
     //--------Modification de responsable de controleur---------------------
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification/{id}")
+    public String modificationResponsableControleur(@PathVariable("id") Long id, Model model) {
+        Optional<ResponsableControleur> responsableControleurOptional = responsableControleurRepo.findById(id);
+        if (responsableControleurOptional.isPresent()) {
+            model.addAttribute("responsableControleur", responsableControleurOptional.get());
+            return "RG_gestionResponsableControleurs_modification";
+        } else {
 
-    @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification")
-    public String modifierResponsableControleurs(Model m) {
-
-        return "RG_gestionResponsableControleurs_modification";
+            return "redirect:/responsableGeneral/gestionResponsableControleurs";
+        }
     }
+
+    // Enregistrer les modifications
+    @PostMapping("/responsableGeneral/gestionResponsableControleurs/modification/{id}")
+    public String enregistrerModificationsResponsableControleur(@PathVariable("id") Long id, @ModelAttribute("responsableControleur") ResponsableControleur responsableControleur ) {
+        responsableControleur.setIdResponsableControleur(id); // Assurez-vous que l'ID est défini pour la mise à jour
+        responsableControleurRepo.save(responsableControleur);
+        return "redirect:/responsableGeneral/gestionResponsableControleurs";
+    }
+
     //*********************************Gestion Controleurs*************************************
     //------ Ajout D'un CONTROLEURS -----------------------------------------
 
