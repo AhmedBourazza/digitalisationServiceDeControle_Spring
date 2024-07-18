@@ -19,6 +19,11 @@ public class ContoleurController {
         return "C_login"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
+    @GetMapping("/controleur/dashboard")
+    public String dashboard() {
+        return "C_dashboard"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
+
     @GetMapping("/controleur/listeEquipements")
     public String afficherECOEquipements(Model m) {
         List<Equipement> listeEquipements = equipementRepo.findAll();
