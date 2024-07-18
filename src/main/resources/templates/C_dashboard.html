@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>OCP SA - Responsable Général</title>
+    <title>OCP SA - Espace controleurs</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
@@ -40,6 +37,7 @@
     </script>
 
     <!-- CSS Files -->
+    <!-- Inclusions des feuilles de style CSS -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
     <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
@@ -61,7 +59,7 @@
                             class="navbar-brand"
                             height="20"
                     />
-                    <strong style="color: white; margin-left: 4px;">Responsable Général </strong>
+                    <strong style="color: white; margin-left: 4px;"> Espace controleurs</strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -80,23 +78,21 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
-
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/dashboard}">
+                        <a th:href="@{/controleur/monProfile}">
                             <i class="fas fa-home"></i>
+                            <p>Profile</p>
+
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a th:href="@{/controleur/dashboard}">
+                            <i class="fas fa-chart-line"></i>
+
                             <p>Tableau de bord</p>
 
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a th:href="@{/responsableGeneral/monProfile}">
-                            <i class="fa-solid fa-user"></i>
-                            <p>Mon Profile</p>
-
-                        </a>
-                    </li>
-
-
 
 
 
@@ -108,68 +104,17 @@
                     </li>
 
 
-                    <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionControleurs}">
-                            <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
-
-                            <p>contrôleurs</p>
-                            <span class="badge badge-success">8</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
-                            <i class="fa-solid fa-person"></i>
-
-                            <p>Responsable Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
-                        </a>
                     </li>
 
 
 
                     <li class="nav-item">
-                        <a href="">
-                            <i class="fa-solid fa-file" style="color: #ffffff;"></i>
-                            <p>Formulaires</p>
-
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEquipements}">
+                        <a th:href="@{/controleur/listeEquipements}">
                             <i class="fa-solid fa-wrench"></i>
-                            <p>Equipements</p>
-                            <span class="badge badge-success">16</span>
-
+                            <p>les équipements</p>
+                            <span class="badge badge-success">8</span>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEntites}">
-                            <i class="fa fa-suitcase"></i>
-                            <p>Entités</p>
-                            <span class="badge badge-success">17</span>
-
-                        </a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a th:href="@{/responsableGeneral/gestionUnites}">
-                            <i class="fa-solid fa-box"></i>
-                            <p>Unités</p>
-                            <span class="badge badge-success">6</span>
-
-                        </a>
-                    </li>
-
-
-
-                    </li>
-
-
-
 
                 </ul>
             </div>
@@ -379,8 +324,10 @@
         <div class="container">
             <div class="page-inner">
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Modification d'une unité</h3>
+                    <h3 class="fw-bold mb-3">Tableau de bord</h3>
+
                     <ul class="breadcrumbs mb-3">
+
                         <li class="nav-home">
                             <a href="#">
                                 <i class="fas fa-home"></i> Accueil
@@ -390,77 +337,358 @@
                             <i class="fas fa-angle-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Espace responsable général</a>
+                            <a href="#">Espace Controleurs</a>
                         </li>
                         <li class="separator">
                             <i class="fas fa-angle-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Liste des unités</a>
+                            <a href="#">Tableau de bord</a>
                         </li>
-                        <li class="separator">
-                            <i class="fas fa-angle-right"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Modification d'une unité</a>
-                        </li>
+
                     </ul>
+
+
                 </div>
 
+
+                <!-- Customized Card -->
+
+                <!--------------------------------------------------------------------------------------------------------------------->
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
+                    <div class="col-md-8">
+                        <div class="card card-round">
                             <div class="card-header">
-                                <div class="card-title"><i class="fas fa-edit"></i> Modification d'une unité</div>
+                                <div class="card-head-row">
+                                    <div class="card-title">User Statistics</div>
+                                    <div class="card-tools">
+                                        <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
+                            <span class="btn-label">
+                              <i class="fa fa-pencil"></i>
+                            </span>
+                                            Export
+                                        </a>
+                                        <a href="#" class="btn btn-label-info btn-round btn-sm">
+                            <span class="btn-label">
+                              <i class="fa fa-print"></i>
+                            </span>
+                                            Print
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <form th:action="@{/responsableGeneral/gestionUnites/modification/{id}(id=${unite.idUnite})}" th:object="${unite}" method="post">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label for="unitName"><i class="fas fa-tag"></i> Nom de l'unité</label>
-                                                <input type="text" th:field="*{nom}" class="form-control" id="unitName" placeholder="Entrez le nom de l'unité">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label for="unitLocation"><i class="fas fa-map-marker-alt"></i> Emplacement</label>
-                                                <input type="text" th:field="*{emplacement}" class="form-control" id="unitLocation" placeholder="Entrez l'emplacement de l'unité">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="entitySelect"><i class="fas fa-building"></i> Entité</label>
-                                                <select class="form-select form-control" id="entitySelect" th:field="*{entite.idEntite}">
-                                                    <option value="" th:text="'Choisissez une entité'"></option>
-                                                    <option th:each="entite : ${listeEntites}"
-                                                            th:value="${entite.idEntite}"
-                                                            th:text="${entite.nom}"
-                                                            th:selected="${entite.idEntite} == ${unite.entite?.idEntite}">
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="unitDescription"><i class="fas fa-file-alt"></i> Description</label>
-                                                <textarea class="form-control" th:field="*{description}" id="unitDescription" rows="5" placeholder="Entrez la description de l'unité"></textarea>
+                            <div class="card-body">
+                                <div class="chart-container" style="min-height: 375px"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                    <canvas id="statisticsChart" width="820" height="750" style="display: block; height: 375px; width: 410px;" class="chartjs-render-monitor"></canvas>
+                                </div>
+                                <div id="myChartLegend"><ul class="0-legend html-legend"><li><span style="background-color:#f3545d"></span>Subscribers</li><li><span style="background-color:#fdaf4b"></span>New Visitors</li><li><span style="background-color:#177dff"></span>Active Users</li></ul></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-primary card-round">
+                            <div class="card-header">
+                                <div class="card-head-row">
+                                    <div class="card-title">Daily Sales</div>
+                                    <div class="card-tools">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Export
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-action">
-                                    <button class="btn btn-success"><i class="fas fa-check"></i> Valider</button>
-                                    <a th:href="@{/responsableGeneral/gestionUnites}" class="btn btn-danger">Annuler</a>
+                                <div class="card-category">March 25 - April 02</div>
+                            </div>
+                            <div class="card-body pb-0">
+                                <div class="mb-4 mt-2">
+                                    <h1>$4,578.58</h1>
                                 </div>
-                            </form>
+                                <div class="pull-in"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                    <canvas id="dailySalesChart" width="414" height="300" style="display: block; height: 150px; width: 207px;" class="chartjs-render-monitor"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-round">
+                            <div class="card-body pb-0">
+                                <div class="h1 fw-bold float-end text-primary">+5%</div>
+                                <h2 class="mb-2">17</h2>
+                                <p class="text-muted">Users online</p>
+                                <div class="pull-in sparkline-fix">
+                                    <div id="lineChart"><canvas width="380" height="70" style="display: inline-block; width: 380.862px; height: 70px; vertical-align: top;"></canvas></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+
+                    <!----------------------------------------------------------------------------->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card card-round">
+                                <div class="card-body">
+                                    <div class="card-head-row card-tools-still-right">
+                                        <div class="card-title">New Customers</div>
+                                        <div class="card-tools">
+                                            <div class="dropdown">
+                                                <button class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-list py-4">
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <img th:src="@{/img/jm_denis.jpg}" alt="..." class="avatar-img rounded-circle">
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">Jimmy Denis</div>
+                                                <div class="status">Graphic Designer</div>
+                                            </div>
+                                            <button class="btn btn-icon btn-link op-8 me-1">
+                                                <i class="far fa-envelope"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-link btn-danger op-8">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <span class="avatar-title rounded-circle border border-white">CF</span>
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">Chandra Felix</div>
+                                                <div class="status">Sales Promotion</div>
+                                            </div>
+                                            <button class="btn btn-icon btn-link op-8 me-1">
+                                                <i class="far fa-envelope"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-link btn-danger op-8">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <img th:src="@{/img/talha.jpg}" alt="..." class="avatar-img rounded-circle">
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">Talha</div>
+                                                <div class="status">Front End Designer</div>
+                                            </div>
+                                            <button class="btn btn-icon btn-link op-8 me-1">
+                                                <i class="far fa-envelope"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-link btn-danger op-8">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <img th:src="@{/img/chadengle.jpg}" alt="..." class="avatar-img rounded-circle">
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">Chad</div>
+                                                <div class="status">CEO Zeleaf</div>
+                                            </div>
+                                            <button class="btn btn-icon btn-link op-8 me-1">
+                                                <i class="far fa-envelope"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-link btn-danger op-8">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <span class="avatar-title rounded-circle border border-white bg-primary">H</span>
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">Hizrian</div>
+                                                <div class="status">Web Designer</div>
+                                            </div>
+                                            <button class="btn btn-icon btn-link op-8 me-1">
+                                                <i class="far fa-envelope"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-link btn-danger op-8">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <span class="avatar-title rounded-circle border border-white bg-secondary">F</span>
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">Farrah</div>
+                                                <div class="status">Marketing</div>
+                                            </div>
+                                            <button class="btn btn-icon btn-link op-8 me-1">
+                                                <i class="far fa-envelope"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-link btn-danger op-8">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card card-round">
+                                <div class="card-header">
+                                    <div class="card-head-row card-tools-still-right">
+                                        <div class="card-title">Transaction History</div>
+                                        <div class="card-tools">
+                                            <div class="dropdown">
+                                                <button class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <!-- Projects table -->
+                                        <table class="table align-items-center mb-0">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Payment Number</th>
+                                                <th scope="col" class="text-end">Date &amp; Time</th>
+                                                <th scope="col" class="text-end">Amount</th>
+                                                <th scope="col" class="text-end">Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    Payment from #10231
+                                                </th>
+                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                                                <td class="text-end">$250.00</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Completed</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-------------------------------------------------------------------------------->
+
+
+
+
+
+
+                </div>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
             </div>
         </div>
 
@@ -700,7 +928,60 @@
 <script th:src="@{/js/kaiadmin.min.js}"></script>
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
 <script th:src="@{/js/setting-demo.js}"></script>
+<script>
+    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+    });
 
+    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+    });
 
+    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+    });
+
+    $("#lineChart4").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
+
+    $("#lineChart5").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
+
+    $("#lineChart6").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
+</script>
 </body>
 </html>
