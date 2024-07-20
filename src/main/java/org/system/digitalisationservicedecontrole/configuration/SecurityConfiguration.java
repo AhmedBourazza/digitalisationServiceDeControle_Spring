@@ -42,7 +42,7 @@ public class SecurityConfiguration {
                 .formLogin(form -> {
                     logger.debug("Configuring form login");
                     form.loginPage("/login")
-                            .successHandler(customAuthenticationSuccessHandler()) // Utilisation du handler de succès d'authentification
+                            .successHandler(customAuthenticationSuccessHandlerr()) // Utilisation du handler de succès d'authentification
                             .failureUrl("/login?error=true")
                             .permitAll();
                 })
@@ -73,7 +73,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandlerr() {
         logger.debug("Creating CustomAuthenticationSuccessHandler bean");
         return new CustomAuthenticationSuccessHandler();
     }

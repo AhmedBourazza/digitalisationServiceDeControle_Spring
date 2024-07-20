@@ -1,13 +1,16 @@
 package org.system.digitalisationservicedecontrole.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.system.digitalisationservicedecontrole.configuration.GestionSession;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -28,6 +31,8 @@ public class ResponsableGeneralController {
     private ResponsableControleurRepo responsableControleurRepo;
     @Autowired
     private ResponsableGeneralRepo responsableGeneralRepo;
+    @Autowired
+    private GestionSession gestionSession;
 
     @GetMapping("/responsableGeneral/login")
     public String login() {
@@ -36,36 +41,42 @@ public class ResponsableGeneralController {
 
 
     @GetMapping("/responsableGeneral/gestionControleurs")
-    public String Controleurs(Model m) {
+    public String Controleurs(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Controleur> listeControleurs = controleurRepo.findAll();
-        m.addAttribute("listeControleurs", listeControleurs);
+        model.addAttribute("listeControleurs", listeControleurs);
         return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
     @GetMapping("/responsableGeneral/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RG_dashboard";
     }
     @GetMapping("/responsableGeneral/editProfile")
-    public String EditProfile() {
+    public String EditProfile(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RG_editProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
     @GetMapping("/responsableGeneral/monProfile")
-    public String MonProfile() {
+    public String MonProfile(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RG_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
  
 
     @GetMapping("/responsableGeneral/gestionEquipements")
-    public String GestionEquipements(Model m) {
+    public String GestionEquipements(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Equipement> listeEquipements = equipementRepo.findAll();
-        m.addAttribute("listeEquipements", listeEquipements);
+        model.addAttribute("listeEquipements", listeEquipements);
         return "RG_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/responsableGeneral/gestionEquipements/modification")
-    public String modificationEquipement() {
+    public String modificationEquipement(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RG_gestionEquipements_modification";
 
     }
@@ -73,7 +84,8 @@ public class ResponsableGeneralController {
     //*********************************Gestion Equipement*************************************
 
     @GetMapping("/responsableGeneral/gestionEquipement/ajout")
-    public String afficherEquipementForm(Model model) {
+    public String afficherEquipementForm(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         model.addAttribute("equipement", new Equipement());
         return "RG_gestionEquipements_ajout";
     }
@@ -81,6 +93,7 @@ public class ResponsableGeneralController {
     @PostMapping("/responsableGeneral/gestionEquipement/ajout")
     public String ajoutEquipement(@ModelAttribute Equipement equipement,
                                   @RequestParam("imageFile") MultipartFile imageFile) {
+
         try {
             if (!imageFile.isEmpty()) {
                 equipement.setImageData(imageFile.getBytes());
@@ -100,7 +113,9 @@ public class ResponsableGeneralController {
 
 
     @GetMapping("/responsableGeneral/gestionEquipement/modification/{id}")
-    public String modificationEquipement(@PathVariable("id") Long id, Model model) {
+    public String modificationEquipement(@PathVariable("id") Long id, Model model,HttpSession session) {
+
+            gestionSession.prepareModel(session, model);
         Optional<Equipement> equipementOptional = equipementRepo.findById(id);
         if (equipementOptional.isPresent()) {
             model.addAttribute("equipement", equipementOptional.get());
@@ -139,16 +154,18 @@ public class ResponsableGeneralController {
 
 
     @GetMapping("/responsableGeneral/gestionEntites")
-    public String GestionEntites(Model m) {
+    public String GestionEntites(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Entite> listeEntites = entiteRepo.findAll();
-        m.addAttribute("listeEntites", listeEntites);
+        model.addAttribute("listeEntites", listeEntites);
         return "RG_gestionEntites";}
 
 
 
 
     @GetMapping("/responsableGeneral/gestionEntites/ajout")
-    public String afficherFormEntite() {
+    public String afficherFormEntite(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RG_gestionEntites_ajout";
 
 
@@ -166,12 +183,14 @@ public class ResponsableGeneralController {
     }
 
     @GetMapping("/responsableGeneral/gestionEntites/suppression/{id}")
-    public String supprimerEntiteGet(@PathVariable("id") Long id) {
+    public String supprimerEntiteGet(@PathVariable("id") Long id,Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         entiteRepo.deleteById(id);
         return "redirect:/responsableGeneral/gestionEntites";
     }
     @GetMapping("/responsableGeneral/gestionEntites/modification/{id}")
-    public String modificationEntite(@PathVariable("id") Long id, Model model) {
+    public String modificationEntite(@PathVariable("id") Long id,Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         Optional<Entite> entiteOptional = entiteRepo.findById(id);
         if (entiteOptional.isPresent()) {
             model.addAttribute("entite", entiteOptional.get());
@@ -193,9 +212,10 @@ public class ResponsableGeneralController {
     //*********************************Gestion unités*************************************
 
     @GetMapping("/responsableGeneral/gestionUnites")
-    public String gestionUnite(Model m) {
+    public String gestionUnite(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Unite> listeUnites = uniteRepo.findAll();
-        m.addAttribute("listeUnites", listeUnites);
+        model.addAttribute("listeUnites", listeUnites);
         return "RG_gestionUnites";
 
 
@@ -204,7 +224,8 @@ public class ResponsableGeneralController {
     //---------- AJOUTER UNITE---------------------------------------
 
     @GetMapping("/responsableGeneral/gestionUnites/ajout")
-    public String AjoutUniteForm(Model model) {
+    public String AjoutUniteForm(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
@@ -228,7 +249,8 @@ public class ResponsableGeneralController {
 //------ Modifier une unité---------------------------------------
 // Afficher le formulaire de modification
 @GetMapping("/responsableGeneral/gestionUnites/modification/{id}")
-public String modificationUnite(@PathVariable("id") Long id, Model model) {
+public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSession session) {
+    gestionSession.prepareModel(session, model);
     List<Entite> listeEntites = entiteRepo.findAll();
     model.addAttribute("listeEntites", listeEntites);
     Optional<Unite> uniteOptional = uniteRepo.findById(id);
@@ -251,18 +273,20 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
 
 
     //******************** GESTION DES RESPONSABLE DES CONTROLEURS**********************
-    @GetMapping("/responsableGeneral/gestionResponsableControleurs")
-    public String responsableControleurs(Model m) {
+    @GetMapping("/responsableGeneral/gestionResponsableControleurs" )
+    public String responsableControleurs(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
-        m.addAttribute("listeResponsableControleurs", listeResponsableControleurs );
+        model.addAttribute("listeResponsableControleurs", listeResponsableControleurs );
 
         return "RG_gestionResponsableControleurs";
     }
 
     //------Ajout de responsable controleur----------------------
     @GetMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
-    public String ajoutResponsableControleursForm(Model m) {
-        m.addAttribute("responsableControleur", new ResponsableControleur());
+    public String ajoutResponsableControleursForm(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        model.addAttribute("responsableControleur", new ResponsableControleur());
         return "RG_gestionResponsableControleurs_ajout";
     }
     @PostMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
@@ -287,7 +311,8 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
     }
     //--------Modification de responsable de controleur---------------------
     @GetMapping("/responsableGeneral/gestionResponsableControleurs/modification/{id}")
-    public String modificationResponsableControleur(@PathVariable("id") Long id, Model model) {
+    public String modificationResponsableControleur(@PathVariable("id") Long id,Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         Optional<ResponsableControleur> responsablecontroleurOptional = responsableControleurRepo.findById(id);
         if (responsablecontroleurOptional.isPresent()) {
             model.addAttribute("responsableControleur", responsablecontroleurOptional.get());
@@ -328,7 +353,8 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
     //------ Ajout D'un CONTROLEURS -----------------------------------------
 
     @GetMapping("/responsableGeneral/gestionControleurs/ajout")
-    public String ajoutControleurForm(Model model) {
+    public String ajoutControleurForm(Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         model.addAttribute("controleur", new Controleur());
         return "RG_gestionControleurs_ajout";
     }
@@ -362,7 +388,8 @@ public String modificationUnite(@PathVariable("id") Long id, Model model) {
 
 
     @GetMapping("/responsableGeneral/gestionControleurs/modification/{id}")
-    public String modificationControleur(@PathVariable("id") Long id, Model model) {
+    public String modificationControleur(@PathVariable("id") Long id,Model model,HttpSession session) {
+        gestionSession.prepareModel(session, model);
         Optional<Controleur> controleurOptional = controleurRepo.findById(id);
         if (controleurOptional.isPresent()) {
             model.addAttribute("controleur", controleurOptional.get());
