@@ -1,12 +1,14 @@
 package org.system.digitalisationservicedecontrole.controllers;
 
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.system.digitalisationservicedecontrole.configuration.GestionSession;
 import org.system.digitalisationservicedecontrole.entities.Controleur;
 import org.system.digitalisationservicedecontrole.entities.Entite;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
@@ -33,6 +35,8 @@ public class ResponsableControleurController {
     private EquipementRepo equipementRepo;
     @Autowired
     private UniteRepo uniteRepp ;
+    @Autowired
+    private GestionSession gestionSession;
 
 
     @GetMapping("/responsableControleur/login")
@@ -41,30 +45,34 @@ public class ResponsableControleurController {
     }
 
     @GetMapping("/responsableControleur/gestionControleurs")
-    public String Controleurs(Model m) {
+    public String Controleurs(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Controleur> listeControleurs = controleurRepo.findAll();
-
-        m.addAttribute("listeControleurs", listeControleurs);
+        model.addAttribute("listeControleurs", listeControleurs);
         return "RC_gestionControleurs";
     }
     @GetMapping("/responsableControleur/dashboard")
-    public String Dashboard() {
+    public String Dashboard(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RC_dashboard";
     }
 
     @GetMapping("/responsableControleur/editProfile")
-    public String EditProfile() {
+    public String EditProfile(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RC_editProfile";
     }
 
     @GetMapping("/responsableControleur/monProfile")
-    public String MonProfile() {
+    public String MonProfile(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RC_monProfile";
     }
 
 //-----------------------
 @GetMapping("/responsableControleur/gestionEquipement/ajout")
-public String afficherEquipementForm(Model model) {
+public String afficherEquipementForm(Model model , HttpSession session) {
+    gestionSession.prepareModel(session, model);
     model.addAttribute("equipement", new Equipement());
     return "RC_gestionEquipements_ajout";
 }
@@ -90,7 +98,8 @@ public String afficherEquipementForm(Model model) {
     }
 
     @GetMapping("/responsableControleur/gestionEquipement/modification/{id}")
-    public String modificationEquipement(@PathVariable("id") Long id, Model model) {
+    public String modificationEquipement(@PathVariable("id") Long id,Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         Optional<Equipement> equipementOptional = equipementRepo.findById(id);
         if (equipementOptional.isPresent()) {
             model.addAttribute("equipement", equipementOptional.get());
@@ -130,22 +139,25 @@ public String afficherEquipementForm(Model model) {
 
 
     @GetMapping("/responsableControleur/gestionEquipements")
-    public String GestionEquipements(Model m ) {
+    public String GestionEquipements(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Equipement> listeEquipements = equipementRepo.findAll();
-        m.addAttribute("listeEquipements", listeEquipements );
+        model.addAttribute("listeEquipements", listeEquipements );
         return "RC_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
 
     @GetMapping("/responsableControleur/gestionEntites")
-    public String gestionEntites(Model m ) {
+    public String gestionEntites(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Entite> listeEntites = entiteRepo.findAll();
 
-        m.addAttribute("listeEntites", listeEntites);
+        model.addAttribute("listeEntites", listeEntites);
         return "RC_gestionEntites";}
 
     @GetMapping("/responsableControleur/gestionEntites/ajout")
-    public String afficherFormEntite() {
+    public String afficherFormEntite(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         return "RC_gestionEntites_ajout";
 
 
@@ -159,12 +171,14 @@ public String afficherEquipementForm(Model model) {
 
     }
     @GetMapping("/responsableControleur/gestionEntites/suppression/{id}")
-    public String supprimerEntiteGet(@PathVariable("id") Long id) {
+    public String supprimerEntiteGet(@PathVariable("id") Long id,Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         entiteRepo.deleteById(id);
         return "redirect:/responsableControleur/gestionEntites";
     }
     @GetMapping("/responsableControleur/gestionEntites/modification/{id}")
-    public String modificationEntite(@PathVariable("id") Long id, Model model) {
+    public String modificationEntite(@PathVariable("id") Long id,Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         Optional<Entite> entiteOptional = entiteRepo.findById(id);
         if (entiteOptional.isPresent()) {
             model.addAttribute("entite", entiteOptional.get());
@@ -188,10 +202,11 @@ public String afficherEquipementForm(Model model) {
 
 
     @GetMapping("/responsableControleur/gestionUnites")
-    public String gestionUnite(Model m) {
+    public String gestionUnite(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Unite> listeUnites = uniteRepo.findAll();
 
-        m.addAttribute("listeUnites", listeUnites);
+        model.addAttribute("listeUnites", listeUnites);
         return "RC_gestionUnites";
 
 
@@ -200,7 +215,8 @@ public String afficherEquipementForm(Model model) {
 //---------- AJOUTER UNITE---------------------------------------
 
     @GetMapping("/responsableControleur/gestionUnites/ajout")
-    public String AjoutUniteForm(Model model) {
+    public String AjoutUniteForm(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
@@ -216,7 +232,8 @@ public String afficherEquipementForm(Model model) {
     //------------------------------------------------
 // Afficher le formulaire de modification
     @GetMapping("/responsableControleur/gestionUnites/modification/{id}")
-    public String modificationUnite(@PathVariable("id") Long id, Model model) {
+    public String modificationUnite(@PathVariable("id") Long id, Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
         Optional<Unite> uniteOptional = uniteRepo.findById(id);
@@ -246,7 +263,8 @@ public String afficherEquipementForm(Model model) {
 
 
     @GetMapping("/responsableControleur/gestionControleurs/modification/{id}")
-    public String modificationControleur(@PathVariable("id") Long id, Model model) {
+    public String modificationControleur(@PathVariable("id") Long id,Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         Optional<Controleur> controleurOptional = controleurRepo.findById(id);
         if (controleurOptional.isPresent()) {
             model.addAttribute("controleur", controleurOptional.get());
@@ -287,7 +305,8 @@ public String afficherEquipementForm(Model model) {
 
     //------ Ajout D'un CONTROLEURS -----------------------------------------
     @GetMapping("/responsableControleur/gestionControleurs/ajout")
-    public String ajoutControleurForm(Model model) {
+    public String ajoutControleurForm(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
         model.addAttribute("controleur", new Controleur());
         return "RC_gestionControleurs_ajout";
     }

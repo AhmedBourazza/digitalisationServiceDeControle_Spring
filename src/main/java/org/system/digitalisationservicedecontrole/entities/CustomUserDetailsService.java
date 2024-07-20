@@ -3,18 +3,16 @@ package org.system.digitalisationservicedecontrole.entities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.system.digitalisationservicedecontrole.entities.Controleur;
-import org.system.digitalisationservicedecontrole.entities.ResponsableControleur;
-import org.system.digitalisationservicedecontrole.entities.ResponsableGeneral;
 import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
 import org.system.digitalisationservicedecontrole.repositories.ResponsableControleurRepo;
 import org.system.digitalisationservicedecontrole.repositories.ResponsableGeneralRepo;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -39,33 +37,24 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (responsableGenerale.isPresent()) {
             logger.debug("User found in ResponsableGeneral repository");
             ResponsableGeneral user = responsableGenerale.get();
-            return User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .roles("RESPONSABLE_GENERALE")
-                    .build();
+            System.out.println(user.getNom());
+            return new MyUserDetails(user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData(), user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_RESPONSABLE_GENERALE")));
         }
 
         Optional<ResponsableControleur> responsableControleurs = responsableControleursRepository.findByUsername(username);
         if (responsableControleurs.isPresent()) {
             logger.debug("User found in ResponsableControleur repository");
             ResponsableControleur user = responsableControleurs.get();
-            return User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .roles("RESPONSABLE_CONTROLEURS")
-                    .build();
+            System.out.println(user.getNom());
+            return new MyUserDetails(user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData(), user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_RESPONSABLE_CONTROLEURS")));
         }
 
         Optional<Controleur> controleur = controleurRepository.findByUsername(username);
         if (controleur.isPresent()) {
             logger.debug("User found in Controleur repository");
             Controleur user = controleur.get();
-            return User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .roles("CONTROLEUR")
-                    .build();
+            System.out.println(user.getNom());
+            return new MyUserDetails(user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData() , user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_CONTROLEUR")));
         }
 
         logger.error("User not found with username: {}", username);
