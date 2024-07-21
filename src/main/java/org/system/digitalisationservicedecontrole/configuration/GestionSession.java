@@ -10,12 +10,12 @@ public class GestionSession {
     public void prepareModel(HttpSession s, Model model){
         String nom = (String) s.getAttribute("nom");
         String prenom = (String) s.getAttribute("prenom");
-        byte[] userImage = (byte[]) s.getAttribute("userImage");
+        String userImageBase64 = (String) s.getAttribute("userImage");
         String email = (String) s.getAttribute("email");
 
         model.addAttribute("nomMoi", nom);
         model.addAttribute("prenomMoi", prenom);
-        model.addAttribute("imageMoi", userImage);
+        model.addAttribute("imageMoi", userImageBase64);
         model.addAttribute("emailMoi", email);
 
     }

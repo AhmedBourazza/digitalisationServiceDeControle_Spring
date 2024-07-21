@@ -30,7 +30,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         // Ajouter les informations de l'utilisateur à la session
         session.setAttribute("nom", userDetails.getFirstName() );
         session.setAttribute("prenom", userDetails.getLastName() );
-        session.setAttribute("userImage", userDetails.getImageData());
+        session.setAttribute("userImage", userDetails.getImageDataAsBase64());
         session.setAttribute("email", userDetails.getEmail());
 
         boolean isResponsableGeneral = authentication.getAuthorities().stream()
