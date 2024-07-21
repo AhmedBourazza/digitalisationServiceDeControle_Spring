@@ -65,6 +65,10 @@ public class ContoleurController {
         gestionSession.prepareModel(session, model);
         return "C_formulaire1"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
-
+    @GetMapping("/controleur/formulaireSprinklers")
+    public String afficherFormulaireSprinklers(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        return "C_formSprinklers"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
 
 }
