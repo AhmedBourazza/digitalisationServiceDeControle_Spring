@@ -307,7 +307,7 @@
                       aria-expanded="false"
               >
                 <div class="avatar-sm">
-                  <img th:src="@{${imageMoi}}" alt="User Image"/>
+                  <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
                 </div>
                 <span class="profile-username">
                     <span class="fw-bold"  th:text="${prenomMoi}"></span>
@@ -320,8 +320,8 @@
                   <li>
                     <div class="user-box">
                       <div class="avatar-lg">
-                        <img th:src="@{${imageMoi}}"    alt="image profile"
-                             class="avatar-img rounded"/>
+                        <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+
 
                       </div>
                       <div class="u-text">

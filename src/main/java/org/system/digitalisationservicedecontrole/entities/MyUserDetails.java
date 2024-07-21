@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Base64;
 import java.util.Collection;
 
 public class MyUserDetails implements UserDetails {
@@ -33,6 +34,9 @@ public class MyUserDetails implements UserDetails {
     }
 
 
+    public String getImageDataAsBase64() {
+        return Base64.getEncoder().encodeToString(getImageData());
+    }
 
 
 
