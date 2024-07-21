@@ -44,6 +44,11 @@ public class ContoleurController {
         return "C_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
+    @GetMapping("/controleur/formulaireHydrant")
+    public String afficherFormulaireHydrant(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        return "C_formHydrant"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
     @GetMapping("/controleur/formulaire1")
     public String afficherFormulaire(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
