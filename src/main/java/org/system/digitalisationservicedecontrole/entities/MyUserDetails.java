@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Date;
 
 public class MyUserDetails implements UserDetails {
     @Getter
@@ -20,13 +21,24 @@ public class MyUserDetails implements UserDetails {
     private final String email;
     @Getter
     private final String password;
+    @Getter
+    private final String grade;
+    @Getter
+    private final Date date_integration;
+    @Getter
+    private final Date date_embauche;
+    @Getter
+    private final String matricule;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public MyUserDetails(String email ,String firstName, String lastName, byte[] imageData, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-
+    public MyUserDetails(String matricule,Date date_embauche  ,  Date date_integration ,  String grade , String email ,String firstName, String lastName, byte[] imageData, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+       this.date_integration = date_integration ;
+       this.date_embauche = date_embauche ;
+       this.matricule =matricule ;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.grade=grade ;
         this.imageData = imageData;
         this.username = username;
         this.password = password;
