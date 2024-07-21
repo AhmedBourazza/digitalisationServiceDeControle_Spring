@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>OCP SA - Espace controleur</title>
+    <meta
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            name="viewport"
+    />
+    <link
+            rel="icon"
+            th:href="@{/img/ocp}"
+            type="image/x-icon"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+    <!-- Fonts and icons -->
+    <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+                <a href="index.html" class="logo">
+                    <img
+                            th:src="@{/img/ocp}"
+                            alt="navbar brand"
+                            class="navbar-brand"
+                            height="20"
+                    />
+                    <strong style="color: white; margin-left: 4px;"> Espace controlleurs </strong>
+                </a>
+                <div class="nav-toggle">
+                    <button class="btn btn-toggle toggle-sidebar">
+                        <i class="gg-menu-right"></i>
+                    </button>
+                    <button class="btn btn-toggle sidenav-toggler">
+                        <i class="gg-menu-left"></i>
+                    </button>
+                </div>
+                <button class="topbar-toggler more">
+                    <i class="gg-more-vertical-alt"></i>
+                </button>
+            </div>
+            <!-- End Logo Header -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+                <ul class="nav nav-secondary">
+                    <li class="nav-item">
+                        <a th:href="@{/controleur/monProfile}">
+                            <i class="fas fa-home"></i>
+                            <p>Profile</p>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/controleur/dashboard}">
+                            <i class="fas fa-chart-line"></i>
+
+                            <p>Tableau de bord</p>
+
+                        </a>
+                    </li>
+
+
+                    <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                        <h4 class="text-section">Components</h4>
+                    </li>
+
+
+                    </li>
+
+
+
+                    <li class="nav-item active">
+                        <a th:href="@{/controleur/listeEquipements}">
+                            <i class="fa-solid fa-wrench"></i>
+                            <p>Les équipements</p>
+                            <span class="badge badge-success">8</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="main-header">
+            <div class="main-header-logo">
+                <!-- Logo Header -->
+                <div class="logo-header" data-background-color="dark">
+                    <a href="index.html" class="logo">
+                        OCP SA - Espace controlleurs
+                    </a>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
+                        </button>
+                    </div>
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
+                </div>
+                <!-- End Logo Header -->
+            </div>
+            <!-- Navbar Header -->
+            <nav
+                    class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+            >
+                <div class="container-fluid">
+                    <nav
+                            class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+                    >
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button type="submit" class="btn btn-search pe-1">
+                                    <i class="fa fa-search search-icon"></i>
+                                </button>
+                            </div>
+                            <input
+                                    type="text"
+                                    placeholder="Search ..."
+                                    class="form-control"
+                            />
+                        </div>
+                    </nav>
+
+                    <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                        <li
+                                class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                        >
+                            <a
+                                    class="nav-link dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    href="#"
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-haspopup="true"
+                            >
+                                <i class="fa fa-search"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-search animated fadeIn">
+                                <form class="navbar-left navbar-form nav-search">
+                                    <div class="input-group">
+                                        <input
+                                                type="text"
+                                                placeholder="Search ..."
+                                                class="form-control"
+                                        />
+                                    </div>
+                                </form>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item topbar-icon dropdown hidden-caret submenu">
+                            <a class="nav-link show" data-bs-toggle="dropdown" href="#" aria-expanded="true">
+                                <i class="fas fa-layer-group"></i>
+                            </a>
+                            <div class="dropdown-menu quick-actions animated fadeIn" data-bs-popper="static">
+                                <div class="quick-actions-header">
+                                    <span class="title mb-1">Quick Actions</span>
+                                    <span class="subtitle op-7">Shortcuts</span>
+                                </div>
+                                <div class="scroll-wrapper quick-actions-scroll scrollbar-outer" style="position: relative;"><div class="quick-actions-scroll scrollbar-outer scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 247px;">
+                                    <div class="quick-actions-items">
+                                        <div class="row m-0">
+                                            <a class="col-6 col-md-4 p-0" href="#">
+                                                <div class="quick-actions-item">
+                                                    <div class="avatar-item bg-danger rounded-circle">
+                                                        <i class="far fa-calendar-alt"></i>
+                                                    </div>
+                                                    <span class="text">Calendar</span>
+                                                </div>
+                                            </a>
+                                            <a class="col-6 col-md-4 p-0" href="#">
+                                                <div class="quick-actions-item">
+                                                    <div class="avatar-item bg-warning rounded-circle">
+                                                        <i class="fas fa-map"></i>
+                                                    </div>
+                                                    <span class="text">Maps</span>
+                                                </div>
+                                            </a>
+                                            <a class="col-6 col-md-4 p-0" href="#">
+                                                <div class="quick-actions-item">
+                                                    <div class="avatar-item bg-info rounded-circle">
+                                                        <i class="fas fa-file-excel"></i>
+                                                    </div>
+                                                    <span class="text">Reports</span>
+                                                </div>
+                                            </a>
+                                            <a class="col-6 col-md-4 p-0" href="#">
+                                                <div class="quick-actions-item">
+                                                    <div class="avatar-item bg-success rounded-circle">
+                                                        <i class="fas fa-envelope"></i>
+                                                    </div>
+                                                    <span class="text">Emails</span>
+                                                </div>
+                                            </a>
+                                            <a class="col-6 col-md-4 p-0" href="#">
+                                                <div class="quick-actions-item">
+                                                    <div class="avatar-item bg-primary rounded-circle">
+                                                        <i class="fas fa-file-invoice-dollar"></i>
+                                                    </div>
+                                                    <span class="text">Invoice</span>
+                                                </div>
+                                            </a>
+                                            <a class="col-6 col-md-4 p-0" href="#">
+                                                <div class="quick-actions-item">
+                                                    <div class="avatar-item bg-secondary rounded-circle">
+                                                        <i class="fas fa-credit-card"></i>
+                                                    </div>
+                                                    <span class="text">Payments</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 0px;"></div></div></div></div>
+                            </div>
+                        </li>
+
+
+                        <li class="nav-item topbar-user dropdown hidden-caret">
+                            <a
+                                    class="dropdown-toggle profile-pic"
+                                    data-bs-toggle="dropdown"
+                                    href="#"
+                                    aria-expanded="false"
+                            >
+                                <div class="avatar-sm">
+                                    <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+                                </div>
+                                <span class="profile-username">
+                    <span class="fw-bold"  th:text="${prenomMoi}"></span>
+                      <span class="op-7" th:text="${nomMoi}"></span>
+
+                    </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                <div class="dropdown-user-scroll scrollbar-outer">
+                                    <li>
+                                        <div class="user-box">
+                                            <div class="avatar-lg">
+                                                <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+
+                                            </div>
+                                            <div class="u-text">
+                                                <h4  th:text="${prenomMoi}"></h4>
+                                                <p class="text-muted" th:text="${emailMoi}"></p>
+                                                <a
+                                                        href="profile.html"
+                                                        class="btn btn-xs btn-secondary btn-sm"
+                                                >View Profile</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+
+
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Account Setting</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+
+
+        <!--------------------------------------------------------------->
+
+
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Formulaire</h3>
+                    <ul class="breadcrumbs mb-3">
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Formulaires</a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Postes de colonnes humides, PIA et RIA</a>
+                        </li>
+                    </ul>
+                    </br>
+                </div>
+                <p class="text-primary">RAPPORT DE VERIFICATION ET D'ESSAI DE FONCTIONNEMENT: SYSTEME SPRINKLER
+                </p>
+
+
+                <!------------------------------------------------------------------------>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var now = new Date();
+
+                        // Format the date according to user's local settings (including time zone offset and DST)
+                        var formattedDateTime = now.toLocaleString('fr-FR', { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false });
+
+                        document.getElementById('disableinput').value = formattedDateTime;
+                    });
+                </script>
+                <form method="POST" action="/submit-form">
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title"><i class="fas fa-info-circle"></i> Générale</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- Date -->
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="disableinput"><i class="fas fa-calendar-alt"></i> Date</label>
+                                                <input type="text" class="form-control" id="disableinput" placeholder="Enter Input" disabled="">
+                                            </div>
+                                        </div>
+
+                                        <!-- Entité -->
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="entitySelect"><i class="fas fa-building"></i> Entité</label>
+                                                <select class="form-select form-control" id="entitySelect" name="entity">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Unité -->
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="unitSelect"><i class="fas fa-sitemap"></i> Unité</label>
+                                                <select class="form-select form-control" id="unitSelect" name="unit">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Secteur -->
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="sectorInput"><i class="fas fa-industry"></i> Secteur</label>
+                                                <input type="text" class="form-control" id="sectorInput" name="sector" placeholder="Default Input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Matricule de l'équipement -->
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="equipmentIdInput"><i class="fas fa-id-badge"></i> Matricule de l'équipement</label>
+                                                <input type="text" class="form-control" id="equipmentIdInput" name="equipmentId" placeholder="Default Input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title"><i class="fas fa-tint"></i> Alimentation en Eau</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-gauge"></i> État de Manomètre
+                                        </label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="manometre_amont">Manomètre en amont ( C )</label>
+                                                    <select class="form-select form-control" id="manometre_amont" name="manometre_amont">
+                                                        <option value="ras">R.A.S</option>
+                                                        <option value="degrade">Dégradé</option>
+                                                        <option value="manque">Manque</option>
+                                                        <option value="hors_service">Hors Service</option>
+                                                        <option value="na">-</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="manometre_aval">Manomètre en aval (G)</label>
+                                                    <select class="form-select form-control" id="manometre_aval" name="manometre_aval">
+                                                        <option value="ras">R.A.S</option>
+                                                        <option value="degrade">Dégradé</option>
+                                                        <option value="manque">Manque</option>
+                                                        <option value="hors_service">Hors Service</option>
+                                                        <option value="na">-</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="manometre_point_f">Manomètre de point "F"</label>
+                                                    <select class="form-select form-control" id="manometre_point_f" name="manometre_point_f">
+                                                        <option value="ras">R.A.S</option>
+                                                        <option value="degrade">Dégradé</option>
+                                                        <option value="manque">Manque</option>
+                                                        <option value="hors_service">Hors Service</option>
+                                                        <option value="na">-</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-tachometer-alt"></i> Pression mesurée
+                                        </label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pression_amont">Manomètre en amont ( C )</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" id="pression_amont" name="pression_amont" placeholder="Valeur de pression" aria-label="Valeur de pression" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon1">Bar</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pression_aval">Manomètre en aval (G)</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" id="pression_aval" name="pression_aval" placeholder="Valeur de pression" aria-label="Valeur de pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text" id="basic-addon2">Bar</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pression_point_f">Manomètre de point "F"</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" id="pression_point_f" name="pression_point_f" placeholder="Valeur de pression" aria-label="Valeur de pression" aria-describedby="basic-addon3">
+                                                        <span class="input-group-text" id="basic-addon3">Bar</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title"><i class="fas fa-tasks"></i> Poste de contrôle</div>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-search"></i> 1- Vérifier que la vanne principale de barrage est :
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"> ● Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"> ● En position ouverte</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="ouverte" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="ouverte" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="ouverte" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"> ● Accessible</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="accessible" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Cadenassée correctement</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="cadenassee" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="cadenassee" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="cadenassee" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="absence_dommages" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="absence_dommages" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="absence_dommages" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Supervisée électriquement</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="supervisee" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="supervisee" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="supervisee" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-bell"></i> 2- Vérifier que le clapet d'alarme (D) est :
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" style="word-wrap: break-word;"> ● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_absence_dommages" value="oui" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_absence_dommages" value="non" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_absence_dommages" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"> ● Accessible et réglé sur la position normale</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-cogs"></i> 3- Vérifier le bon état des composantes suivantes :
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Pressostat d'alarme ou indicateur d'écoulement (J)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="pressostat_etat" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="pressostat_etat" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="pressostat_etat" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="pressostat_etat" value="non_branche" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-plug"></i> Non branché</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="pressostat_etat" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Gong hydraulique opérationnel</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="hors_service" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Hors Service</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="gong_hydraulique_etat" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Chambre de retardement est exempt de dommages ou de fuites (L)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="chambre_retardement_etat" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="chambre_retardement_etat" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="chambre_retardement_etat" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="chambre_retardement_etat" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="chambre_retardement_etat" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="chambre_retardement_etat" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Vanne d'essai cloche fermée (E)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_essai_cloche_fermee" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_essai_cloche_fermee" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_essai_cloche_fermee" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_essai_cloche_fermee" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_essai_cloche_fermee" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_essai_cloche_fermee" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Vanne de régulation du gong hydraulique ouverte (K)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_regulation_gong_ouverte" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_regulation_gong_ouverte" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_regulation_gong_ouverte" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_regulation_gong_ouverte" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_regulation_gong_ouverte" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_regulation_gong_ouverte" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Robinet principal de vidange fermé (F)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="robinet_principal_vidange" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="robinet_principal_vidange" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="robinet_principal_vidange" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="robinet_principal_vidange" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="robinet_principal_vidange" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="robinet_principal_vidange" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Vanne de manomètre en amont ouverte (B)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_amont" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_amont" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_amont" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_amont" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_amont" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_amont" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Vanne de manomètre en aval ouverte (H)</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_aval" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_aval" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_aval" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_aval" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_aval" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vanne_manometre_aval" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-plug"></i> 4- Vérifier pour les prises d'alimentation de secours que :
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Sont existes, visibles et accessibles</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="prises_existences" value="oui" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="prises_existences" value="non" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="prises_existences" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Les demi-raccords et leurs joints sont en bon état</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="demi_raccords_etat" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="demi_raccords_etat" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="demi_raccords_etat" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="demi_raccords_etat" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="demi_raccords_etat" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="demi_raccords_etat" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Les bouchons sont en place et en bon état</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="bouchons_etat" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="bouchons_etat" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="bouchons_etat" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="bouchons_etat" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="bouchons_etat" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="bouchons_etat" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Le clapet anti-retour exempt de dommages, de corrosion et de fuites</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_anti_retour_etat" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_anti_retour_etat" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_anti_retour_etat" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_anti_retour_etat" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_anti_retour_etat" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="clapet_anti_retour_etat" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-shield-alt"></i> 5 - Vérifier que le poste de contrôle est protégé contre les intempéries
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="poste_protection" value="oui" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="poste_protection" value="non" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="poste_protection" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
+                                            <i class="fas fa-water"></i> 6 - Vérifier que le dispositif d'évacuation d'eau (Drainage - Pompe puisard) existe et ne présente pas des anomalies
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="dispositif_evacuation" value="degrade_2" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title"><i class="fas fa-clipboard-check"></i> Validation de Formulaire</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                            <label class="form-check-label" for="flexCheckDefault" style="color: #ff5733; font-weight: bold;">
+                                                Veuillez vérifier que toutes les informations sont correctement remplies
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn btn-success">
+                                        <i class="fas fa-check"></i> Soumettre
+                                    </button>
+                                    <button class="btn btn-danger">
+                                        <i class="fas fa-times"></i> Annuler
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <!------------------------------------------------------------------------>
+                </form>
+
+            </div>
+
+
+        </div>
+
+        <!------------------------------------------------------------->
+
+
+
+        <footer class="footer">
+            <div class="container-fluid d-flex justify-content-between">
+                <nav class="pull-left">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://www.themekita.com">
+                                ThemeKita
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> Help </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> Licenses </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    2024, made with <i class="fa fa-heart heart text-danger"></i> by
+                    <a href="http://www.themekita.com">ThemeKita</a>
+                </div>
+                <div>
+                    Distributed by
+                    <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Custom template | don't include it in your project! -->
+    <div class="custom-template">
+        <div class="title">Settings</div>
+        <div class="custom-content">
+            <div class="switcher">
+                <div class="switch-block">
+                    <h4>Logo Header</h4>
+                    <div class="btnSwitch">
+                        <button
+                                type="button"
+                                class="selected changeLogoHeaderColor"
+                                data-color="dark"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="blue"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="purple"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="light-blue"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="green"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="orange"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="red"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="white"
+                        ></button>
+                        <br />
+                        <button
+                                type="button"
+                                class="selected changeLogoHeaderColor"
+                                data-color="dark2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="blue2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="purple2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="light-blue2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="green2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="orange2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeLogoHeaderColor"
+                                data-color="red2"
+                        ></button>
+                    </div>
+                </div>
+                <div class="switch-block">
+                    <h4>Navbar Header</h4>
+                    <div class="btnSwitch">
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="dark"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="blue"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="purple"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="light-blue"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="green"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="orange"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="red"
+                        ></button>
+                        <button
+                                type="button"
+                                class="selected changeTopBarColor"
+                                data-color="white"
+                        ></button>
+                        <br />
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="dark2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="blue2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="purple2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="light-blue2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="green2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="orange2"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeTopBarColor"
+                                data-color="red2"
+                        ></button>
+                    </div>
+                </div>
+                <div class="switch-block">
+                    <h4>Sidebar</h4>
+                    <div class="btnSwitch">
+                        <button
+                                type="button"
+                                class="changeSideBarColor"
+                                data-color="white"
+                        ></button>
+                        <button
+                                type="button"
+                                class="selected changeSideBarColor"
+                                data-color="dark"
+                        ></button>
+                        <button
+                                type="button"
+                                class="changeSideBarColor"
+                                data-color="dark2"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-toggle">
+            <i class="icon-settings"></i>
+        </div>
+    </div>
+    <!-- End Custom template -->
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var now = new Date();
+
+        // Format the date according to user's local settings (including time zone offset and DST)
+        var formattedDateTime = now.toLocaleString('fr-FR', { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false });
+
+        document.getElementById('disableinput').value = formattedDateTime;
+    });
+</script>
+<!--   Core JS Files   -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script>
+    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+    });
+
+    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+    });
+
+    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+    });
+
+    $("#lineChart4").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
+
+    $("#lineChart5").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
+
+    $("#lineChart6").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
+</script>
+</body>
+</html>
