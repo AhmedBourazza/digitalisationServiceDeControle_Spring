@@ -32,6 +32,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         session.setAttribute("prenom", userDetails.getLastName() );
         session.setAttribute("userImage", userDetails.getImageDataAsBase64());
         session.setAttribute("email", userDetails.getEmail());
+        session.setAttribute("grade", userDetails.getGrade());
+        session.setAttribute("date_integration", userDetails.getDate_integration());
+        session.setAttribute("matricule", userDetails.getMatricule());
+        session.setAttribute("date_embauche", userDetails.getDate_embauche());
 
         boolean isResponsableGeneral = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_RESPONSABLE_GENERALE"));
