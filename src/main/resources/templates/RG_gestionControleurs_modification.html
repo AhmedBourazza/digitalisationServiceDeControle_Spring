@@ -426,29 +426,87 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="user-profile text-center">
+                                    <div class="user-profile">
                                         <!-- Champs pour les autres informations du contrôleur -->
                                         <input type="hidden" class="form-control name" th:field="*{idControleur}">
-
-                                        <input type="text" class="form-control name" th:field="*{nom}" placeholder="Nom">
-                                        <input type="text" class="form-control job" th:field="*{prenom}" placeholder="Prénom">
-                                        <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
-                                        <div class="view-profile">
-                                            <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                        <div  class="col">
+                                            <label >Nom</label>
+                                            <input type="text" class="form-control name"  th:field="*{nom}" placeholder="Nom">
                                         </div>
+
+                                        <div  class="col">
+                                            <label >Prénom</label>
+                                            <input type="text" class="form-control name" th:field="*{prenom}" placeholder="Nom">
+                                        </div>
+                                                </div> </div>
+
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div  class="col">
+                                                    <label >Date d'intégration service </label>
+                                                    <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
+                                                </div>
+
+
+                                                <div class="col">
+                                                    <label >Nom d'utilisateur </label>
+                                                    <div class="input-group mb-3">
+
+                                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                                        <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
+                                                    </div>
+                                                </div>
+                                            </div> </div>
+
+
+
+
+
+
+
+
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div  class="col">
+                                                    <label >Matricule</label>
+                                                    <div class="view-profile">
+                                                        <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
+                                                    </div>
+                                                </div>
+
+
+                                            </div> </div>
+
+
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row user-stats text-center">
-                                        <div class="col">
-                                            <input type="date" class="form-control title" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
+                                        <div  class="col">
+                                            <label >Date d'embauche </label>
+                                            <input type="date" class="form-control desc" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
                                         </div>
+
                                         <div class="col">
-                                            <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
+                                            <label >Numéro de télephone</label>
+                                            <div class="input-group mb-3">
+
+                                                <span class="input-group-text" >+212</span>
+                                                <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
-                                        </div>
+
+
+
                                     </div>
                                 </div>
                                 <div class="card-body">

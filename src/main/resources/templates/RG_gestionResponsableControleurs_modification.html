@@ -414,8 +414,10 @@
                                         <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
                                             <!-- Affichage de l'image actuelle -->
                                             <img th:src="'data:image/jpeg;base64,' + ${responsableControleur.getImageDataAsBase64()}" id="profile-image" class="avatar-img rounded-circle" alt="Image">
+
                                             <!-- Champ d'entrée pour sélectionner une nouvelle image -->
                                             <input type="file" name="imageFile" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
+
                                             <!-- Bouton pour ouvrir le sélecteur de fichier -->
                                             <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
                                                 <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
@@ -424,37 +426,94 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="user-profile text-center">
+                                    <div class="user-profile">
                                         <!-- Champs pour les autres informations du contrôleur -->
                                         <input type="hidden" class="form-control name" th:field="*{idResponsableControleur}">
-                                        <input type="text" class="form-control name" th:field="*{nom}" placeholder="Nom">
-                                        <input type="text" class="form-control name" th:field="*{prenom}" placeholder="Prénom">
-                                        <input type="text" class="form-control job" th:field="*{grade}" placeholder="Grade">
-                                        <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
-                                        <div class="view-profile">
-                                            <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
-                                        </div>
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div  class="col">
+                                                    <label >Nom</label>
+                                                    <input type="text" class="form-control name"  th:field="*{nom}" placeholder="Nom">
+                                                </div>
+
+                                                <div  class="col">
+                                                    <label >Prénom</label>
+                                                    <input type="text" class="form-control name" th:field="*{prenom}" placeholder="Nom">
+                                                </div>
+                                            </div> </div>
+
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div  class="col">
+                                                    <label >Date d'intégration service </label>
+                                                    <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
+                                                </div>
+
+
+                                                <div class="col">
+                                                    <label >Nom d'utilisateur </label>
+                                                    <div class="input-group mb-3">
+
+                                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                                        <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
+                                                    </div>
+                                                </div>
+                                            </div> </div>
+
+
+
+
+
+
+
+
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div  class="col">
+                                                    <label >Matricule</label>
+                                                    <div class="view-profile">
+                                                        <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
+                                                    </div>
+                                                </div>
+
+
+                                            </div> </div>
+
+
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row user-stats text-center">
-                                        <div class="col">
-                                            <input type="date" class="form-control title" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
+                                        <div  class="col">
+                                            <label >Date d'embauche </label>
+                                            <input type="date" class="form-control desc" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
                                         </div>
+
                                         <div class="col">
-                                            <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
+                                            <label >Numéro de télephone</label>
+                                            <div class="input-group mb-3">
+
+                                                <span class="input-group-text" >+212</span>
+                                                <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
-                                        </div>
+
+
+
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <input type="submit" class="btn btn-success" value="Valider">
-                                    <a th:href="@{/responsableGeneral/gestionResponsableControleurs}" class="btn btn-danger">Annuler</a>
+                                    <a th:href="@{/responsableGeneral/gestionControleurs}" class="btn btn-danger">Annuler</a>
                                 </div>
                             </form>
-
 
 
                         </div>
