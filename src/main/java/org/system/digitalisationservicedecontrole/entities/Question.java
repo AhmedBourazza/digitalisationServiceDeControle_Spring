@@ -19,7 +19,6 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idQuestion;
     private String enonce ;
-    private String reponse ;
     @ManyToOne()
     @JoinColumn(name = "IdSection_")
     private Section section;

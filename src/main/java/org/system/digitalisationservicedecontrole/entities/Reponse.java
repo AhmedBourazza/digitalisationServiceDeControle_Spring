@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.Date;
+
 @Entity
 
 @Data
@@ -15,6 +18,7 @@ public class Reponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReponse;
+    private Date dateControle ;
     private String enonce ;
     private String justification ;
     @ManyToOne()
