@@ -119,19 +119,32 @@
                         <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
                             <i class="fa-solid fa-person"></i>
 
-                            <p>Responsable Contrôleurs</p>
+                            <p>R. Contrôleurs</p>
                             <span class="badge badge-success">8</span>
                         </a>
                     </li>
 
 
-
                     <li class="nav-item">
-                        <a href="">
-                            <i class="fa-solid fa-file" style="color: #ffffff;"></i>
-                            <p>Formulaires</p>
-
+                        <a data-bs-toggle="collapse" href="#forms">
+                            <i class="fas fa-archive"></i>
+                            <p>Archive Formulaires</p>
+                            <span class="caret"></span>
                         </a>
+                        <div class="collapse" id="forms">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="forms/forms.html">
+                                        <span class="sub-item">Par équipement</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="forms/forms.html">
+                                        <span class="sub-item">Par date</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
 
                     <li class="nav-item">
