@@ -21,4 +21,5 @@ public class Excel {
     private String reponse;
     private String jusitification;
     private String controleur;
+    private String proprietaire;
 }
