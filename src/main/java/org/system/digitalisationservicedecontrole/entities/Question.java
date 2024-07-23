@@ -25,6 +25,6 @@ public class Question {
     private Section section;
 
     @OneToMany(mappedBy = "question")
-    private Collection<Justification>  justifications;
+    private Collection<Reponse> reponses;
 
 }

@@ -11,11 +11,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Justification {
+public class Reponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idJustification;
+    private Long idReponse;
     private String enonce ;
+    private String justification ;
     @ManyToOne()
     @JoinColumn(name = "IdQuestion_")
     private Question question;

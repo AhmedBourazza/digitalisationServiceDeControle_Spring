@@ -28,6 +28,7 @@ public class Controleur {
     private Date dateIntegration ;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEmbauche ;
+    private String grade ;
     private String numTele;
     private String username;
     private String email ;
