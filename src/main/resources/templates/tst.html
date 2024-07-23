@@ -6,11 +6,16 @@
   <title>Download Excel</title>
 </head>
 <body>
+<input type="datetime-local" id="dateControle" placeholder="Date de Controle">
+<input type="text" id="matricule" placeholder="Matricule">
 <button id="downloadExcel">Télécharger Excel</button>
 
 <script>
   document.getElementById('downloadExcel').addEventListener('click', function() {
-    fetch('/excel', {
+    const dateControle = document.getElementById('dateControle').value;
+    const matricule = document.getElementById('matricule').value;
+
+    fetch(`/excel?dateControle=${encodeURIComponent(dateControle)}&matricule=${encodeURIComponent(matricule)}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/vnd.ms-excel'
@@ -19,15 +24,20 @@
             .then(response => {
               if (response.ok) {
                 return response.blob();
+              } else if (response.status === 404) {
+                return response.json().then(data => {
+                  throw new Error(data.message);
+                });
+              } else {
+                throw new Error('Network response was not ok.');
               }
-              throw new Error('Network response was not ok.');
             })
             .then(blob => {
               const url = window.URL.createObjectURL(blob);
               const a = document.createElement('a');
               a.style.display = 'none';
               a.href = url;
-              a.download = 'controleurs.xls';
+              a.download = 'formulaire.xls';
               document.body.appendChild(a);
               a.click();
               window.URL.revokeObjectURL(url);
@@ -37,7 +47,9 @@
                 window.location.href = '/controleur/dashboard'; // Remplacez cette URL par celle de votre tableau de bord
               }, 1000); // Ajoute un délai pour s'assurer que le téléchargement commence
             })
-            .catch(error => console.error('There was a problem with the fetch operation:', error));
+            .catch(error => {
+              alert(error.message);
+            });
   });
 </script>
 </body>

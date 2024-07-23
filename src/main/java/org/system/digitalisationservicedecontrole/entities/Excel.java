@@ -19,4 +19,6 @@ public class Excel {
     private String section;
     private String question;
     private String reponse;
+    private String jusitification;
+    private String controleur;
 }
