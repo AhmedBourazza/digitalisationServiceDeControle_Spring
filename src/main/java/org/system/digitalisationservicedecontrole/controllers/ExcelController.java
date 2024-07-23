@@ -14,6 +14,7 @@ public class ExcelController {
     @Autowired
     ExcelService excelService;
 
+
     @GetMapping("/excel")
     public void generateExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.ms-excel");

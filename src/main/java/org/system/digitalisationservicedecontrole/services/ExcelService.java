@@ -7,43 +7,45 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.system.digitalisationservicedecontrole.entities.Controleur;
-import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
+import org.system.digitalisationservicedecontrole.dto.ExcelDTO;
+import org.system.digitalisationservicedecontrole.entities.Excel;
+import org.system.digitalisationservicedecontrole.repositories.ExcelRepo;
+
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-
 @Service
 public class ExcelService {
+
     @Autowired
-    ControleurRepo controleurRepo;
+    private ExcelRepo excelRepo;
 
     public void generateExcel(HttpServletResponse response) throws IOException {
-        List<Controleur> controleurs = controleurRepo.findAll();
+        List<Object[]> results = excelRepo.findReponses("Mat-1");
         HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet("Controleurs");
+        HSSFSheet sheet = workbook.createSheet("form");
 
         HSSFRow headerRow = sheet.createRow(0);
 
-        headerRow.createCell(0).setCellValue("id_controleur");
-
-        headerRow.createCell(1).setCellValue("matricule");
-        headerRow.createCell(2).setCellValue("nom");
-
-
-        headerRow.createCell(3).setCellValue("prenom");
-
-
+        headerRow.createCell(0).setCellValue("Date de controle");
+        headerRow.createCell(1).setCellValue("Entité");
+        headerRow.createCell(2).setCellValue("Unité");
+        headerRow.createCell(3).setCellValue("Section");
+        headerRow.createCell(4).setCellValue("Question");
+        headerRow.createCell(5).setCellValue("Reponse");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         int dataRowIndex = 1;
-        for (Controleur c : controleurs) {
+        for (Object[] row : results) {
             HSSFRow dataRow = sheet.createRow(dataRowIndex);
 
-            dataRow.createCell(0).setCellValue(c.getIdControleur());
-
-            dataRow.createCell(1).setCellValue(c.getMatricule());
-            dataRow.createCell(2).setCellValue(c.getNom());
-
-            dataRow.createCell(3).setCellValue(c.getPrenom());
+           //dataRow.createCell(0).setCellValue("vxcv");
+            dataRow.createCell(0).setCellValue(dateFormat.format(row[0]));
+            dataRow.createCell(1).setCellValue((String) row[1]);
+            dataRow.createCell(2).setCellValue((String) row[2]);
+            dataRow.createCell(3).setCellValue((String) row[3]);
+            dataRow.createCell(4).setCellValue((String) row[4]);
+            dataRow.createCell(5).setCellValue((String) row[5]);
 
             dataRowIndex++;
         }
