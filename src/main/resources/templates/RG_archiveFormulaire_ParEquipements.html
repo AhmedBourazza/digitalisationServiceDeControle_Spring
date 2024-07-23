@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>OCP SA - Responsable Controleurs</title>
+    <title>OCP SA - Espace Responsable Général</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
     />
-    <link
-            rel="icon"
-            th:href="@{/img/ocp logo2.png}"
-            type="image/x-icon"
-    />
+    <link rel="icon" th:href="@{/img/ocp logo2.png}" type="image/x-icon" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 
     <!-- Fonts and icons -->
@@ -38,13 +33,14 @@
             },
         });
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <!-- CSS Files -->
+    <!-- Inclusion des fichiers CSS internes -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
     <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
 
-    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <!-- CSS Just for demo purpose, ne pas inclure dans votre projet -->
     <link rel="stylesheet" th:href="@{/css/demo.css}" />
 </head>
 <body>
@@ -55,13 +51,9 @@
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
                 <a href="index.html" class="logo">
-                    <img
-                            th:src="@{/img/ocp logo3.png}"
-                            alt="navbar brand"
-                            class="navbar-brand"
-                            height="20"
-                    />
-                    <strong style="color: white; margin-left: 4px;">Responsable Controleurs </strong>
+                    <img th:src="@{/img/ocp logo3.png}" alt="navbar brand" class="navbar-brand" height="20" />
+
+                    <strong style="color: white; margin-left: 4px;"> Espace RG </strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -81,24 +73,21 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
 
-                    <li class="nav-item">
-                        <a th:href="@{/responsableControleur/dashboard}">
+                    <li class="nav-item active">
+                        <a th:href="@{/responsableGeneral/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a th:href="@{/responsableControleur/monProfile}">
+
+                    <li class="nav-item">
+                        <a th:href="@{/responsableGeneral/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
                         </a>
                     </li>
-
-
-
-
 
                     <li class="nav-section">
                 <span class="sidebar-mini-icon">
@@ -108,28 +97,52 @@
                     </li>
 
 
+
+
+
+
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionControleurs}">
+                        <a th:href="@{/responsableGeneral/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>contrôleurs</p>
                             <span class="badge badge-success">8</span>
                         </a>
                     </li>
-
-
-
                     <li class="nav-item">
-                        <a href="">
-                            <i class="fa-solid fa-file" style="color: #ffffff;"></i>
-                            <p>Formulaires</p>
+                        <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
+                            <i class="fa-solid fa-person"></i>
 
+                            <p>R. Contrôleurs</p>
+                            <span class="badge badge-success">8</span>
                         </a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionEquipements}">
+                        <a data-bs-toggle="collapse" href="#forms">
+                            <i class="fas fa-archive"></i>
+                            <p>Archive Formulaires</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="forms">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="/responsableGeneral/archiveFormulaire/parEquipements">
+                                        <span class="sub-item">Par équipement</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="forms/forms.html">
+                                        <span class="sub-item">Par date</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a th:href="@{/responsableGeneral/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
                             <span class="badge badge-success">16</span>
@@ -138,30 +151,21 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionEntites}">
+                        <a th:href="@{/responsableGeneral/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
                             <span class="badge badge-success">17</span>
 
                         </a>
                     </li>
-
-
-                    <li class="nav-item active">
-                        <a th:href="@{/responsableControleur/gestionUnites}">
+                    <li class="nav-item">
+                        <a th:href="@{/responsableGeneral/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
                             <span class="badge badge-success">6</span>
 
                         </a>
                     </li>
-
-
-
-                    </li>
-
-
-
 
                 </ul>
             </div>
@@ -175,7 +179,7 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
                     <a href="index.html" class="logo">
-                        OCP SA - Espace controlleurs
+                        OCP SA - Espace Responsable Général
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -308,7 +312,6 @@
 
 
 
-
                         <li class="nav-item topbar-user dropdown hidden-caret">
                             <a
                                     class="dropdown-toggle profile-pic"
@@ -331,6 +334,7 @@
                                         <div class="user-box">
                                             <div class="avatar-lg">
                                                 <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+
 
                                             </div>
                                             <div class="u-text">
@@ -364,182 +368,70 @@
 
         <div class="container">
             <div class="page-inner">
+
+
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Gestion des Unités</h3>
-                <ul class="breadcrumbs mb-3">
+                    <!-- Customized Card -->
+                    <h3 class="fw-bold mb-3">Les équipements</h3>
+                    <ul class="breadcrumbs mb-3">
 
-                    <li class="nav-home">
-                        <a href="#">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Espace responsable Controleurs</a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Liste des unités</a>
-                    </li>
-
-                </ul>
-               </div>
-                <!-- Customized Card -->
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Espace Responsable Général</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Liste des équipements</a>
+                        </li>
 
 
+
+                    </ul>
+
+
+                </div>
                 <div class="row">
 
-                    <!----------------------------------------------------------------------------->
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-
-                        <div class="ms-md-auto py-2 py-md-0">
-
-                            <a th:href="@{/responsableControleur/gestionUnites/ajout}" class="btn btn-primary btn-round">Ajouter une entité</a>
-                        </div>
-                    </div>
-
-
-
-
-                    <!-------------------------------------------------------------------------------->
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Liste des unités </h4>
-                            </div>
+                    <div th:each="e:${listeEquipements}" class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card card-post card-round">
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <div id="multi-filter-select_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <table id="multi-filter-select" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="multi-filter-select_info">
-                                                    <thead>
-                                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 168.962px;">Nom d'unité</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Nombre d'équipements</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Modifier</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Supprimer</th>
-
-
-                                                    </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                    <tr>
-                                                        <th rowspan="1" colspan="1">
-                                                            <select class="form-select"><option value=""></option>
-
-                                                                <option value="Shou Itou">Shou Itou</option>
-                                                                <option value="Sonya Frost">Sonya Frost</option>
-                                                                <option value="Suki Burks">Suki Burks</option>
-                                                                <option value="Tatyana Fitzpatrick">Tatyana Fitzpatrick</option>
-                                                                <option value="Thor Walton">Thor Walton</option>
-                                                                <option value="Unity Butler">Unity Butler</option></select></th>
-                                                        <th rowspan="1" colspan="1">
-                                                            <select class="form-select"><option value=""></option></select>
-                                                        </th>
-
-                                                    </tfoot>
-                                                    <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                    <!---------- HA FIN GHATBDA LA BOUCLE ---------------->
-
-                                                    <tr role="row" class="odd" th:each="u:${listeUnites}">
-                                                        <td class="sorting_1" th:text="${u.getNom()}"></td>
-                                                        <td>15</td>
-
-                                                        <td>
-                                                            <a th:href="@{/responsableControleur/gestionUnites/modification/{id}(id=${u.idUnite})}">
-                                                                <button class="btn btn-icon btn-clean me-0" type="button">
-                                                                    <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
-                                                                </button>
-                                                            </a>
-                                                        </td>
-
-                                                        <td>
-                                                            <form th:action="@{/responsableControleur/gestionUnites/suppression/{id}(id=${u.idUnite})}" method="post">
-                                                                <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette unité ?');">
-                                                                    <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
-
-
-                                                    </tr>
-                                                    <!---------- HA FIN GHATSALI ---------------->
-                                                    </tbody>
-                                                </table></div></div><div class="row">
-                                      </div></div>
+                                <div class="d-flex">
+                                    <div class="avatar avatar-xxl">
+                                        <img th:src="'data:image/jpeg;base64,' + ${e.getImageDataAsBase64()}" alt="..." class="avatar-img rounded">
+                                    </div>
+                                    <div class="info-post ms-2">
+                                        <p class="username" th:text="${e.getNom()}"></p>
+                                        <p class="date text-muted" th:text="${e.getDescription()}"></p>
+                                    </div>
                                 </div>
+                                <div class="separator-solid"></div>
+                                <p class="card-category text-info mb-1">
+                                    <a href="#" th:text="'Fréquence : ' + ${e.getFrequence()}"></a>
+                                </p>
+                                <h3 class="card-title">
+                                    <a href="#" th:text="${e.getTitreFormulaire()}">Formulaire Essai des pompes incendie</a>
+                                </h3>
+                                <p class="card-text" th:text=" 'Codification : ' + ${e.getCodification()}">
+                                    <br>
+
+                                </p>
+                                <p class="card-text" th:text=" 'Quantité : ' + ${e.getQuantite()}"></p>
+                                <a th:href="@{/responsableGeneral/archiveFormulaire/parEquipements/voirArchive/{id}(id=${e.getIdEquipement()})}" class="btn btn-primary btn-rounded btn-sm">Voir archive</a>
                             </div>
                         </div>
                     </div>
 
 
 
-
-
-
-
-
-
-
-
-
-                    <!-------------------------------------------------------------------------------->
 
 
 
@@ -547,23 +439,6 @@
 
 
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-
-
             </div>
         </div>
 
@@ -801,68 +676,63 @@
 <script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
 <!-- Kaiadmin JS -->
 <script th:src="@{/js/kaiadmin.min.js}"></script>
-
-
-<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
 
 <script>
-    $(document).ready(function () {
-        $("#basic-datatables").DataTable({});
+    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+    });
 
-        $("#multi-filter-select").DataTable({
-            pageLength: 5,
-            initComplete: function () {
-                this.api()
-                    .columns()
-                    .every(function () {
-                        var column = this;
-                        var select = $(
-                            '<select class="form-select"><option value=""></option></select>'
-                        )
-                            .appendTo($(column.footer()).empty())
-                            .on("change", function () {
-                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+    });
 
-                                column
-                                    .search(val ? "^" + val + "$" : "", true, false)
-                                    .draw();
-                            });
+    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+    });
 
-                        column
-                            .data()
-                            .unique()
-                            .sort()
-                            .each(function (d, j) {
-                                select.append(
-                                    '<option value="' + d + '">' + d + "</option>"
-                                );
-                            });
-                    });
-            },
-        });
+    $("#lineChart4").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
 
-        // Add Row
-        $("#add-row").DataTable({
-            pageLength: 5,
-        });
+    $("#lineChart5").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
+    });
 
-        var action =
-            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-        $("#addRowButton").click(function () {
-            $("#add-row")
-                .dataTable()
-                .fnAddData([
-                    $("#addName").val(),
-                    $("#addPosition").val(),
-                    $("#addOffice").val(),
-                    action,
-                ]);
-            $("#addRowModal").modal("hide");
-        });
+    $("#lineChart6").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "rgba(255, 255, 255, .5)",
+        fillColor: "rgba(255, 255, 255, .15)",
     });
 </script>
-
-
 </body>
 </html>

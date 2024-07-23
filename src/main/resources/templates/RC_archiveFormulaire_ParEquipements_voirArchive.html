@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>OCP SA - Responsable Controleurs</title>
+    <title>OCP SA - Responsable Controleur</title>
     <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
@@ -61,7 +61,7 @@
                             class="navbar-brand"
                             height="20"
                     />
-                    <strong style="color: white; margin-left: 4px;">Responsable Controleurs </strong>
+                    <strong style="color: white; margin-left: 4px;">Responsable Controleur </strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -82,14 +82,14 @@
                 <ul class="nav nav-secondary">
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/dashboard}">
+                        <a th:href="@{/responsableGeneral/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a th:href="@{/responsableControleur/monProfile}">
+                        <a th:href="@{/responsableGeneral/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
@@ -109,10 +109,18 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionControleurs}">
+                        <a th:href="@{/responsableGeneral/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>contrôleurs</p>
+                            <span class="badge badge-success">8</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
+                            <i class="fa-solid fa-person"></i>
+
+                            <p>Responsable Contrôleurs</p>
                             <span class="badge badge-success">8</span>
                         </a>
                     </li>
@@ -120,16 +128,31 @@
 
 
                     <li class="nav-item">
-                        <a href="">
-                            <i class="fa-solid fa-file" style="color: #ffffff;"></i>
-                            <p>Formulaires</p>
-
+                        <a data-bs-toggle="collapse" href="#forms">
+                            <i class="fas fa-archive"></i>
+                            <p>Archive Formulaires</p>
+                            <span class="caret"></span>
                         </a>
+                        <div class="collapse" id="forms">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="/responsableControleur/archiveFormulaire/parEquipements">
+                                        <span class="sub-item">Par équipement</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="forms/forms.html">
+                                        <span class="sub-item">Par date</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
 
 
+
                     <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionEquipements}">
+                        <a th:href="@{/responsableGeneral/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
                             <span class="badge badge-success">16</span>
@@ -137,8 +160,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionEntites}">
+                    <li class="nav-item active">
+                        <a th:href="@{/responsableGeneral/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
                             <span class="badge badge-success">17</span>
@@ -146,9 +169,8 @@
                         </a>
                     </li>
 
-
-                    <li class="nav-item active">
-                        <a th:href="@{/responsableControleur/gestionUnites}">
+                    <li class="nav-item">
+                        <a th:href="@{/responsableGeneral/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
                             <span class="badge badge-success">6</span>
@@ -306,9 +328,6 @@
                             </div>
                         </li>
 
-
-
-
                         <li class="nav-item topbar-user dropdown hidden-caret">
                             <a
                                     class="dropdown-toggle profile-pic"
@@ -331,6 +350,7 @@
                                         <div class="user-box">
                                             <div class="avatar-lg">
                                                 <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+
 
                                             </div>
                                             <div class="u-text">
@@ -365,178 +385,97 @@
         <div class="container">
             <div class="page-inner">
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Gestion des Unités</h3>
-                <ul class="breadcrumbs mb-3">
+                    <h3 class="fw-bold mb-3">Gestion des entités</h3>
 
-                    <li class="nav-home">
-                        <a href="#">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Espace responsable Controleurs</a>
-                    </li>
-                    <li class="separator">
-                        <i class="fas fa-angle-right"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Liste des unités</a>
-                    </li>
+                    <ul class="breadcrumbs mb-3">
 
-                </ul>
-               </div>
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Espace responsable générale</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Liste des entités</a>
+                        </li>
+
+                    </ul>
+                </div>
                 <!-- Customized Card -->
 
 
                 <div class="row">
 
                     <!----------------------------------------------------------------------------->
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-
-                        <div class="ms-md-auto py-2 py-md-0">
-
-                            <a th:href="@{/responsableControleur/gestionUnites/ajout}" class="btn btn-primary btn-round">Ajouter une entité</a>
-                        </div>
-                    </div>
-
 
 
 
                     <!-------------------------------------------------------------------------------->
+                    <style>
+                        @media (min-width: 1204px) and (max-width: 1506px) {
+                            .col-xl-4 {
+                                flex: 0 0 33.333333%;
+                                max-width: 33.333333%;
+                            }
+                        }
+
+                    </style>
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Liste des unités </h4>
+                                <h4 class="card-title">Basic</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <div id="multi-filter-select_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <table
+                                            id="basic-datatables"
+                                            class="display table table-striped table-hover"
+                                    >
+                                        <thead>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Controleur</th>
+                                            <th>Unité</th>
+                                            <!--   <th>Age</th>-->
+                                            <th>date du controle</th>
+                                            <!-- <th>Salary</th>-->
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Controleur</th>
+                                            <th>Unité</th>
+                                            <!--   <th>Age</th>-->
+                                            <th>date du controle</th>
+                                            <!-- <th>Salary</th>-->
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <tr th:each="f:${formulairesByEquipement}">
+                                            <td th:text="${f.getMatriculeExemplaireEquipement()}"></td>
+                                            <td th:text="${f.getControleur().getNom()+' ' +f.getControleur().getPrenom()}">System Architect</td>
+                                            <td  th:text="${f.getUnite().getNom()}">Edinburgh</td>
+                                            <!-- <td>61</td>-->
+                                            <td  th:text="${f.getDateControle()}">2011/04/25</td>
+                                            <!-- <td>$320,800</td>-->
+                                        </tr>
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <table id="multi-filter-select" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="multi-filter-select_info">
-                                                    <thead>
-                                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 168.962px;">Nom d'unité</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Nombre d'équipements</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Modifier</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Supprimer</th>
-
-
-                                                    </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                    <tr>
-                                                        <th rowspan="1" colspan="1">
-                                                            <select class="form-select"><option value=""></option>
-
-                                                                <option value="Shou Itou">Shou Itou</option>
-                                                                <option value="Sonya Frost">Sonya Frost</option>
-                                                                <option value="Suki Burks">Suki Burks</option>
-                                                                <option value="Tatyana Fitzpatrick">Tatyana Fitzpatrick</option>
-                                                                <option value="Thor Walton">Thor Walton</option>
-                                                                <option value="Unity Butler">Unity Butler</option></select></th>
-                                                        <th rowspan="1" colspan="1">
-                                                            <select class="form-select"><option value=""></option></select>
-                                                        </th>
-
-                                                    </tfoot>
-                                                    <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                    <!---------- HA FIN GHATBDA LA BOUCLE ---------------->
-
-                                                    <tr role="row" class="odd" th:each="u:${listeUnites}">
-                                                        <td class="sorting_1" th:text="${u.getNom()}"></td>
-                                                        <td>15</td>
-
-                                                        <td>
-                                                            <a th:href="@{/responsableControleur/gestionUnites/modification/{id}(id=${u.idUnite})}">
-                                                                <button class="btn btn-icon btn-clean me-0" type="button">
-                                                                    <i class="fa-solid fa-pen-to-square fa" style="color: #00ff00;"></i>
-                                                                </button>
-                                                            </a>
-                                                        </td>
-
-                                                        <td>
-                                                            <form th:action="@{/responsableControleur/gestionUnites/suppression/{id}(id=${u.idUnite})}" method="post">
-                                                                <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette unité ?');">
-                                                                    <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
-
-
-                                                    </tr>
-                                                    <!---------- HA FIN GHATSALI ---------------->
-                                                    </tbody>
-                                                </table></div></div><div class="row">
-                                      </div></div>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
 
 
                     <!-------------------------------------------------------------------------------->
@@ -802,7 +741,6 @@
 <!-- Kaiadmin JS -->
 <script th:src="@{/js/kaiadmin.min.js}"></script>
 
-
 <script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
 
 <script>
@@ -862,7 +800,6 @@
         });
     });
 </script>
-
 
 </body>
 </html>

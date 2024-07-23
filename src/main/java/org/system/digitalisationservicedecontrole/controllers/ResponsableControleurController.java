@@ -9,14 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.system.digitalisationservicedecontrole.configuration.GestionSession;
-import org.system.digitalisationservicedecontrole.entities.Controleur;
-import org.system.digitalisationservicedecontrole.entities.Entite;
-import org.system.digitalisationservicedecontrole.entities.Equipement;
-import org.system.digitalisationservicedecontrole.entities.Unite;
-import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
-import org.system.digitalisationservicedecontrole.repositories.EntiteRepo;
-import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
-import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
+import org.system.digitalisationservicedecontrole.entities.*;
+import org.system.digitalisationservicedecontrole.repositories.*;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -37,6 +31,8 @@ public class ResponsableControleurController {
     private UniteRepo uniteRepp ;
     @Autowired
     private GestionSession gestionSession;
+    @Autowired
+    private FormulaireRepo formulaireRepo;
 
 
     @GetMapping("/responsableControleur/login")
@@ -135,6 +131,24 @@ public String afficherEquipementForm(Model model , HttpSession session) {
 
 
     //------------------------
+
+
+    @GetMapping("/responsableControleur/archiveFormulaire/parEquipements")
+    public String RC_archiveFormulaire_ParEquipements(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        List<Equipement> listeEquipements = equipementRepo.findAll();
+        model.addAttribute("listeEquipements", listeEquipements );
+        return "RC_archiveFormulaire_ParEquipements";
+    }
+    @GetMapping("/responsableControleur/archiveFormulaire/parEquipements/voirArchive/{id}")
+    public String RG_archiveFormulaire_ParEquipements_voirArchive(@PathVariable("id") Long id, Model model, HttpSession session ) {
+        Equipement equipement = equipementRepo.findById(id).get();
+        gestionSession.prepareModel(session, model);
+
+        List<Formulaire> formulairesByEquipement = formulaireRepo.findFormulaireByEquipement(equipement);
+        model.addAttribute("formulairesByEquipement", formulairesByEquipement );
+        return "RC_archiveFormulaire_ParEquipements_voirArchive";
+    }
 
 
 
