@@ -33,7 +33,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     logger.debug("Configuring request matchers");
-                    auth.requestMatchers("/home", "/login", "/error", "/css/**", "/img/**").permitAll();
+                    auth.requestMatchers("/index","/libraryImages/**", "/login", "/error", "/css/**", "/img/**").permitAll();
                     auth.requestMatchers("/responsableGeneral/**").hasRole("RESPONSABLE_GENERALE");
                     auth.requestMatchers("/responsableControleur/**").hasRole("RESPONSABLE_CONTROLEURS");
                     auth.requestMatchers("/controleur/**").hasRole("CONTROLEUR");
