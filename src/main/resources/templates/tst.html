@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Excel</title>
+  <title>Excel Download</title>
 </head>
 <body>
-<input type="datetime-local" id="dateControle" placeholder="Date de Controle">
-<input type="text" id="matricule" placeholder="Matricule">
-<button id="downloadExcel">Télécharger Excel</button>
+<!-- Input search fields -->
+<div>
+  <input type="datetime-local" id="searchDateControle" placeholder="Date Controle">
+  <input type="text" id="searchMatricule" placeholder="Matricule">
+  <button id="searchButton">Rechercher</button>
+</div>
+
+<!-- Table for displaying results -->
+<table id="dataTable">
+  <tr>
+    <td><label class="dateControle">2024-07-02 02:17</label></td>
+    <td><label class="matricule">Mat-1</label></td>
+    <td><button class="downloadExcel">Télécharger Excel</button></td>
+  </tr>
+  <tr>
+    <td><label class="dateControle">2024-07-03 03:18</label></td>
+    <td><label class="matricule">Mat-2</label></td>
+    <td><button class="downloadExcel">Télécharger Excel</button></td>
+  </tr>
+  <!-- Add more rows as needed -->
+</table>
 
 <script>
-  document.getElementById('downloadExcel').addEventListener('click', function() {
-    const dateControle = document.getElementById('dateControle').value;
-    const matricule = document.getElementById('matricule').value;
-
+  // Function to fetch and download Excel based on date and matricule
+  function downloadExcel(dateControle, matricule) {
     fetch(`/excel?dateControle=${encodeURIComponent(dateControle)}&matricule=${encodeURIComponent(matricule)}`, {
       method: 'GET',
       headers: {
@@ -42,14 +56,35 @@
               a.click();
               window.URL.revokeObjectURL(url);
 
-              // Rediriger après le téléchargement
+              // Redirect after download
               setTimeout(() => {
-                window.location.href = '/controleur/dashboard'; // Remplacez cette URL par celle de votre tableau de bord
-              }, 1000); // Ajoute un délai pour s'assurer que le téléchargement commence
+                window.location.href = '/controleur/dashboard'; // Replace with your dashboard URL
+              }, 1000); // Adds a delay to ensure download starts
             })
             .catch(error => {
               alert(error.message);
             });
+  }
+
+  // Event listener for search button
+  document.getElementById('searchButton').addEventListener('click', function() {
+    const dateControle = document.getElementById('searchDateControle').value;
+    const matricule = document.getElementById('searchMatricule').value;
+
+    // Search based on input fields
+    downloadExcel(dateControle, matricule);
+  });
+
+  // Event listener for download buttons in the table
+  document.querySelectorAll('.downloadExcel').forEach(button => {
+    button.addEventListener('click', function() {
+      const row = this.closest('tr');
+      const dateControle = row.querySelector('.dateControle').textContent;
+      const matricule = row.querySelector('.matricule').textContent;
+
+      // Search based on labels in the row
+      downloadExcel(dateControle, matricule);
+    });
   });
 </script>
 </body>
