@@ -213,18 +213,7 @@
                     <nav
                             class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
                     >
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button type="submit" class="btn btn-search pe-1">
-                                    <i class="fa fa-search search-icon"></i>
-                                </button>
-                            </div>
-                            <input
-                                    type="text"
-                                    placeholder="Search ..."
-                                    class="form-control"
-                            />
-                        </div>
+
                     </nav>
 
                     <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
@@ -386,7 +375,7 @@
                     <ul class="breadcrumbs mb-3">
 
                         <li class="nav-home">
-                            <a href="#">
+                            <a th:href="@{/index}">
                                 <i class="fas fa-home"></i> Accueil
                             </a>
                         </li>
@@ -394,7 +383,7 @@
                             <i class="fas fa-angle-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Espace responsable générale</a>
+                            <a th:href="@{/responsableGeneral/dashboard}">Espace responsable générale</a>
                         </li>
                         <li class="separator">
                             <i class="fas fa-angle-right"></i>
