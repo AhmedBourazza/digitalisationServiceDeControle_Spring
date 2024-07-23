@@ -1,4 +1,5 @@
 package org.system.digitalisationservicedecontrole.services;
+
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFPalette;
@@ -6,10 +7,10 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.system.digitalisationservicedecontrole.repositories.ExcelRepo;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -151,8 +152,9 @@ public class ExcelService {
     }
 
     private void addImageToSheet(Sheet sheet, Workbook workbook) throws IOException {
-        // Load the image file
-        try (InputStream is = new FileInputStream("C:\\Users\\pc\\Desktop\\excelImage.PNG")) { // Update path to your image
+        // Load the image file from the classpath
+        ClassPathResource resource = new ClassPathResource("static/img/excelImage.PNG");
+        try (InputStream is = resource.getInputStream()) {
             byte[] imageBytes = is.readAllBytes();
             int pictureIdx = workbook.addPicture(imageBytes, Workbook.PICTURE_TYPE_PNG);
             CreationHelper helper = workbook.getCreationHelper();
