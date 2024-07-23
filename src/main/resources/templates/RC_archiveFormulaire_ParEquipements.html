@@ -53,7 +53,7 @@
                 <a href="index.html" class="logo">
                     <img th:src="@{/img/ocp logo3.png}" alt="navbar brand" class="navbar-brand" height="20" />
 
-                    <strong style="color: white; margin-left: 4px;"> Espace RG </strong>
+                    <strong style="color: white; margin-left: 4px;"> Responsable controleur </strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -73,8 +73,8 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
 
-                    <li class="nav-item active">
-                        <a th:href="@{/responsableGeneral/dashboard}">
+                    <li class="nav-item">
+                        <a th:href="@{/responsableControleur/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
@@ -82,7 +82,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/monProfile}">
+                        <a th:href="@{/responsableControleur/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
@@ -102,24 +102,15 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionControleurs}">
+                        <a th:href="@{/responsableControleur/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>contrôleurs</p>
                             <span class="badge badge-success">8</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
-                            <i class="fa-solid fa-person"></i>
 
-                            <p>R. Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a data-bs-toggle="collapse" href="#forms">
                             <i class="fas fa-archive"></i>
                             <p>Archive Formulaires</p>
@@ -142,7 +133,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEquipements}">
+                        <a th:href="@{/responsableControleur/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
                             <span class="badge badge-success">16</span>
@@ -151,7 +142,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEntites}">
+                        <a th:href="@{/responsableControleur/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
                             <span class="badge badge-success">17</span>
@@ -159,7 +150,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionUnites}">
+                        <a th:href="@{/responsableControleur/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
                             <span class="badge badge-success">6</span>
