@@ -347,8 +347,8 @@
                                     <li>
                                         <div class="user-box">
                                             <div class="avatar-lg">
-                                                <img th:src="@{${imageMoi}}"    alt="image profile"
-                                                     class="avatar-img rounded"/>
+                                                <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+
 
                                             </div>
                                             <div class="u-text">
@@ -423,7 +423,7 @@
                     <div class="col-12">
                         <div class="card card-profile">
                             <form th:action="@{/responsableGeneral/gestionControleurs/modification/{id}(id=${controleur.idControleur})}" th:object="${controleur}" method="post" enctype="multipart/form-data">
-                                <div class="card-header" th:style="'background-image: url(' + @{/img/backProfile.jpg} + ')'">
+                                <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
                                     <div class="profile-picture">
                                         <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
                                             <!-- Affichage de l'image actuelle -->
