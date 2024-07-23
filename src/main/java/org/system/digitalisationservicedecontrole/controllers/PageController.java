@@ -15,4 +15,9 @@ public class PageController {
         return "index";
     }
 
+    @GetMapping("/tst")
+    public String tst() {
+        return "tst";
+    }
+
 }
