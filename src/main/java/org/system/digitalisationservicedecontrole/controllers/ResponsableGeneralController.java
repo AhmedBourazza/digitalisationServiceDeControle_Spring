@@ -33,12 +33,31 @@ public class ResponsableGeneralController {
     private ResponsableGeneralRepo responsableGeneralRepo;
     @Autowired
     private GestionSession gestionSession;
+    @Autowired
+    private FormulaireRepo formulaireRepo;
+
 
     @GetMapping("/responsableGeneral/login")
     public String login() {
         return "RG_login"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
+    @GetMapping("/responsableGeneral/archiveFormulaire/parEquipements")
+    public String RG_archiveFormulaire_ParEquipements(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        List<Equipement> listeEquipements = equipementRepo.findAll();
+        model.addAttribute("listeEquipements", listeEquipements );
+        return "RG_archiveFormulaire_ParEquipements";
+    }
+    @GetMapping("/responsableGeneral/archiveFormulaire/parEquipements/voirArchive/{id}")
+    public String RG_archiveFormulaire_ParEquipements_voirArchive(@PathVariable("id") Long id, Model model, HttpSession session ) {
+        Equipement equipement = equipementRepo.findById(id).get();
+        gestionSession.prepareModel(session, model);
+
+        List<Formulaire> formulairesByEquipement = formulaireRepo.findFormulaireByEquipement(equipement);
+        model.addAttribute("formulairesByEquipement", formulairesByEquipement );
+        return "RG_archiveFormulaire_ParEquipements_voirArchive";
+    }
 
     @GetMapping("/responsableGeneral/gestionControleurs")
     public String Controleurs(Model model , HttpSession session) {
