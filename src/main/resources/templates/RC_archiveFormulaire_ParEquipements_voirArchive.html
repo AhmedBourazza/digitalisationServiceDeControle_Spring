@@ -82,14 +82,14 @@
                 <ul class="nav nav-secondary">
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/dashboard}">
+                        <a th:href="@{/responsableControleur/dashboard}">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
 
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a th:href="@{/responsableGeneral/monProfile}">
+                        <a th:href="@{/responsableControleur/monProfile}">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon Profile</p>
 
@@ -109,7 +109,7 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionControleurs}">
+                        <a th:href="@{/responsableControleur/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>contrôleurs</p>
@@ -117,7 +117,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
+                        <a th:href="@{/responsableControleur/gestionResponsableControleurs}">
                             <i class="fa-solid fa-person"></i>
 
                             <p>Responsable Contrôleurs</p>
@@ -152,7 +152,7 @@
 
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEquipements}">
+                        <a th:href="@{/responsableControleur/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
                             <span class="badge badge-success">16</span>
@@ -161,7 +161,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionEntites}">
+                        <a th:href="@{/responsableControleur/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
                             <span class="badge badge-success">17</span>
@@ -170,7 +170,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a th:href="@{/responsableGeneral/gestionUnites}">
+                        <a th:href="@{/responsableControleur/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
                             <span class="badge badge-success">6</span>
@@ -436,37 +436,13 @@
                     </style>
                     <div>
 
-                        <div class="form-group row">
-                            <div class="col-md-4">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon11">Date de controle</span>
-                                    <input type="datetime-local" id="searchDateControle" class="form-control" placeholder="Date Controle" aria-label="Matricule" aria-describedby="basic-addon11">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">Matricule</span>
-                                    <input type="text" id="searchMatricule" class="form-control" placeholder="Matricule" aria-label="Matricule" aria-describedby="basic-addon1">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-success" id="searchButton">
-                <span class="btn-label">
-                    <i class="fa fa-file-excel"></i>
-                </span>
-                                    Excel
-                                </button>
-                            </div>
-                        </div>
-
-
 
                     </div>
 
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Basic</h4>
+                                <h4 class="card-title">Liste des formulaires</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -494,7 +470,8 @@
                                             <!-- <td>61</td>-->
                                             <td  th:text="${f.getDateControle()}" class="dateControle"></td>
                                             <td style="text-align: center;">
-                                                <button type="button"  class="btn btn-icon btn-round btn-warning">
+
+                                                <button type="button" class="btn btn-icon btn-round btn-warning">
                                                     <i class="fa fa-file-excel"></i>
                                                 </button>
                                             </td>
@@ -502,13 +479,11 @@
 
 
                                             <!-- <td>$320,800</td>-->
-
                                         </tr>
 
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -813,7 +788,7 @@
 
                     // Redirect after download
                     setTimeout(() => {
-                        window.location.href = '/controleur/dashboard'; // Replace with your dashboard URL
+                        window.location.href = '#'; // Replace with your dashboard URL
                     }, 1000); // Adds a delay to ensure download starts
                 })
                 .catch(error => {
@@ -822,13 +797,13 @@
         }
 
         // Event listener for search button
-        document.getElementById('searchButton').addEventListener('click', function() {
+      /*  document.getElementById('searchButton').addEventListener('click', function() {
             const dateControle = document.getElementById('searchDateControle').value;
             const matricule = document.getElementById('searchMatricule').value;
 
             // Search based on input fields
             downloadExcel(dateControle, matricule);
-        });
+        });*/
 
         // Event listener for download buttons in the table
         document.querySelectorAll('.btn.btn-icon.btn-round.btn-warning').forEach(button => {
@@ -842,7 +817,7 @@
             });
         });
     });
-</script
+</script>
 <script>
     $(document).ready(function () {
         $("#basic-datatables").DataTable({});
