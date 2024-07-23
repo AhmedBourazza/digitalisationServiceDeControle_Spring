@@ -446,27 +446,27 @@
                                             <th>Controleur</th>
                                             <th>Unité</th>
                                             <!--   <th>Age</th>-->
-                                            <th>date du controle</th>
+                                            <th>Date du controle</th>
+                                            <th>Action</th>
+
                                             <!-- <th>Salary</th>-->
                                         </tr>
                                         </thead>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Référence</th>
-                                            <th>Controleur</th>
-                                            <th>Unité</th>
-                                            <!--   <th>Age</th>-->
-                                            <th>date du controle</th>
-                                            <!-- <th>Salary</th>-->
-                                        </tr>
-                                        </tfoot>
                                         <tbody>
                                         <tr th:each="f:${formulairesByEquipement}">
                                             <td th:text="${f.getMatriculeExemplaireEquipement()}"></td>
                                             <td th:text="${f.getControleur().getNom()+' ' +f.getControleur().getPrenom()}">System Architect</td>
-                                            <td  th:text="${f.getUnite().getNom()}">Edinburgh</td>
+                                            <td  th:text="${f.getUnite().getNom()}"></td>
                                             <!-- <td>61</td>-->
-                                            <td  th:text="${f.getDateControle()}">2011/04/25</td>
+                                            <td  th:text="${f.getDateControle()}"></td>
+                                            <td style="text-align: center;">
+                                                <button type="button" class="btn btn-icon btn-round btn-warning">
+                                                    <i class="fa fa-file-excel"></i>
+                                                </button>
+                                            </td>
+
+
+
                                             <!-- <td>$320,800</td>-->
                                         </tr>
 
