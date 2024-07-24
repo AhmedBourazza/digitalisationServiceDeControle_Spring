@@ -351,9 +351,9 @@
                                                 <h4  th:text="${prenomMoi}"></h4>
                                                 <p class="text-muted" th:text="${emailMoi}"></p>
                                                 <a
-                                                        href="profile.html"
+                                                        href="/responsableControleur/monProfile"
                                                         class="btn btn-xs btn-secondary btn-sm"
-                                                >View Profile</a
+                                                >Profile</a
                                                 >
                                             </div>
                                         </div>
@@ -363,9 +363,9 @@
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Account Setting</a>
+                                        <a class="dropdown-item" href="#">Modifier mon profil</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                        <a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
                                     </li>
                                 </div>
                             </ul>
@@ -382,7 +382,7 @@
                     <h3 class="fw-bold mb-3">Ajout d'une unité</h3>
                     <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
-                            <a href="#">
+                            <a href="/responsableControleur/dashboard">
                                 <i class="fas fa-home"></i> Accueil
                             </a>
                         </li>
@@ -395,7 +395,7 @@
                         <li class="separator">
                             <i class="fas fa-angle-right"></i>
                         </li>
-                        <li class="nav-item">
+                        <li class="/responsableControleur/gestionUnites">
                             <a href="#">Liste des unités</a>
                         </li>
                         <li class="separator">
