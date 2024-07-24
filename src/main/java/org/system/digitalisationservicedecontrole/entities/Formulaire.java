@@ -20,7 +20,9 @@ public class Formulaire {
     private Long idFormulaire ;
 
     private String secteur ;
-
+    private String matriculeExemplaireEquipement ;
+    private Date dateControle ;
+    private String Proprietaire ;
     @Lob
     @Column(name = "image_data", columnDefinition = "LONGBLOB")
     private byte[] ImageData;
@@ -33,6 +35,8 @@ public class Formulaire {
     private Unite unite ;
     @OneToMany(mappedBy = "formulaire")
     private Collection<Section> sections;
-
+    @ManyToOne()
+    @JoinColumn(name = "IdControleur_")
+    private Controleur controleur ;
 
 }
