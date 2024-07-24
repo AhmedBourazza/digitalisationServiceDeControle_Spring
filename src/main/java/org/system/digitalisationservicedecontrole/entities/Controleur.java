@@ -42,7 +42,7 @@ public class Controleur {
     private ResponsableControleur responsableControleur ;
 
     @OneToMany(mappedBy = "controleur")
-    private Collection<Formulaire> formulaires ;
+    private Collection<Reponse> reponses ;
 
 
     public String getImageDataAsBase64() {

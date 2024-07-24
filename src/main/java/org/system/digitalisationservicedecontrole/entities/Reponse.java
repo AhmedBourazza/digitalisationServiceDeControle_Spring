@@ -21,8 +21,13 @@ public class Reponse {
     private Date dateControle ;
     private String enonce ;
     private String justification ;
+    private String matriculeExemplaireEquipement ;
+    private String Proprietaire ;
     @ManyToOne()
     @JoinColumn(name = "IdQuestion_")
     private Question question;
+    @ManyToOne()
+    @JoinColumn(name = "IdControleur_")
+    private Controleur controleur ;
 
 }
