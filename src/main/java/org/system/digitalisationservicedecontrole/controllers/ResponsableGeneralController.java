@@ -70,6 +70,8 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/dashboard")
     public String dashboard(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        List<Formulaire> formulaires = formulaireRepo.findAllOrderByDateControle();
+        model.addAttribute("formulaires", formulaires);
         return "RG_dashboard";
     }
     @GetMapping("/responsableGeneral/editProfile")

@@ -11,5 +11,5 @@ import java.util.List;
 public interface FormulaireRepo extends JpaRepository<Formulaire, Long> {
 
     List<Formulaire> findFormulaireByEquipement(Equipement equipement);
-
-}
+    @Query("SELECT f FROM Formulaire f ORDER BY f.dateControle DESC")
+    List<Formulaire> findAllOrderByDateControle();}
