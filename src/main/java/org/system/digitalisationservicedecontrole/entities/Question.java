@@ -19,6 +19,8 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idQuestion;
     private String enonce ;
+    private String sousSection ; //ce champs constitue la sous section qui englope plusieurs question
+
     @ManyToOne()
     @JoinColumn(name = "IdSection_")
     private Section section;
