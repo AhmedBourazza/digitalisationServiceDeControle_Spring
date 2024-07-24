@@ -20,8 +20,8 @@ public class Section {
     private Long idSection ;
     private String nom ;
     @ManyToOne()
-    @JoinColumn(name = "IdFormulaire_")
-    private Formulaire formulaire ;
+    @JoinColumn(name = "IdEquipement_")
+    private Equipement equipement ;
 
 
     @OneToMany(mappedBy = "section")
