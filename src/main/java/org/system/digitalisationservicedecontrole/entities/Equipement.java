@@ -42,6 +42,7 @@ public class Equipement {
         this.ImageData = Base64.getDecoder().decode(base64String);
     }
 
-
+    @OneToMany(mappedBy = "equipement")
+    private Collection<Section> sections;
 
 }

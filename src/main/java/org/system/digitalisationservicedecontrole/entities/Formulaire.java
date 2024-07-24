@@ -33,10 +33,11 @@ public class Formulaire {
     @ManyToOne()
     @JoinColumn(name = "IdUnite_")
     private Unite unite ;
-    @OneToMany(mappedBy = "formulaire")
-    private Collection<Section> sections;
+
     @ManyToOne()
     @JoinColumn(name = "IdControleur_")
     private Controleur controleur ;
 
+    @OneToMany(mappedBy = "formulaire")
+    private Collection<Reponse> reponses;
 }

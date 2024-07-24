@@ -26,4 +26,8 @@ public class Reponse {
     @JoinColumn(name = "IdQuestion_")
     private Question question;
 
+    @ManyToOne()
+    @JoinColumn(name = "IdFormulaire_")
+    private Formulaire formulaire;
+
 }
