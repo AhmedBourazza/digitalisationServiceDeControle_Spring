@@ -13,6 +13,7 @@ import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +80,14 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         try {
             if (!imageFile.isEmpty()) {
                 equipement.setImageData(imageFile.getBytes());
+            }else {
+                // Read the default image bytes
+                InputStream defaultImageStream = getClass().getResourceAsStream("/static/img/unknown.png");
+                if (defaultImageStream != null) {
+                    byte[] defaultImageBytes = defaultImageStream.readAllBytes();
+                    equipement.setImageData(defaultImageBytes);
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();

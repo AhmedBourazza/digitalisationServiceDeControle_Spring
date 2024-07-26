@@ -1,5 +1,7 @@
 package org.system.digitalisationservicedecontrole.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,14 +9,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.system.digitalisationservicedecontrole.DTOs.ControleurDTO;
 import org.system.digitalisationservicedecontrole.configuration.GestionSession;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
 
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class ResponsableGeneralController {
@@ -35,6 +41,8 @@ public class ResponsableGeneralController {
     private GestionSession gestionSession;
     @Autowired
     private FormulaireRepo formulaireRepo;
+    @Autowired
+    private ObjectMapper jacksonObjectMapper;
 
 
     @GetMapping("/responsableGeneral/login")
@@ -66,12 +74,68 @@ public class ResponsableGeneralController {
         model.addAttribute("listeControleurs", listeControleurs);
         return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
-
     @GetMapping("/responsableGeneral/dashboard")
-    public String dashboard(Model model , HttpSession session) {
+
+    public String dashboard(Model model, HttpSession session) {
         gestionSession.prepareModel(session, model);
-        List<Formulaire> formulaires = formulaireRepo.findAllOrderByDateControle();
+
+        List<Formulaire> formulaires = formulaireRepo.findAllOrderByDateControleDesc();
+
+        Date currentDate = new Date();
+        Date dateLimit = new Date(currentDate.getTime() - (30L * 24 * 60 * 60 * 1000)); // 30 jours
+
+        List<Object[]> results = controleurRepo.findAllControleursWithCount(dateLimit);
+
+        List<ControleurDTO> topControleurs = results.stream()
+                .map(result -> {
+                    ControleurDTO dto = new ControleurDTO();
+                    dto.setIdControleur((Long) result[0]);
+                    dto.setNom((String) result[1]);
+                    dto.setPrenom((String) result[2]);
+                    dto.setMatricule((String) result[3]);
+                    dto.setDateIntegration((Date) result[4]);
+                    dto.setDateEmbauche((Date) result[5]);
+                    dto.setFormCount((Long) result[6]);
+                    dto.setGrade((String) result[7]);
+                    dto.setNumTele((String) result[8]);
+                    dto.setUsername((String) result[9]);
+                    dto.setEmail((String) result[10]);
+                    dto.setPassword((String) result[11]);
+                    dto.setImageData((byte[]) result[12]);
+                    return dto;
+                })
+                .limit(5)
+                .collect(Collectors.toList());
+
+        List<String> nomsControleurs = topControleurs.stream()
+                .map(c -> c.getNom() + " " + c.getPrenom())
+                .collect(Collectors.toList());
+
+        List<Long> compteControles = topControleurs.stream()
+                .map(ControleurDTO::getFormCount)
+                .collect(Collectors.toList());
+
+        // Log pour le débogage
+        System.out.println("Noms des contrôleurs: " + nomsControleurs);
+        System.out.println("Comptes des contrôles: " + compteControles);
+
+        try {
+            // Ajout des données JSON au modèle
+            model.addAttribute("nomsControleurs", jacksonObjectMapper.writeValueAsString(nomsControleurs));
+            model.addAttribute("compteControles", jacksonObjectMapper.writeValueAsString(compteControles));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            // Gérer l'erreur de conversion JSON, si nécessaire
+        }
+
         model.addAttribute("formulaires", formulaires);
+        model.addAttribute("controleurs", topControleurs);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
+        model.addAttribute("totalFormulaires", formulaireRepo.count());
+
         return "RG_dashboard";
     }
     @GetMapping("/responsableGeneral/editProfile")
@@ -118,8 +182,16 @@ public class ResponsableGeneralController {
         try {
             if (!imageFile.isEmpty()) {
                 equipement.setImageData(imageFile.getBytes());
-            }
-        } catch (IOException e) {
+
+            }else {
+                // Read the default image bytes
+                InputStream defaultImageStream = getClass().getResourceAsStream("/static/img/unknown.png");
+                if (defaultImageStream != null) {
+                    byte[] defaultImageBytes = defaultImageStream.readAllBytes();
+                    equipement.setImageData(defaultImageBytes);
+                }
+
+        } }catch (IOException e) {
             e.printStackTrace();
         }
         equipementRepo.save(equipement);
