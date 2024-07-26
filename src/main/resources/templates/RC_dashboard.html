@@ -967,7 +967,6 @@
 <!-- Kaiadmin JS -->
 <script th:src="@{/js/kaiadmin.min.js}"></script>
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-<script th:src="@{/js/setting-demo.js}"></script>
 <script>
     $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
         type: "line",
@@ -1023,5 +1022,132 @@
         fillColor: "rgba(255, 255, 255, .15)",
     });
 </script>
+
+
+
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Function to fetch and download Excel based on date and matricule
+        function downloadExcel(dateControle, matricule) {
+            fetch(`/excel?dateControle=${encodeURIComponent(dateControle)}&matricule=${encodeURIComponent(matricule)}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/vnd.ms-excel'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    } else if (response.status === 404) {
+                        return response.json().then(data => {
+                            throw new Error(data.message);
+                        });
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = 'formulaire.xls';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+
+                    // Redirect after download
+                    setTimeout(() => {
+                        window.location.href = '#'; // Replace with your dashboard URL
+                    }, 1000); // Adds a delay to ensure download starts
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }
+
+        // Event listener for search button
+        /*  document.getElementById('searchButton').addEventListener('click', function() {
+              const dateControle = document.getElementById('searchDateControle').value;
+              const matricule = document.getElementById('searchMatricule').value;
+
+              // Search based on input fields
+              downloadExcel(dateControle, matricule);
+          });*/
+
+        // Event listener for download buttons in the table
+        document.querySelectorAll('.btn.btn-icon.btn-round.btn-warning').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const dateControle = row.querySelector('.dateControle').textContent.trim();
+                const matricule = row.querySelector('.matricule').textContent.trim();
+
+                // Search based on labels in the row
+                downloadExcel(dateControle, matricule);
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#basic-datatables").DataTable({});
+
+        $("#multi-filter-select").DataTable({
+            pageLength: 5,
+            initComplete: function () {
+                this.api()
+                    .columns()
+                    .every(function () {
+                        var column = this;
+                        var select = $(
+                            '<select class="form-select"><option value=""></option></select>'
+                        )
+                            .appendTo($(column.footer()).empty())
+                            .on("change", function () {
+                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                column
+                                    .search(val ? "^" + val + "$" : "", true, false)
+                                    .draw();
+                            });
+
+                        column
+                            .data()
+                            .unique()
+                            .sort()
+                            .each(function (d, j) {
+                                select.append(
+                                    '<option value="' + d + '">' + d + "</option>"
+                                );
+                            });
+                    });
+            },
+        });
+
+        // Add Row
+        $("#add-row").DataTable({
+            pageLength: 5,
+        });
+
+        var action =
+            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+        $("#addRowButton").click(function () {
+            $("#add-row")
+                .dataTable()
+                .fnAddData([
+                    $("#addName").val(),
+                    $("#addPosition").val(),
+                    $("#addOffice").val(),
+                    action,
+                ]);
+            $("#addRowModal").modal("hide");
+        });
+    });
+</script>
+
 </body>
 </html>
