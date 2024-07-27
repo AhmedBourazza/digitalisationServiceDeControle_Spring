@@ -12,8 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 
+@Entity
 public class Formulaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

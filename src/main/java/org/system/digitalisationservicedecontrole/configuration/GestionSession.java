@@ -10,6 +10,7 @@ public class GestionSession {
 
 
     public void prepareModel(HttpSession s, Model model){
+
         String nom = (String) s.getAttribute("nom");
         String prenom = (String) s.getAttribute("prenom");
         String userImageBase64 = (String) s.getAttribute("userImage");
