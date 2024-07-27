@@ -477,7 +477,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
-                                    Doughnut Chart - Nombre de Contrôles par Équipement
+                                    <i class="fas fa-tools text-primary"></i> <!-- Icône d'outils pour les équipements -->
+                                    Nombre de Contrôles par Équipement
                                     <p>Contrôles pour le mois précédent : <span th:text="${monthYearLastMonth}"></span></p>
                                 </div>
                             </div>
@@ -494,7 +495,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
-                                    Doughnut Chart - Nombre de Contrôles par Équipement
+                                    <i class="fas fa-cogs text-success"></i> <!-- Icône de réglages pour les contrôles -->
+                                    Nombre de Contrôles par Équipement
                                     <p>Contrôles pour le mois en cours : <span th:text="${monthYearCurrentMonth}"></span></p>
                                 </div>
                             </div>
@@ -505,8 +507,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <!--------------------------------------------------------------------------------------------------------------------->
                 <div class="row">
@@ -515,9 +515,13 @@
                          data-compte-controles="${#lists.toJson(compteControles)}">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">Nombre de Contrôles par Contrôleur <p>Contrôles pour le mois de : <span th:text="${monthYear}"></span></p>
+                                <div class="card-title">
+                                    <i class="fas fa-user-check text-info"></i> <!-- Icône de vérification pour les contrôleurs -->
+                                    Nombre de Contrôles par Contrôleur
+                                    <p>Contrôles pour le mois de : <span th:text="${monthYearCurrentMonth}"></span></p>
                                 </div>
                             </div>
+
 
                             <div class="card-body">
                                 <div class="chart-container">
@@ -527,9 +531,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
 
-                    <!----------------------------------------------------------------------------->
+                <!----------------------------------------------------------------------------->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-round">
@@ -537,7 +540,8 @@
                                     <div class="card-head-row card-tools-still-right">
                                         <div class="card-title">
                                             <i class="fas fa-trophy text-warning"></i> <!-- Icône de trophée pour le titre -->
-                                            Top Controleurs <p class="text-success">(Dernier mois)</p>
+                                            Top Contrôleurs
+                                            <p class="text-success">Pour le mois de : <span th:text="${monthYearCurrentMonth}"></span></p>
                                         </div>
                                         <div class="card-tools">
                                             <div class="dropdown">
@@ -556,7 +560,6 @@
                                         <div class="item-list d-flex align-items-center" th:each="c : ${controleurs}">
                                             <div class="avatar">
                                                 <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}"  alt="Avatar" class="avatar-img rounded-circle">
-
                                             </div>
                                             <div class="info-user ms-3 flex-grow-1">
                                                 <div class="username" th:text="${c.nom + ' ' + c.prenom}"></div>
@@ -568,7 +571,6 @@
                                             <div class="text-success d-flex align-items-center">
                                                 <span th:text="${c.formCount}">0</span>
                                                 <span style="margin-left: 5px;" th:text="${c.formCount == 1 ? 'Contrôle' : 'Contrôles'}">Contrôles</span>
-
                                             </div>
                                         </div>
                                     </div>

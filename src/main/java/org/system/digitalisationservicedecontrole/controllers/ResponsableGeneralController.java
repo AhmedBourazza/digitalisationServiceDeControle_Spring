@@ -97,11 +97,16 @@ public class ResponsableGeneralController {
         calendar = Calendar.getInstance();
         String monthYearCurrentMonth = monthFormat.format(calendar.getTime()); // Format du mois en cours
 
-        // Récupération des contrôleurs avec leurs comptes pour le dernier mois
-        List<Object[]> results = controleurRepo.findAllControleursWithCount(startOfLastMonth, endOfLastMonth);
+        // Récupération des contrôleurs avec leurs comptes pour le mois en cours
+        Date startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois en cours
+        Date endOfCurrentMonth = calendar.getTime();
+
+        // Récupération des contrôleurs pour le mois en cours
+        List<Object[]> resultsCurrentMonth = controleurRepo.findAllControleursWithCount(startOfCurrentMonth, endOfCurrentMonth);
 
         // Mapper les résultats vers les DTO des contrôleurs
-        List<ControleurDTO> controleursWithControles = results.stream()
+        List<ControleurDTO> controleursWithControlesCurrentMonth = resultsCurrentMonth.stream()
                 .map(result -> {
                     ControleurDTO dto = new ControleurDTO();
                     dto.setIdControleur((Long) result[0]);
@@ -121,17 +126,17 @@ public class ResponsableGeneralController {
                 })
                 .collect(Collectors.toList());
 
-        // Obtenir les 5 meilleurs contrôleurs
-        List<ControleurDTO> topControleurs = controleursWithControles.stream()
+        // Obtenir les 5 meilleurs contrôleurs pour le mois en cours
+        List<ControleurDTO> topControleurs = controleursWithControlesCurrentMonth.stream()
                 .limit(5)
                 .collect(Collectors.toList());
 
         // Obtenir les noms et les comptes des contrôleurs
-        List<String> nomsControleurs = controleursWithControles.stream()
+        List<String> nomsControleurs = controleursWithControlesCurrentMonth.stream()
                 .map(c -> c.getNom() + " " + c.getPrenom())
                 .collect(Collectors.toList());
 
-        List<Long> compteControles = controleursWithControles.stream()
+        List<Long> compteControles = controleursWithControlesCurrentMonth.stream()
                 .map(ControleurDTO::getFormCount)
                 .collect(Collectors.toList());
 
@@ -164,10 +169,10 @@ public class ResponsableGeneralController {
         // Récupérer les données d'équipement pour le mois en cours
         calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois en cours
-        Date startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
+        startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
 
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois en cours
-        Date endOfCurrentMonth = calendar.getTime();
+        endOfCurrentMonth = calendar.getTime();
 
         List<Object[]> equipmentResultsCurrentMonth = equipementRepo.countControlsByEquipement(startOfCurrentMonth, endOfCurrentMonth);
         System.out.println("Résultats d'équipement (Mois en cours) : " + Arrays.deepToString(equipmentResultsCurrentMonth.toArray()));
