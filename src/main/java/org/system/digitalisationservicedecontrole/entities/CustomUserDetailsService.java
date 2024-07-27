@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             logger.debug("User found in ResponsableGeneral repository");
             ResponsableGeneral user = responsableGenerale.get();
             System.out.println(user.getNom());
-            return new MyUserDetails(user.getMatricule(),user.getDateEmbauche() , user.getDateIntegration(),user.getGrade(),user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData(), user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_RESPONSABLE_GENERALE")));
+            return new MyUserDetails(user.getIdResponsableGeneral(),user.getMatricule(),user.getDateEmbauche() , user.getDateIntegration(),user.getGrade(),user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData(), user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_RESPONSABLE_GENERALE")));
         }
 
         Optional<ResponsableControleur> responsableControleurs = responsableControleursRepository.findByUsername(username);
@@ -46,7 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             logger.debug("User found in ResponsableControleur repository");
             ResponsableControleur user = responsableControleurs.get();
             System.out.println(user.getNom());
-            return new MyUserDetails(user.getMatricule(),user.getDateEmbauche() ,user.getDateIntegration() , user.getGrade(),user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData(), user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_RESPONSABLE_CONTROLEURS")));
+            return new MyUserDetails(user.getIdResponsableControleur(),user.getMatricule(),user.getDateEmbauche() ,user.getDateIntegration() , user.getGrade(),user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData(), user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_RESPONSABLE_CONTROLEURS")));
         }
 
         Optional<Controleur> controleur = controleurRepository.findByUsername(username);
@@ -54,7 +54,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             logger.debug("User found in Controleur repository");
             Controleur user = controleur.get();
             System.out.println(user.getNom());
-            return new MyUserDetails(user.getMatricule(), user.getDateEmbauche() , user.getDateIntegration(),"XLL-64", user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData() , user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_CONTROLEUR")));
+            return new MyUserDetails(user.getIdControleur(),user.getMatricule(), user.getDateEmbauche() , user.getDateIntegration(),"XLL-64", user.getEmail()  , user.getNom(), user.getPrenom(), user.getImageData() , user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_CONTROLEUR")));
         }
 
         logger.error("User not found with username: {}", username);

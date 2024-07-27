@@ -10,7 +10,7 @@ public class GestionSession {
 
 
     public void prepareModel(HttpSession s, Model model){
-
+        Long id = (Long) s.getAttribute("id");
         String nom = (String) s.getAttribute("nom");
         String prenom = (String) s.getAttribute("prenom");
         String userImageBase64 = (String) s.getAttribute("userImage");
@@ -21,7 +21,7 @@ public class GestionSession {
         Date date_embauche = (Date) s.getAttribute("date_embauche");
 
 
-
+        model.addAttribute("idMoi",id);
         model.addAttribute("nomCompletMoi",nom+" "+prenom);
         model.addAttribute("nomMoi", nom);
         model.addAttribute("prenomMoi", prenom);
