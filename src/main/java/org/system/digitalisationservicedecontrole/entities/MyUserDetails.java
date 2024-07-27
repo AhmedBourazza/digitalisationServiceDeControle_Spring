@@ -31,10 +31,14 @@ public class MyUserDetails implements UserDetails {
     private final Date date_embauche;
     @Getter
     private final String matricule;
+ @Getter
+ private final String num_tele;
+
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public MyUserDetails(Long id ,String matricule,Date date_embauche  ,  Date date_integration ,  String grade , String email ,String firstName, String lastName, byte[] imageData, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public MyUserDetails(String num_tele,Long id ,String matricule,Date date_embauche  ,  Date date_integration ,  String grade , String email ,String firstName, String lastName, byte[] imageData, String username, String password, Collection<? extends GrantedAuthority> authorities) {
       this.id=id ;
+      this.num_tele= num_tele;
        this.date_integration = date_integration ;
        this.date_embauche = date_embauche ;
        this.matricule =matricule ;
