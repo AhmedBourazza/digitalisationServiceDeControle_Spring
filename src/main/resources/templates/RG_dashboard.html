@@ -18,6 +18,7 @@
 
     <!-- Fonts and icons -->
     <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
     <script>
         WebFont.load({
             google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -469,60 +470,58 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6"
+                         data-equipment-names="${#lists.toJson(equipmentNamesLastMonth)}"
+                         data-equipment-counts="${#lists.toJson(equipmentCountsLastMonth)}">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Doughnut Chart - Nombre de Contrôles par Équipement
+                                    <p>Contrôles pour le mois précédent : <span th:text="${monthYearLastMonth}"></span></p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="doughnutChart" style="width: 50%; height: 50%;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"
+                         data-equipment-names="${#lists.toJson(equipmentNamesCurrentMonth)}"
+                         data-equipment-counts="${#lists.toJson(equipmentCountsCurrentMonth)}">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Doughnut Chart - Nombre de Contrôles par Équipement
+                                    <p>Contrôles pour le mois en cours : <span th:text="${monthYearCurrentMonth}"></span></p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="doughnutChart2" style="width: 50%; height: 50%;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
                 <!--------------------------------------------------------------------------------------------------------------------->
                 <div class="row">
-                    <div class="col-md-8"
+                    <div class="col-md-12"
                          data-noms-controleurs="${#lists.toJson(nomsControleurs)}"
                          data-compte-controles="${#lists.toJson(compteControles)}">
-                                         <div class="card">
+                        <div class="card">
                             <div class="card-header">
-                                <div class="card-title">Nombre de Contrôles par Contrôleur</div>
+                                <div class="card-title">Nombre de Contrôles par Contrôleur <p>Contrôles pour le mois de : <span th:text="${monthYear}"></span></p>
+                                </div>
                             </div>
 
                             <div class="card-body">
                                 <div class="chart-container">
                                     <canvas id="barChart" width="400" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    <div class="col-md-4">
-                        <div class="card card-primary card-round">
-                            <div class="card-header">
-                                <div class="card-head-row">
-                                    <div class="card-title">Daily Sales</div>
-                                    <div class="card-tools">
-                                        <div class="dropdown">
-                                            <button class="btn btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Export
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-category">March 25 - April 02</div>
-                            </div>
-                            <div class="card-body pb-0">
-                                <div class="mb-4 mt-2">
-                                    <h1>$4,578.58</h1>
-                                </div>
-                                <div class="pull-in">
-                                    <canvas id="dailySalesChart" width="414" height="300" style="display: block; height: 150px; width: 207px;" class="chartjs-render-monitor"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-round">
-                            <div class="card-body pb-0">
-                                <div class="h1 fw-bold float-end text-primary">+5%</div>
-                                <h2 class="mb-2">17</h2>
-                                <p class="text-muted">Users online</p>
-                                <div class="pull-in sparkline-fix">
-                                    <div id="lineChart">
-                                        <canvas width="380" height="70" style="display: inline-block; width: 380.862px; height: 70px; vertical-align: top;"></canvas>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1024,6 +1023,8 @@
     // Vérification des données
     if (!Array.isArray(nomsControleurs) || !Array.isArray(compteControles)) {
         console.error("Les données ne sont pas sous forme de tableau !");
+    } else if (nomsControleurs.length !== compteControles.length) {
+        console.error("Le nombre de contrôleurs ne correspond pas au nombre de comptes !");
     } else {
         var barChart = document.getElementById("barChart").getContext("2d");
         var myBarChart = new Chart(barChart, {
@@ -1032,8 +1033,9 @@
                 labels: nomsControleurs,
                 datasets: [{
                     label: "Nombre de Contrôles",
-                    backgroundColor: "rgb(23, 125, 255)",
-                    borderColor: "rgb(23, 125, 255)",
+                    backgroundColor: nomsControleurs.map(() => 'rgba(23, 125, 255, 0.7)'),
+                    borderColor: nomsControleurs.map(() => 'rgba(23, 125, 255, 1)'),
+                    borderWidth: 1,
                     data: compteControles,
                 }],
             },
@@ -1048,31 +1050,110 @@
                             text: 'Nombre de Contrôles',
                         },
                     },
-                },
-                plugins: {
-                    legend: {
-                        position: "bottom",
-                        labels: {
-                            padding: 10,
-                            color: "#1d7af3",
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Contrôleurs',
                         },
                     },
-                    tooltip: {
-                        bodySpacing: 4,
-                        mode: "nearest",
-                        intersect: false,
-                        position: "nearest",
-                        padding: 10,
-                    },
-                },
-                layout: {
-                    padding: { left: 15, right: 15, top: 15, bottom: 15 },
                 },
             },
         });
     }
 </script>
 
+
+<script th:inline="javascript">
+    // Récupérer les données des attributs de la balise pour le mois précédent
+    var equipmentNamesLastMonth = /*[[${equipmentNamesLastMonth}]]*/ '[]';
+    var equipmentCountsLastMonth = /*[[${equipmentCountsLastMonth}]]*/ '[]';
+
+    // Conversion des données JSON en tableaux
+    try {
+        equipmentNamesLastMonth = JSON.parse(equipmentNamesLastMonth);
+        equipmentCountsLastMonth = JSON.parse(equipmentCountsLastMonth);
+    } catch (error) {
+        console.error("Erreur lors de la conversion des données JSON (mois précédent) : ", error);
+    }
+
+    console.log("Noms des équipements (Mois précédent) :", equipmentNamesLastMonth);
+    console.log("Comptes de contrôles (Mois précédent) :", equipmentCountsLastMonth);
+
+    // Créer le graphique Doughnut pour le mois précédent
+    var ctx = document.getElementById('doughnutChart').getContext('2d');
+
+    var backgroundColors = equipmentNamesLastMonth.map((_, index) =>
+        `rgba(${(index * 70 + 50) % 255}, ${(index * 120 + 50) % 255}, ${(index * 150 + 50) % 255}, 0.6)`
+    );
+
+    var borderColors = equipmentNamesLastMonth.map((_, index) =>
+        `rgba(${(index * 70 + 50) % 255}, ${(index * 120 + 50) % 255}, ${(index * 150 + 50) % 255}, 1)`
+    );
+
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: equipmentNamesLastMonth,
+            datasets: [{
+                label: 'Nombre de Contrôles (Mois précédent)',
+                data: equipmentCountsLastMonth,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
+<script th:inline="javascript">
+    // Récupérer les données des attributs de la balise pour le mois en cours
+    var equipmentNamesCurrentMonth = /*[[${equipmentNamesCurrentMonth}]]*/ '[]';
+    var equipmentCountsCurrentMonth = /*[[${equipmentCountsCurrentMonth}]]*/ '[]';
+
+    // Conversion des données JSON en tableaux
+    try {
+        equipmentNamesCurrentMonth = JSON.parse(equipmentNamesCurrentMonth);
+        equipmentCountsCurrentMonth = JSON.parse(equipmentCountsCurrentMonth);
+    } catch (error) {
+        console.error("Erreur lors de la conversion des données JSON (mois en cours) : ", error);
+    }
+
+    console.log("Noms des équipements (Mois en cours) :", equipmentNamesCurrentMonth);
+    console.log("Comptes de contrôles (Mois en cours) :", equipmentCountsCurrentMonth);
+
+    // Créer le graphique Doughnut pour le mois en cours
+    var ctx2 = document.getElementById('doughnutChart2').getContext('2d');
+
+    var backgroundColors2 = equipmentNamesCurrentMonth.map((_, index) =>
+        `rgba(${(index * 70 + 50) % 255}, ${(index * 120 + 50) % 255}, ${(index * 150 + 50) % 255}, 0.6)`
+    );
+
+    var borderColors2 = equipmentNamesCurrentMonth.map((_, index) =>
+        `rgba(${(index * 70 + 50) % 255}, ${(index * 120 + 50) % 255}, ${(index * 150 + 50) % 255}, 1)`
+    );
+
+    var myDoughnutChart2 = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: equipmentNamesCurrentMonth,
+            datasets: [{
+                label: 'Nombre de Contrôles (Mois en cours)',
+                data: equipmentCountsCurrentMonth,
+                backgroundColor: backgroundColors2,
+                borderColor: borderColors2,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
 
 </body>
 </html>

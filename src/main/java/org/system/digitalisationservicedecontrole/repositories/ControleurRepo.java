@@ -15,10 +15,11 @@ public interface ControleurRepo extends JpaRepository<Controleur, Long> {
     Optional<Controleur> findByUsername(String username);
     @Query("SELECT c.idControleur, c.nom, c.prenom, c.matricule, c.dateIntegration, c.dateEmbauche, COUNT(f.idFormulaire), c.grade, c.numTele, c.username, c.email, c.password, c.ImageData " +
             "FROM Controleur c LEFT JOIN c.formulaires f " +
-            "WHERE f.dateControle >= :dateLimit " +
+            "WHERE f.dateControle BETWEEN :startDate AND :endDate " +
             "GROUP BY c.idControleur, c.nom, c.prenom, c.matricule, c.dateIntegration, c.dateEmbauche, c.grade, c.numTele, c.username, c.email, c.password, c.ImageData " +
             "ORDER BY COUNT(f.idFormulaire) DESC")
-    List<Object[]> findAllControleursWithCount(@Param("dateLimit") Date dateLimit);
+    List<Object[]> findAllControleursWithCount(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 
     long count();
 
