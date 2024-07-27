@@ -17,9 +17,8 @@ import org.system.digitalisationservicedecontrole.repositories.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -75,18 +74,39 @@ public class ResponsableGeneralController {
         return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/responsableGeneral/dashboard")
-
     public String dashboard(Model model, HttpSession session) {
         gestionSession.prepareModel(session, model);
 
+        // Récupération des formulaires
         List<Formulaire> formulaires = formulaireRepo.findAllOrderByDateControleDesc();
 
-        Date currentDate = new Date();
-        Date dateLimit = new Date(currentDate.getTime() - (30L * 24 * 60 * 60 * 1000)); // 30 jours
+        // Définir le début et la fin du dernier mois
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois en cours
+        calendar.add(Calendar.MONTH, -1); // Recule d'un mois
+        Date startOfLastMonth = calendar.getTime(); // Premier jour du dernier mois
 
-        List<Object[]> results = controleurRepo.findAllControleursWithCount(dateLimit);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du dernier mois
+        Date endOfLastMonth = calendar.getTime();
 
-        List<ControleurDTO> topControleurs = results.stream()
+        // Obtenir le mois et l'année du dernier mois
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM yyyy", Locale.FRENCH);
+        String monthYearLastMonth = monthFormat.format(startOfLastMonth); // Format du mois précédent
+
+        // Obtenir le mois et l'année du mois en cours
+        calendar = Calendar.getInstance();
+        String monthYearCurrentMonth = monthFormat.format(calendar.getTime()); // Format du mois en cours
+
+        // Récupération des contrôleurs avec leurs comptes pour le mois en cours
+        Date startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois en cours
+        Date endOfCurrentMonth = calendar.getTime();
+
+        // Récupération des contrôleurs pour le mois en cours
+        List<Object[]> resultsCurrentMonth = controleurRepo.findAllControleursWithCount(startOfCurrentMonth, endOfCurrentMonth);
+
+        // Mapper les résultats vers les DTO des contrôleurs
+        List<ControleurDTO> controleursWithControlesCurrentMonth = resultsCurrentMonth.stream()
                 .map(result -> {
                     ControleurDTO dto = new ControleurDTO();
                     dto.setIdControleur((Long) result[0]);
@@ -104,14 +124,19 @@ public class ResponsableGeneralController {
                     dto.setImageData((byte[]) result[12]);
                     return dto;
                 })
+                .collect(Collectors.toList());
+
+        // Obtenir les 5 meilleurs contrôleurs pour le mois en cours
+        List<ControleurDTO> topControleurs = controleursWithControlesCurrentMonth.stream()
                 .limit(5)
                 .collect(Collectors.toList());
 
-        List<String> nomsControleurs = topControleurs.stream()
+        // Obtenir les noms et les comptes des contrôleurs
+        List<String> nomsControleurs = controleursWithControlesCurrentMonth.stream()
                 .map(c -> c.getNom() + " " + c.getPrenom())
                 .collect(Collectors.toList());
 
-        List<Long> compteControles = topControleurs.stream()
+        List<Long> compteControles = controleursWithControlesCurrentMonth.stream()
                 .map(ControleurDTO::getFormCount)
                 .collect(Collectors.toList());
 
@@ -119,15 +144,67 @@ public class ResponsableGeneralController {
         System.out.println("Noms des contrôleurs: " + nomsControleurs);
         System.out.println("Comptes des contrôles: " + compteControles);
 
+        // Ajout des données JSON au modèle
         try {
-            // Ajout des données JSON au modèle
             model.addAttribute("nomsControleurs", jacksonObjectMapper.writeValueAsString(nomsControleurs));
             model.addAttribute("compteControles", jacksonObjectMapper.writeValueAsString(compteControles));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            // Gérer l'erreur de conversion JSON, si nécessaire
         }
 
+        // Récupérer les données d'équipement pour le dernier mois
+        List<Object[]> equipmentResultsLastMonth = equipementRepo.countControlsByEquipement(startOfLastMonth, endOfLastMonth);
+        System.out.println("Résultats d'équipement (Mois précédent) : " + Arrays.deepToString(equipmentResultsLastMonth.toArray()));
+
+        List<String> equipmentNamesLastMonth = new ArrayList<>();
+        List<Long> equipmentCountsLastMonth = new ArrayList<>();
+
+        for (Object[] result : equipmentResultsLastMonth) {
+            if (result.length >= 2) {
+                equipmentNamesLastMonth.add((String) result[0]); // Nom de l'équipement
+                equipmentCountsLastMonth.add((Long) result[1]); // Compte des contrôles
+            }
+        }
+
+        // Récupérer les données d'équipement pour le mois en cours
+        calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois en cours
+        startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
+
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois en cours
+        endOfCurrentMonth = calendar.getTime();
+
+        List<Object[]> equipmentResultsCurrentMonth = equipementRepo.countControlsByEquipement(startOfCurrentMonth, endOfCurrentMonth);
+        System.out.println("Résultats d'équipement (Mois en cours) : " + Arrays.deepToString(equipmentResultsCurrentMonth.toArray()));
+
+        List<String> equipmentNamesCurrentMonth = new ArrayList<>();
+        List<Long> equipmentCountsCurrentMonth = new ArrayList<>();
+
+        for (Object[] result : equipmentResultsCurrentMonth) {
+            if (result.length >= 2) {
+                equipmentNamesCurrentMonth.add((String) result[0]); // Nom de l'équipement
+                equipmentCountsCurrentMonth.add((Long) result[1]); // Compte des contrôles
+            }
+        }
+
+        // Log des noms et comptes d'équipement
+        System.out.println("Noms des équipements (Mois précédent) : " + equipmentNamesLastMonth);
+        System.out.println("Comptes des contrôles (Mois précédent) : " + equipmentCountsLastMonth);
+        System.out.println("Noms des équipements (Mois en cours) : " + equipmentNamesCurrentMonth);
+        System.out.println("Comptes des contrôles (Mois en cours) : " + equipmentCountsCurrentMonth);
+
+        // Ajouter les données d'équipement au modèle
+        model.addAttribute("equipmentNamesLastMonth", equipmentNamesLastMonth);
+        model.addAttribute("equipmentCountsLastMonth", equipmentCountsLastMonth);
+        model.addAttribute("equipmentNamesCurrentMonth", equipmentNamesCurrentMonth);
+        model.addAttribute("equipmentCountsCurrentMonth", equipmentCountsCurrentMonth);
+
+        // Ajouter le mois et l'année du dernier mois au modèle
+        model.addAttribute("monthYearLastMonth", monthYearLastMonth);
+        // Ajouter le mois et l'année du mois en cours au modèle
+        model.addAttribute("monthYearCurrentMonth", monthYearCurrentMonth);
+
+        // Ajouter d'autres données au modèle
         model.addAttribute("formulaires", formulaires);
         model.addAttribute("controleurs", topControleurs);
         model.addAttribute("totalEquipements", equipementRepo.count());
