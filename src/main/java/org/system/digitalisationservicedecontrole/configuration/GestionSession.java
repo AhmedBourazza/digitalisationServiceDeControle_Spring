@@ -19,6 +19,8 @@ public class GestionSession {
         Date date_integration = (Date) s.getAttribute("date_integration");
         String matricule = (String) s.getAttribute("matricule");
         Date date_embauche = (Date) s.getAttribute("date_embauche");
+        String num_tele = (String)  s.getAttribute("num_tele");
+        String username = (String)  s.getAttribute("username");
 
 
         model.addAttribute("idMoi",id);
@@ -31,6 +33,8 @@ public class GestionSession {
         model.addAttribute("date_integrationMoi", date_integration);
         model.addAttribute("matriculeMoi", matricule);
         model.addAttribute("date_embaucheMoi", date_embauche);
+        model.addAttribute("teleMoi", num_tele);
+        model.addAttribute("usernameMoi", username);
 
     }
 

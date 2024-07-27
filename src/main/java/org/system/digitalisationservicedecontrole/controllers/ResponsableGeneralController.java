@@ -171,7 +171,48 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/editProfile")
     public String EditProfile(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        ResponsableGeneral responsableGeneral = responsableGeneralRepo.findById((Long)session.getAttribute("id"))
+                .orElseThrow(() -> new RuntimeException("ResponsableGeneral not found"));
+
+        // Ajoutez l'entité au modèle
+        model.addAttribute("responsableGeneral", responsableGeneral);
         return "RG_editProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
+    @PostMapping("/responsableGeneral/editProfile")
+    public String modifierResponsableGeneral(
+            @ModelAttribute ResponsableGeneral responsableGeneral,
+            @RequestParam("imageData") MultipartFile imageData) {
+        // Traitez l'image si un fichier est fourni
+        if (imageData != null && !imageData.isEmpty()) {
+            try {
+                byte[] imageBytes = imageData.getBytes();
+                responsableGeneral.setImageData(imageBytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("makhdaminch tsawer");
+            }
+        }
+
+        // Trouvez et mettez à jour l'existant ResponsableGeneral
+        ResponsableGeneral existingResponsableGeneral = responsableGeneralRepo.findById(responsableGeneral.getIdResponsableGeneral())
+                .orElseThrow(() -> new RuntimeException("ResponsableGeneral not found"));
+
+        existingResponsableGeneral.setNom(responsableGeneral.getNom());
+        existingResponsableGeneral.setPrenom(responsableGeneral.getPrenom());
+        existingResponsableGeneral.setDateIntegration(responsableGeneral.getDateIntegration());
+        existingResponsableGeneral.setUsername(responsableGeneral.getUsername());
+        existingResponsableGeneral.setMatricule(responsableGeneral.getMatricule());
+        existingResponsableGeneral.setDateEmbauche(responsableGeneral.getDateEmbauche());
+        existingResponsableGeneral.setNumTele(responsableGeneral.getNumTele());
+        // Mettez à jour l'image uniquement si elle a été modifiée
+        if (responsableGeneral.getImageData() != null && responsableGeneral.getImageData().length > 0) {
+            existingResponsableGeneral.setImageData(responsableGeneral.getImageData());
+        }
+
+        // Sauvegardez les changements
+        responsableGeneralRepo.save(existingResponsableGeneral);
+
+        return "redirect:/responsableGeneral/monProfile";
     }
 
     @GetMapping("/responsableGeneral/monProfile")
@@ -542,7 +583,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
             }
         } catch (IOException e) {
             e.printStackTrace();
-            // Gérer l'erreur
+            // Gérer l'ei
         }
 
         controleurRepo.save(controleur); // Sauvegarder les modifications

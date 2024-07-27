@@ -88,7 +88,7 @@
 
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a th:href="@{/responsableGeneral/monProfile}">
               <i class="fa-solid fa-user"></i>
               <p>Mon Profile</p>
@@ -108,11 +108,11 @@
           </li>
 
 
-          <li class="nav-item active">
+          <li class="nav-item">
             <a th:href="@{/responsableGeneral/gestionControleurs}">
               <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
-              <p>contrôleurs</p>
+              <p>Contrôleurs</p>
               <span class="badge badge-success">8</span>
             </a>
           </li>
@@ -148,7 +148,6 @@
               </ul>
             </div>
           </li>
-
 
 
           <li class="nav-item">
@@ -316,8 +315,6 @@
               </div>
             </li>
 
-
-
             <li class="nav-item topbar-user dropdown hidden-caret">
               <a
                       class="dropdown-toggle profile-pic"
@@ -375,95 +372,181 @@
     <div class="container">
       <div class="page-inner">
         <div class="page-header">
-        <h3 class="fw-bold mb-3">Gestion des profiles</h3>
+          <h3 class="fw-bold mb-3">Modifier mon profile</h3>
 
 
 
-        <ul class="breadcrumbs mb-3">
+          <ul class="breadcrumbs mb-3">
 
-          <li class="nav-home">
-            <a th:href="@{/index}">
-              <i class="fas fa-home"></i> Accueil
-            </a>
-          </li>
-          <li class="separator">
-            <i class="fas fa-angle-right"></i>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/responsableGeneral/dashboard}">Espace responsable générale</a>
-          </li>
-          <li class="separator">
-            <i class="fas fa-angle-right"></i>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/responsableGeneral/gestionControleurs}">Liste des controleurs</a>
-          </li>
-          <li class="separator">
-            <i class="fas fa-angle-right"></i>
-          </li>
-          <li class="nav-item">
-            <a href="#">Modifier un profile</a>
-          </li>
+            <li class="nav-home">
+              <a th:href="@{/index}">
+                <i class="fas fa-home"></i> Accueil
+              </a>
+            </li>
+            <li class="separator">
+              <i class="fas fa-angle-right"></i>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/responsableGeneral/dashboard}">Espace responsable générale</a>
+            </li>
+            <li class="separator">
+              <i class="fas fa-angle-right"></i>
+            </li>
+            <li class="nav-item">
+              <a href="@{/responsableGeneral/monProfile}">Mon profile</a>
+            </li>
+            <li class="separator">
+              <i class="fas fa-angle-right"></i>
+            </li>
+            <li class="nav-item">
+              <a href="#">Modification de profile</a>
+            </li>
 
 
 
-        </ul>
+          </ul>
         </div>
         <div class="row">
 
           <!----------------------------------------------------------------------------->
-
           <div class="col-12">
             <div class="card card-profile">
-              <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
+              <form method="post" th:object="${responsableGeneral}" enctype="multipart/form-data" th:action="@{/responsableGeneral/editProfile}">
+                <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
+                  <div class="profile-picture">
+                    <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
 
 
-                <div class="profile-picture">
+                      <img th:src="'data:image/jpeg;base64,' + ${responsableGeneral.getImageDataAsBase64()}" id="profile-image" class="avatar-img rounded-circle" alt="Image">
 
+                      <!-- Champ d'entrée pour sélectionner une nouvelle image -->
+                      <input type="file" name="imageData" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
 
-                  <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
-                    <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
-                    <input type="file" accept="image/*" id="avatar-input" style="display: none;">
-                    <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
-                      <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
-                    </label>
-                  </div>
-
-
-                </div>
-
-
-
-              </div>
-              <div class="card-body">
-                <div class="user-profile text-center">
-                  <input type="text" class="form-control name" placeholder="Nom prénom" value="">
-                  <input type="text" class="form-control job" placeholder="Grade" value="">
-                  <input type="text" class="form-control desc" placeholder="Date d'intégration service" value="Date d'intégration service">
-                  <div class="view-profile">
-                    <input type="text" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
+                      <!-- Bouton pour ouvrir le sélecteur de fichier -->
+                      <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
+                        <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="card-footer">
-                <div class="row user-stats text-center">
-                  <div class="col">
-                    <input type="text" class="form-control title" placeholder="Date d'embauche" value="">
+                <div class="card-body">
+                  <div class="user-profile">
+                    <!-- Champs pour les autres informations du contrôleur -->
+                    <input type="hidden" name="idResponsableGeneral" th:field="*{idResponsableGeneral}" th:value="${idMoi}" />
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div  class="col">
+                          <label >Nom</label>
+                          <input type="text" class="form-control name"  th:field="*{nom}" placeholder="Nom">
+                        </div>
 
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control title" placeholder="Nombre de vérification" value="Nombre de vérification">
+                        <div  class="col">
+                          <label >Prénom</label>
+                          <input type="text" class="form-control name" th:field="*{prenom}" placeholder="Nom">
+                        </div>
+                      </div> </div>
 
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control title" placeholder="Classement" value="Classement">
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div  class="col">
+                          <label >Date d'intégration service </label>
+                          <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
+                        </div>
+
+
+                        <div class="col">
+                          <label >Nom d'utilisateur </label>
+                          <div class="input-group mb-3">
+
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
+                          </div>
+                        </div>
+                      </div> </div>
+
+
+
+
+
+
+
+
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div  class="col">
+                          <label >Matricule</label>
+                          <div class="view-profile">
+                            <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
+                          </div>
+                        </div>
+
+
+                      </div> </div>
+
+
+
+
+
+
+
+
 
                   </div>
                 </div>
-              </div>
+                <div class="card-footer">
+                  <div class="row user-stats text-center">
+                    <div  class="col">
+                      <label >Date d'embauche </label>
+                      <input type="date" class="form-control desc" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
+                    </div>
+
+                    <div class="col">
+                      <label >Numéro de télephone</label>
+                      <div class="input-group mb-3">
+
+                        <span class="input-group-text" >+212</span>
+                        <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </div>
+                <div class="card-body">
+                  <input type="submit" class="btn btn-success" value="Valider">
+                  <a th:href="@{/responsableGeneral/monProfile}" class="btn btn-danger">Annuler</a>
+                </div>
+
+                <script>
+                  function previewImage(event) {
+                    const input = event.target;
+                    const reader = new FileReader();
+                    reader.onload = function(){
+                      const dataURL = reader.result;
+                      const output = document.getElementById('profile-image');
+                      output.src = dataURL;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                  }
+                </script>
+              </form>
+
             </div>
           </div>
 
+          <script>
+            function previewImage(event) {
+              const input = event.target;
+              const reader = new FileReader();
+              reader.onload = function(){
+                const dataURL = reader.result;
+                const output = document.getElementById('profile-image');
+                output.src = dataURL;
+              };
+              reader.readAsDataURL(input.files[0]);
+            }
+          </script>
 
 
 
@@ -733,60 +816,11 @@
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
 <script th:src="@{/js/setting-demo.js}"></script>
 
-<script>
-  $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "#177dff",
-    fillColor: "rgba(23, 125, 255, 0.14)",
-  });
 
-  $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "#f3545d",
-    fillColor: "rgba(243, 84, 93, .14)",
-  });
-
-  $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "#ffa534",
-    fillColor: "rgba(255, 165, 52, .14)",
-  });
-
-  $("#lineChart4").sparkline([102, 109, 120, 99, 110, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "rgba(255, 255, 255, .5)",
-    fillColor: "rgba(255, 255, 255, .15)",
-  });
-
-  $("#lineChart5").sparkline([99, 125, 122, 105, 110, 124, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "rgba(255, 255, 255, .5)",
-    fillColor: "rgba(255, 255, 255, .15)",
-  });
-
-  $("#lineChart6").sparkline([105, 103, 123, 100, 95, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "rgba(255, 255, 255, .5)",
-    fillColor: "rgba(255, 255, 255, .15)",
-  });
-</script>
 </body>
 </html>
+
+
+
+
+
