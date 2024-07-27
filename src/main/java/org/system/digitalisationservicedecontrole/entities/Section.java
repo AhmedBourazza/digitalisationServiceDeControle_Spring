@@ -12,8 +12,8 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 
+@Entity
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
