@@ -411,7 +411,7 @@
           <!----------------------------------------------------------------------------->
           <div class="col-12">
             <div class="card card-profile">
-              <form method="post" th:object="${responsableGeneral}" enctype="multipart/form-data" th:action="@{/responsableGeneral/editProfile}">
+              <form th:action="@{/responsableGeneral/editProfile}" method="post" th:object="${responsableGeneral}" enctype="multipart/form-data" >
                 <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
                   <div class="profile-picture">
                     <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
