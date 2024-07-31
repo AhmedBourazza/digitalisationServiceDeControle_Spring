@@ -355,7 +355,9 @@
 
                 <!------------------------------------------------------------------------>
 
-                <form method="POST" action="/submit-form">
+                <form th:action="@{/controleur/remplirFormulaire/ajout}" method="post">
+                    <input type="hidden" name="idEquipement" value="1">
+                    <input type="hidden" name="idControleur" th:value="${idMoi}">
 
                     <div class="row">
                         <div class="col-md-12">
@@ -369,7 +371,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="disableinput"><i class="fas fa-calendar-alt"></i> Date</label>
-                                                <input type="text" class="form-control" id="disableinput" placeholder="Enter Input" disabled="">
+                                                <input type="date" class="form-control" name="dateControle" id="disableinput" placeholder="Enter Input">
                                             </div>
                                         </div>
 
@@ -393,7 +395,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="unitSelect"><i class="fas fa-sitemap"></i> Unité</label>
-                                                <select class="form-select form-control" id="unitSelect" name="unit">
+                                                <select class="form-select form-control" name="idUnite" id="unitSelect" >
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -407,7 +409,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="sectorInput"><i class="fas fa-industry"></i> Secteur</label>
-                                                <input type="text" class="form-control" id="sectorInput" name="sector" placeholder="Default Input">
+                                                <input type="text" class="form-control" id="sectorInput" name="secteur" placeholder="Secteur">
                                             </div>
                                         </div>
                                     </div>
@@ -417,9 +419,17 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="equipmentIdInput"><i class="fas fa-id-badge"></i> Matricule de l'équipement</label>
-                                                <input type="text" class="form-control" id="equipmentIdInput" name="equipmentId" placeholder="Default Input">
+                                                <input type="text" class="form-control" name="matriculeExemplaireEquipement" id="equipmentIdInput"  placeholder="Matricule">
                                             </div>
                                         </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="equipmentIdInput"><i class="fas fa-user"></i> Propriétaire</label>
+                                                <input type="text" class="form-control" name="proprietaire" id="propriétaireIdInput" placeholder="Propriétaire d'équipement">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -438,46 +448,45 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[0].questionText" value="Etat extérieur du bac – Avant l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gardCorps" value="ras" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[0].reponseText" value="R.A.S" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gardCorps" value="degrade" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[0].reponseText" value="Dégradé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gardCorps" value="degrade" class="selectgroup-input" required>
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Corrodé</span>
+                                                            <input type="radio" name="reponses[0].reponseText" value="Corrodé" class="selectgroup-input" required>
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
                                                         </label>
-
-
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[1].questionText" value="Etat extérieur du bac – après l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gardCorps1" value="ras" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[1].reponseText" value="R.A.S" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gardCorps1" value="degrade" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[1].reponseText" value="Dégradé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gardCorps1" value="degrade" class="selectgroup-input" required>
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Corrodé</span>
+                                                            <input type="radio" name="reponses[1].reponseText" value="Corrodé" class="selectgroup-input" required>
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
                                                         </label>
-
-
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -489,50 +498,57 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[2].questionText" value="Niveau d’eau dans le bac – Avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >%</span>
+                                                        <input type="number" name="reponses[2].reponseText" class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[3].questionText" value="Niveau d’eau dans le bac – Après l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >%</span>
+                                                        <input type="number" name="reponses[3].reponseText" class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
 
                                     <div class="row">
                                         <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
-                                            Niveau d’eau dans le bac
+                                            Température d’eau dans le bac
                                         </label>
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[4].questionText" value="Température d’eau dans le bac – Avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="°C " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >°C</span>
+                                                        <input type="number" name="reponses[4].reponseText" class="form-control" placeholder="°C " aria-label="Température" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[5].questionText" value="Température d’eau dans le bac – Après l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >°C</span>
+                                                        <input type="number" name="reponses[5].reponseText" class="form-control" placeholder="°C" aria-label="Température" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -549,16 +565,18 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="start-time"><i class="fas fa-clock"></i> Heure début</label>
-                                                <input type="time" class="form-control" id="start-time" name="start-time" placeholder="Heure début">
+                                                <input type="hidden" name="reponses[6].questionText" value="Heure début">
+                                                <input type="time" class="form-control" id="start-time" name="reponses[6].reponseText" placeholder="Heure début">
                                             </div>
                                         </div>
-
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="end-time"><i class="fas fa-clock"></i> Heure fin</label>
-                                                <input type="time" class="form-control" id="end-time" name="end-time" placeholder="Heure fin">
+                                                <input type="hidden" name="reponses[7].questionText" value="Heure fin">
+                                                <input type="time" class="form-control" id="end-time" name="reponses[7].reponseText" placeholder="Heure fin">
                                             </div>
                                         </div>
+
                                     </div>
 
 
@@ -570,13 +588,14 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[8].questionText" value="Vannes d’alimentation condamnées en position ouvertes – Avant l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[8].reponseText" value="Oui" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[8].reponseText" value="Nom" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                     </div>
@@ -586,18 +605,20 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Aprés l’essai</label>
+                                                    <input type="hidden" name="reponses[9].questionText" value="Vannes d’alimentation condamnées en position ouvertes – Après l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra1" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[9].reponseText" value="true" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra1" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[9].reponseText" value="false" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="row">
@@ -608,13 +629,14 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[10].questionText" value="Circuit de refoulement ouvert – Avant l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra2" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[10].reponseText" value="Oui" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra2" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[10].reponseText" value="Nom" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                     </div>
@@ -623,19 +645,21 @@
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[11].questionText" value="Circuit de refoulement ouvert – Apres l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra3" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[11].reponseText" value="true" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra3" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[11].reponseText" value="false" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -647,13 +671,14 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[12].questionText" value="Circuit de recyclage fermé – Avant l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra3" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[12].reponseText" value="Oui" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra3" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[12].reponseText" value="Non" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                     </div>
@@ -662,19 +687,21 @@
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[13].questionText" value="Circuit de recyclage fermé – Après l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra5" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[13].reponseText" value="true" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra5" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[13].reponseText" value="false" class="selectgroup-input" required>
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -686,22 +713,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[14].questionText" value="Niveau du réservoir de gasoil ( min ¾ rempli) – Avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >%</span>
+                                                        <input type="number" name="reponses[14].reponseText" class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[15].questionText" value="Niveau du réservoir de gasoil ( min ¾ rempli) – Après l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >%</span>
+                                                        <input type="number" name="reponses[15].reponseText" class="form-control" placeholder="% " aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -713,13 +743,14 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[16].questionText" value="Niveau d’huile – Avant l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra6" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[16].reponseText" value="R.A.S" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra6" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[16].reponseText" value="Insuffisant" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Insuffisant</span>
                                                         </label>
                                                     </div>
@@ -728,19 +759,21 @@
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[17].questionText" value="Niveau d’huile – Apres l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra7" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[17].reponseText" value="R.A.S" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra7" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[17].reponseText" value="Insuffisant" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Insuffisant</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -752,22 +785,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[18].questionText" value="Pression d’huile – Avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[18].reponseText" class="form-control" placeholder="bar " aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[19].questionText" value="Pression d’huile – Après l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[19].reponseText" class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -780,22 +816,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[20].questionText" value="Niveau de fluide de refroidissement – Avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="%" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >%</span>
+                                                        <input type="number" name="reponses[20].reponseText" class="form-control" placeholder="%" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[21].questionText" value="Niveau de fluide de refroidissement – Après l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="%" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >%</span>
+                                                        <input type="number" name="reponses[21].reponseText" class="form-control" placeholder="%" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -808,22 +847,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[22].questionText" value="Température de fluide de refroidissement – Avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >°C</span>
+                                                        <input type="number" name="reponses[22].reponseText" class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[23].questionText" value="Température de fluide de refroidissement – Apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >°C</span>
+                                                        <input type="number" name="reponses[23].reponseText" class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -835,52 +877,54 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[24].questionText" value="Etat des vannes de refroidissement – avant l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra10" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[24].reponseText" value="R.A.S" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra10" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[24].reponseText" value="Coincé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra10" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[24].reponseText" value="Dégradé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra10" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[24].reponseText" value="Corrodé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Corrodé</span>
                                                         </label>
-
                                                     </div>
                                                 </div>
                                             </div>
+
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Aprés l’essai</label>
+                                                    <input type="hidden" name="reponses[25].questionText" value="Etat des vannes de refroidissement – Après l’essai">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra11" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[25].reponseText" value="R.A.S" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra11" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[25].reponseText" value="Coincé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra11" value="false" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[25].reponseText" value="Dégradé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absenceDegra11" value="true" class="selectgroup-input" required>
+                                                            <input type="radio" name="reponses[25].reponseText" value="Corrodé" class="selectgroup-input" required>
                                                             <span class="selectgroup-button">Corrodé</span>
                                                         </label>
-
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -893,9 +937,10 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[26].questionText" value="Pression en pompe off (en arrêt) – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[26].reponseText" class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -903,12 +948,14 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Aprés l’essai</label>
+                                                    <input type="hidden" name="reponses[27].questionText" value="Pression en pompe off (en arrêt) – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[27].reponseText" class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -922,12 +969,14 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Aprés l’essai</label>
+                                                    <input type="hidden" name="reponses[28].questionText" value="Pression en pompe on (en marche) – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[28].reponseText" class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -940,9 +989,10 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[30].questionText" value="Température du moteur – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >°C</span>
+                                                        <input type="number" name="reponses[30].reponseText" class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -950,12 +1000,14 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Aprés l’essai</label>
+                                                    <input type="hidden" name="reponses[31].questionText" value="Température du moteur – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >°C</span>
+                                                        <input type="number" name="reponses[31].reponseText" class="form-control" placeholder="°C" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -968,22 +1020,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[32].questionText" value="Pression d’aspiration – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[32].reponseText" class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[33].questionText" value="Pression d’aspiration – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[33].reponseText" class="form-control" placeholder="bar" aria-label="Pression" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -996,22 +1051,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[34].questionText" value="Tension sur batterie – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Tension sur batterie avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[34].reponseText" class="form-control" placeholder="Tension sur batterie avant l’essai" aria-label="Tension" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[35].questionText" value="Tension sur batterie – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Tension sur batterie aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[35].reponseText" class="form-control" placeholder="Tension sur batterie après l’essai" aria-label="Tension" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1024,22 +1082,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[36].questionText" value="Etat du chargeur des batteries – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Etat du chargeur des batteries  avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[36].reponseText" class="form-control" placeholder="Etat du chargeur des batteries avant l’essai" aria-label="Etat du chargeur" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[37].questionText" value="Etat du chargeur des batteries – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Etat du chargeur des batteries  aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[37].reponseText" class="form-control" placeholder="Etat du chargeur des batteries après l’essai" aria-label="Etat du chargeur" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1051,22 +1112,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[38].questionText" value="Etanchéité de la garniture mécanique de la pompe – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[38].reponseText" class="form-control" placeholder="avant l’essai" aria-label="Description" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[39].questionText" value="Etanchéité de la garniture mécanique de la pompe – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[39].reponseText" class="form-control" placeholder="après l’essai" aria-label="Description" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1078,22 +1142,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[40].questionText" value="Dernier changement d’huile – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Dernier changement d’huile avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[40].reponseText" class="form-control" placeholder="Dernier changement d’huile avant l’essai" aria-label="Dernier changement d’huile" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[41].questionText" value="Dernier changement d’huile – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Dernier changement d’huile aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[41].reponseText" class="form-control" placeholder="Dernier changement d’huile après l’essai" aria-label="Dernier changement d’huile" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1105,22 +1172,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[42].questionText" value="Dernier chargement du batterie – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Dernier chargement du batterie avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[42].reponseText" class="form-control" placeholder="Dernier chargement de la batterie avant l’essai" aria-label="Dernier chargement de la batterie" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[43].questionText" value="Dernier chargement du batterie – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Dernier chargement du batterie aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[43].reponseText" class="form-control" placeholder="Dernier chargement de la batterie après l’essai" aria-label="Dernier chargement de la batterie" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1132,22 +1202,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[44].questionText" value="Niveau d’électrolyte du batterie – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Niveau d’électrolyte du batterie avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[44].reponseText" class="form-control" placeholder="Niveau d’électrolyte de la batterie avant l’essai" aria-label="Niveau d’électrolyte de la batterie" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[45].questionText" value="Niveau d’électrolyte du batterie – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Niveau d’électrolyte du batterie aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[45].reponseText" class="form-control" placeholder="Niveau d’électrolyte de la batterie après l’essai" aria-label="Niveau d’électrolyte de la batterie" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1159,22 +1232,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[46].questionText" value="Durée de fonctionnement du moteur – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="Durée de fonctionnement du moteur avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >Nbr</span>
+                                                        <input type="number" name="reponses[46].reponseText" class="form-control" placeholder="Durée de fonctionnement du moteur avant l’essai" aria-label="Durée de fonctionnement du moteur" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">Nbr</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[47].questionText" value="Durée de fonctionnement du moteur – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="number"  class="form-control" placeholder="Durée de fonctionnement du moteur aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >Nbr</span>
+                                                        <input type="number" name="reponses[47].reponseText" class="form-control" placeholder="Durée de fonctionnement du moteur après l’essai" aria-label="Durée de fonctionnement du moteur" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">Nbr</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1186,22 +1262,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[48].questionText" value="Défauts affichés – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Défauts affichés avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[48].reponseText" class="form-control" placeholder="Défauts affichés avant l’essai" aria-label="Défauts affichés" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[49].questionText" value="Défauts affichés – Apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Défauts affichés aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[49].reponseText" class="form-control" placeholder="Défauts affichés après l’essai" aria-label="Défauts affichés" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1213,22 +1292,25 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Avant l’essai</label>
+                                                    <input type="hidden" name="reponses[50].questionText" value="Débitmètre circuit décharge – avant l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Débitmètre circuit décharge avant l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[50].reponseText" class="form-control" placeholder="Débitmètre circuit décharge avant l’essai" aria-label="Débitmètre circuit décharge" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Aprés l’essai</label>
+                                                    <label class="form-label"> ● Après l’essai</label>
+                                                    <input type="hidden" name="reponses[51].questionText" value="Débitmètre circuit décharge – apres l’essai">
                                                     <div class="input-group mb-3">
-                                                        <input type="text"  class="form-control" placeholder="Débitmètre circuit décharge aprés l’essai " aria-label="Pression" aria-describedby="basic-addon2">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[51].reponseText" class="form-control" placeholder="Débitmètre circuit décharge après l’essai" aria-label="Débitmètre circuit décharge" aria-describedby="basic-addon2">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -1244,43 +1326,46 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="start-time"><i class="fas fa-robot"></i> Mode Automatique</label>
+                                                <input type="hidden" name="reponses[52].questionText" value="Mode Automatique">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra13" value="true" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[52].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra13" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[52].reponseText" value="Indisponible" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Indisponible</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra13" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[52].reponseText" value="Hors service" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Hors service</span>
                                                     </label>
                                                 </div>
-
                                             </div>
                                         </div>
+
 
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="end-time"><i class="fas fa-hand-pointer"></i> Mode Manuel</label>
+                                                <input type="hidden" name="reponses[53].questionText" value="Mode Manuel">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra14" value="true" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[53].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra14" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[53].reponseText" value="Indisponible" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Indisponible</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra14" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[53].reponseText" value="Hors service" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Hors service</span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                     </div>
 
@@ -1288,8 +1373,9 @@
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label><i class="fas fa-tachometer-alt"></i> Pression de consigne</label>
+                                                <input type="hidden" name="reponses[54].questionText" value="Pression de consigne">
                                                 <div class="input-group mb-3">
-                                                    <input type="number"  name="pression-consigne" class="form-control" placeholder="Pression de consigne" aria-label="Pression" aria-describedby="basic-addon1">
+                                                    <input type="number" name="reponses[54].reponseText" class="form-control" placeholder="Pression de consigne" aria-label="Pression" aria-describedby="basic-addon1">
                                                     <span class="input-group-text">bar</span>
                                                 </div>
                                             </div>
@@ -1297,9 +1383,10 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label ><i class="fas fa-tachometer-alt"></i> Pression de service</label>
+                                                <label><i class="fas fa-tachometer-alt"></i> Pression de service</label>
+                                                <input type="hidden" name="reponses[55].questionText" value="Pression de service">
                                                 <div class="input-group mb-3">
-                                                    <input type="number" name="pression-service" class="form-control" placeholder="Pression de service" aria-label="Pression" aria-describedby="basic-addon2">
+                                                    <input type="number" name="reponses[55].reponseText" class="form-control" placeholder="Pression de service" aria-label="Pression" aria-describedby="basic-addon2">
                                                     <span class="input-group-text">bar</span>
                                                 </div>
                                             </div>
@@ -1308,12 +1395,14 @@
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label><i class="fas fa-sliders-h"></i> Débit</label>
+                                                <input type="hidden" name="reponses[56].questionText" value="Débit">
                                                 <div class="input-group mb-3">
-                                                    <input type="text"  name="debit" class="form-control" placeholder="Débit" aria-label="Débit" aria-describedby="basic-addon3">
+                                                    <input type="text" name="reponses[56].reponseText" class="form-control" placeholder="Débit" aria-label="Débit" aria-describedby="basic-addon3">
                                                     <span class="input-group-text">M3/Heure</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
@@ -1322,9 +1411,11 @@
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label>Anomalies</label>
-                                                    <textarea class="form-control"  rows="5">                          </textarea>
+                                                    <input type="hidden" name="reponses[57].questionText" value="Anomalies">
+                                                    <textarea name="reponses[57].reponseText" class="form-control" rows="5"></textarea>
                                                 </div>
                                             </div>
+
 
 
 
@@ -1347,9 +1438,10 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="designation"><i class="fas fa-tag"></i> Désignation</label>
+                                                <label ><i class="fas fa-tag"></i> Désignation</label>
+                                                <input type="hidden" name="reponses[58].questionText" value="Désignation 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="designation" class="form-control" aria-label="Désignation" aria-describedby="basic-addon1">
+                                                    <input type="text"  name="reponses[58].reponseText" class="form-control" aria-label="Désignation" aria-describedby="basic-addon1">
                                                     <span class="input-group-text">txt</span>
                                                 </div>
                                             </div>
@@ -1358,20 +1450,23 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="test-lampes"><i class="fas fa-lightbulb"></i> Test des lampes</label>
+                                                <input type="hidden" name="reponses[59].questionText" value="Test des lampes 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="test-lampes" class="form-control" aria-label="Test des lampes" aria-describedby="basic-addon2">
+                                                    <input type="text" id="test-lampes" name="reponses[59].reponseText" class="form-control" aria-label="Test des lampes" aria-describedby="basic-addon2">
                                                     <span class="input-group-text">txt</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label ><i class="fas fa-gauge"></i> Pression de consigne</label>
+                                                <label><i class="fas fa-gauge"></i> Pression de consigne</label>
+                                                <input type="hidden" name="reponses[60].questionText" value="Pression de consigne 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="number"  class="form-control" aria-label="Pression de consigne" aria-describedby="basic-addon3">
+                                                    <input type="number" name="reponses[60].reponseText" class="form-control" aria-label="Pression de consigne" aria-describedby="basic-addon3">
                                                     <span class="input-group-text">Bar</span>
                                                 </div>
                                             </div>
@@ -1380,20 +1475,23 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="pression-service"><i class="fas fa-gauge"></i> Pression de service</label>
+                                                <input type="hidden" name="reponses[61].questionText" value="Pression de service 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="number" id="pression-service" class="form-control" aria-label="Pression de service" aria-describedby="basic-addon4">
+                                                    <input type="number" id="pression-service" name="reponses[61].reponseText" class="form-control" aria-label="Pression de service" aria-describedby="basic-addon4">
                                                     <span class="input-group-text">Bar</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="amperage"><i class="fas fa-bolt"></i> Ampérage</label>
+                                                <input type="hidden" name="reponses[62].questionText" value="Ampérage 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="number" id="amperage" class="form-control" aria-label="Ampérage" aria-describedby="basic-addon5">
+                                                    <input type="number" id="amperage" name="reponses[62].reponseText" class="form-control" aria-label="Ampérage" aria-describedby="basic-addon5">
                                                     <span class="input-group-text">Amp</span>
                                                 </div>
                                             </div>
@@ -1402,20 +1500,23 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="debit"><i class="fas fa-tachometer-alt"></i> Débit</label>
+                                                <input type="hidden" name="reponses[63].questionText" value="Débit 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="number" id="debit" class="form-control" aria-label="Débit" aria-describedby="basic-addon6">
+                                                    <input type="number" id="debit" name="reponses[63].reponseText" class="form-control" aria-label="Débit" aria-describedby="basic-addon6">
                                                     <span class="input-group-text">M3/H</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="heure-debut"><i class="fas fa-clock"></i> Heure début</label>
+                                                <input type="hidden" name="reponses[64].questionText" value="Heure début 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="time" id="heure-debut" class="form-control" aria-label="Heure début" aria-describedby="basic-addon7">
+                                                    <input type="time" id="heure-debut" name="reponses[64].reponseText" class="form-control" aria-label="Heure début" aria-describedby="basic-addon7">
                                                 </div>
                                             </div>
                                         </div>
@@ -1423,11 +1524,13 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="heure-fin"><i class="fas fa-clock"></i> Heure fin</label>
+                                                <input type="hidden" name="reponses[65].questionText" value="Heure fin 1">
                                                 <div class="input-group mb-3">
-                                                    <input type="time" id="heure-fin" class="form-control" aria-label="Heure fin" aria-describedby="basic-addon8">
+                                                    <input type="time" id="heure-fin" name="reponses[65].reponseText" class="form-control" aria-label="Heure fin" aria-describedby="basic-addon8">
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -1442,44 +1545,47 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="start-time"><i class="fas fa-robot"></i> Mode Automatique</label>
+                                                <label><i class="fas fa-robot"></i> Mode Automatique</label>
+                                                <input type="hidden" name="reponses[66].questionText" value="Mode Automatique-">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra13" value="true" class="selectgroup-input" required>
+                                                        <input type="radio" id="mode-automatique-oui" name="reponses[66].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra13" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" id="mode-automatique-indisponible" name="reponses[66].reponseText" value="Indisponible" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Indisponible</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra13" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" id="mode-automatique-hors-service" name="reponses[66].reponseText" value="Hors service" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Hors service</span>
                                                     </label>
                                                 </div>
-
                                             </div>
                                         </div>
+
 
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="end-time"><i class="fas fa-hand-pointer"></i> Mode Manuel</label>
+                                                <label ><i class="fas fa-hand-pointer"></i> Mode Manuel</label>
+                                                <input type="hidden" name="reponses[67].questionText" value="Mode Manuel-">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra15" value="true" class="selectgroup-input" required>
+                                                        <input type="radio" id="mode-manuel-oui" name="reponses[67].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra15" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" id="mode-manuel-indisponible" name="reponses[67].reponseText" value="Indisponible" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Indisponible</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="absenceDegra15" value="false" class="selectgroup-input" required>
+                                                        <input type="radio" id="mode-manuel-hors-service" name="reponses[67].reponseText" value="Hors service" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Hors service</span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                     </div>
 
@@ -1489,10 +1595,12 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label>Anomalies</label>
-                                                    <textarea class="form-control"  rows="5">                          </textarea>
+                                                    <label for="anomalies">Anomalies</label>
+                                                    <input type="hidden" name="reponses[68].questionText" value="Anomalies-">
+                                                    <textarea id="anomalies" name="reponses[68].reponseText" class="form-control" rows="5"></textarea>
                                                 </div>
                                             </div>
+
 
 
 
@@ -1505,9 +1613,10 @@
                                     <div class="row">
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="sce-production"><i class="fas fa-industry"></i> Sce Production</label>
+                                                <label for="sce-production"><i class="fas fa-cogs"></i> Sce Production</label>
+                                                <input type="hidden" name="reponses[69].questionText" value="Sce Production – Nom">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="sce-production" class="form-control" aria-label="Sce Production" aria-describedby="basic-addon1">
+                                                    <input type="text" id="sce-production" name="reponses[69].reponseText" class="form-control" aria-label="Sce Mécanique" aria-describedby="basic-addon4">
                                                     <span class="input-group-text">Nom</span>
                                                 </div>
                                             </div>
@@ -1515,9 +1624,10 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="matricule-cin"><i class="fas fa-id-card"></i> </label>
+                                                <label for="matricule-cin-production"><i class="fas fa-id-card"></i> Matricule / CIN</label>
+                                                <input type="hidden" name="reponses[70].questionText" value="Sce Production – Matricule / CIN">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="matricule-cin" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon2">
+                                                    <input type="text" id="matricule-cin-production" name="reponses[70].reponseText" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon5">
                                                     <span class="input-group-text">Matricule / CIN</span>
                                                 </div>
                                             </div>
@@ -1525,21 +1635,24 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="visa"><i class="fas fa-passport"></i></label>
+                                                <label for="visa-production"><i class="fas fa-passport"></i> Visa</label>
+                                                <input type="hidden" name="reponses[71].questionText" value="Sce Mécanique – Visa">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="visa" class="form-control" aria-label="Visa" aria-describedby="basic-addon3">
+                                                    <input type="text" id="visa-production" name="reponses[71].reponseText" class="form-control" aria-label="Visa" aria-describedby="basic-addon6">
                                                     <span class="input-group-text">Visa</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label for="sce-mechanique"><i class="fas fa-cogs"></i> Sce Mécanique</label>
+                                                <input type="hidden" name="reponses[72].questionText" value="Sce Mécanique – Nom">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="sce-mechanique" class="form-control" aria-label="Sce Mécanique" aria-describedby="basic-addon4">
+                                                    <input type="text" id="sce-mechanique" name="reponses[72].reponseText" class="form-control" aria-label="Sce Mécanique" aria-describedby="basic-addon4">
                                                     <span class="input-group-text">Nom</span>
                                                 </div>
                                             </div>
@@ -1547,9 +1660,10 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="matricule-cin-mechanique"><i class="fas fa-id-card"></i></label>
+                                                <label for="matricule-cin-mechanique"><i class="fas fa-id-card"></i> Matricule / CIN</label>
+                                                <input type="hidden" name="reponses[73].questionText" value="Sce Mécanique - Matricule / CIN">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="matricule-cin-mechanique" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon5">
+                                                    <input type="text" id="matricule-cin-mechanique" name="reponses[73].reponseText" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon5">
                                                     <span class="input-group-text">Matricule / CIN</span>
                                                 </div>
                                             </div>
@@ -1557,21 +1671,24 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="visa-mechanique"><i class="fas fa-passport"></i> </label>
+                                                <label for="visa-mechanique"><i class="fas fa-passport"></i> Visa</label>
+                                                <input type="hidden" name="reponses[74].questionText" value="Sce Mécanique – Visa">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="visa-mechanique" class="form-control" aria-label="Visa" aria-describedby="basic-addon6">
+                                                    <input type="text" id="visa-mechanique" name="reponses[74].reponseText" class="form-control" aria-label="Visa" aria-describedby="basic-addon6">
                                                     <span class="input-group-text">Visa</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label for="sce-electrique"><i class="fas fa-bolt"></i> Sce Electrique</label>
+                                                <input type="hidden" name="reponses[75].questionText" value="Sce Electrique – Nom">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="sce-electrique" class="form-control" aria-label="Sce Electrique" aria-describedby="basic-addon7">
+                                                    <input type="text" id="sce-electrique" name="reponses[75].reponseText" class="form-control" aria-label="Sce Electrique" aria-describedby="basic-addon7">
                                                     <span class="input-group-text">Nom</span>
                                                 </div>
                                             </div>
@@ -1579,9 +1696,10 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="matricule-cin-electrique"><i class="fas fa-id-card"></i></label>
+                                                <label for="matricule-cin-electrique"><i class="fas fa-id-card"></i> Matricule / CIN</label>
+                                                <input type="hidden" name="reponses[76].questionText" value="Sce Electrique - Matricule / CIN">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="matricule-cin-electrique" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon8">
+                                                    <input type="text" id="matricule-cin-electrique" name="reponses[76].reponseText" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon8">
                                                     <span class="input-group-text">Matricule / CIN</span>
                                                 </div>
                                             </div>
@@ -1589,21 +1707,24 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="visa-electrique"><i class="fas fa-passport"></i></label>
+                                                <label for="visa-electrique"><i class="fas fa-passport"></i> Visa</label>
+                                                <input type="hidden" name="reponses[77].questionText" value="Sce Electrique – Visa">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="visa-electrique" class="form-control" aria-label="Visa" aria-describedby="basic-addon9">
+                                                    <input type="text" id="visa-electrique" name="reponses[77].reponseText" class="form-control" aria-label="Visa" aria-describedby="basic-addon9">
                                                     <span class="input-group-text">Visa</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label for="sce-hse"><i class="fas fa-shield-alt"></i> Sce HSE Site</label>
+                                                <input type="hidden" name="reponses[78].questionText" value="Sce HSE Site – Nom">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="sce-hse" class="form-control" aria-label="Sce HSE Site" aria-describedby="basic-addon10">
+                                                    <input type="text" id="sce-hse" name="reponses[78].reponseText" class="form-control" aria-label="Sce HSE Site" aria-describedby="basic-addon10">
                                                     <span class="input-group-text">Nom</span>
                                                 </div>
                                             </div>
@@ -1611,9 +1732,10 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="matricule-cin-hse"><i class="fas fa-id-card"></i></label>
+                                                <label for="matricule-cin-hse"><i class="fas fa-id-card"></i> Matricule / CIN</label>
+                                                <input type="hidden" name="reponses[79].questionText" value="Sce HSE Site - Matricule / CIN">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="matricule-cin-hse" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon11">
+                                                    <input type="text" id="matricule-cin-hse" name="reponses[79].reponseText" class="form-control" aria-label="Matricule / CIN" aria-describedby="basic-addon11">
                                                     <span class="input-group-text">Matricule / CIN</span>
                                                 </div>
                                             </div>
@@ -1621,13 +1743,15 @@
 
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <label for="visa-hse"><i class="fas fa-passport"></i></label>
+                                                <label for="visa-hse"><i class="fas fa-passport"></i> Visa</label>
+                                                <input type="hidden" name="reponses[80].questionText" value="Sce HSE Site - Visa">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="visa-hse" class="form-control" aria-label="Visa" aria-describedby="basic-addon12">
+                                                    <input type="text" id="visa-hse" name="reponses[80].reponseText" class="form-control" aria-label="Visa" aria-describedby="basic-addon12">
                                                     <span class="input-group-text">Visa</span>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
 
@@ -1674,13 +1798,14 @@
                                     </div>
                                 </div>
                                 <div class="card-action">
+                                    <a href="/controleur/listeEquipements" class="btn btn-danger">
+                                        <i class="fas fa-times"></i> Annuler
+                                    </a>
                                     <button class="btn btn-success">
                                         <i class="fas fa-check"></i> Soumettre
                                     </button>
-                                    <button class="btn btn-danger">
-                                        <i class="fas fa-times"></i> Annuler
-                                    </button>
                                 </div>
+
                             </div>
 
 
