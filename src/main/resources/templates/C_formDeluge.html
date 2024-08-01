@@ -357,7 +357,7 @@
                 <!------------------------------------------------------------------------>
 
                 <form th:action="@{/controleur/remplirFormulaire/ajout}" method="post">
-                    <input type="hidden" name="idEquipement" value="1">
+                    <input type="hidden" name="idEquipement" value="5">
                     <input type="hidden" name="idControleur" th:value="${idMoi}">
 
                     <div class="row">
@@ -445,35 +445,36 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label"> ● Type de protection</label>
-                                                <input type="hidden" name="reponses[2].questionText" value="Signalée">
+                                                <input type="hidden" name="reponses[0].questionText" value="Type de protection">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[2].reponseText" value="Oui" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[0].reponseText" value="Mousse" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-snowflake"></i> Mousse</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[2].reponseText" value="Non" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[0].reponseText" value="Eau" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-tint"></i> Eau</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[2].reponseText" value="Non" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[0].reponseText" value="Eau / Mousse" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-snowflake"></i><i class="fas fa-tint"></i> Eau / Mousse </span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
 
+
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label"> ● Mode d'essai</label>
-                                                <input type="hidden" name="reponses[2].questionText" value="Signalée">
+                                                <input type="hidden" name="reponses[1].questionText" value="Mode d'essai">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[2].reponseText" value="Oui" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[1].reponseText" value="Manuel" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-hand-pointer"></i> Manuel</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[2].reponseText" value="Non" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[1].reponseText" value="Automatique" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-robot"></i> Automatique</span>
                                                     </label>
                                                 </div>
@@ -504,32 +505,38 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Manomètre d’alimentation en eau (J)</label>
+                                                    <input type="hidden" name="reponses[2].questionText" value="Etat de Monomètre - Manomètre d’alimentation en eau (J)">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
+                                                        <input type="text" name="reponses[2].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
                                                         <span class="input-group-text" id="basic-addon3">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Manomètre de la chambre de la membrane (K)</label>
+                                                    <input type="hidden" name="reponses[3].questionText" value="Etat de Monomètre - Manomètre de la chambre de la membrane (K)">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[3].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Manomètre du système (En option)</label>
+                                                    <input type="hidden" name="reponses[4].questionText" value="Etat de Monomètre - Manomètre du système (En option)">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                        <span class="input-group-text" >txt</span>
+                                                        <input type="text" name="reponses[4].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
+                                                        <span class="input-group-text">txt</span>
                                                     </div>
                                                 </div>
                                             </div>
+
 
 
 
@@ -546,9 +553,10 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Manomètre d’alimentation en eau (J)</label>
+                                                    <input type="hidden" name="reponses[5].questionText" value="Pression mesurée - Manomètre d’alimentation en eau (J)">
                                                     <div class="input-group mb-3">
-                                                        <input type="number" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[5].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -556,22 +564,26 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Manomètre de la chambre de la membrane (K)</label>
+                                                    <input type="hidden" name="reponses[6].questionText" value="Pression mesurée - Manomètre de la chambre de la membrane (K)">
                                                     <div class="input-group mb-3">
-                                                        <input type="number" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[6].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Manomètre du système (En option)</label>
+                                                    <input type="hidden" name="reponses[7].questionText" value="Pression mesurée - Manomètre du système (En option)">
                                                     <div class="input-group mb-3">
-                                                        <input type="number" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                        <span class="input-group-text" >bar</span>
+                                                        <input type="number" name="reponses[7].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
+                                                        <span class="input-group-text">bar</span>
                                                     </div>
                                                 </div>
                                             </div>
+
 
 
 
@@ -598,118 +610,131 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ●  Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle</label>
+                                                    <label class="form-label"> ● Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle</label>
+                                                    <input type="hidden" name="reponses[8].questionText" value="Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[8].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[8].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[8].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● En postions normales (ouverts/fermées)</label>
+                                                    <label class="form-label"> ● En positions normales (ouverts/fermées)</label>
+                                                    <input type="hidden" name="reponses[9].questionText" value="En positions normales (ouverts/fermées)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="ouverte" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[9].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="ouverte" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[9].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="ouverte" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[9].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label"> ● Accessible</label>
+                                                    <input type="hidden" name="reponses[10].questionText" value="Accessible">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[10].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[10].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[10].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">● Cadenassée correctement</label>
+                                                    <input type="hidden" name="reponses[11].questionText" value="Cadenassée correctement">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="cadenassee" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[11].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="cadenassee" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[11].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="cadenassee" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[11].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <input type="hidden" name="reponses[12].questionText" value="Absence de dommages, de corrosion ou de fuites">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absence_dommages" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[12].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absence_dommages" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[12].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="absence_dommages" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[12].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">● Supervisée électriquement</label>
+                                                    <input type="hidden" name="reponses[13].questionText" value="Supervisée électriquement">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="supervisee" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[13].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="supervisee" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[13].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="supervisee" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[13].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -723,118 +748,132 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label" style="word-wrap: break-word;"> ●  Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle</label>
+                                                    <label  class="form-label" style="word-wrap: break-word;">
+                                                        ● Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle
+                                                    </label>
+                                                    <input type="hidden" name="reponses[14].questionText" value="Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle(2)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_absence_dommages" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-absence-dommages-oui" name="reponses[14].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_absence_dommages" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-absence-dommages-non" name="reponses[14].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_absence_dommages" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-absence-dommages-na" name="reponses[14].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● En postions normales (ouverts/fermées)</label>
+                                                    <label  class="form-label">● En positions normales (ouverts/fermées)</label>
+                                                    <input type="hidden" name="reponses[15].questionText" value="En positions normales (ouverts/fermées)(2)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-accessible-regle-oui" name="reponses[15].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-accessible-regle-non" name="reponses[15].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-accessible-regle-na" name="reponses[15].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Accessible</label>
+                                                    <label  class="form-label">● Accessible</label>
+                                                    <input type="hidden" name="reponses[16].questionText" value="Accessible(2)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-accessible-oui" name="reponses[16].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-accessible-non" name="reponses[16].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-accessible-na" name="reponses[16].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Cadenassée correctement</label>
+                                                    <label class="form-label">● Cadenassée correctement</label>
+                                                    <input type="hidden" name="reponses[17].questionText" value="Cadenassée correctement(2)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-cadenassee-oui" name="reponses[17].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-cadenassee-non" name="reponses[17].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-cadenassee-na" name="reponses[17].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <label class="form-label">● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <input type="hidden" name="reponses[18].questionText" value="Absence de dommages, de corrosion ou de fuites(2)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[18].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[18].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[18].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">   ● Supervisée électriquement</label>
+                                                    <label  class="form-label">● Supervisée électriquement</label>
+                                                    <input type="hidden" name="reponses[19].questionText" value="Supervisée électriquement(2)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-supervisee-electriquement-oui" name="reponses[19].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-supervisee-electriquement-non" name="reponses[19].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-supervisee-electriquement-na" name="reponses[19].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -846,37 +885,19 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">   ●  Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle</label>
+                                                    <label  class="form-label">● Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle</label>
+                                                    <input type="hidden" name="reponses[20].questionText" value="Identifiée et porte un signe indiquant le système ou la partie qu'elle contrôle(3)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-identifiee-oui" name="reponses[20].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-identifiee-non" name="reponses[20].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">   ● En postions normales (ouverts/fermées)</label>
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-identifiee-na" name="reponses[20].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
@@ -885,18 +906,63 @@
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">    ● Accessible</label>
+                                                    <label class="form-label">● En positions normales (ouverts/fermées)</label>
+                                                    <input type="hidden" name="reponses[21].questionText" value="En positions normales (ouverts/fermées)(3)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-positions-normales-oui" name="reponses[21].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-positions-normales-non" name="reponses[21].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-positions-normales-na" name="reponses[21].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label">● Accessible</label>
+                                                    <input type="hidden" name="reponses[22].questionText" value="Accessible(3)">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio"  name="reponses[22].reponseText" value="Oui" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="reponses[22].reponseText" value="Non" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="reponses[22].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Cadenassée correctement</label>
+                                                    <input type="hidden" name="reponses[23].questionText" value="Cadenassée correctement(3)">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio"  name="reponses[23].reponseText" value="Oui" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="reponses[23].reponseText" value="Non" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="reponses[23].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
@@ -905,62 +971,47 @@
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">     ● Cadenassée correctement</label>
+                                                    <label  class="form-label">● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <input type="hidden" name="reponses[24].questionText" value="Absence de dommages, de corrosion ou de fuites(3)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[24].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[24].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">  ● Absence de dommages, de corrosion ou de fuites</label>
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[24].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Supervisée électriquement</label>
+                                                    <label  class="form-label">● Supervisée électriquement</label>
+                                                    <input type="hidden" name="reponses[25].questionText" value="Supervisée électriquement(3)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[25].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[25].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[25].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -972,43 +1023,47 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <label  class="form-label">● Absence de dommages, de corrosion ou de fuites</label>
+                                                    <input type="hidden" name="reponses[26].questionText" value="Absence de dommages, de corrosion ou de fuites(4)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[26].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[26].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[26].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Accessible et réglé sur la position normale</label>
+                                                    <label  class="form-label">● Accessible et réglé sur la position normale</label>
+                                                    <input type="hidden" name="reponses[27].questionText" value="Accessible et réglé sur la position normale">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="oui" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[27].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="non" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[27].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="clapet_accessible_regle" value="na" class="selectgroup-input">
+                                                            <input type="radio"  name="reponses[27].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
 
 
                                         </div>
@@ -1026,466 +1081,446 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Vanne de régulation de l’alimentation de la chambre de la membrane (P) </label>
-
+                                                    <label class="form-label">● Vanne de régulation de l’alimentation de la chambre de la membrane (P)</label>
+                                                    <input type="hidden" name="reponses[28].questionText" value="Vanne de régulation de l’alimentation de la chambre de la membrane (P)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-regulation-ras" name="reponses[28].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-regulation-coince" name="reponses[28].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-regulation-degrade" name="reponses[28].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-regulation-corrode" name="reponses[28].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-regulation-manque" name="reponses[28].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-regulation-na" name="reponses[28].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"> ● Robinet de vidange principale (D) (Position fermée) </label>
-
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button">-</span>
-                                                        </label>
-                                                    </div>
-
                                                 </div>
                                             </div>
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Robinet de vidange du système ( E ) (Position fermée)  </label>
-
+                                                    <label  class="form-label">● Robinet de vidange principale (D) (Position fermée)</label>
+                                                    <input type="hidden" name="reponses[29].questionText" value="Robinet de vidange principale (D) (Position fermée)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="robinet-vidange-ras" name="reponses[29].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="robinet-vidange-coince" name="reponses[29].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="robinet-vidange-degrade" name="reponses[29].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="robinet-vidange-corrode" name="reponses[29].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="robinet-vidange-manque" name="reponses[29].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="robinet-vidange-na" name="reponses[29].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
+                                                </div>
+                                            </div>
 
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Robinet de vidange du système (E) (Position fermée)</label>
+                                                    <input type="hidden" name="reponses[30].questionText" value="Robinet de vidange du système (E) (Position fermée)">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="robinet-systeme-ras" name="reponses[30].reponseText" value="R.A.S" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="robinet-systeme-coince" name="reponses[30].reponseText" value="Coincé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="robinet-systeme-degrade" name="reponses[30].reponseText" value="Dégradé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="robinet-systeme-corrode" name="reponses[30].reponseText" value="Corrodé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="robinet-systeme-manque" name="reponses[30].reponseText" value="Manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="robinet-systeme-na" name="reponses[30].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button">-</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label">● Vanne d'essai cloche d'alarme (G) (Position fermée)</label>
+                                                    <input type="hidden" name="reponses[31].questionText" value="Vanne d'essai cloche d'alarme (G) (Position fermée)">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-essai-cloche-ras" name="reponses[31].reponseText" value="R.A.S" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-essai-cloche-coince" name="reponses[31].reponseText" value="Coincé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-essai-cloche-degrade" name="reponses[31].reponseText" value="Dégradé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-essai-cloche-corrode" name="reponses[31].reponseText" value="Corrodé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-essai-cloche-manque" name="reponses[31].reponseText" value="Manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-essai-cloche-na" name="reponses[31].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button">-</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">● Vanne de contrôle d'alarme (en option) (H)</label>
+                                                    <input type="hidden" name="reponses[32].questionText" value="Vanne de contrôle d'alarme (en option) (H)">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-controle-alarme-ras" name="reponses[32].reponseText" value="R.A.S" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-controle-alarme-coince" name="reponses[32].reponseText" value="Coincé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-controle-alarme-degrade" name="reponses[32].reponseText" value="Dégradé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-controle-alarme-corrode" name="reponses[32].reponseText" value="Corrodé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-controle-alarme-manque" name="reponses[32].reponseText" value="Manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="vanne-controle-alarme-na" name="reponses[32].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button">-</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Vanne d'essai cloche d'alarme (G) (Postion fermée)  </label>
-
+                                                    <label  class="form-label">● Vanne de vidange automatique (F)</label>
+                                                    <input type="hidden" name="reponses[33].questionText" value="Vanne de vidange automatique (F)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-vidange-automatique-ras" name="reponses[33].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-vidange-automatique-coince" name="reponses[33].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-vidange-automatique-degrade" name="reponses[33].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-vidange-automatique-corrode" name="reponses[33].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-vidange-automatique-manque" name="reponses[33].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="vanne-vidange-automatique-na" name="reponses[33].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
-
                                                 </div>
                                             </div>
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Vanne de contrôle d'alarme (en option) (H)  </label>
-
+                                                    <label  class="form-label">● Actionneur de réarmement manuel (N) s'il existe</label>
+                                                    <input type="hidden" name="reponses[34].questionText" value="Actionneur de réarmement manuel (N) s'il existe">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="actionneur-rearmement-manuel-ras" name="reponses[34].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="actionneur-rearmement-manuel-coince" name="reponses[34].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="actionneur-rearmement-manuel-degrade" name="reponses[34].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="actionneur-rearmement-manuel-corrode" name="reponses[34].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="actionneur-rearmement-manuel-manque" name="reponses[34].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="actionneur-rearmement-manuel-na" name="reponses[34].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"> ● Vanne de vidange automatique (F)   </label>
-
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button">-</span>
-                                                        </label>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"> ● Actionneur de réarmement manuel (N) s'il existe  </label>
-
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button">-</span>
-                                                        </label>
-                                                    </div>
-
                                                 </div>
                                             </div>
 
 
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Pressostat d'alarme ou indicateur d'écoulement (C)   </label>
-
+                                                    <label  class="form-label">● Pressostat d'alarme ou indicateur d'écoulement (C)</label>
+                                                    <input type="hidden" name="reponses[35].questionText" value="Pressostat d'alarme ou indicateur d'écoulement (C)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="pressostat-indicateur-ecoulement-ras" name="reponses[35].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="non_branche" class="selectgroup-input">
+                                                            <input type="radio" id="pressostat-indicateur-ecoulement-non-branche" name="reponses[35].reponseText" value="Non branché" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-plug"></i> Non branché</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="pressostat-indicateur-ecoulement-degrade" name="reponses[35].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="pressostat-indicateur-ecoulement-corrode" name="reponses[35].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="pressostat-indicateur-ecoulement-manque" name="reponses[35].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="pressostat-indicateur-ecoulement-na" name="reponses[35].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
+                                                </div>
+                                            </div>
 
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label">● Déclencheur manuel local (M) opérationnel</label>
+                                                    <input type="hidden" name="reponses[36].questionText" value="Déclencheur manuel local (M) opérationnel">
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="declencheur-manuel-local-ras" name="reponses[36].reponseText" value="R.A.S" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="declencheur-manuel-local-degrade" name="reponses[36].reponseText" value="Dégradé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="declencheur-manuel-local-corrode" name="reponses[36].reponseText" value="Corrodé" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="declencheur-manuel-local-manque" name="reponses[36].reponseText" value="Manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" id="declencheur-manuel-local-na" name="reponses[36].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button">-</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Déclencheur manuel local (M) opérationnel</label>
-
+                                                    <label  class="form-label">● Gong hydraulique opérationnel</label>
+                                                    <input type="hidden" name="reponses[37].questionText" value="Gong hydraulique opérationnel">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
-                                                        </label>
-
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button">-</span>
-                                                        </label>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"> ● Gong hydraulique opérationnel </label>
-
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-ras" name="reponses[37].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-coince" name="reponses[37].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-arrows-alt-h"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-degrade" name="reponses[37].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-corrode" name="reponses[37].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-manque" name="reponses[37].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-hors-service" name="reponses[37].reponseText" value="Hors service" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-power-off"></i> Hors service</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="gong-hydraulique-na" name="reponses[37].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
-
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Crépine d'alimentation à membrane (Q)  </label>
-
+                                                    <label  class="form-label">● Crépine d'alimentation à membrane (Q)</label>
+                                                    <input type="hidden" name="reponses[38].questionText" value="Crépine d'alimentation à membrane (Q)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="crepine-alimentation-ras" name="reponses[38].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="crepine-alimentation-degrade" name="reponses[38].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="crepine-alimentation-corrode" name="reponses[38].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="crepine-alimentation-hors-service" name="reponses[38].reponseText" value="Hors service" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-power-off"></i> Hors service</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="na" class="selectgroup-input">
+                                                            <input type="radio" id="crepine-alimentation-na" name="reponses[38].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
                                                     </div>
-
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Entonnoir de vidange </label>
-
+                                                    <label  class="form-label">● Entonnoir de vidange</label>
+                                                    <input type="hidden" name="reponses[39].questionText" value="Entonnoir de vidange">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="entonnoir-vidange-ras" name="reponses[39].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="entonnoir-vidange-degrade" name="reponses[39].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="entonnoir-vidange-corrode" name="reponses[39].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                            <input type="radio" id="entonnoir-vidange-manque" name="reponses[39].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
-
-
                                                     </div>
-
                                                 </div>
                                             </div>
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> ● Électrovanne (S) opérationnelle</label>
-
+                                                    <label class="form-label">● Électrovanne (S) opérationnelle</label>
+                                                    <input type="hidden" name="reponses[40].questionText" value="Électrovanne (S) opérationnelle">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-ras" name="reponses[40].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-degrade" name="reponses[40].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-corrode" name="reponses[40].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-coince" name="reponses[40].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-lock"></i> Coincé</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-manque" name="reponses[40].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="hors_service" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-hors-service" name="reponses[40].reponseText" value="Hors service" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-power-off"></i> Hors service</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="non_branche" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-non-branche" name="reponses[40].reponseText" value="Non branché" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-plug-slash"></i> Non branché</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="indefini" class="selectgroup-input">
+                                                            <input type="radio" id="electrovanne-operationnelle-indefini" name="reponses[40].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
                                                         </label>
-
-
-
                                                     </div>
-
                                                 </div>
                                             </div>
+
 
                                         </div>
                                     </div>
@@ -1498,152 +1533,130 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ●  Sont existes, visibles et accessibles</label>
+                                                    <label  class="form-label">● Sont existes, visibles et accessibles</label>
+                                                    <input type="hidden" name="reponses[41].questionText" value="Sont existes, visibles et accessibles">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
+                                                            <input type="radio" id="existence-visibilite-accessibilite-oui" name="reponses[41].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <input type="radio" id="existence-visibilite-accessibilite-non" name="reponses[41].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                            <input type="radio" id="existence-visibilite-accessibilite-indefini" name="reponses[41].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Les demi-raccords et leurs joints sont en bon état</label>
-
+                                                    <label  class="form-label">● Les demi-raccords et leurs joints sont en bon état</label>
+                                                    <input type="hidden" name="reponses[42].questionText" value="Les demi-raccords et leurs joints sont en bon état">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="demi-raccords-joints-ras" name="reponses[42].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="demi-raccords-joints-degrade" name="reponses[42].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="demi-raccords-joints-corrode" name="reponses[42].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="demi-raccords-joints-coince" name="reponses[42].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-lock"></i> Coincé</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                            <input type="radio" id="demi-raccords-joints-manque" name="reponses[42].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="indefini" class="selectgroup-input">
+                                                            <input type="radio" id="demi-raccords-joints-indefini" name="reponses[42].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
                                                         </label>
-
-
-
                                                     </div>
-
                                                 </div>
                                             </div>
+
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Les bouchons sont en place et en bon état</label>
-
+                                                    <label  class="form-label">● Les bouchons sont en place et en bon état</label>
+                                                    <input type="hidden" name="reponses[43].questionText" value="Les bouchons sont en place et en bon état">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="bouchons-etat-ras" name="reponses[43].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="bouchons-etat-degrade" name="reponses[43].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="bouchons-etat-corrode" name="reponses[43].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="bouchons-etat-coince" name="reponses[43].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-lock"></i> Coincé</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                            <input type="radio" id="bouchons-etat-manque" name="reponses[43].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="indefini" class="selectgroup-input">
+                                                            <input type="radio" id="bouchons-etat-indefini" name="reponses[43].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
                                                         </label>
-
-
-
                                                     </div>
-
                                                 </div>
                                             </div>
+
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">  ● Le clapet anti-retour exempt de dommages, de corrosion et de fuites</label>
-
+                                                    <label  class="form-label">● Le clapet anti-retour exempt de dommages, de corrosion et de fuites</label>
+                                                    <input type="hidden" name="reponses[44].questionText" value="Le clapet anti-retour exempt de dommages, de corrosion et de fuites">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-antiretour-ras" name="reponses[44].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-antiretour-degrade" name="reponses[44].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-antiretour-corrode" name="reponses[44].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-antiretour-coince" name="reponses[44].reponseText" value="Coincé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-lock"></i> Coincé</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-antiretour-manque" name="reponses[44].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
-
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="indefini" class="selectgroup-input">
+                                                            <input type="radio" id="clapet-antiretour-indefini" name="reponses[44].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
                                                         </label>
-
-
-
                                                     </div>
-
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -1655,28 +1668,26 @@
                                             <i class="fas fa-shield-alt"></i> 7 - Vérifier que les détecteurs sont en place, fixés et protégés contre la corrosion et détériorations mécaniques
                                         </label>
 
-
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
+                                                    <input type="hidden" name="reponses[45].questionText" value="Vérifier que les détecteurs sont en place, fixés et protégés contre la corrosion et détériorations mécaniques">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
+                                                            <input type="radio" id="detecteurs-oui" name="reponses[45].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <input type="radio" id="detecteurs-non" name="reponses[45].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                            <input type="radio" id="detecteurs-indefini" name="reponses[45].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
 
@@ -1686,32 +1697,28 @@
                                             <i class="fas fa-cloud-showers-heavy"></i> 8 - Vérifier que le poste de contrôle est protégé contre les intempéries
                                         </label>
 
-
-
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
+                                                    <input type="hidden" name="reponses[46].questionText" value="Vérifier que le poste de contrôle est protégé contre les intempéries">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
+                                                            <input type="radio" id="poste-oui" name="reponses[46].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
+                                                            <input type="radio" id="poste-non" name="reponses[46].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                            <input type="radio" id="poste-indefini" name="reponses[46].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
-
 
 
                                     <div class="row">
@@ -1724,14 +1731,15 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
+                                                    <input type="hidden" name="reponses[47].questionText" value="Vérifier que le dispositif d'évacuation d'eau (Drainage - Pompe puisard ) existe et ne presente pas des anomalies">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[47].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
 
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[47].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
 
@@ -1739,13 +1747,13 @@
 
 
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[47].reponseText" value="Manque" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
 
 
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="indefini" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[47].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
                                                         </label>
 
@@ -1779,131 +1787,121 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">   ● La tuyauteries et les raccords</label>
+                                                    <label class="form-label">   ● La tuyauterie et les raccords</label>
+                                                    <input type="hidden" name="reponses[48].questionText" value="La tuyauterie et les raccords">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[48].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[48].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[48].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
-
-
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">  ● Les supports de fixation </label>
+                                                    <input type="hidden" name="reponses[49].questionText" value="Les supports de fixation">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[49].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[49].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[49].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
-
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">  ● Absence de dommages, de corrosion et de fuites.</label>
+                                                    <input type="hidden" name="reponses[50].questionText" value="Absence de dommages, de corrosion et de fuites.">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="50" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[50].reponseText" value="Oui" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[50].reponseText" value="Non" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                            <input type="radio" name="reponses[50].reponseText" value="-" class="selectgroup-input">
+                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
+
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label">  ● Les buses pulvérisateurs (Exempt de corrosion et de peinture) </label>
+                                                    <input type="hidden" name="reponses[51].questionText" value="Les buses pulvérisateurs (Exempt de corrosion et de peinture)">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[51].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[51].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[51].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[51].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
-
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
+
 
 
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">   ● Les boites à mousse </label>
+                                                    <label class="form-label">   ● Les boîtes à mousse </label>
+                                                    <input type="hidden" name="reponses[52].questionText" value="Les boîtes à mousse">
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[52].reponseText" value="R.A.S" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[52].reponseText" value="Dégradé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[52].reponseText" value="Corrodé" class="selectgroup-input">
                                                             <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
-
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                            <input type="radio" name="reponses[52].reponseText" value="-" class="selectgroup-input">
                                                             <span class="selectgroup-button">-</span>
                                                         </label>
-
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
+
 
                                         </div>
                                     </div>
@@ -1927,19 +1925,20 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label > ● Identification des circuits</label>
+                                                <label> ● Identification des circuits</label>
+                                                <input type="hidden" name="reponses[53].questionText" value="Identification des circuits">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="accessible" value="50" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[53].reponseText" value="Oui" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[53].reponseText" value="Non" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="accessible" value="100" class="selectgroup-input">
-                                                        <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        <input type="radio" name="reponses[53].reponseText" value="-" class="selectgroup-input">
+                                                        <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -1947,23 +1946,25 @@
 
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label >  ● Le système déluge est-il reporté à une salle surveillée 24h/24h?</label>
+                                                <label>  ● Le système déluge est-il reporté à une salle surveillée 24h/24h?</label>
+                                                <input type="hidden" name="reponses[54].questionText" value="Le système déluge est-il reporté à une salle surveillée 24h/24h?">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="accessible" value="50" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[54].reponseText" value="Oui" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="accessible" value="100" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[54].reponseText" value="Non" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="accessible" value="100" class="selectgroup-input">
-                                                        <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        <input type="radio" name="reponses[54].reponseText" value="-" class="selectgroup-input">
+                                                        <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                     </div>
 
@@ -1983,18 +1984,18 @@
                                         <div class="col-12 col-md-12">
                                             <div class="form-group">
                                                 <label> ● Vérifier que le réservoir est en bon état (Exempt de dommages, de corrosion et de fuites).</label>
-                                                <input type="hidden" name="reponses[66].questionText" value="Mode Automatique-">
+                                                <input type="hidden" name="reponses[55].questionText" value="Vérifier que le réservoir est en bon état (Exempt de dommages, de corrosion et de fuites).">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" id="mode-automatique-oui" name="reponses[66].reponseText" value="Oui" class="selectgroup-input" required>
+                                                        <input type="radio" id="reservoir-bon-etat-oui" name="reponses[55].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" id="mode-automatique-indisponible" name="reponses[66].reponseText" value="Indisponible" class="selectgroup-input" required>
+                                                        <input type="radio" id="reservoir-bon-etat-non" name="reponses[55].reponseText" value="Non" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" id="mode-automatique-hors-service" name="reponses[66].reponseText" value="Hors service" class="selectgroup-input" required>
+                                                        <input type="radio" id="reservoir-bon-etat-hors-service" name="reponses[55].reponseText" value="-" class="selectgroup-input" required>
                                                         <span class="selectgroup-button">-</span>
                                                     </label>
                                                 </div>
@@ -2002,92 +2003,86 @@
                                         </div>
 
 
-
                                         <div class="col-12 col-md-12">
                                             <div class="form-group">
-                                                <label>  ● L'indicateur de niveau de liquide émulseur existe et en bon état ?</label>
-                                                <input type="hidden" name="reponses[66].questionText" value="Mode Automatique-">
+                                                <label> ● L'indicateur de niveau de liquide émulseur existe et en bon état ?</label>
+                                                <input type="hidden" name="reponses[56].questionText" value="L'indicateur de niveau de liquide émulseur existe et en bon état ?">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="dispositif_evacuation" value="ras" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[56].reponseText" value="R.A.S" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                     </label>
-
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="dispositif_evacuation" value="degrade" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[56].reponseText" value="Dégradé" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-tools"></i> Dégradé</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="dispositif_evacuation" value="corrode" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[56].reponseText" value="Corrodé" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="dispositif_evacuation" value="coince" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[56].reponseText" value="Coincé" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-lock"></i> Coincé</span>
                                                     </label>
-
-
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="dispositif_evacuation" value="manque" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[56].reponseText" value="Manque" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                     </label>
-
-
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="dispositif_evacuation" value="indefini" class="selectgroup-input">
+                                                        <input type="radio" name="reponses[56].reponseText" value="-" class="selectgroup-input">
                                                         <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> -</span>
                                                     </label>
-
-
-
                                                 </div>
                                             </div>
                                         </div>
 
 
+
                                         <div class="col-12 col-md-12">
                                             <div class="form-group">
-                                                <label>  ● Les vannes sont en bon état (Exempt de dommages, de corrosion et de fuites)?</label>
-                                                <input type="hidden" name="reponses[66].questionText" value="Mode Automatique-">
+                                                <label> ● Les vannes sont en bon état (Exempt de dommages, de corrosion et de fuites) ?</label>
+                                                <input type="hidden" name="reponses[57].questionText" value="Les vannes sont en bon état (Exempt de dommages, de corrosion et de fuites) ?">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[66].reponseText" value="Oui" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[57].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio"name="reponses[66].reponseText" value="Indisponible" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[57].reponseText" value="Non" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[66].reponseText" value="Hors service" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[57].reponseText" value="-" class="selectgroup-input" required>
                                                         <span class="selectgroup-button">-</span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
 
 
 
                                         <div class="col-12 col-md-12">
                                             <div class="form-group">
                                                 <label> ● Les vannes sont cadenassées correctement ?</label>
-                                                <input type="hidden" name="reponses[66].questionText" value="Mode Automatique-">
+                                                <input type="hidden" name="reponses[58].questionText" value="Les vannes sont cadenassées correctement ?">
                                                 <div class="selectgroup w-100">
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[66].reponseText" value="Oui" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[58].reponseText" value="Oui" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio"name="reponses[66].reponseText" value="Indisponible" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[58].reponseText" value="Non" class="selectgroup-input" required>
                                                         <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                                                     </label>
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="reponses[66].reponseText" value="Hors service" class="selectgroup-input" required>
+                                                        <input type="radio" name="reponses[58].reponseText" value="-" class="selectgroup-input" required>
                                                         <span class="selectgroup-button">-</span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
 
 
 
@@ -2100,33 +2095,38 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label> ● Type du liquide émulseur</label>
+                                                <input type="hidden" name="reponses[59].questionText" value="Type du liquide émulseur">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                    <span class="input-group-text" >txt</span>
+                                                    <input type="text" name="reponses[59].reponseText" class="form-control" placeholder="" aria-label="Type du liquide émulseur" aria-describedby="basic-addon3">
+                                                    <span class="input-group-text">txt</span>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label> ● Niveau du liquide émulseur (> 80% de la capacité)</label>
+                                                <input type="hidden" name="reponses[60].questionText" value="Niveau du liquide émulseur (> 80% de la capacité)">
                                                 <div class="input-group mb-3">
-                                                    <input type="number" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                    <span class="input-group-text" >%</span>
+                                                    <input type="number" name="reponses[60].reponseText" class="form-control" placeholder="" aria-label="Niveau du liquide émulseur" aria-describedby="basic-addon3">
+                                                    <span class="input-group-text">%</span>
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label> ● Date d’expiration du liquide émulseur atteinte ?</label>
+                                                <input type="hidden" name="reponses[61].questionText" value="Date d’expiration du liquide émulseur atteinte ?">
+
                                                 <div class="input-group mb-3">
-                                                    <input type="date" name="reponses[18].reponseText" class="form-control" placeholder="" aria-label="Débit" aria-describedby="basic-addon3">
-                                                    <span class="input-group-text" >Date</span>
+                                                    <input type="date" name="reponses[61].reponseText" class="form-control" placeholder="" aria-label="Date d’expiration" aria-describedby="basic-addon3">
+                                                    <span class="input-group-text">Date</span>
                                                 </div>
                                             </div>
                                         </div>
+
 
 
                                     </div>
@@ -2156,8 +2156,9 @@
                                     <div class="row">
                                         <div class="col-12 col-md-12">
                                             <div class="form-group">
+                                                <input type="hidden" name="reponses[62].questionText" value="Observations">
 
-                                                <textarea name="reponses[57].reponseText" class="form-control" rows="5"></textarea>
+                                                <textarea name="reponses[62].reponseText" class="form-control" rows="5"></textarea>
                                             </div>
                                         </div>
 
