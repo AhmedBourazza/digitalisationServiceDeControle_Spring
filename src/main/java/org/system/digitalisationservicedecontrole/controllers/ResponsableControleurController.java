@@ -1,6 +1,8 @@
 package org.system.digitalisationservicedecontrole.controllers;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,15 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.system.digitalisationservicedecontrole.DTOs.ControleurDTO;
 import org.system.digitalisationservicedecontrole.configuration.GestionSession;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class ResponsableControleurController {
@@ -34,6 +37,8 @@ public class ResponsableControleurController {
     private GestionSession gestionSession;
     @Autowired
     private FormulaireRepo formulaireRepo;
+    @Autowired
+    private ObjectMapper jacksonObjectMapper;
 
 
     @GetMapping("/responsableControleur/login")
@@ -49,10 +54,111 @@ public class ResponsableControleurController {
         return "RC_gestionControleurs";
     }
     @GetMapping("/responsableControleur/dashboard")
-    public String Dashboard(Model model , HttpSession session) {
+    public String dashboard(Model model, HttpSession session) {
         gestionSession.prepareModel(session, model);
+
+        // Récupération des formulaires
+        List<Formulaire> formulaires = formulaireRepo.findAllOrderByDateControleDesc();
+
+        // Définir le début et la fin du mois en cours
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois en cours
+        Date startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois en cours
+        Date endOfCurrentMonth = calendar.getTime(); // Dernier jour du mois en cours
+
+        // Obtenir le mois et l'année du mois en cours
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM yyyy", Locale.FRENCH);
+        String monthYearCurrentMonth = monthFormat.format(calendar.getTime()); // Format du mois en cours
+
+        // Récupération des contrôleurs pour le mois en cours
+        List<Object[]> resultsCurrentMonth = controleurRepo.findAllControleursWithCount(startOfCurrentMonth, endOfCurrentMonth);
+
+        // Mapper les résultats vers les DTO des contrôleurs
+        List<ControleurDTO> controleursWithControlesCurrentMonth = resultsCurrentMonth.stream()
+                .map(result -> {
+                    ControleurDTO dto = new ControleurDTO();
+                    dto.setIdControleur((Long) result[0]);
+                    dto.setNom((String) result[1]);
+                    dto.setPrenom((String) result[2]);
+                    dto.setMatricule((String) result[3]);
+                    dto.setDateIntegration((Date) result[4]);
+                    dto.setDateEmbauche((Date) result[5]);
+                    dto.setFormCount((Long) result[6]);
+                    dto.setGrade((String) result[7]);
+                    dto.setNumTele((String) result[8]);
+                    dto.setUsername((String) result[9]);
+                    dto.setEmail((String) result[10]);
+                    dto.setPassword((String) result[11]);
+                    dto.setImageData((byte[]) result[12]);
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        // Obtenir les 5 meilleurs contrôleurs pour le mois en cours
+        List<ControleurDTO> topControleurs = controleursWithControlesCurrentMonth.stream()
+                .limit(5)
+                .collect(Collectors.toList());
+
+        // Log pour le débogage
+        List<String> nomsControleurs = controleursWithControlesCurrentMonth.stream()
+                .map(c -> c.getNom() + " " + c.getPrenom())
+                .collect(Collectors.toList());
+        List<Long> compteControles = controleursWithControlesCurrentMonth.stream()
+                .map(ControleurDTO::getFormCount)
+                .collect(Collectors.toList());
+
+        // Ajout des données JSON au modèle
+        try {
+            model.addAttribute("nomsControleurs", jacksonObjectMapper.writeValueAsString(nomsControleurs));
+            model.addAttribute("compteControles", jacksonObjectMapper.writeValueAsString(compteControles));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        // Récupérer les données d'équipement pour le mois en cours
+        List<Object[]> equipmentResultsCurrentMonth = equipementRepo.countControlsByEquipement(startOfCurrentMonth, endOfCurrentMonth);
+        System.out.println("Résultats d'équipement (Mois en cours) : " + Arrays.deepToString(equipmentResultsCurrentMonth.toArray()));
+
+        List<String> equipmentNamesCurrentMonth = new ArrayList<>();
+        List<Long> equipmentCountsCurrentMonth = new ArrayList<>();
+
+        for (Object[] result : equipmentResultsCurrentMonth) {
+            if (result.length >= 2) {
+                equipmentNamesCurrentMonth.add((String) result[0]); // Nom de l'équipement
+                equipmentCountsCurrentMonth.add((Long) result[1]); // Compte des contrôles
+            }
+        }
+
+        // Ajouter les données d'équipement au modèle
+        model.addAttribute("equipmentNamesCurrentMonth", equipmentNamesCurrentMonth);
+        model.addAttribute("equipmentCountsCurrentMonth", equipmentCountsCurrentMonth);
+
+        // Ajouter le mois et l'année du mois en cours au modèle
+        model.addAttribute("monthYearCurrentMonth", monthYearCurrentMonth);
+        // Définir le début et la fin du mois précédent
+        calendar.add(Calendar.MONTH, -1); // Reculer d'un mois
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois précédent
+        Date startOfPreviousMonth = calendar.getTime(); // Premier jour du mois précédent
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois précédent
+        Date endOfPreviousMonth = calendar.getTime(); // Dernier jour du mois précédent
+
+        // Obtenir le mois et l'année du mois précédent
+        String monthYearPreviousMonth = monthFormat.format(calendar.getTime()); // Format du mois précédent
+        model.addAttribute("monthYearLastMonth", monthYearPreviousMonth);
+
+        // Ajouter d'autres données au modèle
+        model.addAttribute("formulaires", formulaires);
+        model.addAttribute("controleurs", topControleurs);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
+        model.addAttribute("totalFormulaires", formulaireRepo.count());
+
         return "RC_dashboard";
     }
+
 
     @GetMapping("/responsableControleur/editProfile")
     public String EditProfile(Model model , HttpSession session) {

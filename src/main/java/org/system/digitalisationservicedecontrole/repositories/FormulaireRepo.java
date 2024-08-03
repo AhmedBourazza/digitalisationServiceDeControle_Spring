@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
 import org.system.digitalisationservicedecontrole.entities.Formulaire;
 
+import java.util.Date;
 import java.util.List;
 
 public interface FormulaireRepo extends JpaRepository<Formulaire, Long> {
@@ -13,6 +14,9 @@ public interface FormulaireRepo extends JpaRepository<Formulaire, Long> {
     List<Formulaire> findFormulaireByEquipement(Equipement equipement);
     @Query("SELECT f FROM Formulaire f ORDER BY f.dateControle DESC limit 5")
     List<Formulaire> findAllOrderByDateControleDesc();
+
+
+
 
     long count();
 

@@ -27,7 +27,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -66,11 +69,47 @@ public class ContoleurController {
 
 
     @GetMapping("/controleur/monProfile")
-    public String afficherProfile(Model model , HttpSession session) {
-        gestionSession.prepareModel(session, model);
-        return "C_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
-    }
+    public String afficherProfile(Model model, HttpSession session) {
+        // Récupérer l'ID du contrôleur à partir de la session
+        Long controleurId = (Long) session.getAttribute("id");
 
+        // Récupérer les informations du contrôleur à partir de la base de données
+        Controleur controleur = controleurRepo.findById(controleurId).orElse(null);
+        gestionSession.prepareModel(session, model);
+
+        // Ajouter les informations du contrôleur au modèle
+        model.addAttribute("controleur", controleur);
+
+        // Récupérer tous les équipements
+        List<Equipement> tousEquipements = equipementRepo.findAll();
+
+        // Définir les dates de début et de fin pour le mois en cours
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        java.sql.Date startDate = new java.sql.Date(cal.getTimeInMillis()); // Utiliser java.sql.Date
+
+        cal.add(Calendar.MONTH, 1);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        cal.add(Calendar.DAY_OF_MONTH, -1);
+        java.sql.Date endDate = new java.sql.Date(cal.getTimeInMillis()); // Utiliser java.sql.Date
+
+        // Récupérer le nombre de contrôles par équipement pour le contrôleur ce mois-ci
+        List<Object[]> controlsByEquipement = controleurRepo.countControlsByEquipementForControleurThisMonth(controleurId, startDate, endDate);
+
+        // Transformer la liste des contrôles en une map pour une utilisation plus facile dans la vue
+        Map<Long, Long> controlsMap = new HashMap<>();
+        for (Object[] result : controlsByEquipement) {
+            Long equipementId = ((Equipement) result[0]).getIdEquipement();
+            Long count = (Long) result[1];
+            controlsMap.put(equipementId, count);
+        }
+
+        // Ajouter les informations au modèle, y compris tous les équipements
+        model.addAttribute("tousEquipements", tousEquipements);
+        model.addAttribute("controlsMap", controlsMap);
+
+        return "C_monProfile";
+    }
     @GetMapping("/controleur/formulaireHydrant")
     public String afficherFormulaireHydrant(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
@@ -96,6 +135,11 @@ public class ContoleurController {
     public String afficherFormulaireSprinklers(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         return "C_formSprinklers"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+    }
+    @GetMapping("/controleur/formulaireRIA_PIA")
+    public String afficherFormulaireRIA_PIA(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        return "C_formRIA_PIA"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
     @GetMapping("/tst2")
