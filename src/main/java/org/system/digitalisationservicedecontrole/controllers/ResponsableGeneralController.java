@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,7 @@ public class ResponsableGeneralController {
     private FormulaireRepo formulaireRepo;
     @Autowired
     private ObjectMapper jacksonObjectMapper;
+
 
 
     @GetMapping("/responsableGeneral/login")
@@ -225,59 +227,64 @@ public class ResponsableGeneralController {
     }
 
     @GetMapping("/responsableGeneral/editProfile")
-    public String EditProfile(Model model , HttpSession session) {
+    public String editProfile(Model model, HttpSession session) {
         gestionSession.prepareModel(session, model);
-        ResponsableGeneral responsableGeneral = responsableGeneralRepo.findById((Long)session.getAttribute("id"))
+        ResponsableGeneral responsableGeneral = responsableGeneralRepo.findById((Long) session.getAttribute("id"))
                 .orElseThrow(() -> new RuntimeException("ResponsableGeneral not found"));
 
-        // Ajoutez l'entité au modèle
+        // Add the entity to the model
         model.addAttribute("responsableGeneral", responsableGeneral);
-        return "RG_editProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        return "RG_editProfile"; // Ensure "RG_editProfile.html" is present in the templates folder
     }
 
-        @PostMapping("/responsableGeneral/editProfile")
-        public String modifierResponsableGeneral(
-                @ModelAttribute ResponsableGeneral responsableGeneral,
-                @RequestParam("imageData") MultipartFile imageData) {
 
-            // Traitez l'image si un fichier est fourni
-            if (imageData != null && !imageData.isEmpty()) {
-                try {
-                    System.out.println("bdina");
-                    // Convertir MultipartFile en byte[]
-                    byte[] imageBytes = imageData.getBytes();
-                    responsableGeneral.setImageData(imageBytes);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("Hadchi makhdamch");
-                }
-            }else{
-                System.out.println("imageData is empty");
+
+    @PostMapping("/responsableGeneral/editProfile")
+    public String modifierResponsableGeneral(
+            @ModelAttribute ResponsableGeneral responsableGeneral,
+            @RequestParam("imageFile") MultipartFile imageFile,
+            @RequestParam(value = "password", required = false) String newPassword,
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
+        try {
+            // Check if a new password has been provided
+            if (newPassword != null && !newPassword.isEmpty()) {
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                String hashedPassword = passwordEncoder.encode(newPassword);
+                responsableGeneral.setPassword(hashedPassword);
+            } else {
+                // If no new password is provided, retrieve the existing password
+                ResponsableGeneral existingRG = responsableGeneralRepo.findById(responsableGeneral.getIdResponsableGeneral())
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + responsableGeneral.getIdResponsableGeneral()));
+                responsableGeneral.setPassword(existingRG.getPassword());
             }
 
-            // Trouvez et mettez à jour l'existant ResponsableGeneral
-          //  ResponsableGeneral existingResponsableGeneral = responsableGeneralRepo.findById(responsableGeneral.getIdResponsableGeneral())
-            //        .orElseThrow(() -> new RuntimeException("ResponsableGeneral not found"));
-    /*
-            // Mettre à jour les autres champs
-            existingResponsableGeneral.setNom(responsableGeneral.getNom());
-            existingResponsableGeneral.setPrenom(responsableGeneral.getPrenom());
-            existingResponsableGeneral.setDateIntegration(responsableGeneral.getDateIntegration());
-            existingResponsableGeneral.setUsername(responsableGeneral.getUsername());
-            existingResponsableGeneral.setMatricule(responsableGeneral.getMatricule());
-            existingResponsableGeneral.setDateEmbauche(responsableGeneral.getDateEmbauche());
-            existingResponsableGeneral.setNumTele(responsableGeneral.getNumTele());*/
+            // Handle image upload
+            if (!imageFile.isEmpty()) {
+                responsableGeneral.setImageData(imageFile.getBytes());
+            } else {
+                // If no new image is uploaded, keep the existing image
+                ResponsableGeneral existingRG = responsableGeneralRepo.findById(responsableGeneral.getIdResponsableGeneral())
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + responsableGeneral.getIdResponsableGeneral()));
+                responsableGeneral.setImageData(existingRG.getImageData());
+            }
 
-            // Mettez à jour l'image uniquement si elle a été modifiée
-           /* if (responsableGeneral.getImageData() != null && responsableGeneral.getImageData().length > 0) {
-                responsableGeneral.setImageData(responsableGeneral.getImageData());
-            }*/
-
-            // Sauvegardez les changements
+            // Save the updated entity
             responsableGeneralRepo.save(responsableGeneral);
+            redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès. Veuillez vous reconnecter.");
 
-            return "redirect:/responsableGeneral/monProfile";
+            // Invalidate the session to log out the user
+            session.invalidate();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately
         }
+
+        // Redirect to the login page
+        return "redirect:/login"; // Change this to your actual login page URL
+    }
+
 
     @GetMapping("/responsableGeneral/monProfile")
     public String MonProfile(Model model , HttpSession session) {

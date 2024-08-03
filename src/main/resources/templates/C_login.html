@@ -12,9 +12,16 @@
 <div class="wrapper">
     <form th:action="@{/login}" method="post">
         <h1>Connexion</h1>
+
         <div th:if="${param.error}" class="error-message">
             Nom d'utilisateur ou mot de passe invalide.
         </div>
+
+        <!-- Success message for profile update -->
+        <div th:if="${successMessage}" class="success-message">
+            <p th:text="${successMessage}"></p>
+        </div>
+
         <div class="input-box">
             <input type="text" placeholder="Nom d'utilisateur" name="username" required>
             <i class='bx bxs-user'></i>
@@ -57,6 +64,18 @@
             border-radius: 5px; /* Coins arrondis */
             margin-top: 10px; /* Espace au-dessus du message */
             font-size: 14px; /* Taille de la police */
+        }
+
+        /* Styles pour le message de succès */
+        .success-message {
+            color: #007700; /* Couleur du texte vert pour les messages de succès */
+            background-color: #e6ffe6; /* Fond légèrement vert pour le message de succès */
+            border: 1px solid #007700; /* Bordure verte autour du message */
+            padding: 10px; /* Espacement interne */
+            border-radius: 5px; /* Coins arrondis */
+            margin-top: 10px; /* Espace au-dessus du message */
+            font-size: 14px; /* Taille de la police */
+            text-align: center; /* Centrer le texte */
         }
     </style>
 </div>

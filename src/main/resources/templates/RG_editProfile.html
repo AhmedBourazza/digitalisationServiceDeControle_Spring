@@ -411,18 +411,12 @@
           <!----------------------------------------------------------------------------->
           <div class="col-12">
             <div class="card card-profile">
-              <form th:action="@{/responsableGeneral/editProfile}" method="post" th:object="${responsableGeneral}" enctype="multipart/form-data" >
+              <form th:action="@{/responsableGeneral/editProfile}" method="post" th:object="${responsableGeneral}" enctype="multipart/form-data">
                 <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
                   <div class="profile-picture">
                     <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
-
-
                       <img th:src="'data:image/jpeg;base64,' + ${responsableGeneral.getImageDataAsBase64()}" id="profile-image" class="avatar-img rounded-circle" alt="Image">
-
-                      <!-- Champ d'entrée pour sélectionner une nouvelle image -->
-                      <input type="file" name="imageData" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
-
-                      <!-- Bouton pour ouvrir le sélecteur de fichier -->
+                      <input type="file" name="imageFile" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
                       <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
                         <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
                       </label>
@@ -431,106 +425,87 @@
                 </div>
                 <div class="card-body">
                   <div class="user-profile">
-                    <!-- Champs pour les autres informations du contrôleur -->
-                    <input type="hidden" name="idResponsableGeneral" th:field="*{idResponsableGeneral}" th:value="${idMoi}" />
+                    <input type="hidden" name="idResponsableGeneral" th:field="*{idResponsableGeneral}" th:value="${responsableGeneral.idResponsableGeneral}" />
                     <div class="card-footer">
                       <div class="row user-stats text-center">
-                        <div  class="col">
-                          <label >Nom</label>
-                          <input type="text" class="form-control name"  th:field="*{nom}" placeholder="Nom">
-                        </div>
-
-                        <div  class="col">
-                          <label >Prénom</label>
-                          <input type="text" class="form-control name" th:field="*{prenom}" placeholder="Nom">
-                        </div>
-                      </div> </div>
-
-                    <div class="card-footer">
-                      <div class="row user-stats text-center">
-                        <div  class="col">
-                          <label >Date d'intégration service </label>
-                          <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service">
-                        </div>
-
-
                         <div class="col">
-                          <label >Nom d'utilisateur </label>
-                          <div class="input-group mb-3">
-
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                            <input type="text" class="form-control title" th:field="*{username}" placeholder="UserName">
-                          </div>
+                          <label>Nom</label>
+                          <input type="text" class="form-control name" th:field="*{nom}" th:value="${responsableGeneral.nom}" placeholder="Nom" />
                         </div>
-                      </div> </div>
-
-
-
-
-
-
-
-
-                    <div class="card-footer">
-                      <div class="row user-stats text-center">
-                        <div  class="col">
-                          <label >Matricule</label>
-                          <div class="view-profile">
-                            <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" placeholder="Matricule">
-                          </div>
+                        <div class="col">
+                          <label>Prénom</label>
+                          <input type="text" class="form-control name" th:field="*{prenom}" th:value="${responsableGeneral.prenom}" placeholder="Prénom" />
                         </div>
-
-
-                      </div> </div>
-
-
-
-
-
-
-
-
-
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="row user-stats text-center">
-                    <div  class="col">
-                      <label >Date d'embauche </label>
-                      <input type="date" class="form-control desc" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
-                    </div>
-
-                    <div class="col">
-                      <label >Numéro de télephone</label>
-                      <div class="input-group mb-3">
-
-                        <span class="input-group-text" >+212</span>
-                        <input type="text" class="form-control title" th:field="*{numTele}" placeholder="Numéro de téléphone">
                       </div>
                     </div>
-
-
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Date d'intégration service</label>
+                          <input type="date" class="form-control desc" th:field="*{dateIntegration}" th:value="${#dates.format(responsableGeneral.dateIntegration, 'yyyy-MM-dd')}" placeholder="Date d'intégration service" />
+                        </div>
+                        <div class="col">
+                          <label>Nom d'utilisateur</label>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control title" th:field="*{username}" th:value="${responsableGeneral.username}" placeholder="Nom d'utilisateur" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Matricule</label>
+                          <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" th:value="${responsableGeneral.matricule}" placeholder="Matricule" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Date d'embauche</label>
+                          <input type="date" class="form-control desc" th:field="*{dateEmbauche}" th:value="${#dates.format(responsableGeneral.getDateEmbauche(), 'yyyy-MM-dd')}" placeholder="Date d'embauche" />
+                        </div>
+                        <div class="col">
+                          <label>Numéro de téléphone</label>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">+212</span>
+                            <input type="text" class="form-control title" th:field="*{numTele}" th:value="${responsableGeneral.numTele}" placeholder="Numéro de téléphone" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Email</label>
+                          <input type="email" class="form-control" th:field="*{email}" th:value="${responsableGeneral.email}" placeholder="Email" />
+                        </div>
+                        <div class="col">
+                          <label>Grade</label>
+                          <input type="text" class="form-control" th:field="*{grade}" th:value="${responsableGeneral.grade}" placeholder="Grade" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Nouveau mot de passe</label>
+                          <input type="password" class="form-control" th:field="*{password}" placeholder="Nouveau mot de passe" />
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
                 <div class="card-body">
-                  <input type="submit" class="btn btn-success" value="Valider">
+                  <input type="submit" class="btn btn-success" value="Valider" />
                   <a th:href="@{/responsableGeneral/monProfile}" class="btn btn-danger">Annuler</a>
                 </div>
-
-                <script>
-                  function previewImage(event) {
-                    const input = event.target;
-                    const reader = new FileReader();
-                    reader.onload = function(){
-                      const dataURL = reader.result;
-                      const output = document.getElementById('profile-image');
-                      output.src = dataURL;
-                    };
-                    reader.readAsDataURL(input.files[0]);
-                  }
-                </script>
               </form>
+
+
 
             </div>
           </div>

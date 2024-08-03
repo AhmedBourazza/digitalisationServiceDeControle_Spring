@@ -429,7 +429,7 @@
 
 
                   <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
-                    <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
+                    <img th:src="'data:image/jpeg;base64,' + ${rc.getImageDataAsBase64()}" class="avatar-img rounded-circle" alt="User Image">
                     <input type="file" accept="image/*" id="avatar-input" style="display: none;">
                     <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
                       <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
@@ -444,8 +444,9 @@
               </div>
               <div class="card-body">
                 <div class="user-profile text-center">
-                  <input type="text" class="form-control name" placeholder="Nom prénom" value="">
-                  <input type="text" class="form-control job" placeholder="Grade" value="">
+                  <input type="text" class="form-control name" placeholder="Nom prénom" th:value="${rc.getPrenom()+' ' +rc.getNom()}">
+                  <input type="text" class="form-control job" placeholder="Grade"  th:value="${rc.getGrade()}>
+
                   <input type="text" class="form-control desc" placeholder="Date d'intégration service" value="Date d'intégration service">
                   <div class="view-profile">
                     <input type="text" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
