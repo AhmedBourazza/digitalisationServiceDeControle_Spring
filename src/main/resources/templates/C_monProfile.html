@@ -414,181 +414,17 @@
                 </div>
 
                 <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css}">
-                <h3 class="fw-bold mb-3">Nombre de vérification réalisé par équipement</h3>
+                <h3 class="fw-bold mb-3">Nombre de vérifications réalisées par équipement</h3>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" th:each="equipement : ${tousEquipements}">
                         <div class="card card-secondary bg-secondary-gradient">
                             <div class="card-body skew-shadow">
-                                <i class="fas fa-fire-extinguisher fa-2x"></i> <!-- Icône de pompe incendie -->
-                                <h2 class="py-4 mb-0">10</h2>
+                                <i class="fas fa-fire-extinguisher fa-2x"></i> <!-- Icône d'équipement, ajustez selon votre besoin -->
+                                <h2 class="py-4 mb-0" th:text="${controlsMap[equipement.getIdEquipement()] != null ? controlsMap[equipement.idEquipement] : 0}">0</h2>
                                 <div class="row">
                                     <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Hydrants</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-shower fa-2x"></i> <!-- Icône de douche (symbolique pour un poste de colonne humide) -->
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Poste Colonne Humide</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-spray-can fa-2x"></i>
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Lances Monitors</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-water fa-2x"></i> <!-- Icône d'eau -->
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Système Déluge</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-water fa-2x"></i> <!-- Icône d'eau -->
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Système Sprinkler</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-fire fa-2x"></i> <!-- Icône de feu -->
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Pompes Incendie</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-fire fa-2x"></i> <!-- Icône de feu -->
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Pompe incendie en Diesel</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Cette Semaine
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ps-0 text-end">
-                                        <h3 class="fw-bold mb-1">1/100</h3>
-                                        <div class="text-small text-uppercase fw-bold op-8">
-                                            Classement
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card card-secondary bg-secondary-gradient">
-                            <div class="card-body skew-shadow">
-                                <i class="fas fa-fire fa-2x"></i> <!-- Icône de feu -->
-                                <h2 class="py-4 mb-0">10</h2>
-                                <div class="row">
-                                    <div class="col-8 pe-0">
-                                        <h3 class="fw-bold mb-1">Pompe incendie en électrique</h3>
+                                        <h3 class="fw-bold mb-1" th:text="${equipement.nom}">Nom Équipement</h3>
                                         <div class="text-small text-uppercase fw-bold op-8">
                                             Cette Semaine
                                         </div>
@@ -604,6 +440,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
 

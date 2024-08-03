@@ -48,6 +48,14 @@ public class ResponsableGeneralController {
     public String login() {
         return "RG_login"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
+    @GetMapping("/responsableGeneral/archiveFormulaire/parDate")
+    public String RG_archiveFormulaire_ParDate(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        List<Formulaire> listeFormualaires = formulaireRepo.findAll();
+        model.addAttribute("listeFormualaires", listeFormualaires );
+        return "RG_archiveFormulaire_ParDate";
+    }
+
 
     @GetMapping("/responsableGeneral/archiveFormulaire/parEquipements")
     public String RG_archiveFormulaire_ParEquipements(Model model , HttpSession session) {
@@ -156,6 +164,16 @@ public class ResponsableGeneralController {
 
         // Ajouter le mois et l'année du mois en cours au modèle
         model.addAttribute("monthYearCurrentMonth", monthYearCurrentMonth);
+        // Définir le début et la fin du mois précédent
+        calendar.add(Calendar.MONTH, -1); // Reculer d'un mois
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois précédent
+        Date startOfPreviousMonth = calendar.getTime(); // Premier jour du mois précédent
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois précédent
+        Date endOfPreviousMonth = calendar.getTime(); // Dernier jour du mois précédent
+
+        // Obtenir le mois et l'année du mois précédent
+        String monthYearPreviousMonth = monthFormat.format(calendar.getTime()); // Format du mois précédent
+        model.addAttribute("monthYearLastMonth", monthYearPreviousMonth);
 
         // Ajouter d'autres données au modèle
         model.addAttribute("formulaires", formulaires);
