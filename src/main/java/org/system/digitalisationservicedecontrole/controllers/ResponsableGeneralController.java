@@ -83,23 +83,34 @@ public class ResponsableGeneralController {
     }
     @GetMapping("/responsableGeneral/dashboard")
     public String dashboard(Model model, HttpSession session) {
+        // Préparer le modèle avec les données de la session
         gestionSession.prepareModel(session, model);
 
-        // Récupération des formulaires
+        // Récupérer tous les formulaires, triés par date de contrôle décroissante
         List<Formulaire> formulaires = formulaireRepo.findAllOrderByDateControleDesc();
 
-        // Définir le début et la fin du mois en cours
+        // Définir le début du mois en cours
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois en cours
-        Date startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois en cours
-        Date endOfCurrentMonth = calendar.getTime(); // Dernier jour du mois en cours
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date startOfCurrentMonth = calendar.getTime(); // Premier jour du mois en cours à minuit
 
-        // Obtenir le mois et l'année du mois en cours
+        // Définir la fin du mois en cours
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        Date endOfCurrentMonth = calendar.getTime(); // Dernier jour du mois en cours à 23:59:59
+
+        // Obtenir le format du mois et de l'année pour le mois en cours
         SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM yyyy", Locale.FRENCH);
-        String monthYearCurrentMonth = monthFormat.format(calendar.getTime()); // Format du mois en cours
+        String monthYearCurrentMonth = monthFormat.format(calendar.getTime());
 
-        // Récupération des contrôleurs pour le mois en cours
+        // Récupérer les contrôleurs avec leurs comptes de contrôles pour le mois en cours
         List<Object[]> resultsCurrentMonth = controleurRepo.findAllControleursWithCount(startOfCurrentMonth, endOfCurrentMonth);
 
         // Mapper les résultats vers les DTO des contrôleurs
@@ -128,7 +139,7 @@ public class ResponsableGeneralController {
                 .limit(5)
                 .collect(Collectors.toList());
 
-        // Log pour le débogage
+        // Récupérer les noms et comptes de contrôles des contrôleurs pour les logs
         List<String> nomsControleurs = controleursWithControlesCurrentMonth.stream()
                 .map(c -> c.getNom() + " " + c.getPrenom())
                 .collect(Collectors.toList());
@@ -136,7 +147,7 @@ public class ResponsableGeneralController {
                 .map(ControleurDTO::getFormCount)
                 .collect(Collectors.toList());
 
-        // Ajout des données JSON au modèle
+        // Ajouter les données JSON au modèle
         try {
             model.addAttribute("nomsControleurs", jacksonObjectMapper.writeValueAsString(nomsControleurs));
             model.addAttribute("compteControles", jacksonObjectMapper.writeValueAsString(compteControles));
@@ -146,7 +157,6 @@ public class ResponsableGeneralController {
 
         // Récupérer les données d'équipement pour le mois en cours
         List<Object[]> equipmentResultsCurrentMonth = equipementRepo.countControlsByEquipement(startOfCurrentMonth, endOfCurrentMonth);
-        System.out.println("Résultats d'équipement (Mois en cours) : " + Arrays.deepToString(equipmentResultsCurrentMonth.toArray()));
 
         List<String> equipmentNamesCurrentMonth = new ArrayList<>();
         List<Long> equipmentCountsCurrentMonth = new ArrayList<>();
@@ -158,21 +168,48 @@ public class ResponsableGeneralController {
             }
         }
 
-        // Ajouter les données d'équipement au modèle
+        // Ajouter les données d'équipement au modèle pour le mois en cours
         model.addAttribute("equipmentNamesCurrentMonth", equipmentNamesCurrentMonth);
         model.addAttribute("equipmentCountsCurrentMonth", equipmentCountsCurrentMonth);
 
         // Ajouter le mois et l'année du mois en cours au modèle
         model.addAttribute("monthYearCurrentMonth", monthYearCurrentMonth);
-        // Définir le début et la fin du mois précédent
-        calendar.add(Calendar.MONTH, -1); // Reculer d'un mois
-        calendar.set(Calendar.DAY_OF_MONTH, 1); // Premier jour du mois précédent
-        Date startOfPreviousMonth = calendar.getTime(); // Premier jour du mois précédent
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Dernier jour du mois précédent
-        Date endOfPreviousMonth = calendar.getTime(); // Dernier jour du mois précédent
 
-        // Obtenir le mois et l'année du mois précédent
-        String monthYearPreviousMonth = monthFormat.format(calendar.getTime()); // Format du mois précédent
+        // Définir le début et la fin du mois précédent
+        calendar.add(Calendar.MONTH, -1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date startOfPreviousMonth = calendar.getTime(); // Premier jour du mois précédent à minuit
+
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        Date endOfPreviousMonth = calendar.getTime(); // Dernier jour du mois précédent à 23:59:59
+
+        // Récupérer les données d'équipement pour le mois précédent
+        List<Object[]> equipmentResultsPreviousMonth = equipementRepo.countControlsByEquipement(startOfPreviousMonth, endOfPreviousMonth);
+
+        List<String> equipmentNamesPreviousMonth = new ArrayList<>();
+        List<Long> equipmentCountsPreviousMonth = new ArrayList<>();
+
+        for (Object[] result : equipmentResultsPreviousMonth) {
+            if (result.length >= 2) {
+                equipmentNamesPreviousMonth.add((String) result[0]); // Nom de l'équipement
+                equipmentCountsPreviousMonth.add((Long) result[1]); // Compte des contrôles
+            }
+        }
+
+        // Ajouter les données d'équipement au modèle pour le mois précédent
+        model.addAttribute("equipmentNamesLastMonth", equipmentNamesPreviousMonth);
+        model.addAttribute("equipmentCountsLastMonth", equipmentCountsPreviousMonth);
+
+        // Obtenir le format du mois et de l'année pour le mois précédent
+        String monthYearPreviousMonth = monthFormat.format(calendar.getTime());
         model.addAttribute("monthYearLastMonth", monthYearPreviousMonth);
 
         // Ajouter d'autres données au modèle
@@ -186,6 +223,7 @@ public class ResponsableGeneralController {
 
         return "RG_dashboard";
     }
+
     @GetMapping("/responsableGeneral/editProfile")
     public String EditProfile(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
