@@ -39,6 +39,8 @@ public class ResponsableControleurController {
     private FormulaireRepo formulaireRepo;
     @Autowired
     private ObjectMapper jacksonObjectMapper;
+    @Autowired
+    private ResponsableControleurRepo responsableControleurRepo;
 
 
     @GetMapping("/responsableControleur/login")
@@ -199,9 +201,12 @@ public class ResponsableControleurController {
 
 
     @GetMapping("/responsableControleur/editProfile")
-    public String EditProfile(Model model , HttpSession session) {
+    public String EditProfile(Model model, HttpSession session) {
+        // Préparer le modèle pour la session
         gestionSession.prepareModel(session, model);
-        return "RC_editProfile";
+
+
+        return "RC_editProfile"; // Retourne la vue d'édition du profil
     }
 
     @GetMapping("/responsableControleur/monProfile")
