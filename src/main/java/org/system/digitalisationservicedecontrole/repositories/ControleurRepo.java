@@ -21,6 +21,15 @@ public interface ControleurRepo extends JpaRepository<Controleur, Long> {
             "ORDER BY COUNT(f.idFormulaire) DESC")
     List<Object[]> findAllControleursWithCount(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
+    @Query("SELECT MONTH(f.dateControle), COUNT(f.idFormulaire) " +
+            "FROM Controleur c LEFT JOIN c.formulaires f " +
+            "WHERE c.idControleur = :myId AND f.dateControle BETWEEN :startDate AND :endDate " +
+            "GROUP BY MONTH(f.dateControle) " +
+            "ORDER BY MONTH(f.dateControle)")
+    List<Object[]> findNumOfControlsByMonth(@Param("myId") Long myId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+
+
     Controleur findByIdControleur(long id);
 
     @Query("SELECT f.equipement, COUNT(f.idFormulaire) " +
