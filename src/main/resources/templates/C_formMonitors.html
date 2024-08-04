@@ -355,8 +355,9 @@
 
         <!------------------------------------------------------------------------>
 
-        <form method="POST" action="/submit-form">
-
+        <form th:action="@{/controleur/remplirFormulaire/ajout}" method="post">
+          <input type="hidden" name="idEquipement" value="4">
+          <input type="hidden" name="idControleur" th:value="${idMoi}">
           <div class="row">
             <div class="col-md-12">
               <div class="card">
@@ -369,7 +370,7 @@
                     <div class="col-12 col-md-6">
                       <div class="form-group">
                         <label for="disableinput"><i class="fas fa-calendar-alt"></i> Date</label>
-                        <input type="text" class="form-control" id="disableinput" placeholder="Enter Input" disabled="">
+                        <input type="date" class="form-control" name="dateControle" id="disableinput" placeholder="Enter Input">
                       </div>
                     </div>
 
@@ -393,7 +394,7 @@
                     <div class="col-12 col-md-6">
                       <div class="form-group">
                         <label for="unitSelect"><i class="fas fa-sitemap"></i> Unité</label>
-                        <select class="form-select form-control" id="unitSelect" name="unit">
+                        <select class="form-select form-control" name="idUnite" id="unitSelect" >
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -407,7 +408,7 @@
                     <div class="col-12 col-md-6">
                       <div class="form-group">
                         <label for="sectorInput"><i class="fas fa-industry"></i> Secteur</label>
-                        <input type="text" class="form-control" id="sectorInput" name="sector" placeholder="Default Input">
+                        <input type="text" class="form-control" id="sectorInput" name="secteur" placeholder="Secteur">
                       </div>
                     </div>
                   </div>
@@ -417,9 +418,17 @@
                     <div class="col-12 col-md-6">
                       <div class="form-group">
                         <label for="equipmentIdInput"><i class="fas fa-id-badge"></i> Matricule de l'équipement</label>
-                        <input type="text" class="form-control" id="equipmentIdInput" name="equipmentId" placeholder="Default Input">
+                        <input type="text" class="form-control" name="matriculeExemplaireEquipement" id="equipmentIdInput"  placeholder="Matricule">
                       </div>
                     </div>
+
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="equipmentIdInput"><i class="fas fa-user"></i> Propriétaire</label>
+                        <input type="text" class="form-control" name="proprietaire" id="propriétaireIdInput" placeholder="Propriétaire d'équipement">
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -427,6 +436,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-title"><i class="fas fa-tachometer-alt"></i> Type de moniteur</div>
+                  <input type="hidden" name="reponses[0].questionText" value="Monitors">
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -436,19 +446,22 @@
                     <div class="row">
                       <div class="col-12 col-md-12">
                         <div class="form-group">
+                          <!-- Champ caché pour le texte de la question -->
+
+                          <!-- Options pour le type de moniteur -->
                           <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                              <input type="radio" name="monitorType" value="Eau" class="selectgroup-input" required>
+                              <input type="radio" name="reponses[0].reponseText" value="Eau" class="selectgroup-input" required>
                               <span class="selectgroup-button"><i class="fas fa-water"></i> Eau</span>
                             </label>
                             <label class="selectgroup-item">
-                              <input type="radio" name="monitorType" value="Mousse" class="selectgroup-input" required>
+                              <input type="radio" name="reponses[0].reponseText" value="Mousse" class="selectgroup-input" required>
                               <span class="selectgroup-button"><i class="fas fa-cloud"></i> Mousse</span>
                             </label>
-
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -465,69 +478,87 @@
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Existe</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[1].questionText" value="Existe">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="exists" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[1].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="exists" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[1].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
+
 
                     <!-- Signalée -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Signalée</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[2].questionText" value="Signalée">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="reported" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[2].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="reported" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[2].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
 
                     <!-- Visible -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Visible</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[3].questionText" value="Visible">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="visible" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[3].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="visible" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[3].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
 
+
+
                     <!-- Accessible -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Accessible</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[4].questionText" value="Accessible">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="accessible" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[4].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="accessible" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[4].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -542,162 +573,185 @@
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Absence de fuite</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[5].questionText" value="Absence de fuite">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceFuite" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[5].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceFuite" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[5].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
 
-                    <!-- Couvercle -->
+
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Housse de protection </label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[6].questionText" value="Housse de protection">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="ras" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[6].reponseText" value="R.A.S" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="degrade" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[6].reponseText" value="Dégradé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="manque" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[6].reponseText" value="Manque" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
                           </label>
-
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="nonFixe" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[6].reponseText" value="Non fixé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
 
                     <!-- Carré de manœuvre -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Pivote Horizontale</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[7].questionText" value="Pivote Horizontale">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceFuite" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[7].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceFuite" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[7].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
-
                         </div>
                       </div>
                     </div>
+
 
                     <!-- Rebord Saillant -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Pivote Verticale</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[8].questionText" value="Pivote Verticale">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceFuite" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[8].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceFuite" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[8].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
 
+
                     <!-- Demi Raccords -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Dispositif de freinage </label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[9].questionText" value="Dispositif de freinage">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="demiRaccords" value="ras" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[9].reponseText" value="R.A.S" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="demiRaccords" value="degrade" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[9].reponseText" value="Dégradé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="demiRaccords" value="manque" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[9].reponseText" value="Manque" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="demiRaccords" value="coince" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[9].reponseText" value="Coincé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-arrows-alt"></i> Coincé</span>
                           </label>
-
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="nonFixe" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[9].reponseText" value="Non fixé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
 
                     <!-- Etat des bouchons -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Etat de diffuseur</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[10].questionText" value="Etat de diffuseur">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="ras" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[10].reponseText" value="R.A.S" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="degrade" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[10].reponseText" value="Dégradé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="manque" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[10].reponseText" value="Manque" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="coince" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[10].reponseText" value="Coincé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-arrows-alt"></i> Coincé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="nonFixe" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[10].reponseText" value="Non fixé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
                         </div>
                       </div>
                     </div>
 
+
                     <!-- Joints -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Manomètre</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[11].questionText" value="Manomètre">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="ras" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[11].reponseText" value="R.A.S" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="degrade" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[11].reponseText" value="Dégradé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="manque" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[11].reponseText" value="Manque" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="etatBouchons" value="coince" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[11].reponseText" value="Coincé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-arrows-alt"></i> Coincé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="couvercle" value="nonFixe" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[11].reponseText" value="Non fixé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
                         </div>
@@ -708,68 +762,78 @@
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Vanne d'alimentation</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[12].questionText" value="Vanne d'alimentation">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="gardCorps" value="ras" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[12].reponseText" value="R.A.S" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="gardCorps" value="degrade" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[12].reponseText" value="Dégradé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="gardCorps" value="manque" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[12].reponseText" value="Manque" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="gardCorps" value="nonFixe" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[12].reponseText" value="Non fixé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
 
                     <!-- Vanne de barrage -->
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Flexible et canne d'aspiration</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[13].questionText" value="Flexible et canne d'aspiration">
+                        <!-- Options pour la réponse -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="vanneBarrage" value="nonFixe" class="selectgroup-input" required>
-                            <span class="selectgroup-button">- </span>
+                            <input type="radio" name="reponses[13].reponseText" value="Non fixé" class="selectgroup-input" required>
+                            <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
-
                           <label class="selectgroup-item">
-                            <input type="radio" name="vanneBarrage" value="ras" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[13].reponseText" value="R.A.S" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="vanneBarrage" value="degrade" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[13].reponseText" value="Dégradé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="vanneBarrage" value="manque" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[13].reponseText" value="Manque" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-minus-circle"></i> Manque</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="vanneBarrage" value="nonFixe" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[13].reponseText" value="Non fixé" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-anchor"></i> Non fixé</span>
                           </label>
                         </div>
                       </div>
                     </div>
 
+
                     <!-- Absence de corrosion -->
 
-                      <div class="col-12 col-md-6">
-                        <div class="form-group">
-                          <label class="form-label"> ● Niveau d'additif (%)</label>
-                          <div class="input-group mb-3">
-                            <input type="number" name="Niveau d'additif" class="form-control" placeholder="Niveau d'additif " aria-label="Pression" aria-describedby="basic-addon2">
-                            <span class="input-group-text" >%</span>
-                          </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label class="form-label"> ● Niveau d'additif (%)</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[14].questionText" value="Niveau d'additif">
+                        <!-- Champ de saisie pour le niveau d'additif -->
+                        <div class="input-group mb-3">
+                          <input type="number" name="reponses[14].reponseText" class="form-control" placeholder="Niveau d'additif" aria-label="Niveau d'additif" aria-describedby="basic-addon2">
+                          <span class="input-group-text">%</span>
                         </div>
                       </div>
+                    </div>
 
 
 
@@ -777,18 +841,42 @@
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Absence de corrosion</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[15].questionText" value="Absence de corrosion">
+                        <!-- Options pour l'absence de corrosion -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceDegra" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[15].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="absenceDegra" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[15].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
+
+
+                    <div class="col-12 col-md-12">
+                      <div class="form-group">
+                        <label class="form-label"> ● Absence de dégradation</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[16].questionText" value="Absence de dégradation">
+                        <!-- Options pour l'absence de corrosion -->
+                        <div class="selectgroup w-100">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="reponses[16].reponseText" value="Oui" class="selectgroup-input" required>
+                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="reponses[16].reponseText" value="Non" class="selectgroup-input" required>
+                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -805,29 +893,38 @@
                     <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label class="form-label"> ● Manœuvre</label>
+                        <!-- Champ caché pour le texte de la question -->
+                        <input type="hidden" name="reponses[17].questionText" value="Manœuvre">
+                        <!-- Options pour la manœuvre -->
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="manoeuvre" value="true" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[17].reponseText" value="Oui" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="manoeuvre" value="false" class="selectgroup-input" required>
+                            <input type="radio" name="reponses[17].reponseText" value="Non" class="selectgroup-input" required>
                             <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
                           </label>
                         </div>
                       </div>
                     </div>
 
+
                     <!-- Bloc Pression (bar) -->
                     <div class="col-12 col-md-6">
                       <div class="form-group">
+                        <!-- Champ caché pour la question -->
+                        <input type="hidden" name="reponses[18].questionText" value="Pression (bar)">
+
+                        <!-- Champ de réponse -->
                         <label class="form-label"> ● Pression (bar)</label>
                         <div class="input-group mb-3">
-                          <input type="number" name="pression" class="form-control" placeholder="Pression" aria-label="Pression" aria-describedby="basic-addon2">
+                          <input type="number" name="reponses[18].reponseText" class="form-control" placeholder="Pression" aria-label="Pression" aria-describedby="basic-addon2">
                           <span class="input-group-text" id="basic-addon2">bar</span>
                         </div>
                       </div>
                     </div>
+
 
 
                   </div>
@@ -843,29 +940,34 @@
                     <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
                       Disponible ?
                     </label>
+                    <input type="hidden" name="reponses[19].questionText" value="Disponible">
                     <div class="row">
                       <div class="col-12 col-md-12">
                         <div class="form-group">
+                          <!-- Champ caché pour la question -->
+
+
                           <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                              <input type="radio" name="disponible" value="true" class="selectgroup-input" required>
+                              <input type="radio" name="reponses[19].reponseText" value="OUI" class="selectgroup-input" required>
                               <span class="selectgroup-button"><i class="fas fa-check-circle"></i> OUI</span>
                             </label>
                             <label class="selectgroup-item">
-                              <input type="radio" name="disponible" value="false" class="selectgroup-input" required>
+                              <input type="radio" name="reponses[19].reponseText" value="NON" class="selectgroup-input" required>
                               <span class="selectgroup-button"><i class="fas fa-times-circle"></i> NON</span>
                             </label>
                             <label class="selectgroup-item">
-                              <input type="radio" name="disponible" value="anomalies" class="selectgroup-input" required>
+                              <input type="radio" name="reponses[19].reponseText" value="OUI avec anomalies" class="selectgroup-input" required>
                               <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> OUI avec anomalies</span>
                             </label>
                             <label class="selectgroup-item">
-                              <input type="radio" name="disponible" value="enCours" class="selectgroup-input" required>
+                              <input type="radio" name="reponses[19].reponseText" value="En cours" class="selectgroup-input" required>
                               <span class="selectgroup-button"><i class="fas fa-hourglass-half"></i> En cours</span>
                             </label>
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -882,8 +984,11 @@
                     <div class="row">
                       <div class="col-12 col-md-12">
                         <div class="form-group">
+                          <!-- Champ caché pour la question -->
+                          <input type="hidden" name="reponses[20].questionText" value="Observation">
+
                           <label for="comment">Observations</label>
-                          <textarea class="form-control" id="comment" rows="5">                          </textarea>
+                          <textarea class="form-control" id="comment" name="reponses[20].reponseText" rows="5"></textarea>
                         </div>
                       </div>
 
@@ -915,11 +1020,11 @@
                   </div>
                 </div>
                 <div class="card-action">
+                  <a href="/controleur/listeEquipements" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Annuler
+                  </a>
                   <button class="btn btn-success">
                     <i class="fas fa-check"></i> Soumettre
-                  </button>
-                  <button class="btn btn-danger">
-                    <i class="fas fa-times"></i> Annuler
                   </button>
                 </div>
               </div>
