@@ -1,4 +1,6 @@
 package org.system.digitalisationservicedecontrole.controllers;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,10 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -47,6 +46,8 @@ public class ContoleurController {
     private UniteRepo uniteRepo;
     @Autowired
     private ControleurRepo controleurRepo ;
+    @Autowired
+    private ObjectMapper jacksonObjectMapper;
 
     @GetMapping("/controleur/login")
     public String login() {
@@ -54,10 +55,135 @@ public class ContoleurController {
     }
 
     @GetMapping("/controleur/dashboard")
-    public String dashboard(Model model , HttpSession session) {
+    public String dashboard(Model model, HttpSession session) {
         gestionSession.prepareModel(session, model);
-        return "C_dashboard"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
+        Long controleurId = (Long) session.getAttribute("id");
+
+        // Définir les dates de début et de fin de l'année en cours
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_YEAR, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        java.sql.Date startOfYear = new java.sql.Date(calendar.getTimeInMillis());
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.getActualMaximum(Calendar.DAY_OF_YEAR));
+        java.sql.Date endOfYear = new java.sql.Date(calendar.getTimeInMillis());
+
+        // Récupérer les contrôles par mois pour l'année en cours
+        List<Object[]> controlsByMonth = controleurRepo.findNumOfControlsByMonth(controleurId, startOfYear, endOfYear);
+
+        // Préparer les données pour le graphique
+        List<String> months = Arrays.asList("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+        Map<String, Long> controlsData = new LinkedHashMap<>();
+        for (String month : months) {
+            controlsData.put(month, 0L);
+        }
+        for (Object[] result : controlsByMonth) {
+            Integer monthIndex = (Integer) result[0] - 1; // Les mois en Java commencent à 0
+            Long count = (Long) result[1];
+            controlsData.put(months.get(monthIndex), count);
+        }
+
+        // Ajouter les données JSON au modèle
+        try {
+            model.addAttribute("months", jacksonObjectMapper.writeValueAsString(new ArrayList<>(controlsData.keySet())));
+            model.addAttribute("controlsData", jacksonObjectMapper.writeValueAsString(new ArrayList<>(controlsData.values())));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        // Ajouter l'année actuelle au modèle
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        model.addAttribute("currentYear", currentYear);
+
+
+
+        // Counts
+        //Nombre de Controles lors du mois actuel
+        calendar.setTime(new java.util.Date()); // Réinitialiser le calendrier à la date actuelle
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Début du mois
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        java.sql.Date startOfMonth = new java.sql.Date(calendar.getTimeInMillis());
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);// Fin du mois
+        java.sql.Date endOfMonth = new java.sql.Date(calendar.getTimeInMillis());
+        Long numCounts = formulaireRepo.countNumControls(controleurId, startOfMonth, endOfMonth);
+        model.addAttribute("NumCounts", numCounts);
+
+
+        //classement du controleur connecté
+        List<Object[]> allControlsForMonth = formulaireRepo.findNumOfControlsForAllControleurs(startOfMonth, endOfMonth);
+        int rank = 1;
+        for (Object[] result : allControlsForMonth) {
+
+            if (result[0].equals(controleurId)) {
+                break;
+            }
+            rank++;
+        }
+        Long nombreControleurs = controleurRepo.count();
+
+        model.addAttribute("rank", rank);
+        model.addAttribute("nombreControleurs", nombreControleurs);
+
+        List<Object[]> formsByEquipement = controleurRepo.countControlsByEquipementForControleurThisMonth(controleurId, startOfMonth, endOfMonth);
+        List<String> equipementNames = new ArrayList<>();
+        List<Long> formCounts = new ArrayList<>();
+        for (Object[] result : formsByEquipement) {
+            Equipement equipement = (Equipement) result[0];
+            equipementNames.add(equipement.getNom());
+            formCounts.add((Long) result[1]);
+        }
+
+        // Ajouter les données JSON au modèle
+        try {
+            model.addAttribute("equipementNames", jacksonObjectMapper.writeValueAsString(equipementNames));
+            model.addAttribute("formCounts", jacksonObjectMapper.writeValueAsString(formCounts));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+
+
+        // Formulaires par équipement pour le mois précédent
+        calendar.setTime(new java.util.Date()); // Réinitialiser le calendrier à la date actuelle
+        calendar.add(Calendar.MONTH, -1); // Reculer d'un mois
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Début du mois précédent
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        java.sql.Date startOfPreviousMonth = new java.sql.Date(calendar.getTimeInMillis());
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Fin du mois précédent
+        java.sql.Date endOfPreviousMonth = new java.sql.Date(calendar.getTimeInMillis());
+        List<Object[]> formsByEquipementPrev = controleurRepo.countControlsByEquipementForControleurThisMonth(controleurId, startOfPreviousMonth, endOfPreviousMonth);
+        List<String> equipementNamesPrev = new ArrayList<>();
+        List<Long> formCountsPrev = new ArrayList<>();
+        for (Object[] result : formsByEquipementPrev) {
+            Equipement equipement = (Equipement) result[0];
+
+            equipementNamesPrev.add(equipement.getNom());
+            formCountsPrev.add((Long) result[1]);
+        }
+        try {
+            model.addAttribute("equipementNamesPrev", jacksonObjectMapper.writeValueAsString(equipementNamesPrev));
+            model.addAttribute("formCountsPrev", jacksonObjectMapper.writeValueAsString(formCountsPrev));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return "C_dashboard";
     }
+
 
     @GetMapping("/controleur/listeEquipements")
     public String afficherECOEquipements(Model model , HttpSession session) {
@@ -86,11 +212,19 @@ public class ContoleurController {
         // Définir les dates de début et de fin pour le mois en cours
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
         java.sql.Date startDate = new java.sql.Date(cal.getTimeInMillis()); // Utiliser java.sql.Date
 
         cal.add(Calendar.MONTH, 1);
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.add(Calendar.DAY_OF_MONTH, -1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
         java.sql.Date endDate = new java.sql.Date(cal.getTimeInMillis()); // Utiliser java.sql.Date
 
         // Récupérer le nombre de contrôles par équipement pour le contrôleur ce mois-ci

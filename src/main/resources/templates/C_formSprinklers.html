@@ -1131,10 +1131,9 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title"><i class="fas fa-tasks"></i> Canalisation et des têtes sprinklers </div>
+                                    <div class="card-title"><i class="fas fa-tasks"></i> Canalisation et des têtes sprinklers</div>
                                 </div>
                                 <div class="card-body">
-
                                     <div class="row">
                                         <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
                                             <i class="fas fa-search"></i> 7 - Vérifier le bon état de la canalisation et des têtes sprinklers
@@ -1142,426 +1141,346 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">La tuyauteries et les raccords
-                                                    </label>
+                                                    <label class="form-label"><i class="fas fa-cogs"></i> La tuyauteries et les raccords</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                            <input type="radio" name="tuyauteries_et_raccords" id="tuyauteries_raccords_ok" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="tuyauteries_raccords_ok"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Dégradé</span>
+                                                            <input type="radio" name="tuyauteries_et_raccords" id="tuyauteries_raccords_degrade" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="tuyauteries_raccords_degrade"><i class="fas fa-times-circle"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Corrodé</span>
+                                                            <input type="radio" name="tuyauteries_et_raccords" id="tuyauteries_raccords_corrode" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="tuyauteries_raccords_corrode"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"> Les supports de fixation
-                                                    </label>
+                                                    <label class="form-label"><i class="fas fa-hammer"></i> Les supports de fixation</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                            <input type="radio" name="supports_de_fixation" id="supports_ok" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="supports_ok"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Dégradé</span>
+                                                            <input type="radio" name="supports_de_fixation" id="supports_degrade" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="supports_degrade"><i class="fas fa-times-circle"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Corrodé</span>
-                                                        </label>
-                                                    </div>                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">Absence de dommages, de corrosion et de fuites.
-                                                    </label>
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="accessible" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                            <input type="radio" name="supports_de_fixation" id="supports_corrode" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="supports_corrode"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Les têtes sprinklers (Exempt de corrosion et de peinture)</label>
+                                                    <label class="form-label"><i class="fas fa-water"></i> Absence de dommages, de corrosion et de fuites.</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="cadenassee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                            <input type="radio" name="absence_dommages" id="absence_dommages_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="absence_dommages_oui"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="cadenassee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                            <input type="radio" name="absence_dommages" id="absence_dommages_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="absence_dommages_non"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="cadenassee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                            <input type="radio" name="absence_dommages" id="absence_dommages_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="absence_dommages_inconnu"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Vanne d'essai du point "F" (Position fermée)
-                                                    </label>
+                                                    <label class="form-label"><i class="fas fa-spray-can"></i> Les têtes sprinklers (Exempt de corrosion et de peinture)</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                            <input type="radio" name="tetes_sprinklers" id="tetes_sprinklers_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="tetes_sprinklers_oui"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Dégradé</span>
+                                                            <input type="radio" name="tetes_sprinklers" id="tetes_sprinklers_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="tetes_sprinklers_non"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Corrodé</span>
+                                                            <input type="radio" name="tetes_sprinklers" id="tetes_sprinklers_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="tetes_sprinklers_inconnu"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Coincé</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Manque</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
-                                                        </label>
-                                                    </div>                                                </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Vannes de vidange du point "F"
-                                                    </label>
+                                                    <label class="form-label"><i class="fas fa-lock"></i> Vanne d'essai du point "F" (Position fermée)</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                            <input type="radio" name="vanne_essai_f" id="vanne_essai_f_ok" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vanne_essai_f_ok"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Dégradé</span>
+                                                            <input type="radio" name="vanne_essai_f" id="vanne_essai_f_degrade" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vanne_essai_f_degrade"><i class="fas fa-times-circle"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Corrodé</span>
+                                                            <input type="radio" name="vanne_essai_f" id="vanne_essai_f_corrode" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vanne_essai_f_corrode"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Coincé</span>
+                                                            <input type="radio" name="vanne_essai_f" id="vanne_essai_f_coince" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vanne_essai_f_coince"><i class="fas fa-exclamation-circle"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>Manque</span>
+                                                            <input type="radio" name="vanne_essai_f" id="vanne_essai_f_manque" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vanne_essai_f_manque"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
+                                                            <input type="radio" name="vanne_essai_f" id="vanne_essai_f_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vanne_essai_f_inconnu"><i class="fas fa-exclamation-circle"></i> - </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"><i class="fas fa-water"></i> Vannes de vidange du point "F"</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_vidange_f" id="vannes_vidange_f_ok" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_vidange_f_ok"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_vidange_f" id="vannes_vidange_f_degrade" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_vidange_f_degrade"><i class="fas fa-times-circle"></i> Dégradé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_vidange_f" id="vannes_vidange_f_corrode" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_vidange_f_corrode"><i class="fas fa-exclamation-circle"></i> Corrodé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_vidange_f" id="vannes_vidange_f_coince" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_vidange_f_coince"><i class="fas fa-exclamation-circle"></i> Coincé</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_vidange_f" id="vannes_vidange_f_manque" value="200" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_vidange_f_manque"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_vidange_f" id="vannes_vidange_f_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_vidange_f_inconnu"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
                                 </div>
-
                             </div>
+
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title"><i class="fas fa-tasks"></i>Signalisation et report d'alarme</div>
+                                    <div class="card-title"><i class="fas fa-tasks"></i> Signalisation et report d'alarme</div>
                                 </div>
                                 <div class="card-body">
-
                                     <div class="row">
                                         <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
-                                            <i class="fas fa-search"></i> ----------
+                                            <i class="fas fa-search"></i> Vérification des systèmes d'alarme
                                         </label>
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Identification des circuits
-                                                    </label>
+                                                    <label class="form-label"><i class="fas fa-lightbulb"></i> Identification des circuits</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                            <input type="radio" name="identification_circuits" id="identification_circuits_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="identification_circuits_oui"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                            <input type="radio" name="identification_circuits" id="identification_circuits_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="identification_circuits_non"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
+                                                            <input type="radio" name="identification_circuits" id="identification_circuits_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="identification_circuits_inconnu"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Le système sprinkler est-il reporté à une salle surveillée 24h/24h?
-
-                                                    </label>
+                                                    <label class="form-label"><i class="fas fa-clock"></i> Le système sprinkler est-il reporté à une salle surveillée 24h/24h?</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                            <input type="radio" name="systeme_sprinkler_report" id="systeme_sprinkler_report_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="systeme_sprinkler_report_oui"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                            <input type="radio" name="systeme_sprinkler_report" id="systeme_sprinkler_report_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="systeme_sprinkler_report_non"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
+                                                            <input type="radio" name="systeme_sprinkler_report" id="systeme_sprinkler_report_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="systeme_sprinkler_report_inconnu"><i class="fas fa-exclamation-circle"></i> - </span>
                                                         </label>
-                                                    </div>                                                </div>
+                                                    </div>
+                                                </div>
                                             </div>
-
                                         </div>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
                                 </div>
-
                             </div>
 
 
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title"><i class="fas fa-tasks"></i>Circuit du liquide émulseur (Uniquement pour les sprinklers
-                                        à mousse)
-                                    </div>
+                                    <div class="card-title"><i class="fas fa-tasks"></i> Circuit du liquide émulseur (Uniquement pour les sprinklers à mousse)</div>
                                 </div>
                                 <div class="card-body">
-
                                     <div class="row">
                                         <label class="mb-3 d-block" style="font-size: 1.25rem; font-weight: bold; color: #ff5733; text-decoration: underline;">
-                                            <i class="fas fa-search"></i> ----------
+                                            <i class="fas fa-search"></i> Vérifications
                                         </label>
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Vérifier que le réservoir est en bon état (Exempt de dommages, de
-                                                        corrosion et de fuites).
-
-                                                    </label>
+                                                    <label class="form-label">Vérifier que le réservoir est en bon état (Exempt de dommages, de corrosion et de fuites).</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
+                                                            <input type="radio" name="reservoir_etat" id="reservoir_etat_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="reservoir_etat_oui"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
+                                                            <input type="radio" name="reservoir_etat" id="reservoir_etat_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="reservoir_etat_non"><i class="fas fa-times-circle"></i> Non</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
+                                                            <input type="radio" name="reservoir_etat" id="reservoir_etat_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="reservoir_etat_inconnu"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">L'indicateur de niveau de liquide émulseur existe et en bon état ?
-
-
-                                                    </label>
+                                                    <label class="form-label">L'indicateur de niveau de liquide émulseur existe et en bon état ?</label>
                                                     <div class="selectgroup w-100">
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="ras" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> R.A.S</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_ras" value="ras" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_ras"><i class="fas fa-check-circle"></i> R.A.S</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="coince" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Coincé</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_coince" value="coince" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_coince"><i class="fas fa-times-circle"></i> Coincé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="degrade" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_degrade" value="degrade" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_degrade"><i class="fas fa-exclamation-circle"></i> Dégradé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="corrode" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-rust"></i> Corrodé</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_corrode" value="corrode" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_corrode"><i class="fas fa-rust"></i> Corrodé</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="manque" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> Manque</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_manque" value="manque" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_manque"><i class="fas fa-exclamation-circle"></i> Manque</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="hors_service" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Hors Service</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_hors_service" value="hors_service" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_hors_service"><i class="fas fa-times-circle"></i> Hors Service</span>
                                                         </label>
                                                         <label class="selectgroup-item">
-                                                            <input type="radio" name="gong_hydraulique_etat" value="na" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                            <input type="radio" name="niveau_emulseur_etat" id="niveau_emulseur_etat_na" value="na" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="niveau_emulseur_etat_na"><i class="fas fa-exclamation-circle"></i> -</span>
                                                         </label>
-                                                    </div>                                   </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">Les vannes sont en bon état (Exempt de dommages, de corrosion et de
-                                                        fuites)?
-
-
-
-                                                    </label>
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
-                                                        </label>
-                                                    </div>                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">Les vannes sont cadenassées correctement ?
-
-
-                                                    </label>
-                                                    <div class="selectgroup w-100">
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="50" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-check-circle"></i> Oui</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-times-circle"></i> Non</span>
-                                                        </label>
-                                                        <label class="selectgroup-item">
-                                                            <input type="radio" name="identifiee" value="100" class="selectgroup-input">
-                                                            <span class="selectgroup-button"><i class="fas fa-exclamation-circle"></i>-</span>
-                                                        </label>
-                                                    </div>                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-12 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="email2">Niveau du liquide émulseur (> 800/0 de /a capacité)
-
-                                                        </label>
-                                                        <input type="number" class="form-control" id="email2" placeholder="Enter Email">
-
                                                     </div>
-
                                                 </div>
-
-                                                <div class="col-12 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="email2">Niveau du liquide émulseur (> 800/0 de /a capacité)
-
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Les vannes sont en bon état (Exempt de dommages, de corrosion et de fuites)?</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_etat" id="vannes_etat_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_etat_oui"><i class="fas fa-check-circle"></i> Oui</span>
                                                         </label>
-                                                        <input type="number" class="form-control" id="email2" placeholder="Enter Email">
-
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_etat" id="vannes_etat_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_etat_non"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_etat" id="vannes_etat_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_etat_inconnu"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Les vannes sont cadenassées correctement ?</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_cadenassees" id="vannes_cadenassees_oui" value="50" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_cadenassees_oui"><i class="fas fa-check-circle"></i> Oui</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_cadenassees" id="vannes_cadenassees_non" value="100" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_cadenassees_non"><i class="fas fa-times-circle"></i> Non</span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="radio" name="vannes_cadenassees" id="vannes_cadenassees_inconnu" value="0" class="selectgroup-input">
+                                                            <span class="selectgroup-button" for="vannes_cadenassees_inconnu"><i class="fas fa-exclamation-circle"></i> -</span>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-group">
-                                                        <label for="email2">Date d'expiration du liquide émulseur atteinte ?
-                                                        </label>
-                                                        <input type="date" class="form-control" id="email2" placeholder="Enter Email">
-
+                                                        <label for="niveau_emulseur_capacite">Niveau du liquide émulseur (> 800/0 de capacité)</label>
+                                                        <input type="number" class="form-control" id="niveau_emulseur_capacite" placeholder="Entrer le niveau">
                                                     </div>
-
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="niveau_emulseur_capacite_2">Niveau du liquide émulseur (> 800/0 de capacité)</label>
+                                                        <input type="number" class="form-control" id="niveau_emulseur_capacite_2" placeholder="Entrer le niveau">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="date_expiration_emulseur">Date d'expiration du liquide émulseur atteinte ?</label>
+                                                        <input type="date" class="form-control" id="date_expiration_emulseur" placeholder="Sélectionner la date">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
                                 </div>
-
                             </div>
-
 
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-title"><i class="fas fa-comment-alt"></i> Observations</div>
                                 </div>
                                 <div class="card-body">
-
                                     <div class="row">
-
-                                        <div class="row">
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label for="comment">Observations</label>
-                                                    <textarea class="form-control" id="comment" rows="5">                          </textarea>
-                                                </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="observations">Observations</label>
+                                                <textarea class="form-control" id="observations" rows="5"></textarea>
                                             </div>
-
-
-
-
                                         </div>
-
-
                                     </div>
-
                                 </div>
+                            </div>
 
-                            </div>-
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-title"><i class="fas fa-clipboard-check"></i> Validation de Formulaire</div>

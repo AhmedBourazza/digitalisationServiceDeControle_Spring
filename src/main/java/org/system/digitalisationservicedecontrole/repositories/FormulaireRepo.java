@@ -16,6 +16,19 @@ public interface FormulaireRepo extends JpaRepository<Formulaire, Long> {
     List<Formulaire> findAllOrderByDateControleDesc();
 
 
+    @Query("SELECT COUNT(f) FROM Controleur c, Formulaire f " +
+            "WHERE f.controleur.idControleur = c.idControleur " +
+            "AND c.idControleur = :myId " +
+            "AND f.dateControle BETWEEN :startDate AND :endDate")
+    Long countNumControls(@Param("myId") Long id, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("SELECT c.idControleur, COUNT(f.idFormulaire) " +
+            "FROM Controleur c LEFT JOIN c.formulaires f " +
+            "WHERE f.dateControle BETWEEN :startDate AND :endDate " +
+            "GROUP BY c.idControleur " +
+            "ORDER BY COUNT(f.idFormulaire) DESC")
+    List<Object[]> findNumOfControlsForAllControleurs(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 
 
     long count();

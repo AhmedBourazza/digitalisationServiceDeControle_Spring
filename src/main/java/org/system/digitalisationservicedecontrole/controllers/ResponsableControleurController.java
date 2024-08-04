@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,8 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ResponsableControleurController {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private ControleurRepo controleurRepo;
     @Autowired
@@ -464,14 +467,26 @@ public String afficherEquipementForm(Model model , HttpSession session) {
                         .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
                 controleur.setImageData(existingControleur.getImageData());
             }
+
+            // Encoder le mot de passe si celui-ci est modifié
+            if (controleur.getPassword() != null && !controleur.getPassword().isEmpty()) {
+                String encodedPassword = passwordEncoder.encode(controleur.getPassword());
+                controleur.setPassword(encodedPassword);
+            } else {
+                // Garder le mot de passe existant si aucun nouveau mot de passe n'est fourni
+                Controleur existingControleur = controleurRepo.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
+                controleur.setPassword(existingControleur.getPassword());
+            }
+
+            controleurRepo.save(controleur); // Sauvegarder les modifications
+            redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès.");
+
         } catch (IOException e) {
             e.printStackTrace();
-            // Gérer l'erreur
+            redirectAttributes.addFlashAttribute("errorMessage", "Une erreur est survenue lors du téléchargement de l'image.");
         }
 
-        controleurRepo.save(controleur); // Sauvegarder les modifications
-
-        redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès.");
         return "redirect:/responsableControleur/gestionControleurs"; // Rediriger vers la liste des contrôleurs après modification
     }
 
