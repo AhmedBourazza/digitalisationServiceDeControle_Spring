@@ -112,18 +112,11 @@
                         <a th:href="@{/responsableControleur/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
-                            <p>contrôleurs</p>
+                            <p>Contrôleurs</p>
                             <span class="badge badge-success">8</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a th:href="@{/responsableControleur/gestionResponsableControleurs}">
-                            <i class="fa-solid fa-person"></i>
 
-                            <p>R. Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
-                        </a>
-                    </li>
 
 
                     <li class="nav-item">
@@ -135,13 +128,13 @@
                         <div class="collapse" id="forms">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="/responsableControleur/archiveFormulaire/parEquipements">
+                                    <a th:href="@{/responsableControleur/archiveFormulaire/parEquipements}">
                                         <span class="sub-item">Par équipement</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="forms/forms.html">
-                                        <span class="sub-item">Liste complète</span>
+                                    <a th:href="@{/responsableControleur/archiveFormulaire/parDate}">
+                                        <span class="sub-item">Par date</span>
                                     </a>
                                 </li>
                             </ul>
