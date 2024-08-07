@@ -179,7 +179,8 @@ public class ContoleurController {
             e.printStackTrace();
         }
 
-
+        List<Formulaire> mesFormulaires = formulaireRepo.findAllOrderByDateControleDescWhereIDC(controleurId);
+        model.addAttribute("formulaires", mesFormulaires);
 
         return "C_dashboard";
     }
