@@ -30,7 +30,8 @@ public interface FormulaireRepo extends JpaRepository<Formulaire, Long> {
     List<Object[]> findNumOfControlsForAllControleurs(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 
-
+    @Query("SELECT f FROM Formulaire f where f.controleur.idControleur = :idC ORDER BY f.dateControle DESC ")
+    List<Formulaire> findAllOrderByDateControleDescWhereIDC(@Param("idC") Long idC);
     long count();
 
 }

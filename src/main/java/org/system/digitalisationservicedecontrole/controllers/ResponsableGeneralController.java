@@ -59,7 +59,7 @@ public class ResponsableGeneralController {
         List<Formulaire> listeFormualaires = formulaireRepo.findAll();
         model.addAttribute("listeFormualaires", listeFormualaires );
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -73,7 +73,7 @@ public class ResponsableGeneralController {
         List<Equipement> listeEquipements = equipementRepo.findAll();
         model.addAttribute("listeEquipements", listeEquipements );
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -88,7 +88,7 @@ public class ResponsableGeneralController {
         List<Formulaire> formulairesByEquipement = formulaireRepo.findFormulaireByEquipement(equipement);
         model.addAttribute("formulairesByEquipement", formulairesByEquipement );
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -101,7 +101,7 @@ public class ResponsableGeneralController {
         List<Controleur> listeControleurs = controleurRepo.findAll();
         model.addAttribute("listeControleurs", listeControleurs);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -242,7 +242,7 @@ public class ResponsableGeneralController {
         model.addAttribute("formulaires", formulaires);
         model.addAttribute("controleurs", topControleurs);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -260,7 +260,7 @@ public class ResponsableGeneralController {
         // Add the entity to the model
         model.addAttribute("responsableGeneral", responsableGeneral);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -320,7 +320,7 @@ public class ResponsableGeneralController {
     public String MonProfile(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -335,7 +335,7 @@ public class ResponsableGeneralController {
         List<Equipement> listeEquipements = equipementRepo.findAll();
         model.addAttribute("listeEquipements", listeEquipements);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -345,7 +345,7 @@ public class ResponsableGeneralController {
     public String modificationEquipement(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -360,7 +360,7 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         model.addAttribute("equipement", new Equipement());
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -406,7 +406,7 @@ public class ResponsableGeneralController {
         if (equipementOptional.isPresent()) {
             model.addAttribute("equipement", equipementOptional.get());
             model.addAttribute("totalEquipements", equipementRepo.count());
-            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
             model.addAttribute("totalEntites", entiteRepo.count());
             model.addAttribute("totalUnites", uniteRepo.count());
             model.addAttribute("totalControleurs", controleurRepo.count());
@@ -450,7 +450,7 @@ public class ResponsableGeneralController {
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -463,7 +463,7 @@ public class ResponsableGeneralController {
     public String afficherFormEntite(Model model,HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -497,7 +497,7 @@ public class ResponsableGeneralController {
         if (entiteOptional.isPresent()) {
             model.addAttribute("entite", entiteOptional.get());
             model.addAttribute("totalEquipements", equipementRepo.count());
-            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
             model.addAttribute("totalEntites", entiteRepo.count());
             model.addAttribute("totalUnites", uniteRepo.count());
             model.addAttribute("totalControleurs", controleurRepo.count());
@@ -524,7 +524,7 @@ public class ResponsableGeneralController {
         List<Unite> listeUnites = uniteRepo.findAll();
         model.addAttribute("listeUnites", listeUnites);
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -542,7 +542,7 @@ public class ResponsableGeneralController {
         model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -574,7 +574,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
     if (uniteOptional.isPresent()) {
         model.addAttribute("unite", uniteOptional.get());
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -601,7 +601,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
         model.addAttribute("listeResponsableControleurs", listeResponsableControleurs );
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -614,7 +614,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         gestionSession.prepareModel(session, model);
         model.addAttribute("responsableControleur", new ResponsableControleur());
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -648,7 +648,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         if (responsablecontroleurOptional.isPresent()) {
             model.addAttribute("responsableControleur", responsablecontroleurOptional.get());
             model.addAttribute("totalEquipements", equipementRepo.count());
-            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
             model.addAttribute("totalEntites", entiteRepo.count());
             model.addAttribute("totalUnites", uniteRepo.count());
             model.addAttribute("totalControleurs", controleurRepo.count());
@@ -693,7 +693,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         gestionSession.prepareModel(session, model);
         model.addAttribute("controleur", new Controleur());
         model.addAttribute("totalEquipements", equipementRepo.count());
-        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -736,7 +736,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         if (controleurOptional.isPresent()) {
             model.addAttribute("controleur", controleurOptional.get());
             model.addAttribute("totalEquipements", equipementRepo.count());
-            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
             model.addAttribute("totalEntites", entiteRepo.count());
             model.addAttribute("totalUnites", uniteRepo.count());
             model.addAttribute("totalControleurs", controleurRepo.count());

@@ -27,6 +27,8 @@ public class ResponsableControleurController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
+    private ResponsableControleurRepo responsableControleurRepo;
+    @Autowired
     private ControleurRepo controleurRepo;
     @Autowired
     private EntiteRepo entiteRepo;
@@ -42,8 +44,6 @@ public class ResponsableControleurController {
     private FormulaireRepo formulaireRepo;
     @Autowired
     private ObjectMapper jacksonObjectMapper;
-    @Autowired
-    private ResponsableControleurRepo responsableControleurRepo;
 
 
     @GetMapping("/responsableControleur/login")
@@ -56,6 +56,11 @@ public class ResponsableControleurController {
         gestionSession.prepareModel(session, model);
         List<Controleur> listeControleurs = controleurRepo.findAll();
         model.addAttribute("listeControleurs", listeControleurs);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionControleurs";
     }
     @GetMapping("/responsableControleur/dashboard")
@@ -195,6 +200,8 @@ public class ResponsableControleurController {
         model.addAttribute("totalEquipements", equipementRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+
         model.addAttribute("totalControleurs", controleurRepo.count());
         model.addAttribute("totalFormulaires", formulaireRepo.count());
 
@@ -208,13 +215,22 @@ public class ResponsableControleurController {
         // Préparer le modèle pour la session
         gestionSession.prepareModel(session, model);
 
-
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_editProfile"; // Retourne la vue d'édition du profil
     }
 
     @GetMapping("/responsableControleur/monProfile")
     public String MonProfile(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_monProfile";
     }
 
@@ -223,6 +239,11 @@ public class ResponsableControleurController {
 public String afficherEquipementForm(Model model , HttpSession session) {
     gestionSession.prepareModel(session, model);
     model.addAttribute("equipement", new Equipement());
+    model.addAttribute("totalEquipements", equipementRepo.count());
+    model.addAttribute("totalRC", responsableControleurRepo.count());
+    model.addAttribute("totalEntites", entiteRepo.count());
+    model.addAttribute("totalUnites", uniteRepo.count());
+    model.addAttribute("totalControleurs", controleurRepo.count());
     return "RC_gestionEquipements_ajout";
 }
 
@@ -260,6 +281,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         Optional<Equipement> equipementOptional = equipementRepo.findById(id);
         if (equipementOptional.isPresent()) {
             model.addAttribute("equipement", equipementOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RC_gestionEquipements_modification";
         } else {
             return "redirect:/responsableControleur/gestionEquipements";
@@ -299,6 +325,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         List<Equipement> listeEquipements = equipementRepo.findAll();
         model.addAttribute("listeEquipements", listeEquipements );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_archiveFormulaire_ParEquipements";
     }
     @GetMapping("/responsableControleur/archiveFormulaire/parEquipements/voirArchive/{id}")
@@ -308,6 +339,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
 
         List<Formulaire> formulairesByEquipement = formulaireRepo.findFormulaireByEquipement(equipement);
         model.addAttribute("formulairesByEquipement", formulairesByEquipement );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_archiveFormulaire_ParEquipements_voirArchive";
     }
 
@@ -316,6 +352,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         List<Formulaire> listeFormualaires = formulaireRepo.findAll();
         model.addAttribute("listeFormualaires", listeFormualaires );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_archiveFormulaire_ParDate";
     }
 
@@ -326,6 +367,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         List<Equipement> listeEquipements = equipementRepo.findAll();
         model.addAttribute("listeEquipements", listeEquipements );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
@@ -336,11 +382,21 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         List<Entite> listeEntites = entiteRepo.findAll();
 
         model.addAttribute("listeEntites", listeEntites);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionEntites";}
 
     @GetMapping("/responsableControleur/gestionEntites/ajout")
     public String afficherFormEntite(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionEntites_ajout";
 
 
@@ -365,6 +421,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         Optional<Entite> entiteOptional = entiteRepo.findById(id);
         if (entiteOptional.isPresent()) {
             model.addAttribute("entite", entiteOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RC_gestionEntites_modification"; // Ensure this matches your template name
         } else {
             // Handle entity not found
@@ -390,6 +451,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         List<Unite> listeUnites = uniteRepo.findAll();
 
         model.addAttribute("listeUnites", listeUnites);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionUnites";
 
 
@@ -403,6 +469,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionUnites_ajout";
 
     }
@@ -422,6 +493,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         Optional<Unite> uniteOptional = uniteRepo.findById(id);
         if (uniteOptional.isPresent()) {
             model.addAttribute("unite", uniteOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RC_gestionUnites_modification"; // Assurez-vous que ce nom correspond à votre template
         } else {
             // Gérer le cas où l'unité n'est pas trouvée
@@ -451,6 +527,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         Optional<Controleur> controleurOptional = controleurRepo.findById(id);
         if (controleurOptional.isPresent()) {
             model.addAttribute("controleur", controleurOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableControleurRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RC_gestionControleurs_modification"; // Nom de la vue Thymeleaf
         } else {
             // Gestion du cas où le contrôleur n'est pas trouvé
@@ -503,6 +584,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
     public String ajoutControleurForm(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("controleur", new Controleur());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableControleurRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_gestionControleurs_ajout";
     }
 
