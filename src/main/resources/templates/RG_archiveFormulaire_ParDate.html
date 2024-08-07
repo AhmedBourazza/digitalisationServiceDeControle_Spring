@@ -54,14 +54,14 @@
         <div class="sidebar-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
-                <a href="index.html" class="logo">
+                <a href="#top" class="logo">
                     <img
                             th:src="@{/img/ocp logo3.png}"
                             alt="navbar brand"
                             class="navbar-brand"
-                            height="20"
+                            height="35"
                     />
-                    <strong style="color: white; margin-left: 4px;">Responsable générale</strong>
+                    <strong style="color: white; margin-left: 4px;"> R. Général</strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -112,7 +112,7 @@
                         <a th:href="@{/responsableGeneral/gestionControleurs}">
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
-                            <p>contrôleurs</p>
+                            <p>Contrôleurs</p>
                             <span class="badge badge-success" th:text="${totalControleurs}">8</span>
                         </a>
                     </li>
@@ -374,7 +374,7 @@
         <div class="container">
             <div class="page-inner">
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Archive des formulaires par équipement</h3>
+                    <h3 class="fw-bold mb-3">Archive des formulaires par date</h3>
 
                     <ul class="breadcrumbs mb-3">
 
@@ -399,7 +399,7 @@
                             <i class="fas fa-angle-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Par équipement</a>
+                            <a href="#">Par date</a>
                         </li>
 
                     </ul>

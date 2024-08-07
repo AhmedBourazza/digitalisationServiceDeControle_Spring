@@ -282,10 +282,7 @@ public class ContoleurController {
         return "C_formDeluge"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
-    @GetMapping("/tst2")
-    public String tst2() {
-        return "tst2"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
-    }
+
 
 
 
