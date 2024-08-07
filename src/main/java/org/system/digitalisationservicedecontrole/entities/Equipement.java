@@ -48,3 +48,4 @@ public class Equipement {
     private Collection<Section> sections;
 
 }
+

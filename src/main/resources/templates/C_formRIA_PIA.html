@@ -9,7 +9,7 @@
     />
     <link
             rel="icon"
-            th:href="@{/img/ocp}"
+            th:href="@{/img/ocp logo2.png}"
             type="image/x-icon"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -50,14 +50,14 @@
         <div class="sidebar-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
-                <a href="index.html" class="logo">
+                <a href="#top" class="logo">
                     <img
-                            th:src="@{/img/ocp}"
+                            th:src="@{/img/ocp logo3.png}"
                             alt="navbar brand"
                             class="navbar-brand"
-                            height="20"
+                            height="35"
                     />
-                    <strong style="color: white; margin-left: 4px;"> Espace controlleurs </strong>
+                    <strong style="color: white; margin-left: 4px;">Contrôleur</strong>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -146,22 +146,7 @@
                     class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
             >
                 <div class="container-fluid">
-                    <nav
-                            class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
-                    >
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button type="submit" class="btn btn-search pe-1">
-                                    <i class="fa fa-search search-icon"></i>
-                                </button>
-                            </div>
-                            <input
-                                    type="text"
-                                    placeholder="Search ..."
-                                    class="form-control"
-                            />
-                        </div>
-                    </nav>
+
 
                     <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                         <li
@@ -286,9 +271,9 @@
                                                 <h4  th:text="${prenomMoi}"></h4>
                                                 <p class="text-muted" th:text="${emailMoi}"></p>
                                                 <a
-                                                        href="profile.html"
+                                                        th:href="@{/controleur/monProfile}"
                                                         class="btn btn-xs btn-secondary btn-sm"
-                                                >View Profile</a
+                                                >Voir mon Profile</a
                                                 >
                                             </div>
                                         </div>
@@ -298,9 +283,9 @@
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Account Setting</a>
+                                        <a class="dropdown-item" th:href="@{/controleur/editProfile}">Paramètre de profil</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                        <a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
                                     </li>
                                 </div>
                             </ul>
@@ -318,29 +303,39 @@
         <div class="container">
             <div class="page-inner">
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3">Formulaire</h3>
+                    <h3 class="fw-bold mb-3">Controle des postes de colonnes humides, PIA et RIA</h3>
+
                     <ul class="breadcrumbs mb-3">
+
                         <li class="nav-home">
                             <a href="#">
-                                <i class="icon-home"></i>
+                                <i class="fas fa-home"></i> Accueil
                             </a>
                         </li>
                         <li class="separator">
-                            <i class="icon-arrow-right"></i>
+                            <i class="fas fa-angle-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Espace Controleurs</a>
+                        </li>
+                        <li class="separator">
+                            <i class="fas fa-angle-right"></i>
                         </li>
                         <li class="nav-item">
                             <a href="#">Formulaires</a>
                         </li>
                         <li class="separator">
-                            <i class="icon-arrow-right"></i>
+                            <i class="fas fa-angle-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Postes de colonnes humides, PIA et RIA</a>
+                            <a href="#">
+                                Postes de colonnes humides, PIA et RIA</a>
                         </li>
+
                     </ul>
                     </br>
                 </div>
-                <p class="text-primary">RAPPORT DE VERIFICATION ET D'ESSAI DE FONCTIONNEMENT : POSTE COLONNE HUMIDE / RIA-PIA
+                <p class="text-primary">Formulaire Vérification des postes de colonnes humides, PIA et RIAgit
                 </p>
 
 
