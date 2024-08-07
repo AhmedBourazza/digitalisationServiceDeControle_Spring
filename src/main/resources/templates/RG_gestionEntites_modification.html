@@ -332,7 +332,6 @@
                       <div class="avatar-lg">
                         <img th:src="'data:image/jpeg;base64,' + ${imageMoi}" class="avatar-img rounded-circle" alt="User Image">
 
-
                       </div>
                       <div class="u-text">
                         <h4  th:text="${prenomMoi}"></h4>
@@ -340,7 +339,7 @@
                         <a
                                 href="profile.html"
                                 class="btn btn-xs btn-secondary btn-sm"
-                        >View Profile</a
+                        >Voir mon Profile</a
                         >
                       </div>
                     </div>
@@ -350,10 +349,11 @@
 
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Account Setting</a>
+                    <a class="dropdown-item" th:href="@{/responsableGeneral/editProfile}">Paramètre de profil</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                    <a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
                   </li>
+
                 </div>
               </ul>
             </li>
