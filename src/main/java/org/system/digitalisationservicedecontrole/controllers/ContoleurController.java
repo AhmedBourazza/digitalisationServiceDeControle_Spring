@@ -182,6 +182,14 @@ public class ContoleurController {
         List<Formulaire> mesFormulaires = formulaireRepo.findAllOrderByDateControleDescWhereIDC(controleurId);
         model.addAttribute("formulaires", mesFormulaires);
 
+// Ajouter les noms des mois actuel et précédent
+        String currentMonthName = months.get(Calendar.getInstance().get(Calendar.MONTH));
+        model.addAttribute("monthYearCurrentMonth", currentMonthName);
+
+        Calendar previousMonthCalendar = Calendar.getInstance();
+        previousMonthCalendar.add(Calendar.MONTH, -1); // Reculer d'un mois
+        String previousMonthName = months.get(previousMonthCalendar.get(Calendar.MONTH));
+        model.addAttribute("monthYearLastMonth", previousMonthName);
         return "C_dashboard";
     }
 

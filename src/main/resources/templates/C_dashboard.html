@@ -80,21 +80,26 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
 
+                    <li class="nav-item  ">
+                        <a th:href="@{/controleur/monProfile}">
+                            <i class="fas fa-home"></i>
+                            <p>Profile</p>
+
+                        </a>
+                    </li>
+
                     <li class="nav-item active">
                         <a th:href="@{/controleur/dashboard}">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-chart-line"></i>
+
                             <p>Tableau de bord</p>
 
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a th:href="@{/controleur/monProfile}">
-                            <i class="fa-solid fa-user"></i>
-                            <p>Mon Profile</p>
 
-                        </a>
-                    </li>
+
+
 
                     <li class="nav-section">
                 <span class="sidebar-mini-icon">
@@ -104,73 +109,15 @@
                     </li>
 
 
-
-
-
-
-                    <li class="nav-item">
-                        <a th:href="@{/controleur/gestionControleurs}">
-                            <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
-
-                            <p>contrôleurs</p>
-                            <span class="badge badge-success">8</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:href="@{/controleur/gestioncontroleurs}">
-                            <i class="fa-solid fa-person"></i>
-
-                            <p>R. Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
-                        </a>
                     </li>
 
 
-                    <li class="nav-item">
-                        <a data-bs-toggle="collapse" href="#forms">
-                            <i class="fas fa-archive"></i>
-                            <p>Archive Formulaires</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="forms">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <a href="/controleur/archiveFormulaire/parEquipements">
-                                        <span class="sub-item">Par équipement</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="forms/forms.html">
-                                        <span class="sub-item">Liste complète</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
 
-                    <li class="nav-item">
-                        <a th:href="@{/controleur/gestionEquipements}">
+                    <li class="nav-item ">
+                        <a th:href="@{/controleur/listeEquipements}">
                             <i class="fa-solid fa-wrench"></i>
-                            <p>Equipements</p>
-                            <span class="badge badge-success">16</span>
-
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a th:href="@{/controleur/gestionEntites}">
-                            <i class="fa fa-suitcase"></i>
-                            <p>Entités</p>
-                            <span class="badge badge-success">17</span>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:href="@{/controleur/gestionUnites}">
-                            <i class="fa-solid fa-box"></i>
-                            <p>Unités</p>
-                            <span class="badge badge-success">6</span>
-
+                            <p>Les équipements</p>
+                            <span class="badge badge-success">8</span>
                         </a>
                     </li>
 
@@ -534,55 +481,13 @@
 
                 <!----------------------------------------------------------------------------->
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-round">
-                            <div class="card-body">
-                                <div class="card-head-row card-tools-still-right">
-                                    <div class="card-title">
-                                        <i class="fas fa-trophy text-warning"></i> <!-- Icône de trophée pour le titre -->
-                                        Top Contrôleurs
-                                        <p class="text-success">Pour le mois de : <span th:text="${monthYearCurrentMonth}"></span></p>
-                                    </div>
-                                    <div class="card-tools">
-                                        <div class="dropdown">
-                                            <button class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-list py-4">
-                                    <div class="item-list d-flex align-items-center" th:each="c : ${controleurs}">
-                                        <div class="avatar">
-                                            <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}"  alt="Avatar" class="avatar-img rounded-circle">
-                                        </div>
-                                        <div class="info-user ms-3 flex-grow-1">
-                                            <div class="username" th:text="${c.nom + ' ' + c.prenom}"></div>
-                                            <div class="status">
-                                                <i class="fas fa-user-check text-success"></i> <!-- Icône de statut -->
-                                                <span th:text="${c.getMatricule()}"></span>
-                                            </div>
-                                        </div>
-                                        <div class="text-success d-flex align-items-center">
-                                            <span th:text="${c.formCount}">0</span>
-                                            <span style="margin-left: 5px;" th:text="${c.formCount == 1 ? 'Contrôle' : 'Contrôles'}">Contrôles</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title d-flex align-items-center">
                                     <i class="fas fa-file-alt me-2"></i> <!-- Icône pour représenter un formulaire -->
-                                    Liste des formulaires récemment remplis
+                                    Liste des formulaires remplis
                                 </h4>
                             </div>
                             <div class="card-body">
