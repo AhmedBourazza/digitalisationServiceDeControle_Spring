@@ -58,6 +58,11 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         List<Formulaire> listeFormualaires = formulaireRepo.findAll();
         model.addAttribute("listeFormualaires", listeFormualaires );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_archiveFormulaire_ParDate";
     }
 
@@ -67,15 +72,26 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         List<Equipement> listeEquipements = equipementRepo.findAll();
         model.addAttribute("listeEquipements", listeEquipements );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_archiveFormulaire_ParEquipements";
     }
     @GetMapping("/responsableGeneral/archiveFormulaire/parEquipements/voirArchive/{id}")
     public String RG_archiveFormulaire_ParEquipements_voirArchive(@PathVariable("id") Long id, Model model, HttpSession session ) {
         Equipement equipement = equipementRepo.findById(id).get();
+
         gestionSession.prepareModel(session, model);
 
         List<Formulaire> formulairesByEquipement = formulaireRepo.findFormulaireByEquipement(equipement);
         model.addAttribute("formulairesByEquipement", formulairesByEquipement );
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_archiveFormulaire_ParEquipements_voirArchive";
     }
 
@@ -84,6 +100,11 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         List<Controleur> listeControleurs = controleurRepo.findAll();
         model.addAttribute("listeControleurs", listeControleurs);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionControleurs"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/responsableGeneral/dashboard")
@@ -221,6 +242,7 @@ public class ResponsableGeneralController {
         model.addAttribute("formulaires", formulaires);
         model.addAttribute("controleurs", topControleurs);
         model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
@@ -237,6 +259,11 @@ public class ResponsableGeneralController {
 
         // Add the entity to the model
         model.addAttribute("responsableGeneral", responsableGeneral);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_editProfile"; // Ensure "RG_editProfile.html" is present in the templates folder
     }
 
@@ -292,6 +319,11 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/monProfile")
     public String MonProfile(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_monProfile"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
@@ -302,11 +334,21 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         List<Equipement> listeEquipements = equipementRepo.findAll();
         model.addAttribute("listeEquipements", listeEquipements);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionListeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/responsableGeneral/gestionEquipements/modification")
     public String modificationEquipement(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionEquipements_modification";
 
     }
@@ -317,6 +359,11 @@ public class ResponsableGeneralController {
     public String afficherEquipementForm(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("equipement", new Equipement());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionEquipements_ajout";
     }
 
@@ -340,6 +387,7 @@ public class ResponsableGeneralController {
             e.printStackTrace();
         }
         equipementRepo.save(equipement);
+
         return "redirect:/responsableGeneral/gestionEquipements";
     }
 
@@ -357,6 +405,11 @@ public class ResponsableGeneralController {
         Optional<Equipement> equipementOptional = equipementRepo.findById(id);
         if (equipementOptional.isPresent()) {
             model.addAttribute("equipement", equipementOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RG_gestionEquipements_modification";
         } else {
             return "redirect:/responsableGeneral/gestionEquipements";
@@ -396,6 +449,11 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionEntites";}
 
 
@@ -404,6 +462,11 @@ public class ResponsableGeneralController {
     @GetMapping("/responsableGeneral/gestionEntites/ajout")
     public String afficherFormEntite(Model model,HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionEntites_ajout";
 
 
@@ -415,6 +478,7 @@ public class ResponsableGeneralController {
     @PostMapping("/responsableGeneral/gestionEntites/ajout")
     public String AjoutEntite(@ModelAttribute("entite") Entite entite) {
         entiteRepo.save(entite);
+
         return "redirect:/responsableGeneral/gestionEntites";
 
 
@@ -432,6 +496,11 @@ public class ResponsableGeneralController {
         Optional<Entite> entiteOptional = entiteRepo.findById(id);
         if (entiteOptional.isPresent()) {
             model.addAttribute("entite", entiteOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RG_gestionEntites_modification"; // Ensure this matches your template name
         } else {
             // Handle entity not found
@@ -454,6 +523,11 @@ public class ResponsableGeneralController {
         gestionSession.prepareModel(session, model);
         List<Unite> listeUnites = uniteRepo.findAll();
         model.addAttribute("listeUnites", listeUnites);
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionUnites";
 
 
@@ -467,6 +541,11 @@ public class ResponsableGeneralController {
         List<Entite> listeEntites = entiteRepo.findAll();
         model.addAttribute("listeEntites", listeEntites);
         model.addAttribute("unite", new Unite());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionUnites_ajout";
 
     }
@@ -494,6 +573,11 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
     Optional<Unite> uniteOptional = uniteRepo.findById(id);
     if (uniteOptional.isPresent()) {
         model.addAttribute("unite", uniteOptional.get());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionUnites_modification"; // Assurez-vous que ce nom correspond à votre template
     } else {
         // Gérer le cas où l'unité n'est pas trouvée
@@ -516,7 +600,11 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         gestionSession.prepareModel(session, model);
         List<ResponsableControleur> listeResponsableControleurs = responsableControleurRepo.findAll();
         model.addAttribute("listeResponsableControleurs", listeResponsableControleurs );
-
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionResponsableControleurs";
     }
 
@@ -525,6 +613,11 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
     public String ajoutResponsableControleursForm(Model model,HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("responsableControleur", new ResponsableControleur());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionResponsableControleurs_ajout";
     }
     @PostMapping("/responsableGeneral/gestionResponsableControleurs/ajout")
@@ -554,6 +647,11 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         Optional<ResponsableControleur> responsablecontroleurOptional = responsableControleurRepo.findById(id);
         if (responsablecontroleurOptional.isPresent()) {
             model.addAttribute("responsableControleur", responsablecontroleurOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RG_gestionResponsableControleurs_modification"; // Nom de la vue Thymeleaf
         } else {
             // Gestion du cas où le contrôleur n'est pas trouvé
@@ -594,6 +692,11 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
     public String ajoutControleurForm(Model model,HttpSession session) {
         gestionSession.prepareModel(session, model);
         model.addAttribute("controleur", new Controleur());
+        model.addAttribute("totalEquipements", equipementRepo.count());
+        model.addAttribute("totalRC", responsableGeneralRepo.count());
+        model.addAttribute("totalEntites", entiteRepo.count());
+        model.addAttribute("totalUnites", uniteRepo.count());
+        model.addAttribute("totalControleurs", controleurRepo.count());
         return "RG_gestionControleurs_ajout";
     }
 
@@ -609,6 +712,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
             //ho
         }
         controleurRepo.save(controleur);
+
         return "redirect:/responsableGeneral/gestionControleurs";
     }
 
@@ -631,6 +735,11 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         Optional<Controleur> controleurOptional = controleurRepo.findById(id);
         if (controleurOptional.isPresent()) {
             model.addAttribute("controleur", controleurOptional.get());
+            model.addAttribute("totalEquipements", equipementRepo.count());
+            model.addAttribute("totalRC", responsableGeneralRepo.count());
+            model.addAttribute("totalEntites", entiteRepo.count());
+            model.addAttribute("totalUnites", uniteRepo.count());
+            model.addAttribute("totalControleurs", controleurRepo.count());
             return "RG_gestionControleurs_modification"; // Nom de la vue Thymeleaf
         } else {
             // Gestion du cas où le contrôleur n'est pas trouvé
