@@ -330,9 +330,9 @@
                                                 <h4  th:text="${prenomMoi}"></h4>
                                                 <p class="text-muted" th:text="${emailMoi}"></p>
                                                 <a
-                                                        href="profile.html"
+                                                        th:href="@{/responsableControleur/monProfile}"
                                                         class="btn btn-xs btn-secondary btn-sm"
-                                                >View Profile</a
+                                                >Voir mon Profile</a
                                                 >
                                             </div>
                                         </div>
@@ -342,9 +342,9 @@
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Account Setting</a>
+                                        <a class="dropdown-item" th:href="@{/responsableControleur/editProfile}">Paramètre de profil</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                        <a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
                                     </li>
                                 </div>
                             </ul>

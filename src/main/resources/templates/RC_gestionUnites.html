@@ -351,9 +351,9 @@
                                                 <h4  th:text="${prenomMoi}"></h4>
                                                 <p class="text-muted" th:text="${emailMoi}"></p>
                                                 <a
-                                                        href="/responsableControleur/monProfile"
+                                                        th:href="@{/responsableControleur/monProfile}"
                                                         class="btn btn-xs btn-secondary btn-sm"
-                                                >Profile</a
+                                                >Voir mon Profile</a
                                                 >
                                             </div>
                                         </div>
@@ -363,7 +363,7 @@
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Modifier mon profil</a>
+                                        <a class="dropdown-item" th:href="@{/responsableControleur/editProfile}">Paramètre de profil</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
                                     </li>
@@ -412,7 +412,7 @@
 
                         <div class="ms-md-auto py-2 py-md-0">
 
-                            <a th:href="@{/responsableControleur/gestionUnites/ajout}" class="btn btn-primary btn-round">Ajouter une entité</a>
+                            <a th:href="@{/responsableControleur/gestionUnites/ajout}" class="btn btn-primary btn-round">Ajouter une unité</a>
                         </div>
                     </div>
 
