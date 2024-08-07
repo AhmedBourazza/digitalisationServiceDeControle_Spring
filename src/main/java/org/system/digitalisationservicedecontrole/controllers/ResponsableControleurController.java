@@ -311,6 +311,14 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         return "RC_archiveFormulaire_ParEquipements_voirArchive";
     }
 
+    @GetMapping("/responsableControleur/archiveFormulaire/parDate")
+    public String RC_archiveFormulaire_ParDate(Model model , HttpSession session) {
+        gestionSession.prepareModel(session, model);
+        List<Formulaire> listeFormualaires = formulaireRepo.findAll();
+        model.addAttribute("listeFormualaires", listeFormualaires );
+        return "RC_archiveFormulaire_ParDate";
+    }
+
 
 
     @GetMapping("/responsableControleur/gestionEquipements")
