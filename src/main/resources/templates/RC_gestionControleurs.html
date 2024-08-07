@@ -111,7 +111,7 @@
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
+                            <span class="badge badge-success" th:text="${totalControleurs}">8</span>
                         </a>
                     </li>
 
@@ -152,7 +152,7 @@
                         <a th:href="@{/responsableControleur/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
-                            <span class="badge badge-success">17</span>
+                            <span class="badge badge-success" th:text="${totalEntites}">17</span>
 
                         </a>
                     </li>
@@ -161,7 +161,7 @@
                         <a th:href="@{/responsableControleur/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
-                            <span class="badge badge-success">6</span>
+                            <span class="badge badge-success" th:text="${totalUnites}"t>6</span>
 
                         </a>
                     </li>
