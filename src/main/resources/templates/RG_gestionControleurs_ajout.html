@@ -113,7 +113,7 @@
                             <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
                             <p>Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
+                            <span class="badge badge-success" th:text="${totalControleurs}">8</span>
                         </a>
                     </li>
 
@@ -121,8 +121,8 @@
                         <a th:href="@{/responsableGeneral/gestionResponsableControleurs}">
                             <i class="fa-solid fa-person"></i>
 
-                            <p>Responsable Contrôleurs</p>
-                            <span class="badge badge-success">8</span>
+                            <p>R. Contrôleurs</p>
+                            <span class="badge badge-success" th:text="${totalRC}">8</span>
                         </a>
                     </li>
 
@@ -152,7 +152,7 @@
                         <a th:href="@{/responsableGeneral/gestionEquipements}">
                             <i class="fa-solid fa-wrench"></i>
                             <p>Equipements</p>
-
+                            <span class="badge badge-success" th:text="${totalEquipements}">17</span>
                         </a>
                     </li>
 
@@ -160,7 +160,7 @@
                         <a th:href="@{/responsableGeneral/gestionEntites}">
                             <i class="fa fa-suitcase"></i>
                             <p>Entités</p>
-                            <span class="badge badge-success">17</span>
+                            <span class="badge badge-success" th:text="${totalEntites}">17</span>
 
                         </a>
                     </li>
@@ -169,7 +169,7 @@
                         <a th:href="@{/responsableGeneral/gestionUnites}">
                             <i class="fa-solid fa-box"></i>
                             <p>Unités</p>
-                            <span class="badge badge-success">6</span>
+                            <span class="badge badge-success" th:text="${totalUnites}">6</span>
 
                         </a>
                     </li>
