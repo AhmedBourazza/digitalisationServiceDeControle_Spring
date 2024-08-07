@@ -26,6 +26,7 @@ public class Equipement {
     private String codification ;
     private Long quantite ;
     private String titreFormulaire ;
+    private String formulaireUrl ;
     @Lob
     @Column(name = "image_data", columnDefinition = "LONGBLOB")
     private byte[] ImageData;

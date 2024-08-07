@@ -352,7 +352,7 @@
 
                                 </p>
                                 <p class="card-text" th:text=" 'Quantité : ' + ${e.getQuantite()}"></p>
-                                <a th:href="@{/Formulaire}" class="btn btn-primary btn-rounded btn-sm">Remplir le formulaire</a>
+                                <a th:href="${e.getFormulaireUrl()}" class="btn btn-primary btn-rounded btn-sm">Remplir le formulaire</a>
                             </div>
                         </div>
                     </div>
