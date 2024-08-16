@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,7 +22,7 @@ public class FormulaireDTO {
     private LocalDate dateControle;
     private String matriculeExemplaireEquipement;
     private Long idControleur;
-    private List<ReponseDTO> reponses;
+    private List<ReponseDTO> reponses  ;
 
     // Getters et Setters
 }
