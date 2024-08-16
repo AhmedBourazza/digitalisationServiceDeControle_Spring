@@ -8,7 +8,7 @@ import org.system.digitalisationservicedecontrole.entities.Excel;
 import java.util.List;
 public interface ExcelRepo extends CrudRepository<Excel, Long> {
 
-    @Query(value = "SELECT f.date_controle, e.nom, u.nom, s.nom, q.enonce, r.enonce , r.justification,c.username,f.proprietaire " +
+    @Query(value = "SELECT f.date_controle, e.nom, u.nom, s.nom, q.enonce, r.enonce , q.sous_section,c.username,f.proprietaire " +
             "FROM reponse r " +
             "JOIN question q ON r.id_question_ = q.id_question " +
             "JOIN formulaire f ON r.id_formulaire_ = f.id_formulaire " +
@@ -19,6 +19,6 @@ public interface ExcelRepo extends CrudRepository<Excel, Long> {
             "JOIN entite e ON u.id_entite_ = e.id_entite " +
             "WHERE f.matricule_exemplaire_equipement = :matricule " +
             "AND DATE_FORMAT(r.date_controle, '%Y-%m-%d %H:%i') = DATE_FORMAT(:dateControle, '%Y-%m-%d %H:%i') " +
-            "ORDER BY s.id_section", nativeQuery = true)
+            "ORDER BY s.id_section,q.id_question", nativeQuery = true)
     List<Object[]> findReponses(@Param("matricule") String matricule, @Param("dateControle") String dateControle);
 }

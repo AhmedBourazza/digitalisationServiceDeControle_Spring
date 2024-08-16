@@ -129,9 +129,10 @@ public class ExcelService {
 
                     // Add table headers
                     Row headerRow = sheet.createRow(dataRowIndex++);
-                    headerRow.createCell(0).setCellValue("Question");
-                    headerRow.createCell(1).setCellValue("Reponse");
-                    headerRow.createCell(2).setCellValue("Justification");
+                    headerRow.createCell(0).setCellValue("Sous section");
+                    headerRow.createCell(1).setCellValue("Question");
+                    headerRow.createCell(2).setCellValue("Reponse");
+
 
                     for (Cell cell : headerRow) {
                         cell.setCellStyle(headerStyle);
@@ -140,9 +141,10 @@ public class ExcelService {
 
                 // Add data rows
                 Row dataRow = sheet.createRow(dataRowIndex++);
-                dataRow.createCell(0).setCellValue((String) row[4]);
-                dataRow.createCell(1).setCellValue((String) row[5]);
-                dataRow.createCell(2).setCellValue((String) row[6]);
+                dataRow.createCell(0).setCellValue((String) row[6]);
+                dataRow.createCell(1).setCellValue((String) row[4]);
+                dataRow.createCell(2).setCellValue((String) row[5]);
+
                 for (Cell cell : dataRow) {
                     cell.setCellStyle(dataRowStyle);
                 }
