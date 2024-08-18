@@ -1,5 +1,6 @@
 package org.system.digitalisationservicedecontrole.services;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.system.digitalisationservicedecontrole.DTOs.ReponseDTO;
@@ -53,6 +54,14 @@ public class FormulaireService {
                     }
                 }
             }
+        }
+    }
+    @Transactional
+    public void mettreAJourFormulairesAvantSuppression(Long idControleur) {
+        List<Formulaire> formulaires = formulaireRepository.findByControleur_IdControleur(idControleur);
+        for (Formulaire formulaire : formulaires) {
+            formulaire.setControleur(null);
+            formulaireRepository.save(formulaire);
         }
     }
 }

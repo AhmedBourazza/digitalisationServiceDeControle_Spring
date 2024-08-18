@@ -34,4 +34,6 @@ public interface FormulaireRepo extends JpaRepository<Formulaire, Long> {
     List<Formulaire> findAllOrderByDateControleDescWhereIDC(@Param("idC") Long idC);
     long count();
 
+    List<Formulaire> findByControleur_IdControleur(Long idControleur);
+
 }

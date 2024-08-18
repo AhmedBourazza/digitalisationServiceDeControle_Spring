@@ -43,4 +43,7 @@ public interface ControleurRepo extends JpaRepository<Controleur, Long> {
 
     long count();
 
+
+    List<Controleur> findByResponsableControleur_IdResponsableControleur(Long idRControleur);
+
 }
