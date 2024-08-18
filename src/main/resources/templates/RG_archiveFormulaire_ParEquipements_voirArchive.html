@@ -454,7 +454,7 @@
                                         <tbody>
                                         <tr th:each="f:${formulairesByEquipement}">
                                             <td th:text="${f.getMatriculeExemplaireEquipement()}" class="matricule"></td>
-                                            <td th:text="${f.getControleur().getNom()+' ' +f.getControleur().getPrenom()}">System Architect</td>
+                                            <td th:text="${f.getNomCompletControleur()}">System Architect</td>
                                             <td  th:text="${f.getUnite().getNom()}"></td>
                                             <!-- <td>61</td>-->
                                             <td  th:text="${f.getDateControle()}" class="dateControle"></td>
