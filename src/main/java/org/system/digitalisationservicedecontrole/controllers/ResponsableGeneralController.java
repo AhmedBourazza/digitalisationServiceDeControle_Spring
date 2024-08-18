@@ -681,6 +681,19 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
                         .orElseThrow(() -> new IllegalArgumentException("Responsable controleur non trouvé avec l'id: " + id));
                 responsableControleur.setImageData(existingControleur.getImageData());
             }
+
+
+            // Encoder le mot de passe si celui-ci est modifié
+            if (responsableControleur.getPassword() != null && !responsableControleur.getPassword().isEmpty()) {
+                String encodedPassword = passwordEncoder.encode(responsableControleur.getPassword());
+                responsableControleur.setPassword(encodedPassword);
+            } else {
+                // Garder le mot de passe existant si aucun nouveau mot de passe n'est fourni
+                Controleur existingControleur = controleurRepo.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
+                responsableControleur.setPassword(existingControleur.getPassword());
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("message", "Erreur lors du téléchargement de l'image");
