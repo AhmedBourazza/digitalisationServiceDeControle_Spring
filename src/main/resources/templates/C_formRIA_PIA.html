@@ -353,6 +353,7 @@
                 <form th:action="@{/controleur/remplirFormulaire/ajout}" method="post">
                     <input type="hidden" name="idEquipement" value="3">
                     <input type="hidden" name="idControleur" th:value="${idMoi}">
+                    <input type="hidden" name="nomCompletControleur" th:value="${nomMoi} + ' ' + ${prenomMoi}">
 
                     <div class="row">
                         <div class="col-md-12">

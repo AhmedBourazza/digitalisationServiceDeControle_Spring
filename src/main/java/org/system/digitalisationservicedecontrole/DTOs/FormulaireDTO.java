@@ -23,6 +23,7 @@ public class FormulaireDTO {
     private LocalDate dateControle;
     private String matriculeExemplaireEquipement;
     private Long idControleur;
+    private String nomCompletControleur ;
     private List<ReponseDTO> reponses  ;
     public FormulaireDTO() {
         // Initialisation avec une capacité pour 350 éléments

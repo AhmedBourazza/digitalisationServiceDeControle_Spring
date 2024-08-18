@@ -23,6 +23,7 @@ public class Formulaire {
     private String matriculeExemplaireEquipement ;
     private Date dateControle ;
     private String Proprietaire ;
+    private String nomCompletControleur ;
     @Lob
     @Column(name = "image_data", columnDefinition = "LONGBLOB")
     private byte[] ImageData;

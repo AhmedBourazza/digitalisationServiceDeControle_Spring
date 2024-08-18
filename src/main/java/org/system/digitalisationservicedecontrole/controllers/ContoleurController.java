@@ -315,6 +315,7 @@ public class ContoleurController {
         formulaire.setDateControle(Date.valueOf(formulaireDTO.getDateControle()));
         formulaire.setMatriculeExemplaireEquipement(formulaireDTO.getMatriculeExemplaireEquipement());
         formulaire.setControleur(controleur);
+        formulaire.setNomCompletControleur(formulaireDTO.getNomCompletControleur());
 
         // Enregistrement du formulaire et des réponses
         formulaireService.saveFormulaireAndReponses(formulaire, formulaireDTO.getReponses());
