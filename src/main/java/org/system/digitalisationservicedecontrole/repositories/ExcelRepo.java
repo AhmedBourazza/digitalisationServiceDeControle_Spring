@@ -14,7 +14,7 @@ public interface ExcelRepo extends CrudRepository<Excel, Long> {
             "JOIN formulaire f ON r.id_formulaire_ = f.id_formulaire " +
             "JOIN section s ON q.id_section_ = s.id_section " +
             "JOIN equipement eq ON s.id_equipement_ = eq.id_equipement " +
-            "JOIN controleur c ON f.id_controleur_  = c.id_controleur  " +
+
             "JOIN unite u ON f.id_unite_ = u.id_unite " +
             "JOIN entite e ON u.id_entite_ = e.id_entite " +
             "WHERE f.matricule_exemplaire_equipement = :matricule " +
