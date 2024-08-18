@@ -15,6 +15,8 @@ import org.system.digitalisationservicedecontrole.DTOs.ControleurDTO;
 import org.system.digitalisationservicedecontrole.configuration.GestionSession;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
+import org.system.digitalisationservicedecontrole.services.FormulaireService;
+import org.system.digitalisationservicedecontrole.services.RcService;
 
 
 import java.io.IOException;
@@ -47,7 +49,10 @@ public class ResponsableGeneralController {
     @Autowired
     private ObjectMapper jacksonObjectMapper;
 
-
+    @Autowired
+    private FormulaireService formulaireService;
+    @Autowired
+    private RcService rcService;
 
     @GetMapping("/responsableGeneral/login")
     public String login() {
@@ -637,6 +642,8 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
     //--------Suppression reponsable controleur-------------------
     @PostMapping("/responsableGeneral/gestionResponsableControleurs/suppression/{id}")
     public String supprimerResponsableControleur(@PathVariable("id") Long id) {
+        rcService.mettreAJourRCAvantSuppression(id);
+
         responsableControleurRepo.deleteById(id);
         return "redirect:/responsableGeneral/gestionResponsableControleurs";
     }
@@ -719,6 +726,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
     //*******Suppression d'un CONTROLEURS*************************************
     @PostMapping("/responsableGeneral/gestionControleurs/suppression/{id}")
     public String supprimerControleur(@PathVariable("id") Long id) {
+        formulaireService.mettreAJourFormulairesAvantSuppression(id);
         controleurRepo.deleteById(id);
         return "redirect:/responsableGeneral/gestionControleurs";
     }

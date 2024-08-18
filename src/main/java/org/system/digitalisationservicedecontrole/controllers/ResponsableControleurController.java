@@ -15,6 +15,7 @@ import org.system.digitalisationservicedecontrole.DTOs.ControleurDTO;
 import org.system.digitalisationservicedecontrole.configuration.GestionSession;
 import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
+import org.system.digitalisationservicedecontrole.services.FormulaireService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +45,9 @@ public class ResponsableControleurController {
     private FormulaireRepo formulaireRepo;
     @Autowired
     private ObjectMapper jacksonObjectMapper;
+
+    @Autowired
+    private FormulaireService formulaireService;
 
 
     @GetMapping("/responsableControleur/login")
@@ -610,6 +614,8 @@ public String afficherEquipementForm(Model model , HttpSession session) {
     //*******Suppression d'un CONTROLEURS*************************************
     @PostMapping("/responsableControleur/gestionControleurs/suppression/{id}")
     public String supprimerControleur(@PathVariable("id") Long id) {
+        formulaireService.mettreAJourFormulairesAvantSuppression(id);
+
         controleurRepo.deleteById(id);
         return "redirect:/responsableControleur/gestionControleurs";
     }
