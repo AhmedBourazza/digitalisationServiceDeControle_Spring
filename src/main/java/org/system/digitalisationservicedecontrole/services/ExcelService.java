@@ -104,7 +104,8 @@ public class ExcelService {
             generalInfoRow = sheet.createRow(rowIndex++);
             generalInfoRow.createCell(0).setCellValue("Controleur");
             generalInfoRow.getCell(0).setCellStyle(generalInfoStyle);
-            generalInfoRow.createCell(1).setCellValue(getUniqueValueFromResults(results, 7)); // Replace with actual column index for 'Controleur'
+            generalInfoRow.createCell(1).setCellValue(getUniqueValueFromResults(results, 7));
+            // Replace with actual column index for 'Controleur'
             generalInfoRow.getCell(1).setCellStyle(generalInfoStyle);
 
             generalInfoRow = sheet.createRow(rowIndex++);

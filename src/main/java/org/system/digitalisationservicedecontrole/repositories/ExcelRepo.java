@@ -8,7 +8,7 @@ import org.system.digitalisationservicedecontrole.entities.Excel;
 import java.util.List;
 public interface ExcelRepo extends CrudRepository<Excel, Long> {
 
-    @Query(value = "SELECT f.date_controle, e.nom, u.nom, s.nom, q.enonce, r.enonce , q.sous_section,c.username,f.proprietaire " +
+    @Query(value = "SELECT f.date_controle, e.nom, u.nom, s.nom, q.enonce, r.enonce , q.sous_section,f.nom_complet_controleur,f.proprietaire " +
             "FROM reponse r " +
             "JOIN question q ON r.id_question_ = q.id_question " +
             "JOIN formulaire f ON r.id_formulaire_ = f.id_formulaire " +
