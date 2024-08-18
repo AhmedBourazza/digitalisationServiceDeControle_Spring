@@ -436,14 +436,52 @@
                                             <i class="fa-solid fa-pen-to-square" style="color: #00ff00;"></i>
                                         </a>
                                         <form th:action="@{/responsableGeneral/gestionControleurs/suppression/{id}(id=${c.idControleur})}" method="post">
-                                            <button class="btn btn-icon btn-clean me-0" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce controleur?');">
+                                            <button type="button" class="btn btn-icon btn-clean me-0 btn-delete">
                                                 <i class="fa-solid fa-trash fa" style="color: #ff0000;"></i>
                                             </button>
                                         </form>
 
                                     </div>
 
+                                    <!-- Modal de confirmation de suppression -->
+                                    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmation de suppression</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Êtes-vous sûr de vouloir supprimer ce contrôleur ? Cette action est irréversible.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Supprimer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            let selectedForm = null;
 
+                                            // Lorsqu'un bouton de suppression est cliqué
+                                            document.querySelectorAll('.btn-delete').forEach(button => {
+                                                button.addEventListener('click', function() {
+                                                    selectedForm = this.closest('form'); // Trouver le formulaire associé
+                                                    const modal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'), {});
+                                                    modal.show();
+                                                });
+                                            });
+
+                                            // Lorsque l'utilisateur confirme la suppression
+                                            document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+                                                if (selectedForm) {
+                                                    selectedForm.submit(); // Soumettre le formulaire sélectionné
+                                                }
+                                            });
+                                        });
+                                    </script>
 
 
 
