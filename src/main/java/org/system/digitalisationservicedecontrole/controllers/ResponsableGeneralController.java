@@ -689,7 +689,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
                 responsableControleur.setPassword(encodedPassword);
             } else {
                 // Garder le mot de passe existant si aucun nouveau mot de passe n'est fourni
-                Controleur existingControleur = controleurRepo.findById(id)
+                ResponsableControleur existingControleur = responsableControleurRepo.findById(id)
                         .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
                 responsableControleur.setPassword(existingControleur.getPassword());
             }

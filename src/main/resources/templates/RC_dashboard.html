@@ -524,18 +524,23 @@
                                 <div class="card-list py-4">
                                     <div class="item-list d-flex align-items-center" th:each="c : ${controleurs}">
                                         <div class="avatar">
-                                            <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}"  alt="Avatar" class="avatar-img rounded-circle">
+                                            <!-- Vérifie si l'image est présente, sinon affiche une image par défaut -->
+                                            <img th:src="${c.getImageDataAsBase64() != null ? 'data:image/jpeg;base64,' + c.getImageDataAsBase64() : '/path/to/default/avatar.jpg'}" alt="Avatar" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="info-user ms-3 flex-grow-1">
-                                            <div class="username" th:text="${c.nom + ' ' + c.prenom}"></div>
+                                            <!-- Vérifie si le nom et le prénom sont présents, sinon affiche 'Nom inconnu' -->
+                                            <div class="username" th:text="${c.nom != null ? c.nom : ''} + ' ' + ${c.prenom != null ? c.prenom : ''}">Nom inconnu</div>
                                             <div class="status">
                                                 <i class="fas fa-user-check text-success"></i> <!-- Icône de statut -->
-                                                <span th:text="${c.getMatricule()}"></span>
+                                                <!-- Vérifie si le matricule est présent, sinon affiche 'Matricule inconnu' -->
+                                                <span th:text="${c.getMatricule() != null ? c.getMatricule() : 'Matricule inconnu'}"></span>
                                             </div>
                                         </div>
                                         <div class="text-success d-flex align-items-center">
-                                            <span th:text="${c.formCount}">0</span>
-                                            <span style="margin-left: 5px;" th:text="${c.formCount == 1 ? 'Contrôle' : 'Contrôles'}">Contrôles</span>
+                                            <!-- Vérifie si 'formCount' est présent, sinon affiche '0' -->
+                                            <span th:text="${c.formCount != null ? c.formCount : 0}">0</span>
+                                            <!-- Affiche 'Contrôle' ou 'Contrôles' en fonction de 'formCount' -->
+                                            <span style="margin-left: 5px;" th:text="${c.formCount != null && c.formCount == 1 ? 'Contrôle' : 'Contrôles'}">Contrôles</span>
                                         </div>
                                     </div>
                                 </div>
@@ -569,23 +574,25 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="f:${formulaires}">
-                                            <td th:text="${f.getMatriculeExemplaireEquipement()}" class="matricule"></td>
-                                            <td th:text="${f.getControleur().getNom()+' ' +f.getControleur().getPrenom()}">System Architect</td>
-                                            <td  th:text="${f.getUnite().getNom()}"></td>
-                                            <!-- <td>61</td>-->
-                                            <td  th:text="${f.getDateControle()}" class="dateControle"></td>
-                                            <td style="text-align: center;">
+                                        <tr th:each="f : ${formulaires}">
+                                            <td th:text="${f.getMatriculeExemplaireEquipement() != null ? f.getMatriculeExemplaireEquipement() : 'Matricule inconnu'}" class="matricule"></td>
 
+                                            <!-- Vérifie si le controleur et ses attributs sont présents -->
+                                            <td th:text="${f.getControleur() != null ? (f.getControleur().getNom() != null ? f.getControleur().getNom() : '') + ' ' + (f.getControleur().getPrenom() != null ? f.getControleur().getPrenom() : '') : 'Controleur inconnu'}">System Architect</td>
+
+                                            <!-- Vérifie si l'unité et son nom sont présents -->
+                                            <td th:text="${f.getUnite() != null && f.getUnite().getNom() != null ? f.getUnite().getNom() : 'Unité inconnue'}"></td>
+
+                                            <!-- Vérifie si la date de contrôle est présente -->
+                                            <td th:text="${f.getDateControle() != null ? f.getDateControle() : 'Date inconnue'}" class="dateControle"></td>
+
+                                            <td style="text-align: center;">
                                                 <button type="button" class="btn btn-icon btn-round btn-warning">
                                                     <i class="fa fa-file-excel"></i>
                                                 </button>
                                             </td>
-
-
-
-                                            <!-- <td>$320,800</td>-->
                                         </tr>
+
 
                                         </tbody>
                                     </table>
