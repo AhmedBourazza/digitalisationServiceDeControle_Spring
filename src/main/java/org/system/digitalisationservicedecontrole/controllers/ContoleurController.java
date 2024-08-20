@@ -264,32 +264,44 @@ public class ContoleurController {
     @GetMapping("/controleur/formulaireMonitors")
     public String afficherFormulaireMonitors(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
         return "C_formMonitors";
     }
     @GetMapping("/controleur/formulairePompeIncendie")
     public String afficherFormulairePempeIncendie(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
         return "C_formPompeIncendie";
     }
     @GetMapping("/controleur/formulaire1")
     public String afficherFormulaire(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
         return "C_formulaire1"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/controleur/formulaireSprinklers")
     public String afficherFormulaireSprinklers(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
         return "C_formSprinklers"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
     @GetMapping("/controleur/formulaireRIA_PIA")
     public String afficherFormulaireRIA_PIA(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
         return "C_formRIA_PIA"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
     @GetMapping("/controleur/formulaireDeluge")
     public String afficherFormulaireDeluge(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
         return "C_formDeluge"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 

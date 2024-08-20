@@ -13,6 +13,7 @@
             type="image/x-icon"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <!-- Fonts and icons -->
@@ -378,12 +379,11 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="entitySelect"><i class="fas fa-building"></i> Entité</label>
-                                                <select class="form-select form-control" id="entitySelect" name="entity">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
+                                                <select class="form-select form-control" id="entitySelect" name="idEntite" required>
+                                                    <option value="" disabled selected>Choisir une option</option>
+                                                    <th:block th:each="entity : ${entites}">
+                                                        <option th:value="${entity.idEntite}" th:text="${entity.nom}"></option>
+                                                    </th:block>
                                                 </select>
                                             </div>
                                         </div>
@@ -394,15 +394,45 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="unitSelect"><i class="fas fa-sitemap"></i> Unité</label>
-                                                <select class="form-select form-control" name="idUnite" id="unitSelect" >
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
+                                                <select class="form-select form-control" id="unitSelect" name="idUnite" required>
+                                                    <option value="" disabled selected>Choisir une option</option>
                                                 </select>
                                             </div>
                                         </div>
+                                        <script>
+                                            $(document).ready(function() {
+                                                function loadUnites(idEntite) {
+                                                    $.ajax({
+                                                        url: '/ajax/unites',
+                                                        type: 'GET',
+                                                        data: { idEntite: idEntite },
+                                                        success: function(data) {
+                                                            console.log('Données reçues:', data);
+                                                            if (Array.isArray(data)) {
+                                                                var options = '<option value="" disabled selected>Choisir une option</option>';
+                                                                $.each(data, function(index, unite) {
+                                                                    options += '<option value="' + unite.idUnite + '">' + unite.nom + '</option>';
+                                                                });
+                                                                $('#unitSelect').html(options);
+                                                            } else {
+                                                                console.error('Données reçues ne sont pas un tableau:', data);
+                                                            }
+                                                        },
+                                                        error: function(xhr, status, error) {
+                                                            console.error('Erreur AJAX:', error);
+                                                        }
+                                                    });
+                                                }
+
+                                                $('#entitySelect').on('change', function() {
+                                                    var idEntite = $(this).val();
+                                                    if (idEntite) {
+                                                        loadUnites(idEntite);
+                                                    }
+                                                });
+                                            });
+
+                                        </script>
 
                                         <!-- Secteur -->
                                         <div class="col-12 col-md-6">
