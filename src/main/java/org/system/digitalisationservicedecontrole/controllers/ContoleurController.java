@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.system.digitalisationservicedecontrole.DTOs.FormulaireDTO;
 import org.system.digitalisationservicedecontrole.DTOs.ReponseDTO;
 import org.system.digitalisationservicedecontrole.configuration.GestionSession;
-import org.system.digitalisationservicedecontrole.entities.Controleur;
-import org.system.digitalisationservicedecontrole.entities.Equipement;
-import org.system.digitalisationservicedecontrole.entities.Formulaire;
-import org.system.digitalisationservicedecontrole.entities.Unite;
+import org.system.digitalisationservicedecontrole.entities.*;
 import org.system.digitalisationservicedecontrole.repositories.*;
 import org.system.digitalisationservicedecontrole.services.FormulaireService;
 
@@ -200,6 +199,64 @@ public class ContoleurController {
         model.addAttribute("listeEquipements", listeEquipements );
         return "C_listeEquipements"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
+
+    @GetMapping("/controleur/editProfile")
+    public String EditProfile(Model model, HttpSession session) {
+        // Préparer le modèle pour la session
+        gestionSession.prepareModel(session, model);
+        Controleur controleur = controleurRepo.findById((Long) session.getAttribute("id"))
+                .orElseThrow(() -> new RuntimeException("controleur not found"));
+
+        model.addAttribute("controleur", controleur);
+
+        return "C_editProfile"; // Retourne la vue d'édition du profil
+    }
+    @PostMapping("/controleur/editProfile")
+    public String modifierResponsableControleur(
+            @ModelAttribute Controleur controleur,
+            @RequestParam("imageFile") MultipartFile imageFile,
+            @RequestParam(value = "password", required = false) String newPassword,
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
+        try {
+            // Check if a new password has been provided
+            if (newPassword != null && !newPassword.isEmpty()) {
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                String hashedPassword = passwordEncoder.encode(newPassword);
+                controleur.setPassword(hashedPassword);
+            } else {
+                // If no new password is provided, retrieve the existing password
+                Controleur existingC = controleurRepo.findById(controleur.getIdControleur())
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + controleur.getIdControleur()));
+                controleur.setPassword(existingC.getPassword());
+            }
+
+            // Handle image upload
+            if (!imageFile.isEmpty()) {
+                controleur.setImageData(imageFile.getBytes());
+            } else {
+                // If no new image is uploaded, keep the existing image
+                Controleur existingC = controleurRepo.findById(controleur.getIdControleur())
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + controleur.getIdControleur()));
+                controleur.setImageData(existingC.getImageData());
+            }
+
+            // Save the updated entity
+            controleurRepo.save(controleur);
+            redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès. Veuillez vous reconnecter.");
+
+            // Invalidate the session to log out the user
+            session.invalidate();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately
+        }
+
+        // Redirect to the login page
+        return "redirect:/login"; // Change this to your actual login page URL
+    }
+
 
 
     @GetMapping("/controleur/monProfile")
