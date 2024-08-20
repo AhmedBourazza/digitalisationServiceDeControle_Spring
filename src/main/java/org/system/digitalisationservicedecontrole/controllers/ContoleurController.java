@@ -19,10 +19,7 @@ import org.system.digitalisationservicedecontrole.entities.Controleur;
 import org.system.digitalisationservicedecontrole.entities.Equipement;
 import org.system.digitalisationservicedecontrole.entities.Formulaire;
 import org.system.digitalisationservicedecontrole.entities.Unite;
-import org.system.digitalisationservicedecontrole.repositories.ControleurRepo;
-import org.system.digitalisationservicedecontrole.repositories.EquipementRepo;
-import org.system.digitalisationservicedecontrole.repositories.FormulaireRepo;
-import org.system.digitalisationservicedecontrole.repositories.UniteRepo;
+import org.system.digitalisationservicedecontrole.repositories.*;
 import org.system.digitalisationservicedecontrole.services.FormulaireService;
 
 import java.io.IOException;
@@ -48,6 +45,8 @@ public class ContoleurController {
     private ControleurRepo controleurRepo ;
     @Autowired
     private ObjectMapper jacksonObjectMapper;
+    @Autowired
+    private EntiteRepo entiteRepo;
 
     @GetMapping("/controleur/login")
     public String login() {
@@ -256,6 +255,9 @@ public class ContoleurController {
     @GetMapping("/controleur/formulaireHydrant")
     public String afficherFormulaireHydrant(Model model , HttpSession session) {
         gestionSession.prepareModel(session, model);
+        model.addAttribute("entites", entiteRepo.findAll());
+        model.addAttribute("unites", uniteRepo.findAll());
+
         return "C_formHydrant"; // Assurez-vous que "C_listeEquipements.html" est présent dans le dossier templates
     }
 
