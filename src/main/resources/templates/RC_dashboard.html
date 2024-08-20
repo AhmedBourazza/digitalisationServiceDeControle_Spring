@@ -523,24 +523,30 @@
                                 </div>
                                 <div class="card-list py-4">
                                     <div class="item-list d-flex align-items-center" th:each="c : ${controleurs}">
-                                        <div class="avatar">
-                                            <!-- Vérifie si l'image est présente, sinon affiche une image par défaut -->
-                                            <img th:src="${c.getImageDataAsBase64() != null ? 'data:image/jpeg;base64,' + c.getImageDataAsBase64() : '/path/to/default/avatar.jpg'}" alt="Avatar" class="avatar-img rounded-circle">
+                                        <!-- Affichage de l'image si elle n'est pas nulle -->
+                                        <div class="avatar" th:if="${c.getImageDataAsBase64() != null}">
+                                            <img th:src="'data:image/jpeg;base64,' + ${c.getImageDataAsBase64()}" alt="Avatar" class="avatar-img rounded-circle">
                                         </div>
+                                        <!-- Affichage d'un avatar par défaut si l'image est nulle -->
+                                        <div class="avatar" th:if="${c.getImageDataAsBase64() == null}">
+                                            <img src="path/to/default-avatar.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                        </div>
+
                                         <div class="info-user ms-3 flex-grow-1">
-                                            <!-- Vérifie si le nom et le prénom sont présents, sinon affiche 'Nom inconnu' -->
-                                            <div class="username" th:text="${c.nom != null ? c.nom : ''} + ' ' + ${c.prenom != null ? c.prenom : ''}">Nom inconnu</div>
-                                            <div class="status">
+                                            <!-- Vérification des noms et prénoms non nuls -->
+                                            <div class="username" th:if="${c.nom != null or c.prenom != null}" th:text="${(c.nom != null ? c.nom : '') + ' ' + (c.prenom != null ? c.prenom : '')}"></div>
+
+                                            <!-- Statut avec matricule, seulement si matricule n'est pas nul -->
+                                            <div class="status" th:if="${c.getMatricule() != null}">
                                                 <i class="fas fa-user-check text-success"></i> <!-- Icône de statut -->
-                                                <!-- Vérifie si le matricule est présent, sinon affiche 'Matricule inconnu' -->
-                                                <span th:text="${c.getMatricule() != null ? c.getMatricule() : 'Matricule inconnu'}"></span>
+                                                <span th:text="${c.getMatricule()}"></span>
                                             </div>
                                         </div>
+
+                                        <!-- Affichage du nombre de contrôles, gestion des cas de nullité -->
                                         <div class="text-success d-flex align-items-center">
-                                            <!-- Vérifie si 'formCount' est présent, sinon affiche '0' -->
                                             <span th:text="${c.formCount != null ? c.formCount : 0}">0</span>
-                                            <!-- Affiche 'Contrôle' ou 'Contrôles' en fonction de 'formCount' -->
-                                            <span style="margin-left: 5px;" th:text="${c.formCount != null && c.formCount == 1 ? 'Contrôle' : 'Contrôles'}">Contrôles</span>
+                                            <span style="margin-left: 5px;" th:text="${(c.formCount != null && c.formCount == 1) ? 'Contrôle' : 'Contrôles'}">Contrôles</span>
                                         </div>
                                     </div>
                                 </div>
@@ -574,18 +580,20 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="f : ${formulaires}">
-                                            <td th:text="${f.getMatriculeExemplaireEquipement() != null ? f.getMatriculeExemplaireEquipement() : 'Matricule inconnu'}" class="matricule"></td>
+                                        <tr th:each="f:${formulaires}">
+                                            <!-- Vérifie que 'matriculeExemplaireEquipement' n'est pas nul avant de l'afficher -->
+                                            <td th:text="${f.getMatriculeExemplaireEquipement() != null ? f.getMatriculeExemplaireEquipement() : 'N/A'}" class="matricule"></td>
 
-                                            <!-- Vérifie si le controleur et ses attributs sont présents -->
-                                            <td th:text="${f.getControleur() != null ? (f.getControleur().getNom() != null ? f.getControleur().getNom() : '') + ' ' + (f.getControleur().getPrenom() != null ? f.getControleur().getPrenom() : '') : 'Controleur inconnu'}">System Architect</td>
+                                            <!-- Vérifie que 'Controleur' n'est pas nul et affiche le nom et le prénom -->
+                                            <td th:text="${f.getControleur() != null ? (f.getControleur().getNom() != null ? f.getControleur().getNom() : '') + ' ' + (f.getControleur().getPrenom() != null ? f.getControleur().getPrenom() : '') : 'N/A'}">System Architect</td>
 
-                                            <!-- Vérifie si l'unité et son nom sont présents -->
-                                            <td th:text="${f.getUnite() != null && f.getUnite().getNom() != null ? f.getUnite().getNom() : 'Unité inconnue'}"></td>
+                                            <!-- Vérifie que 'Unite' n'est pas nul avant d'afficher son nom -->
+                                            <td th:text="${f.getUnite() != null && f.getUnite().getNom() != null ? f.getUnite().getNom() : 'N/A'}"></td>
 
-                                            <!-- Vérifie si la date de contrôle est présente -->
-                                            <td th:text="${f.getDateControle() != null ? f.getDateControle() : 'Date inconnue'}" class="dateControle"></td>
+                                            <!-- Vérifie que 'DateControle' n'est pas nul avant de l'afficher -->
+                                            <td th:text="${f.getDateControle() != null ? f.getDateControle() : 'N/A'}" class="dateControle"></td>
 
+                                            <!-- Bouton d'action pour le téléchargement Excel -->
                                             <td style="text-align: center;">
                                                 <button type="button" class="btn btn-icon btn-round btn-warning">
                                                     <i class="fa fa-file-excel"></i>
