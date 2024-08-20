@@ -717,6 +717,9 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
+        model.addAttribute("RCs", responsableControleurRepo.findAll());
+
+
         return "RG_gestionControleurs_ajout";
     }
 
@@ -727,10 +730,20 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
             if (!imageFile.isEmpty()) {
                 controleur.setImageData(imageFile.getBytes());
             }
+            else {
+                // Read the default image bytes
+                InputStream defaultImageStream = getClass().getResourceAsStream("/static/img/profile2.jpg");
+                if (defaultImageStream != null) {
+                    byte[] defaultImageBytes = defaultImageStream.readAllBytes();
+                    controleur.setImageData(defaultImageBytes);
+                }
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
             //ho
         }
+
         controleurRepo.save(controleur);
 
         return "redirect:/responsableGeneral/gestionControleurs";
@@ -761,6 +774,8 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
             model.addAttribute("totalEntites", entiteRepo.count());
             model.addAttribute("totalUnites", uniteRepo.count());
             model.addAttribute("totalControleurs", controleurRepo.count());
+            model.addAttribute("RCs", responsableControleurRepo.findAll());
+
             return "RG_gestionControleurs_modification"; // Nom de la vue Thymeleaf
         } else {
             // Gestion du cas où le contrôleur n'est pas trouvé
@@ -784,6 +799,7 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
                         .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + id));
                 controleur.setImageData(existingControleur.getImageData());
             }
+
 
             // Encoder le mot de passe si celui-ci est modifié
             if (controleur.getPassword() != null && !controleur.getPassword().isEmpty()) {

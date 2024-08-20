@@ -593,6 +593,8 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         model.addAttribute("totalEntites", entiteRepo.count());
         model.addAttribute("totalUnites", uniteRepo.count());
         model.addAttribute("totalControleurs", controleurRepo.count());
+        model.addAttribute("RCs", responsableControleurRepo.findAll());
+
         return "RC_gestionControleurs_ajout";
     }
 
@@ -602,6 +604,15 @@ public String afficherEquipementForm(Model model , HttpSession session) {
         try {
             if (!imageFile.isEmpty()) {
                 controleur.setImageData(imageFile.getBytes());
+            }
+            else {
+                // Read the default image bytes
+                InputStream defaultImageStream = getClass().getResourceAsStream("/static/img/profile2.jpg");
+                if (defaultImageStream != null) {
+                    byte[] defaultImageBytes = defaultImageStream.readAllBytes();
+                    controleur.setImageData(defaultImageBytes);
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
