@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>OCP SA - Responsable controleurs</title>
+  <title>OCP SA - Responsable Général</title>
   <meta
           content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
           name="viewport"
@@ -61,7 +61,7 @@
                   class="navbar-brand"
                   height="35"
           />
-          <strong style="color: white; margin-left: 4px;"> R. Contrôleurs</strong>
+          <strong style="color: white; margin-left: 4px;"> R. Général</strong>
         </a>
         <div class="nav-toggle">
           <button class="btn btn-toggle toggle-sidebar">
@@ -88,7 +88,7 @@
 
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a th:href="@{/responsableControleur/monProfile}">
               <i class="fa-solid fa-user"></i>
               <p>Mon Profile</p>
@@ -108,14 +108,12 @@
           </li>
 
 
-          <li class="nav-item active">
+          <li class="nav-item">
             <a th:href="@{/responsableControleur/gestionControleurs}">
               <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
 
-
               <p>Contrôleurs</p>
               <span class="badge badge-success" th:text="${totalControleurs}">8</span>
-
             </a>
           </li>
 
@@ -144,10 +142,12 @@
             </div>
           </li>
 
+
           <li class="nav-item">
-            <a th:href="@{/responsableControleur/gestionEquipements}">
+            <a th:href="@{/responsableControleur/GestionEquipements}">
               <i class="fa-solid fa-wrench"></i>
               <p>Equipements</p>
+              <span class="badge badge-success" th:text="${totalEquipements}">16</span>
 
             </a>
           </li>
@@ -160,7 +160,6 @@
 
             </a>
           </li>
-
           <li class="nav-item">
             <a th:href="@{/responsableControleur/gestionUnites}">
               <i class="fa-solid fa-box"></i>
@@ -210,7 +209,11 @@
               class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
       >
         <div class="container-fluid">
+          <nav
+                  class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+          >
 
+          </nav>
 
           <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
             <li
@@ -305,7 +308,6 @@
               </div>
             </li>
 
-
             <li class="nav-item topbar-user dropdown hidden-caret">
               <a
                       class="dropdown-toggle profile-pic"
@@ -350,6 +352,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
                   </li>
+
                 </div>
               </ul>
             </li>
@@ -361,97 +364,157 @@
 
     <div class="container">
       <div class="page-inner">
-
-
         <div class="page-header">
-        <!-- Customized Card -->
-        <h3 class="fw-bold mb-3">Gestion des profiles</h3>
+          <h3 class="fw-bold mb-3">Modifier mon profile</h3>
 
-        <ul class="breadcrumbs mb-3">
 
-          <li class="nav-home">
-            <a href="/responsableControleur/dashboard">
-              <i class="fas fa-home"></i> Accueil
-            </a>
-          </li>
-          <li class="separator">
-            <i class="fas fa-angle-right"></i>
-          </li>
-          <li class="nav-item">
-            <a href="#">Espace responsable Controleurs</a>
-          </li>
-          <li class="separator">
-            <i class="fas fa-angle-right"></i>
-          </li>
-          <li class="/responsableControleur/gestionControleurs">
-            <a href="#">Liste des controleurs</a>
-          </li>
-          <li class="separator">
-            <i class="fas fa-angle-right"></i>
-          </li>
-          <li class="nav-item">
-            <a href="#">Modifier Profile</a>
-          </li>
 
-        </ul>
-</div>
+          <ul class="breadcrumbs mb-3">
 
+            <li class="nav-home">
+              <a th:href="@{/index}">
+                <i class="fas fa-home"></i> Accueil
+              </a>
+            </li>
+            <li class="separator">
+              <i class="fas fa-angle-right"></i>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/responsableControleur/dashboard}">Espace responsable controleurs</a>
+            </li>
+            <li class="separator">
+              <i class="fas fa-angle-right"></i>
+            </li>
+            <li class="nav-item">
+              <a href="@{/responsableControleur/monProfile}">Mon profile</a>
+            </li>
+            <li class="separator">
+              <i class="fas fa-angle-right"></i>
+            </li>
+            <li class="nav-item">
+              <a href="#">Modification de profile</a>
+            </li>
+
+
+
+          </ul>
+        </div>
         <div class="row">
 
           <!----------------------------------------------------------------------------->
-
           <div class="col-12">
             <div class="card card-profile">
-              <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
-
-
-                <div class="profile-picture">
-
-
-                  <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
-                    <img th:src="'data:image/jpeg;base64,' + ${rc.getImageDataAsBase64()}" class="avatar-img rounded-circle" alt="User Image">
-                    <input type="file" accept="image/*" id="avatar-input" style="display: none;">
-                    <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
-                      <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
-                    </label>
-                  </div>
-
-
-                </div>
-
-
-
-              </div>
-              <div class="card-body">
-                <div class="user-profile text-center">
-                  <input type="text" class="form-control name" placeholder="Nom prénom" th:value="${rc.getPrenom()+' ' +rc.getNom()}">
-                  <input type="text" class="form-control job" placeholder="Grade"  th:value="${rc.getGrade()}>
-
-                  <input type="text" class="form-control desc" placeholder="Date d'intégration service" value="Date d'intégration service">
-                  <div class="view-profile">
-                    <input type="text" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
+              <form th:action="@{/responsableControleur/editProfile}" method="post" th:object="${responsableControleur}" enctype="multipart/form-data">
+                <div class="card-header" th:style="'background-image: url(' + @{/img/ppic.jpg} + ')'">
+                  <div class="profile-picture">
+                    <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
+                      <img th:src="'data:image/jpeg;base64,' + ${responsableControleur.getImageDataAsBase64()}" id="profile-image" class="avatar-img rounded-circle" alt="Image">
+                      <input type="file" name="imageFile" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
+                      <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
+                        <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="card-footer">
-                <div class="row user-stats text-center">
-                  <div class="col">
-                    <input type="text" class="form-control title" placeholder="Date d'embauche" value="">
-
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control title" placeholder="Nombre de vérification" value="Nombre de vérification">
-
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control title" placeholder="Classement" value="Classement">
+                <div class="card-body">
+                  <div class="user-profile">
+                    <input type="hidden" name="idResponsableControleur" th:field="*{idResponsableControleur}" th:value="${responsableControleur.idResponsableControleur}" />
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Nom</label>
+                          <input type="text" class="form-control name" th:field="*{nom}" th:value="${responsableControleur.nom}" placeholder="Nom" />
+                        </div>
+                        <div class="col">
+                          <label>Prénom</label>
+                          <input type="text" class="form-control name" th:field="*{prenom}" th:value="${responsableControleur.prenom}" placeholder="Prénom" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Date d'intégration service</label>
+                          <input type="date" class="form-control desc" th:field="*{dateIntegration}" th:value="${#dates.format(responsableControleur.dateIntegration, 'yyyy-MM-dd')}" placeholder="Date d'intégration service" disabled/>
+                        </div>
+                        <div class="col">
+                          <label>Nom d'utilisateur</label>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control title" th:field="*{username}" th:value="${responsableControleur.username}" placeholder="Nom d'utilisateur" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Matricule</label>
+                          <input type="text" class="form-control btn btn-secondary w-100" th:field="*{matricule}" th:value="${responsableControleur.matricule}" placeholder="Matricule" disabled/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Date d'embauche</label>
+                          <input type="date" class="form-control desc" th:field="*{dateEmbauche}" th:value="${#dates.format(responsableControleur.getDateEmbauche(), 'yyyy-MM-dd')}" placeholder="Date d'embauche" disabled/>
+                        </div>
+                        <div class="col">
+                          <label>Numéro de téléphone</label>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">+212</span>
+                            <input type="text" class="form-control title" th:field="*{numTele}" th:value="${responsableControleur.numTele}" placeholder="Numéro de téléphone" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Email</label>
+                          <input type="email" class="form-control" th:field="*{email}" th:value="${responsableControleur.email}" placeholder="Email" />
+                        </div>
+                        <div class="col">
+                          <label>Grade</label>
+                          <input type="text" class="form-control" th:field="*{grade}" th:value="${responsableControleur.grade}" placeholder="Grade" disabled/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="row user-stats text-center">
+                        <div class="col">
+                          <label>Nouveau mot de passe</label>
+                          <input type="password" class="form-control" th:field="*{password}" placeholder="Nouveau mot de passe" />
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
-              </div>
+                <div class="card-body">
+                  <input type="submit" class="btn btn-success" value="Valider" />
+                  <a th:href="@{/responsableControleur/monProfile}" class="btn btn-danger">Annuler</a>
+                </div>
+              </form>
+
+
+
             </div>
           </div>
 
+          <script>
+            function previewImage(event) {
+              const input = event.target;
+              const reader = new FileReader();
+              reader.onload = function(){
+                const dataURL = reader.result;
+                const output = document.getElementById('profile-image');
+                output.src = dataURL;
+              };
+              reader.readAsDataURL(input.files[0]);
+            }
+          </script>
 
 
 
@@ -721,60 +784,11 @@
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
 <script th:src="@{/js/setting-demo.js}"></script>
 
-<script>
-  $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "#177dff",
-    fillColor: "rgba(23, 125, 255, 0.14)",
-  });
 
-  $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "#f3545d",
-    fillColor: "rgba(243, 84, 93, .14)",
-  });
-
-  $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "#ffa534",
-    fillColor: "rgba(255, 165, 52, .14)",
-  });
-
-  $("#lineChart4").sparkline([102, 109, 120, 99, 110, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "rgba(255, 255, 255, .5)",
-    fillColor: "rgba(255, 255, 255, .15)",
-  });
-
-  $("#lineChart5").sparkline([99, 125, 122, 105, 110, 124, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "rgba(255, 255, 255, .5)",
-    fillColor: "rgba(255, 255, 255, .15)",
-  });
-
-  $("#lineChart6").sparkline([105, 103, 123, 100, 95, 105, 115], {
-    type: "line",
-    height: "70",
-    width: "100%",
-    lineWidth: "2",
-    lineColor: "rgba(255, 255, 255, .5)",
-    fillColor: "rgba(255, 255, 255, .15)",
-  });
-</script>
 </body>
 </html>
+
+
+
+
+
