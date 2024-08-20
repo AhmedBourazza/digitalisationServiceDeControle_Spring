@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -214,10 +215,14 @@ public class ResponsableControleurController {
 
 
 
+
     @GetMapping("/responsableControleur/editProfile")
     public String EditProfile(Model model, HttpSession session) {
         // Préparer le modèle pour la session
         gestionSession.prepareModel(session, model);
+        ResponsableControleur responsableControleur = responsableControleurRepo.findById((Long) session.getAttribute("id"))
+                .orElseThrow(() -> new RuntimeException("ResponsableGeneral not found"));
+        model.addAttribute("responsableControleur", responsableControleur);
 
         model.addAttribute("totalEquipements", equipementRepo.count());
         model.addAttribute("totalRC", responsableControleurRepo.count());
@@ -226,6 +231,54 @@ public class ResponsableControleurController {
         model.addAttribute("totalControleurs", controleurRepo.count());
         return "RC_editProfile"; // Retourne la vue d'édition du profil
     }
+
+
+    @PostMapping("/responsableControleur/editProfile")
+    public String modifierResponsableControleur(
+            @ModelAttribute ResponsableControleur responsableControleur,
+            @RequestParam("imageFile") MultipartFile imageFile,
+            @RequestParam(value = "password", required = false) String newPassword,
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
+        try {
+            // Check if a new password has been provided
+            if (newPassword != null && !newPassword.isEmpty()) {
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                String hashedPassword = passwordEncoder.encode(newPassword);
+                responsableControleur.setPassword(hashedPassword);
+            } else {
+                // If no new password is provided, retrieve the existing password
+                ResponsableControleur existingRC = responsableControleurRepo.findById(responsableControleur.getIdResponsableControleur())
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + responsableControleur.getIdResponsableControleur()));
+                responsableControleur.setPassword(existingRC.getPassword());
+            }
+
+            // Handle image upload
+            if (!imageFile.isEmpty()) {
+                responsableControleur.setImageData(imageFile.getBytes());
+            } else {
+                // If no new image is uploaded, keep the existing image
+                ResponsableControleur existingRC = responsableControleurRepo.findById(responsableControleur.getIdResponsableControleur())
+                        .orElseThrow(() -> new IllegalArgumentException("Controleur non trouvé avec l'id: " + responsableControleur.getIdResponsableControleur()));
+                responsableControleur.setImageData(existingRC.getImageData());
+            }
+
+            // Save the updated entity
+            responsableControleurRepo.save(responsableControleur);
+            redirectAttributes.addFlashAttribute("successMessage", "Les modifications ont été enregistrées avec succès. Veuillez vous reconnecter.");
+
+            // Invalidate the session to log out the user
+            session.invalidate();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately
+        }
+
+        // Redirect to the login page
+        return "redirect:/login"; // Change this to your actual login page URL
+    }
+
 
     @GetMapping("/responsableControleur/monProfile")
     public String MonProfile(Model model , HttpSession session) {
