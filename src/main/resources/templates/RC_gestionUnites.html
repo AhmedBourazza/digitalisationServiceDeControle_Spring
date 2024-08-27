@@ -421,7 +421,7 @@
                                                 <table id="multi-filter-select" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="multi-filter-select_info">
                                                     <thead>
                                                     <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 168.962px;">Nom d'unité</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Nombre d'équipements</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Entité</th>
                                                         <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Modifier</th>
                                                         <th class="sorting" tabindex="0" aria-controls="multi-filter-select" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 261.438px;">Supprimer</th>
 
@@ -500,7 +500,8 @@
 
                                                     <tr role="row" class="odd" th:each="u:${listeUnites}">
                                                         <td class="sorting_1" th:text="${u.getNom()}"></td>
-                                                        <td>15</td>
+                                                        <td th:text="${u.getEntite().getNom()}">15</td>
+
 
                                                         <td>
                                                             <a th:href="@{/responsableControleur/gestionUnites/modification/{id}(id=${u.idUnite})}">
