@@ -421,6 +421,12 @@
 
                                 </p>
                                 <p class="card-text" th:text=" 'Quantité : ' + ${e.getQuantite()}"></p>
+                                <a th:href="${e.getDocumentationUrl()}"   class="btn btn-danger btn-sm">
+                        <span class="btn-label">
+                          <i class="fa-solid fa-file-pdf" style="color: white;"></i>
+                        </span>
+                                    Documentation
+                                </a>
                                 <a th:href="@{/responsableGeneral/archiveFormulaire/parEquipements/voirArchive/{id}(id=${e.getIdEquipement()})}" class="btn btn-primary btn-rounded btn-sm">Voir archive</a>
                             </div>
                         </div>
