@@ -27,6 +27,7 @@ public class Equipement {
     private Long quantite ;
     private String titreFormulaire ;
     private String formulaireUrl;
+    private String documentationUrl;
 
     @Lob
     @Column(name = "image_data", columnDefinition = "LONGBLOB")
