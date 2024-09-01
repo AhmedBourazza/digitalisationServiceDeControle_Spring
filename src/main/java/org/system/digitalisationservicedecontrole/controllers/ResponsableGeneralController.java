@@ -632,6 +632,19 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
             if (!imageFile.isEmpty()) {
                 responsableControleur.setImageData(imageFile.getBytes());
             }
+            else {
+                // Read the default image bytes
+                InputStream defaultImageStream = getClass().getResourceAsStream("/static/img/profile2.jpg");
+                if (defaultImageStream != null) {
+                    byte[] defaultImageBytes = defaultImageStream.readAllBytes();
+                    responsableControleur.setImageData(defaultImageBytes);
+                }
+
+            }
+            if (responsableControleur.getPassword() != null && !responsableControleur.getPassword().isEmpty()) {
+                String encodedPassword = passwordEncoder.encode(responsableControleur.getPassword());
+                responsableControleur.setPassword(encodedPassword);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             //ho
@@ -738,6 +751,10 @@ public String modificationUnite(@PathVariable("id") Long id,Model model,HttpSess
                     controleur.setImageData(defaultImageBytes);
                 }
 
+            }
+            if (controleur.getPassword() != null && !controleur.getPassword().isEmpty()) {
+                String encodedPassword = passwordEncoder.encode(controleur.getPassword());
+                controleur.setPassword(encodedPassword);
             }
         } catch (IOException e) {
             e.printStackTrace();
