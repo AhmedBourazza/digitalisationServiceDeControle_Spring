@@ -666,6 +666,11 @@ public String afficherEquipementForm(Model model , HttpSession session) {
                     controleur.setImageData(defaultImageBytes);
                 }
 
+
+            }
+            if (controleur.getPassword() != null && !controleur.getPassword().isEmpty()) {
+                String encodedPassword = passwordEncoder.encode(controleur.getPassword());
+                controleur.setPassword(encodedPassword);
             }
         } catch (IOException e) {
             e.printStackTrace();

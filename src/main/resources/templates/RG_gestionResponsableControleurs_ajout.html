@@ -417,25 +417,17 @@
                     <div class="col-12">
                         <div class="card card-profile">
 
-                            <form th:action="@{/responsableGeneral/gestionResponsableControleurs/ajout}" th:object="${responsableControleur}"  enctype="multipart/form-data"  method="post">
+                            <form th:action="@{/responsableGeneral/gestionResponsableControleurs/ajout}" th:object="${responsableControleur}" enctype="multipart/form-data" method="post">
                                 <div class="card-header" th:style="'background-image: url(' + @{/img/backProfile.jpg} + ')'">
-
-
                                     <div class="profile-picture">
-
-
                                         <div class="avatar avatar-xl" style="width: 8rem; height: 8rem; position: relative;">
                                             <img id="profile-image" th:src="@{/img/profile2.jpg}" alt="..." class="avatar-img rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
-                                            <input type="file" name="imageFile"  accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
+                                            <input type="file" name="imageFile" accept="image/*" id="avatar-input" style="display: none;" onchange="previewImage(event)">
                                             <label for="avatar-input" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
                                                 <i class="fas fa-camera" style="font-size: 2rem; color: white;"></i>
                                             </label>
                                         </div>
-
-
                                     </div>
-
-
                                     <script>
                                         function previewImage(event) {
                                             const input = event.target;
@@ -448,37 +440,76 @@
                                             reader.readAsDataURL(input.files[0]);
                                         }
                                     </script>
-
                                 </div>
                                 <div class="card-body">
-
-
                                     <div class="user-profile text-center">
-                                        <input type="hidden" class="form-control name" th:field="*{idResponsableControleur}" >
-                                        <input type="text" class="form-control name" th:field="*{nom}" placeholder="Nom" value="">
-                                        <input type="text" class="form-control job" th:field="*{prenom}" placeholder="Prénom" value="">
-                                        <input type="text" class="form-control job" th:field="*{grade}" placeholder="Grade">
-                                        <input type="date" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service" value="Date d'intégration service">
+                                        <input type="hidden" class="form-control name" th:field="*{idResponsableControleur}">
+
+                                        <div class="form-group">
+                                            <label for="nom">Nom</label>
+                                            <input type="text" id="nom" class="form-control name" th:field="*{nom}" placeholder="Nom" value="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="prenom">Prénom</label>
+                                            <input type="text" id="prenom" class="form-control job" th:field="*{prenom}" placeholder="Prénom" value="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="grade">Grade</label>
+                                            <input type="text" id="grade" class="form-control job" th:field="*{grade}" placeholder="Grade">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="dateIntegration">Date d'intégration</label>
+                                            <input type="date" id="dateIntegration" class="form-control desc" th:field="*{dateIntegration}" placeholder="Date d'intégration service" value="Date d'intégration service">
+                                        </div>
+
                                         <div class="view-profile">
-                                            <input type="text" th:text="*{matricule}" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
+                                            <label for="matricule">Matricule</label>
+                                            <input type="text" id="matricule" th:text="*{matricule}" class="form-control btn btn-secondary w-100" placeholder="Matricule : JSE - dssd 12" value="">
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="card-footer">
                                     <div class="row user-stats text-center">
                                         <div class="col">
-                                            <input type="date" th:field="*{dateEmbauche}" class="form-control title" placeholder="Date d'embauche" value="">
-
+                                            <div class="form-group">
+                                                <label for="dateEmbauche">Date d'embauche</label>
+                                                <input type="date" id="dateEmbauche" th:field="*{dateEmbauche}" class="form-control title" placeholder="Date d'embauche" value="">
+                                            </div>
                                         </div>
                                         <div class="col">
-                                            <input type="text" th:field="*{numTele}" class="form-control title" placeholder="Numéro de téléphone">
-
+                                            <div class="form-group">
+                                                <label for="numTele">Numéro de téléphone</label>
+                                                <input type="text" id="numTele" th:field="*{numTele}" class="form-control title" placeholder="Numéro de téléphone">
+                                            </div>
                                         </div>
                                         <div class="col">
-                                            <input type="text" th:field="*{username}" class="form-control title" placeholder="UserName" >
-
+                                            <div class="form-group">
+                                                <label for="username">Nom d'utilisateur</label>
+                                                <input type="text" id="username" th:field="*{username}" class="form-control title" placeholder="UserName">
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div class="col">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" th:field="*{email}"  placeholder="Email" />
+                                                </div>
+                                                <div class="col">
+                                                    <label>Grade</label>
+                                                    <input type="text" class="form-control" th:field="*{grade}"  placeholder="Grade" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="row user-stats text-center">
+                                                <div class="col">
+                                                    <label>Nouveau mot de passe</label>
+                                                    <input type="password" class="form-control" th:field="*{password}"  placeholder="Nouveau mot de passe" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
